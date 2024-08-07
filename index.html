@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>DEEP-EM TOOLBOX</title>
+<!-- TODO: add a cool favicon -->
+  <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    .hidden {
+        display: none;
+    }
+    .button-55 {
+      align-self: center;
+      background-color: #fff;
+      background-image: none;
+      background-position: 0 90%;
+      background-repeat: repeat no-repeat;
+      background-size: 4px 3px;
+      border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+      border-style: solid;
+      border-width: 2px;
+      box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+      box-sizing: border-box;
+      color: #41403e;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Neucha, sans-serif;
+      font-size: 1rem;
+      line-height: 23px;
+      outline: none;
+      padding: .75rem;
+      text-decoration: none;
+      transition: all 235ms ease-in-out;
+      border-bottom-left-radius: 15px 255px;
+      border-bottom-right-radius: 225px 15px;
+      border-top-left-radius: 255px 15px;
+      border-top-right-radius: 15px 225px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-55:hover {
+      box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+      transform: translate3d(0, 2px, 0);
+    }
+
+    .button-55:focus {
+      box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+
+    .green-background {
+      background-color: #dde9afff; /* Green background */
+      padding: 20px; /* Padding inside the element */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+      font-size: 16px; /* Font size */
+      margin: 20px 0; /* Margin outside the element */
+    }
+
+    .red-background {
+      background-color: #ffaaaaff; /* Green background */
+      padding: 20px; /* Padding inside the element */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+      font-size: 16px; /* Font size */
+      margin: 20px 0; /* Margin outside the element */
+    }
+
+    .orange-background {
+      background-color: #ffb380ff; /* Green background */
+      padding: 20px; /* Padding inside the element */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+      font-size: 16px; /* Font size */
+      margin: 20px 0; /* Margin outside the element */
+    }
+
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    function toggleVisibility(id_content, id_button) {
+        var content = document.getElementById(id_content);
+        var btn = document.getElementById(id_button);
+
+        
+        if (content.classList.contains('hidden')) {
+          content.classList.remove('hidden');
+          btn.innerHTML = "Show Less"
+        } else {
+          content.classList.add('hidden');
+          btn.innerHTML = "Show More"
+
+        }
+    }
+
+</script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <img src="static/images/icon.png" alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+
+            <h1 class="title is-1 publication-title">DEEP-EM TOOLBOX:</h1>
+            <h2 class="title is-1 publication-title">Deep Learning Toolbox for Electron Microscopy Researchers</h2>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah Kniesel</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan Payer</a><sup>1</sup>,</span>
+                  <span class="author-block">
+                    <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam Poonam</a><sup>1</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="" target="_blank">Tim Bergener</a><sup>2</sup>,
+                  </span>
+                <span class="author-block">
+                    <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo Ropinski</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://phermosilla.github.io/" target="_blank">Pedro Hermosilla</a><sup>3</sup>
+                </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm University<br><sup>2</sup>Central Facility Electron Microscopy, Ulm Univesity<br><sup>3</sup>Computer Vision Lab, TU Vienna</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                    <!-- Supplementary PDF link 
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span>-->
+
+                  <!-- Github link 
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span> -->
+
+                <!-- ArXiv abstract Link 
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser image
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <img src="static/images/tasks.png" alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+      <h2 class="subtitle has-text-centered">We propose to categorize tasks within the area of EM data analysis into Image to Value(s), Image to Image and 2D to 3D. We do so, based on their specific requirements for implementing a deep learning workflow. For more details, please see our paper.</h2>
+    </div>
+  </div>
+</section>
+End teaser image -->
+
+<!-- Teaser image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <img src="static/images/workflow.png" alt="Standard Deep Learning Workflow" />
+      <h2 class="subtitle has-text-centered">Figure 1: We propose a simple workflow for developing deep learning solutions for the supported analysis of EM data. The workflow is clustered into three categories: 1) Task and model definition; 2) Data collection and preparation; 3) Model training and evaluation</h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite advancements in computer vision, deep learning application in EM labs remains limited. This paper outlines various application areas within EM and presents a straightforward deep learning workflow for developing solutions in this context.
+            We aim to bridge the gap between deep learning experts and electron microscopy (EM) researchers, acknowledging the significant potential of deep learning in enhancing the analysis of EM micrographs. With its proven success in computer vision tasks, deep learning can revolutionize EM image analysis through supported, automated, and standardized methodologies. We introduce the Deep Learning Toolbox for Electron Microscopy Researchers to integrate deep learning into EM data analysis. 
+            Our primary objective is to foster effective collaboration between domain experts and data scientists, addressing differences in terminology and expertise. We also introduce a platform to compile recent advancements in deep learning for EM, demonstrating its capabilities through three exemplary notebooks for tasks such as virus quantification in EM images, segmentation, and tomographic reconstruction. The platform is designed for plug-and-play use by EM researchers, and we encourage contributions from the research community to make their work accessible.
+          </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+<!--Intro to Deep Learning -->
+<section class="section hero">
+    <div class="container is-max-desktop content">
+        <h2 class="title is-3">Deep Learning Terminology</h2>
+        <div class="content has-text-justified">
+            <p>Deep Learning has emerged as a powerful tool of artificial intelligence. 
+              Deep Learning describes a tool, which, in theory, is able to approximate any function \( f_{\theta}(x) = \hat{y} \), where \( x \) is some input data (like a micrograph of a virus infected cell) and \( \hat{y} \) is the network's output. During training of the neural network, the function's parameters \( \theta \) (often referred to as <i>trainable parameters</i>) need to be adjusted, such that \( \hat{y} = y \), where \( y \) is a desired output of the model (like the number of virus capsids present in the input image. \( y \) is often called "labels", "ground truth", "target" or "annotations"). 
+              To train the network, we need to define a <i>loss function</i> \( L(\hat{y}, y) \), where \( \hat{y} = f_{\theta}(x) \) (the network's output), which is able to measure the network's error. Then, the parameters \( \theta \) of the network are updated using <i>gradient descent</i>. Using gradient descent, we are aiming to minimize the predefined loss function for a large set of training data \( x_i \in X_{i=1...N} \).  
+              By using a large dataset with high variances in the data we aim to make the network <i>generalizable</i>, which means that the network is able to learn a function \( f \) which is able to map input data, which it has not seen during training to a correct prediction. In the following we will introduce basic taxonomy for Deep Learning.
+            </p>
+            <p>In the following, we give a short overview of most common terminology used in the context of deep learning.</p>
+        </div>
+        <button id="togglebtn-terminology" class="button-55" onclick="toggleVisibility('content-terminology', 'togglebtn-terminology')">Show More</button>
+        <div id="content-terminology" class="hidden">
+          <p></p>
+          <p>
+            <strong>Loss function</strong> is a mathematical function that quantifies the difference between the predicted output of a neural network and the actual target value (often also referred to as <i>annotation</i>, <i>ground truth</i> or <i>label</i>). It serves as a crucial component in training deep learning models by providing a measure of how well or poorly the model is performing. The primary objective during training is to minimize this loss function, which in turn improves the model's predictions.
+          </p>
+          <p>
+            <strong>Metric</strong> In the context of deep learning, a metric is a quantitative measure used to evaluate the performance of a model. Metrics provide insights into how well the model is performing on tasks such as classification, regression, or other predictive tasks by comparing the model's predictions to the actual ground truth values. Metrics help in assessing the effectiveness of the model, guiding the tuning of hyperparameters, and making decisions about model improvements. Unlike loss functions, which are optimized during training, metrics are primarily used for evaluation purposes, providing a clearer understanding of the model's predictive capabilities and generalization to unseen data.
+          </p>
+          <p>
+            <strong>Gradient Descent</strong> Gradient descent is a fundamental optimization algorithm used in deep learning to minimize the loss function. The algorithm iteratively adjusts the trainable parameters (weights and biases) of the neural network to reduce this loss. The core idea involves computing the gradient (partial derivative) of the loss function with respect to each parameter. These gradients indicate the direction and rate of change needed to decrease the loss. The parameters are then updated in the opposite direction of the gradient, scaled by a learning rate, which controls the step size of the updates. Mathematically, the update rule for a parameter θ at update step t is given by θ<sub>t</sub> = θ<sub>t-1</sub> - η∇<sub>θ</sub>L, where η is the learning rate, ∇<sub>θ</sub>L is the gradient of the loss L with respect to θ. This iterative process continues until the algorithm converges to a minimum of the loss function, ideally reaching optimal parameter values that allow the neural network to make accurate predictions. Gradient descent variants, such as stochastic gradient descent (SGD) and mini-batch gradient descent, improve efficiency and performance by adjusting how the gradients are computed and applied.
+          </p>
+          <p>
+            <strong>Architectures</strong> refer to the specific design and configuration of neural networks, dictating how layers are arranged and interconnected. Common architectures include Convolutional Neural Networks (CNNs) for image processing, Recurrent Neural Networks (RNNs) for sequential data, and Transformer models for tasks like natural language processing or image processing. Each architecture is tailored to handle specific types of input and output dimensions, ensuring optimal processing and learning.
+          At the core of these architectures are neurons, the fundamental units of a neural network. A neuron receives input, processes it using a set of weights, and then applies an activation function, such as ReLU (Rectified Linear Unit), Sigmoid, or Tanh, to introduce non-linearity, enabling the network to learn complex functions.
+          Layers, which are collections of neurons, form the structural components of a neural network. There are various types of layers, each serving a distinct purpose. For example, input layers handle the raw data, hidden layers process the input through multiple transformations, and output layers produce the final predictions. The architecture must also adapt the input dimensions, like the dimension of the input data, and the output dimensions, for example to ensure the correct number of classes in classification tasks, to suit the problem being addressed. The thoughtful design of these architectures, the role of neurons, the appropriate activation functions, and the strategic use of different types of layers are essential for the network to effectively learn from the data and perform the desired tasks.
+          </p>
+          <p>
+            <strong>Hyperparameters</strong> in the context of deep learning are the parameters set before the training process begins, which govern the overall behavior and performance of the neural network. Unlike model parameters, which are learned during training, hyperparameters need to be manually defined. They include aspects such as the learning rate, batch size, number of epochs, and architecture-specific choices like the number of layers and units per layer. The choice of hyperparameters can significantly impact the model's ability to learn effectively and generalize to new data. Tuning these hyperparameters is often a complex and iterative process, involving techniques such as grid search, random search, or more sophisticated methods like Bayesian optimization to find the optimal settings that enhance model performance.
+          </p>
+          <p>
+            <strong>Training</strong> in deep learning is the process where a neural network learns from a dataset by adjusting its weights to minimize the error of its predictions. The dataset is often too large to process all at once, so it is divided into smaller subsets called batches. A batch is a small, manageable portion of the dataset used to update the model's weights. Training on batches is necessary because it allows for efficient computation and memory usage, making it feasible to train large models on large datasets.
+            An iteration refers to a single update of the model's weights using one batch of data. Multiple iterations make up an epoch, which is a complete pass through the entire training dataset. Training on batches helps achieve a balance between speed and accuracy, as each batch update can quickly provide feedback to the model, allowing it to adjust its weights incrementally.
+            Using a batch size of 1, also known as online learning, can be inefficient and noisy. With a batch size of 1, the model's weights are updated after every single data point, leading to highly variable gradient updates that can make the training process unstable and slow. Larger batch sizes help in smoothing out these updates, providing more stable and reliable gradients, which can lead to more efficient convergence.
+            Throughout many epochs, the model iteratively processes batches of data, computes predictions, and updates its parameters using optimization algorithms such as stochastic gradient descent. The goal is to minimize a predefined loss function that quantifies the discrepancy between the predicted outputs and the actual targets. By iteratively refining its weights through batch processing, the model learns the underlying patterns in the data effectively, leading to improved performance and generalization.
+          </p>
+          <p>
+            <strong>Learning Rate</strong> The learning rate is a critical hyperparameter that determines the step size at each iteration while moving towards a minimum of the loss function. A learning rate that is too high can cause the training process to converge too quickly to a suboptimal solution, or even diverge. Conversely, a learning rate that is too low can make the training process very slow, potentially getting stuck in local minima.
+          </p>
+          <p>
+            <strong>Learning Rate Scheduler</strong> To address the challenges of selecting a proper learning rate, learning rate schedulers are used. These dynamically adjust the learning rate during training to improve performance and convergence speed. Common strategies include:
+            <ul>
+                <li><i>Step Decay</i>: Reduces the learning rate by a factor at fixed intervals (epochs).</li>
+                <li><i>Exponential Decay</i>: Gradually decreases the learning rate exponentially over time.</li>
+                <li><i>Cosine Annealing</i>: Reduces the learning rate following a cosine curve, which can help in exploring wider regions of the loss landscape initially and then fine-tuning as training progresses.</li>
+                <li><i>Cyclic Learning Rate</i>: Varies the learning rate cyclically between a minimum and maximum boundary, which can help escape local minima and improve training performance.</li>
+            </ul>
+          </p>
+          <p>
+            <strong>Optimization Algorithms</strong> Optimization algorithms are used to adjust the weights of the model to minimize the loss function. Different optimizers offer various advantages depending on the problem and the dataset. Here are some commonly used optimizers:
+            <ul>
+                <li><i>Stochastic Gradient Descent (SGD)</i>: SGD updates the model's parameters using the gradient of the loss function with respect to the parameters for each batch of data. It is simple and effective but can be slow to converge and may oscillate near the minimum.</li>
+                <li><i>Momentum</i>: An extension of SGD, momentum helps accelerate SGD by navigating in the relevant direction and dampening oscillations. It accumulates a velocity vector in the direction of the gradient's consistent component, speeding up the training process.</li>
+                <li><i>Adagrad</i>: Adagrad adapts the learning rate for each parameter based on its gradients' historical sum. It is particularly useful for dealing with sparse data but can suffer from decaying learning rates over time.</li>
+                <li><i>RMSprop</i>:  RMSprop adjusts the learning rate for each parameter by dividing by a running average of recent gradients' magnitudes. It mitigates Adagrad's issue of decaying learning rates and performs well in practice.</li>
+                <li><i>Adam</i>: Adam (Adaptive Moment Estimation) combines the benefits of both Adagrad and RMSprop. It computes adaptive learning rates for each parameter using the first and second moments of the gradients. Adam is widely used due to its robust performance across various tasks.</li>
+                <li><i>AdamW</i>:  An extension of Adam, AdamW decouples weight decay (used for regularization) from the gradient updates. This improves the optimizer's performance, particularly when using L2 regularization.</li>
+
+            </ul>
+          </p>
+          <p>
+            <strong>Batch Size</strong> The batch size is a crucial hyperparameter in deep learning training that defines the number of samples processed before the model's internal parameters are updated. It influences both the learning dynamics and computational efficiency of the training process. Choosing the right batch size involves balancing several trade-offs. Smaller batch sizes (e.g., 32 or 64) provide more frequent updates to the model parameters, which can lead to a smoother convergence and better generalization to new data. However, they may introduce higher noise in the gradient estimates, which can make the training process less stable. Larger batch sizes (e.g., 256 or 512) offer more accurate gradient estimates and can leverage parallel processing capabilities of modern GPUs more efficiently, potentially speeding up the training process. Yet, they require more memory and can lead to less frequent updates, which might result in slower convergence and risk of getting stuck in local minima. Empirically, a batch size that balances these factors is typically chosen based on the specific dataset and computational resources available. Adaptive strategies, such as progressively increasing the batch size during training, can also be employed to combine the benefits of both small and large batch sizes.
+          </p>
+          <p>
+            <strong>Validation</strong> is a critical step in deep learning used to evaluate the model's performance on a separate dataset not seen during training. This dataset, called the validation set, is used to tune hyperparameters, select the best model, and prevent overfitting. Overfitting occurs when a model learns the training data too well, capturing noise and specific patterns that do not generalize to new, unseen data. This leads to poor performance on validation or test sets. In contrast, generalization is the model's ability to perform well on new, unseen data, indicating that it has learned the underlying patterns in the training data without memorizing it. During training, the model's performance on the validation set is monitored, and adjustments are made to improve generalization. This helps ensure that the model does not just memorize the training data but learns to generalize to new, unseen data, enhancing its robustness and applicability in real-world scenarios.
+          </p>
+          <p>
+            <strong>Test</strong> The test phase, sometimes also refered to as inference, is where the trained model is evaluated on a completely separate dataset called the test set. This dataset is used to assess the model's final performance and its ability to generalize to new data. During inference, the model makes predictions on new data points, and its performance metrics (such as accuracy, precision, recall) are calculated. This phase is crucial for understanding how well the model will perform in real-world scenarios and ensures that the model's performance is robust and reliable.
+          </p>
+          <p>
+            <strong>Supervised Learning</strong>  is the standard approach of machine learning where the model is trained on labeled data. In this paradigm, the training dataset consists of input-output pairs, where each input $x$ is associated with a known output $y$ (label). The goal of supervised learning is to learn a mapping function from inputs to outputs, allowing the model to make accurate predictions on new, unseen data. Supervised learning is widely used in various domains such as image recognition, speech recognition, and medical diagnosis, due to its effectiveness in learning from explicit examples.
+          </p>
+          <p>
+            <strong>Weakly Supervised Learning</strong> is a machine learning approach where the model is trained using partially labeled or noisy data, as opposed to fully labeled data in traditional supervised learning. In weakly supervised learning, the training dataset may contain only high-level labels, partial labels, or noisy labels, which provide limited or ambiguous information about the ground truth. Despite the challenges posed by the lack of precise labels, weakly supervised learning algorithms aim to infer meaningful patterns and relationships from the available data to make predictions or perform tasks. This approach often requires innovative techniques, such as label aggregation, data augmentation, or learning from indirect supervision signals. Weakly supervised learning is particularly useful in scenarios where obtaining fully labeled data is expensive, time-consuming, or impractical, allowing models to be trained on larger, more diverse datasets. Additionally, weak supervision can function as implicit standardization: For example when human opinion on the full annotation is ambiguous, the annotations in a weak scenario might be unambiguous. Hence, the model is able to learn a standardization from the unambiguous weak labels.
+          </p>
+          <p>
+            <strong>Unsupervised Learning</strong>  is particularly valuable for pretraining models on large, unlabeled datasets. Instead of relying on labeled examples, unsupervised learning algorithms explore the raw input data to extract meaningful features or representations without explicit guidance. Pretraining involves training a model on a large amount of unlabeled data to learn general patterns and structures in the data. Once pretrained, the model can be fine-tuned on smaller labeled datasets for specific tasks, such as classification or regression. Fine-tuning adjusts the pretrained model's parameters to make it better suited for the specific task at hand, leveraging the knowledge gained during pretraining. Unsupervised pretraining followed by fine-tuning has proven to be effective in improving model performance, especially in scenarios where labeled data is scarce or expensive to obtain. It plays a crucial role in various applications such as natural language processing, computer vision, and speech recognition, enabling the development of more accurate and robust deep learning models.
+          </p>
+        </div>
+    </div>
+</section>
+<!--End intro to Deep Learning  -->
+
+
+
+<!--Workflow -->
+<section class="section hero is-light">
+    <div class="container is-max-desktop content">
+        <h2 class="title is-3">Workflow</h2>
+        <div class="content has-text-justified">
+            <p>We introduce a simple Workflow of Deep Learning, which can be followed for the successful development of Deep
+            Learning methods for supported EM analysis. In our workflow (Figure 1) we propose 3 clusters:</p>
+            <ul>
+                <li>Task and model definition (orange).</li>
+                <li>Data collection and preparation (green).</li>
+                <li>Model development (red).</li>
+            </ul>
+
+            <p>
+              <i>Defining the task and model</i> is closely intertwined with <i>collecting and preparing data</i>, as these initial phases set the groundwork for all subsequent steps. In the deep learning workflow, this foundational work leads to the development of two distinct types of pipelines: a task-driven pipeline and a data-driven pipeline. The choice between these pipelines depends on whether the initial focus is on <i>task and model definition</i> or <i>data collection and preparation</i>, highlighting the interdependence between these early stages of the process.
+              For the task-driven deep learning pipeline, researchers identify a specific task they aim to solve using deep learning. Based on this task, appropriate data is collected and annotated. This approach is particularly useful for integrating deep learning into the everyday workflow of EM researchers, as it directly addresses specific problems they encounter. However, it often introduces additional overhead in terms of data collection and annotation tailored to the task.
+              On the other hand, the data-driven deep learning pipeline leverages large amounts of available data to solve tasks using deep learning. This approach is especially advantageous for creating a strong foundation for future tasks. The creation of strong foundation models can help to reduce the needed amount of annotated data while side stepping the risk of introducing strong bias in the trained model. Foundation models facilitate the development of new models and methods, providing a versatile and scalable approach to integrating deep learning into EM research. However, foundation models are usually not directly applicable to solve task but require additional fine-tuning or method development. Moreover, they require vast amount of data, as well as long training times, making the development especially time and cost consuming. 
+              In the following we will hence focus on the development of task-driven deep learning, mainly in the area of supervised deep learning. 
+            </p>
+              <p></p>
+
+              <div class="orange-background">
+                <h3>Task and Model Definition</h3>
+                <p>
+                  Task and model definition are fundamental steps in the development of a deep learning solutions, particularly when dealing with complex data such as electron microscopy images. These stages involve not only understanding the specific problem to be solved but also choosing an appropriate model architecture that can effectively address the task.
+                </p>
+
+                <button id="togglebtn-task-model" class="button-55" onclick="toggleVisibility('content-task-model', 'togglebtn-task-model')">Show More</button>
+                <div id="content-task-model" class="hidden">
+                  <p></p>
+                  <h4>Task Definition</h4>
+                  <p>
+                    In the development of a deep learning methods for the analysis of electron microscopy images, the task definition phase is critical. To identify areas where deep learning can be beneficial, we refer to specific examples of tasks outlined in \autoref{sec:tasks}. 
+                    A structured definition of the task involves several key considerations.
+                    First, we need to clearly define the input data and the expected output. This clarity ensures that the task is well understood and that the goals are achievable. It is also essential to assess whether the output can be logically derived from the input data, ensuring there is a meaningful correlation between them.
+                  </p>
+                  <p>
+                    This means that we need to consider possible information which can function as model input. As we primarily work with image data, the application of DL to EM is closely tied to computer vision. However, incorporating additional prior information can significantly enhance model performance. For instance, while Convolutional Neural Networks (CNNs) are inherently translation invariant, they are not size invariant. Therefore, including additional information about sizes can improve performance. This can be done implicitly by rescaling the input data or explicitly by providing the size as an additional input. Such an approach leads to the creation of "multimodal" models, which leverage multiple data modalities, such as images and tabular data, to enhance predictive capabilities.
+                  </p>
+                  <p>
+                    By carefully defining the task with these considerations in mind, we can effectively harness the power of deep learning for electron microscopy image analysis, ensuring that the models are both robust and applicable to real-world scenarios.
+                  </p>
+
+                  <h4>Architecture Choice</h4>
+                  <p>The term "architecture" in deep learning is often overloaded, encompassing both the backbone of the model and the task-specific design. The backbone refers to the core network used for feature extraction which provides a foundational structure for various tasks. In <a href="#fig:Tasks">Figure 1</a> we highlight the backbone in red. In contrast, task-specific architecture refers to the overall model design tailored for specific applications like object detection or image segmentation. In <a href="#fig:Tasks">Figure 1</a> we depict the task-specific architecture for each method. Understanding the distinction and interplay between these uses of "architecture" is crucial for designing effective deep learning solutions.</p>
+                  <p>In general, it is possible to design architectures yourself from scratch. However, this is not recommended. First, it requires a lot of compute resources and time to design a well-fitted architecture. Second, there are many well-designed architectures, which are frequently used, hence sufficiently tested, as well as there are pretrained models freely available. Hence, when these architectures might not be suited to your very specific task, it is still recommended to reuse the available models and work with small adaptions. This will still allow you to benefit from pretrained model weights.</p>
+
+                  <h5>Backbones</h5>
+                  <p>The choice of a backbone is crucial for two main reasons: 1) Selecting the model type that matches the characteristics of your data. 2) Balancing the number of parameters with the available training data to avoid overfitting.</p>
+
+                  <h6>Choosing the Model Type</h6>
+                  <p>The model type of the backbone in deep learning refers to the structured design of a neural network, including the arrangement and type of layers and how they are connected. The architecture determines how the network processes input data to learn and make predictions. Within this architecture, learnable parameters, such as weights and biases, are adjusted during training to minimize the difference between the network's predictions and the actual target values.</p>
+                  <p>Different types of networks are suitable for different characteristics of input data and dataset sizes. The most basic form of a neural network is the <i>Multi-Layer Perceptron</i> (MLP): <a href="#fig:MLP">Figure 2</a>. A MLP is a type of neural network consisting of multiple layers of interconnected neurons, including an input layer, one or more hidden layers, and an output layer. Each neuron in one layer connects to every neuron in the next layer, and the network learns by adjusting the weights of these connections to minimize prediction errors.</p>
+                  <p>It is not well-suited for processing image data, as it requires a large amount of trainable parameters to process a single input image. This can then lead to overfitting and high computation requirements. However, it can be useful for integrating additional tabular data (e.g., known virus sizes to aid in virus particle classification). Additionally, MLPs are often used as classification heads, merging features extracted by the actual backbone architecture (see <a href="#fig:Tasks">Figure 1</a>: <i>Image to Value(s) - Task Specific Head</i>).</p>
+                  <figure>
+                    <img src="images/MLP.pdf" alt="Depiction of the MLP architecture for processing an input image.">
+                    <figcaption id="fig:MLP">Depiction of the MLP architecture for processing an input image. As the MLP requires dense connections between all neurons it has lots of trainable parameters, leading to high computational costs and possible overfitting.</figcaption>
+                  </figure>
+
+                  <p><i>Convolutional Neural Networks</i> (CNNs) were specifically designed for processing image data. These networks leverage the convolution operation (see <a href="#fig:CNN">Figure 3</a>), initially developed for extracting image features such as edges (e.g., Sobel operator), and now capable of learning these features directly from data. CNNs excel in capturing local features due to their ability to apply convolution across the spatial dimensions of the input. This makes them particularly effective for tasks where spatial relationships within images are crucial.</p>
+                  <p>One of the key advantages of CNNs is their translation invariance, meaning they can recognize patterns regardless of their position within the image. This property significantly enhances their ability to generalize from small datasets, making them well-suited for tasks involving image recognition and classification. In the context of electron microscopy, where datasets may be limited in size but rich in detail, CNNs offer a robust framework for automatically extracting relevant features and patterns from microscopic images.</p>
+                  <figure>
+                    <img src="images/CNN.pdf" alt="Depiction of the convolution operation within CNNs.">
+                    <figcaption id="fig:CNN">Depiction of the convolution operation within CNNs. The image is processed by sliding a kernel over the input image and computing the weighted average of the kernel and the images pixel values. In the context of CNNs the trainable parameters correspond to the kernel values.</figcaption>
+                  </figure>
+
+                  <p><i>Transformers</i>, originally developed for natural language processing, have been adapted for image data through Vision Transformers (ViTs) <a href="#dosovitskiy2020image">[1]</a>. For processing image data, the image is divided into smaller "patches" (see <a href="#fig:Transformers">Figure 4</a>). The ViT model then employs self-attention mechanisms to process these image patches, allowing them to effectively capture long-range dependencies and intricate patterns within images. Unlike traditional Convolutional Neural Networks (CNNs), which focus primarily on local features, ViTs process image patches globally by the transformer network. This global processing capability enables ViTs to handle complex relationships across the entire image, making them highly effective for tasks requiring understanding of broader context. The size of the image patches can play a crucial role in the resulting performance of the trained model.</p>
+                  <p>ViTs demonstrate exceptional performance especially when trained on large datasets, leveraging their ability to efficiently capture global context. In scenarios where extensive training data is not available, pretrained ViT models are instrumental in achieving competitive performance by leveraging knowledge learned from diverse datasets. Recent advancements in ViT architectures include models like Swin Transformer <a href="#liu2021swin">[2]</a>, which introduces hierarchical feature maps and shifted windows to enhance efficiency and scalability, particularly beneficial for tasks such as image segmentation. Additionally, models like DeiT <a href="#touvron2021training">[3]</a> (Data-efficient image Transformers) are tailored for high performance with limited training data, showcasing ViTs' versatility across various applications in image analysis.</p>
+                  <figure>
+                    <img src="images/Transformers.pdf" alt="Depiction of the standard vision transformer architecture.">
+                    <figcaption id="fig:Transformers">Depiction of the standard vision transformer architecture. Image adapted from <a href="#dosovitskiy2020image">[1]</a>. For processing image data, the image is patchified, encoded and forwarded through the transformer architecture which uses the transformer-specific attention mechanism. To preserve image structure, the position of the image patches functions as additional input to the network. The CLS-token functions as additional learnable class embedding to capture the characteristics of the input image.</figcaption>
+                  </figure>
+
+                  <p>In recent developments, researchers have explored hybrid architectures that combine the strengths of both Convolutional Neural Networks (CNNs) and Transformers, aiming to mitigate their respective limitations and leverage their unique attributes. Hybrid architectures integrate CNNs for initial feature extraction and local feature processing, which are then passed to Transformers to handle global context and long-range dependencies. This approach allows the model to benefit from CNNs' efficiency in local feature extraction and Transformers' strength in capturing global relationships. By combining these architectures, researchers aim to achieve superior performance in tasks such as image classification, object detection, and image segmentation.</p>
+
+                  <h6>Balancing Parameters and Training Data</h6>
+                  <p>A large number of trainable parameters allows for complex function approximations, leading to a well-fitted input-output relation. However, for small datasets, this can lead to overfitting, where the model memorizes the training data instead of generalizing from it. This issue can be mitigated by choosing a backbone with fewer parameters or using pretrained backbones. Predefined backbones come in various sizes to meet different needs; for example, ResNet models range from ResNet-18 to ResNet-101, providing options to balance complexity and generalization based on your training data.</p>
+
+                  <h5>Task Specific Architectures</h5>
+                  <h6>Image to Value(s)</h6>
+                  <p>Image to Value(s) architectures (see <a href="#fig:Tasks">Figure 1</a>) usually consist of a backbone feature extractor and a task-specific head. This head is typically an MLP network. The final activation function scales the network's output to an appropriate range, which is heavily task-specific.</p>
+                  <p>In <i>classification</i> tasks, the goal is to assign a label to an entire image. For example, in the case of classifying different types of cells, the backbone learns to identify distinguishing features of each cell type. The MLP head then assigns a class label to the recognized features. The output layer corresponds to the number of task-specific classes, and the network is trained to output a probability function modeling the probability of the input image belonging to the predefined classes. For instance, in the classification of EM crops of a virus-infected cell, the output layer consists of two neurons: one for "virus present" and one for "no virus present." If the input image contains virus particles, the expected network output is [0, 1]. Hence, the final activation function is usually a softmax activation, making the output a probability density function.</p>
+                  <p>The softmax function is defined as:
+                  <pre>
+                  <code>softmax(z<sub>i</sub>) = e<sup>z<sub>i</sub></sup> / Σ<sub>j</sub> e<sup>z<sub>j</sub></sup></code>
+                  </pre>
+                  where z<sub>i</sub> is the input to the i-th neuron in the output layer.</p>
+                  <p>The loss is then usually computed using cross-entropy loss. The cross-entropy loss function is defined as:
+                  <pre>
+                  <code>Cross-Entropy Loss = -Σ<sub>i</sub> y<sub>i</sub> log(p<sub>i</sub>)</code>
+                  </pre>
+                  where y<sub>i</sub> is the true label and p<sub>i</sub> is the predicted probability (network output). This loss penalizes strong deviations from the true label more than small errors.</p>
+
+                  <p>In <i>regression</i> tasks, the objective is similar to classification, but the output range is usually unbound. For example, predicting the number of objects in an input image requires an output that cannot be negative, so a ReLU activation function is typically used in the final layer.</p>
+                  <p>The ReLU function is defined as:
+                  <pre>
+                  <code>ReLU(x) = max(0, x)</code>
+                  </pre>
+                  As a loss function, usually Mean Squared Error (MSE) is applied. The Mean Squared Error (MSE) loss function is defined as:
+                  <pre>
+                  <code>MSE = (1/n) Σ<sub>i=1</sub><sup>n</sup> (y<sub>i</sub> - ŷ<sub>i</sub>)²</code>
+                  </pre>
+                  where y<sub>i</sub> is the true value and ŷ<sub>i</sub> is the predicted value.</p>
+
+                  <p>In <i>detection</i> tasks, the goal is to identify and localize objects within an image. This involves not only recognizing what the object is but also where it is located. Popular architectures for detection include Faster R-CNN <a href="#ren2015faster">[4]</a>, YOLO (You Only Look Once) <a href="#redmon2016you">[5]</a>, SSD (Single Shot MultiBox Detector) <a href="#liu2016ssd">[6]</a>, and DETR <a href="#carion2020end">[7]</a>. These models output bounding boxes around detected objects along with their class labels. For example, detecting virus particles in electron microscopy (EM) images involves the model learning to locate and label each virus particle within the image. The standard loss function typically combines multiple components to address different aspects of the detection task. The most common components are: 1) Classification Loss: Measures the error in classifying the detected objects. This is often a form of cross-entropy loss. 2) Localization Loss: Measures the error in predicting the bounding box coordinates. This is often a form of smooth L1 loss (also known as Huber loss) or IoU (Intersection over Union) loss. 3) Confidence Loss: Used in models like YOLO and SSD, this measures the confidence that a bounding box contains an object.</p>
+
+                  <h6>Image to Image</h6>
+                  <p>Image to Image tasks typically deploy an encoder-decoder architecture as shown in <a href="#fig:Tasks">Figure 1</a>. Encoders reduce the spatial dimensions of the features while increasing the channel depth, and decoders learn to invert this process to make pixel-wise predictions.</p>
+                  <p>In <i>segmentation</i> tasks, the model classifies each pixel in an image, effectively drawing precise boundaries around objects. Segmentation can be further divided into semantic segmentation, where each pixel is labeled according to the object class (e.g., all pixels belonging to virus particles), and instance segmentation, which differentiates between individual instances of objects (e.g., separating individual virus particles). Panoptic segmentation combines instance segmentation and semantic segmentation tasks. As classification and segmentation are quite similar, the final activation function and loss function are usually similar as well. However, the model architectures differ significantly. U-Net <a href="#ronneberger2015u">[8]</a>, Mask R-CNN <a href="#he2017mask">[9]</a>, and DeepLab <a href="#chen2017deeplab">[10]</a> are popular architectures for segmentation tasks, particularly useful in biomedical imaging where precise delineation of structures is critical.</p>
+
+                  <p>In <i>denoising</i>, the aim is to remove noise and preserve the structure of the initial input image. Training data typically consists of image pairs (for example using noisy data as input and the corresponding clean data as true label). Input and ground truth images should be scaled to a value range [0, 1] to simplify the gradient flow of the network and to effectively use a simple reconstruction loss like MSE. Additionally, regularization using total variation (TV) <a href="#liu2019image">[11]</a> can be useful, enforcing neighboring pixels to be more similar and thus preserving the structure while reducing noise.</p>
+
+                  <p><i>Super-resolution</i> tasks are similar to denoising but aim to upscale the input image. Typically, the input and output dimensions differ because the goal is to enhance the resolution of the input image. Final activation functions and loss functions often resemble those used in denoising tasks.</p>
+
+                  <h6>2D to 3D</h6>
+                  <p>2D to 3D tasks are inherently complex due to their diverse interpretations and approaches. One method involves using optimization grids where no neural network is employed; instead, the 3D reconstruction is directly optimized <a href="#karnewar2022relu">[12]</a>. Another approach utilizes scalable data structures for efficient 3D representation <a href="#yu2021plenoctrees">[13]</a>. Additionally, some techniques employ standard Image to Value(s) architectures to estimate the density at specific positions in a 3D grid. Alternatively, other methods adapt the Image to Image framework, using a 3D decoder to reconstruct the 3D model from the encodings of multiple 2D images.</p>
+                  <p>By understanding and leveraging these task-specific architectures, researchers can tailor their deep learning models to effectively address a wide range of image analysis challenges in electron microscopy and beyond.</p>
+                </div>
+
+              </div>
+              <div class="green-background">
+                <h3>Data Collection and Preparation</h3>
+                <p>
+                  In deep learning, it is commonly believed that more data leads to better model performance. However, this is not always true;  High-quality data is essential to derive correlations between model inputs and outputs, providing a strong learning signal. 
+                  However, models must also be robust against artifacts in electron microscopy (EM) data. Moreover, the model needs to be able to generalize to different sampling methods, detectors, and electron microscopes. Ensuring a balanced occurrence within the dataset is hence crucial, which means that the importance also lies in the variance within the datasets. 
+                  Achieving optimal model performance requires a balance between data quality, variance, robustness, and dataset size. 
+                  These steps are vital because a trained model functions as a black box, making it difficult to correct biases or errors later.
+                </p>
+                <button id="togglebtn-data" class="button-55" onclick="toggleVisibility('content-data', 'togglebtn-data')">Show More</button>
+                <div id="content-data" class="hidden">
+                  <p></p>
+                  <h4>Data Acquisition</h4>
+                  <p>
+                      For data acquisition in electron microscopy (EM), there are three primary sources: reusing existing data, acquiring new data, and generating synthetic data, each with distinct benefits and downsides. Reusing existing data involves searching through databases and often structuring the data due to the lack of standardization in EM images. While this method is resource-efficient, it can be labor-intensive and might not provide the desired dataset for the task in mind. Acquiring new data ensures high-quality, task-specific datasets but is both time-consuming and costly. This approach allows for the collection of precise data tailored to specific research needs.
+                  </p>
+                  <p>
+                      Synthetic data provides a cost-effective alternative to extend datasets. It can be generated through simulation processes or by using generative models such as GANs (Generative Adversarial Networks) or (Stable) Diffusion. However, there often exists a gap between real and synthetic data, and it is assumed that more realistic synthetic data is more effective in supporting the training process. Additionally, generative models require substantial training data. Still, this challenge can be mitigated to a certain extent by fine-tuning existing models previously trained on natural images. Another benefit of synthetic data is the ability to directly derive labeled data when using specialized methods like ControlNet or Textual Inversion or versions of GANs.
+                  </p>
+                  <p>
+                      During data collection, it is crucial to investigate potential correlations between model inputs and outputs, as a deep learning model can only be trained successfully if such correlations exist. Visualization techniques are vital in this process. Visualizing raw image grids helps assess image quality, detect artifacts, and understand data variation. Plotting histograms of pixel values reveals the distribution of pixel intensities, identifying issues such as low contrast or uneven brightness. Principal Component Analysis (PCA) can reduce the dimensionality of high-dimensional data, allowing researchers to identify patterns and correlations either directly from images or from features extracted by pretrained models. Similarly, t-SNE (t-Distributed Stochastic Neighbor Embedding) is effective for visualizing high-dimensional data while preserving local structures, making it useful for identifying clusters within the data.
+                  </p>
+                  <p>
+                      Employing these visualization techniques ensures a comprehensive understanding of the dataset’s structure and features, confirming that the data is suitable for training deep learning models and that meaningful correlations exist between inputs and outputs. Still, it needs to be noted, that even if no correlation is visible in the raw data at first, deep learning models might still be able to derive patterns due to their strong performance.
+                  </p>
+                  
+                  <h4>Data Annotation</h4>
+                  <p>
+                      High-quality annotations are similarly crucial for the performance of deep learning models as large dataset sizes. This includes precise and accurate labeling of the data, which directly impacts the model's learning and predictions. Additionally, high quality annotations are required to set a strong foundation for effective model evaluation.
+                  </p>
+                  
+                  <h5>Annotation Types</h5>
+                  <p>
+                      Annotation types are strongly correlated with deep learning tasks and can be differentiated into several categories: classification labels, regression labels, keypoints, bounding boxes and segmentation masks (see <a href="#fig:Annotations">Figure 1</a>). These can be further categorized based on their complexity into image-level, object/instance-level, and pixel-level annotations.
+                  </p>
+                  
+                  <figure id="fig:Annotations">
+                      <img src="images/AnnotationTypes.pdf" alt="Depiction of different annotation types, which can be grouped into Image Level, Instance Level and Pixel Level based on the overall complexity of annotation." style="width:65%;">
+                      <figcaption>
+                          Depiction of different annotation types, which can be grouped into <em>Image Level</em>, <em>Instance Level</em> and <em>Pixel Level</em> based on the overall complexity of annotation.
+                      </figcaption>
+                  </figure>
+                  
+                  <p>
+                      <em>Image-level</em> annotations are the simplest and include classification labels, which require defining a class for each input image, identifying which category the image belongs to.
+                  </p>
+                  <p>
+                      <em>Instance-level</em> annotations are more detailed and include regression labels, keypoints and bounding boxes. Regression labels define one or more continuous values for each input image, used in tasks where predicting numerical values is necessary. Keypoints involve annotating specific points on objects, such as the locations of subcellular structures or features like the centrioles within cells in electron microscopy (EM) images. Bounding boxes define rectangular regions within an image, each enclosing an object of interest. Each bounding box additionally needs to be labeled with a specific class.
+                  </p>
+                  <p>
+                      <em>Pixel-level</em> annotations are the most complex and include segmentation masks. Segmentation masks provide a pixel-wise classification annotation of the image, indicating the exact boundaries of objects, which is crucial for tasks requiring detailed object delineation.
+                  </p>
+                  <p>
+                      However, the format of the labels is often not standardized. For instance, bounding boxes can vary in how they are defined. For example, they can be represented by two points [(x<sub>min</sub>, y<sub>min</sub>), (x<sub>max</sub>, y<sub>max</sub>)] or by a single point along with the width and height of the box (x, y, w, h). Hence, careful parsing of annotated data is important to ensure consistency. Visualizing input data along with its labels can provide valuable insights, helping to verify the accuracy and appropriateness of the annotations. Proper visualization can also highlight potential discrepancies and ensure that the data preparation aligns with the specific deep learning task requirements.
+                  </p>
+                  
+                  <h5>Training Strategies</h5>
+                  <p>
+                      Training strategies in deep learning are closely tied to the types of annotations available for a given task, which can be categorized as fully supervised, weakly supervised, and unsupervised learning.
+                  </p>
+                  <p>
+                      Fully supervised learning relies on a large amount of labeled data, where each training example is paired with a corresponding label. This approach typically uses detailed annotations such as segmentation masks, bounding boxes, classification labels or similar. The primary benefit of fully supervised learning is its high accuracy, as the model is trained on explicitly defined examples. However, obtaining these detailed annotations can be time-consuming and expensive, particularly for pixel-level annotations like segmentation masks in EM images.
+                  </p>
+                  <p>
+                      Weakly supervised learning utilizes incomplete, inexact, or inaccurate labels, which are easier and cheaper to obtain compared to fully annotated data. This can be especially helpful as labeling EM data, especially at the cellular or sub-cellular level, is labor-intensive and requires expert knowledge. For example, classification labels or regression labels may be available or fast and easy to annotate, but precise bounding boxes or segmentation masks are not. Another significant advantage of weakly supervised learning is that weak labels can serve as implicit standardization. When dense labels are ambiguous, corresponding weak labels might be clearer. Therefore, training on unambiguous weak labels can help the model learn the most discriminative aspects of the full labels, leading to a standardized version. For instance, annotating bounding boxes around viruses for a detection model can be ambiguous due to unclear virus borders. Instead, annotating the center of the virus capsid as a weak label can train a model to accurately define virus borders, leading to better standardization. This approach not only reduces annotation costs but also can serve as a conscious decision for improving model performance.
+                  </p>
+                  <p>
+                      Unsupervised learning does not rely on any labeled data. Instead, it seeks to find patterns and structures within the data itself. Techniques such as contrastive learning, or masked autoencoders fall into this category. Unsupervised learning can be particularly useful when large amounts of unlabeled data are available, reducing the need for costly annotation. However, the lack of labeled data often leads to models that are less accurate than those trained with supervised methods. In the context of EM images, unsupervised learning might involve discovering inherent patterns in the data without specific labels, which can later inform more targeted annotation efforts.
+                  </p>
+                  <p>
+                      Additionally, self-supervised approaches are a subset of unsupervised learning. Self-supervised learning does not require a human annotator, but is usually able to derive labels from the existing data. This is often the case in image-to-image tasks like denoising or super-resolution. For these tasks, experimental labels can be acquired using image pairs, such as clean-noisy or low-high resolution pairs. Moreover, 2D to 3D tasks often leverage self-supervision to infer a 3D structure from a set of 2D images.
+                  </p>
+                  <p>
+                      To conclude, each training strategy has its own set of benefits and downsides, and the choice of strategy should align with the specific needs and resources of the project. Balancing the level of annotation detail with the chosen training strategy is crucial for developing effective and efficient deep learning models for electron microscopy.
+                  </p>
+                  
+                  <h5>Choosing Data to Annotate</h5>
+                  <p>
+                      Labeling the full amount of available data can be cumbersome, time consuming and might not even be feasible in some scenarios. Active learning is a machine learning technique that selects the most informative data samples for annotation to improve model performance efficiently (see <a href="#fig:AL">Figure 2</a>). Instead of labeling the entire dataset, the model identifies and queries the most uncertain or representative samples, which are then annotated by humans. This iterative process reduces the amount of labeled data required while still achieving high accuracy, as the model focuses on learning from the most impactful examples.
+                  </p>
+                  
+                  <figure id="fig:AL">
+                      <img src="images/ActiveLearning.pdf" alt="Active Learning can significantly reduce the time spent annotating while still achieving good performance.">
+                      <figcaption>
+                          Active Learning can significantly reduce the time spent annotating while still achieving good performance.
+                      </figcaption>
+                  </figure>
+                  
+                  <p>
+                      Additionally, finding the right data to label is crucial. While acquiring data from several modalities can boost model performance, integrating multimodal data might still fail to yield optimal results. For instance, combining SEM (Scanning Electron Microscopy) data with TEM (Transmission Electron Microscopy) data will likely not yield good results due to significant domain differences. Therefore, staying within the same domain is usually preferable. Instead, it can be beneficial to explore data augmentation methods to boost model performance.
+                  </p>
+                  
+                </div>
+
+              </div>
+              <div class="red-background">
+                <h3> Model Training and Evaluation</h3>
+                <p>
+                    During model training the parameters of the selected architecture are adapted in such way, that the
+                    model is able to approximate input-output relations within the data as precise as possible. However,
+                    it also involves correct initialization of the model parameters, suitable tuning of hyperparameters, and
+                    suitable monitoring of the training process to identify possible pitfalls. Finally, the performance of the model needs to be estimated. 
+                    Due to the black box nature of DL models, this is of special importance. 
+                </p>
+                <button id="togglebtn-model" class="button-55" onclick="toggleVisibility('content-model', 'togglebtn-model')">Show More</button>
+                <div id="content-model" class="hidden">
+                  <p></p>
+                  <h4 id="sec:model-training">Model Training</h4>
+                  <p>
+                      During model training the parameters of the selected architecture are adapted in such way, that the model is able to approximate input-output relations within the data as precise as possible. However, it also involves correct initialization of the model parameters, suitable tuning of hyperparameters, and suitable monitoring of the training process to identify possible pitfalls.
+                  </p>
+
+                  <h5>Initializing the model</h5>
+                  <p>
+                      During the training of our model, we continuously adjust its trainable parameters. Since gradient descent is used to minimize the error function, starting with well-initialized parameters is crucial. Proper initialization can significantly accelerate convergence, help the model learn relevant features, reduce the risk of overfitting, and help to find better local minima.
+                  </p>
+                  <p>
+                      The most basic approach to training a model is "training from scratch," which involves initializing the trainable parameters randomly without any prior knowledge of the data. However, even with random initialization, certain strategies can improve gradient flow and enhance performance <cite>yam2000weight, kumar2017weight, narkhede2022review</cite>. Training from scratch is usually only recommended when a very large and diverse dataset is available. In the case of EM where there is most commonly only access to small and specific datasets training from scratch will result in poor generalization to new data.
+                  </p>
+                  <p>
+                      A more sophisticated and often safer approach in training models for electron microscopy is the use of pretrained weights. This involves initializing the model, usually the backbone, with weights from another model of a similar architecture that has already been trained. Pretrained models can be derived from supervised training on similar tasks, but different large-scale datasets to extract task-specific features. However, this often introduces a domain gap within the training data.
+                  </p>
+                  <p>
+                      Unsupervised pretraining methods train models on a wide variety of data, helping them learn data-specific patterns. Although research on unsupervised pretraining in the domain of electron microscopy is limited <cite>conrad2021cem500k</cite>, using pretrained models with a domain gap, such as DINO <cite>caron2021emerging</cite>, SAM <cite>kirillov2023segment</cite>, or ImageNet-pretrained models, can still be beneficial. Even the use of only a few early layers from a pre-trained ImageNet model has been shown to improve speed of training and final performance of medical imaging models <cite>raghu2019transfusion</cite>.
+                  </p>
+                  <p>
+                      Still, domain adaptation needs to be considered, especially as EM images are single channel grayscale images, whereas natural images usually have three (RGB) channels. The most common approach is the repetition of the single channel in grayscale images to derive three input channels.
+                  </p>
+                  <p>
+                      In some cases, first applying unsupervised pretraining directly on the available labeled dataset before training in a supervised fashion can help the model learn relevant features from the data itself, reducing the risk of overfitting.
+                  </p>
+                  <p>
+                      Overall, using pretrained weights can significantly enhance model performance and stability in electron microscopy research.
+                  </p>
+
+                  <h5>Hyperparameter Tuning</h5>
+                  <p>
+                      The final performance of a model heavily depends on the optimization settings. Key optimization parameters, known as hyperparameters, include learning rate, learning rate scheduler, batch size, and optimizer. Selecting the right values for these hyperparameters is crucial for achieving optimal model performance. Hence, before training a model, hyperparameter tuning should be performed. This involves testing a predefined set or range of parameters and evaluating their performance on the validation set. The best-performing values are then selected for the final training. Techniques like grid search, random search, and Bayesian optimization are commonly used for this purpose. Automated hyperparameter tuning frameworks, such as Weights & Biases Sweeps <cite>wandb</cite>, can also streamline this process and make it more efficient. Furthermore tools like learning rate finder <cite>smith2017cyclical</cite> can provide valuable insights.
+                  </p>
+
+                  <h5>Logging</h5>
+                  <p>
+                      The training process is crucial for the successful development of a deep learning model. Effective logging provides a comprehensive view of the training process, identifies potential issues, facilitates debugging, and enhances the reproducibility of results. Tools such as TensorBoard <cite>abadi2016tensorflow</cite>, Weights & Biases <cite>wandb</cite>, and MLflow Tracking are widely used for logging, while GitHub <cite>github</cite> supports version control of the code.
+                  </p>
+                  <p>
+                      Logging should include the computation of various metrics and the loss on the train, validation, and test datasets. Unlike loss functions, metrics do not need to be differentiable and are often better suited to evaluate a model's task-specific performance. Selecting appropriate metrics is crucial and depends heavily on the task and available data. 
+                  </p>
+                  <p>
+                      As finding suitable metrics can be difficult, one can make use of supporting tools which are able to propose suitable metrics based on a short questionnaire.
+                  </p>
+                  <p>
+                      Frequent logging of these metrics can reveal overfitting, which occurs when the model performs significantly better on the train set while performance on the validation set decreases (see <a href="#fig:Overfitting">Figure 1</a>). If overfitting is detected, strategies such as early stopping, data augmentation, adding more data, choosing a smaller model (less trainable parameters), or regularization techniques (e.g., dropout layers, L2 regularization, batch normalization) can be employed to mitigate it.
+                  </p>
+
+                  <figure id="fig:Overfitting">
+                      <img src="images/Overfitting.pdf" alt="Identifying overfitting through logging of training and validation loss for each epoch. While the training loss further decreases, the validation loss starts increasing. Early stopping can reduce the effect, by choosing the model with the lowest validation loss." style="width:45%;">
+                      <figcaption>
+                          Identifying overfitting through logging of training and validation loss for each epoch. While the training loss further decreases, the validation loss starts increasing. Early stopping can reduce the effect, by choosing the model with the lowest validation loss.
+                      </figcaption>
+                  </figure>
+
+                  <p>
+                      Visualizations of the model's input, output, and ground truth labels are essential for understanding model performance. Explainable AI techniques <cite>chaddad2023survey, holzinger2022explainable, samek2017explainable</cite>, such as GradCAM <cite>selvaraju2017grad</cite>, or t-SNE <cite>van2008visualizing</cite> and PCA <cite>doi:10.1080/14786440109462720</cite> on the learned features, can provide further insights into model behavior and reveal potential biases. Typically, these visualizations are done on a small subset of the data, as analyzing the entire dataset is not feasible.
+                  </p>
+                  <p>
+                      Saving model weights and the optimizer's state at regular intervals allows for the training process to be resumed if interrupted and facilitates the retrieval of intermediate models that may perform better. However, this requires significant memory. A common approach is to save only the top <em>x</em> best-performing models based on a predefined validation metric.
+                  </p>
+                  <p>
+                      Finally, logging gradients can help identify issues such as exploding or vanishing gradients. If such problems are detected, adjusting the learning rate, applying gradient clipping, or adding skip connections can be effective solutions.
+                  </p>
+
+                  <h4 id="sec:model-evaluation">Model Evaluation</h4>
+                  <p>
+                      Besides logging and monitoring the training process, estimating the overall performance of the trained model is crucial for direct comparison to other methods and approaches as well as investigating whether the model is applicable in practice. Especially due to the Black Box nature of deep learning models it is hard to interpret their decisions, which is crucial in scientific research and medical applications. Hence ensuring that the model's predictions are reliable and valid in real-world scenarios is critical, requiring extensive evaluation strategies.
+                  </p>
+                  <p>
+                      Model evaluation can be split into quantitative and qualitative evaluation. Quantitative evaluation provides absolute numbers but lacks explanations, while qualitative evaluation offers insights into why the model performs as it does.
+                  </p>
+                  <p>
+                      Quantitatively assessing the model's performance typically involves computing suitable task-specific metrics on the test set, relying on available ground truth information. When ground truth data is unavailable for real test data, synthetic data can be used, especially for 2D to 3D tasks or image-to-image tasks like denoising and super resolution. However, synthetic and real data often have a significant domain gap, making the evaluation less reliable. Therefore, additional evaluation techniques should be applied.
+                  </p>
+                  <p>
+                      Qualitative evaluation, while not providing a full overview, offers sampling-based insights into the "why" behind performance metrics. Visualizations are crucial during both model training and evaluation. Displaying the model's input, output, and ground truth labels helps in understanding model performance. Explainable AI techniques such as GradCAM <cite>selvaraju2017grad</cite>, t-SNE <cite>van2008visualizing</cite>, and PCA <cite>doi:10.1080/14786440109462720</cite> on learned features can provide further insights and reveal potential biases. Additionally, SHAP (SHapley Additive exPlanations) <cite>lundberg2017unified</cite> values and LIME (Local Interpretable Model-agnostic Explanations) <cite>lime</cite> can uncover biases and insights missed by pure performance metrics.
+                  </p>
+                  <p>
+                      Moreover, qualitative evaluation can be extended through expert user studies, which can highlight failure cases and provide direct insight into the model's applicability for supporting EM analysis. However, this type of evaluation can be particularly time- and cost-intensive.
+                  </p>
+
+                </div>
+
+              </div>
+        </div>
+    </div>
+</section>
+<!--End workflow  -->
+
+
+
+<!--Links -->
+<section class="section hero">
+    <div class="container is-max-desktop content">
+        <h2 class="title is-3">Use Cases</h2>
+        <div class="hero-body">
+          <img src="static/images/tasks.png"
+              alt="Categories of deep learning tasks in the context of EM." />
+          <h6 class="subtitle has-text-centered">Tasks in the Area of EM data analysis can be categorized by the requirements of the DL
+            method into <strong>Image to Value(s)</strong>, <strong>Image to Image</strong> and <strong>2D to 3D</strong>. For each category, we introduce one exemplary notebooks, tackling EM specific challenges. </h6>
+      </div>
+        <div class="content has-text-justified">
+            <p>For providing exemplary notebooks, we are using lighting studio, as they are easy to setup, access and work with. A quick introduction can be found here: (https://lightning.ai/docs/overview/studios)</p>
+            <h3>Image to Value(s)</h3>
+            <h4>Explainable Quantification of Virus Capsids</h4>
+            <h5>Challenge: Deep Learning as Black Box</h5>
+            <p>For image-to-value(s) tasks, we are developing a regression model to quantify HCMV capsids and their maturation stages during secondary envelopment in TEM images. 
+              Secondary envelopment of HCMV is the process by which viral capsids acquire a final envelope by budding into cytoplasmic vesicles, a step essential for the production 
+              of infectious progeny [1]. During this process, different maturation stages - naked, budding or enveloped capsids - can be observed in TEM images [2]. 
+              Quantifying these stages and comparing wild-type viruses with mutants that have defects in secondary envelopment can provide valuable insights into the proteins involved 
+              and their role in this critical process [2,3,4].
+              In our notebook we aim to detect the number of naked, budding and enveloped virus particles within an input image. 
+              We use pre-trained model weights to avoid over-fitting on the training data provided. We also focus on additional explanatory techniques (GradCAM [5]) to make the model more trustworthy, reliable and easier to detect incorrect predictions.
+            </p>
+            <p>@Tristan: Add Teaser image -> add some example images (probably copy-paste from logging or so).</p>
+            <p><i>[1] Mettenleiter, Thomas C. "Budding events in herpesvirus morphogenesis." Virus research 106.2 (2004): 167-180.</i></p>
+            <p><i>[2] Read, Clarissa, et al. "Regulation of human cytomegalovirus secondary envelopment by a C-terminal tetralysine motif in pUL71." Journal of Virology 93.13 (2019): 10-1128.</i></p>
+            <p><i>[3] Cappadona, Ilaria, et al. "Human cytomegalovirus pUL47 modulates tegumentation and capsid accumulation at the viral assembly complex." Journal of virology 89.14 (2015): 7314-7328.</i></p>
+            <p><i>[4] Read, Clarissa, Paul Walther, and Jens von Einem. "Quantitative electron microscopy to study HCMV morphogenesis." Human Cytomegaloviruses: Methods and Protocols (2021): 265-289.</i></p>
+            <p><i>[5] Selvaraju, Ramprasaath R., et al. "Grad-cam: Visual explanations from deep networks via gradient-based localization." Proceedings of the IEEE international conference on computer vision. 2017.</i></p>
+
+            <h3>Image to Image</h3>
+            <h4>Segmentation of Cellular Structures</h4>
+            <h5>Challenge: Robustness with small dataset sizes</h5>
+            <p>We choose the segmentation of certain cell organelles as a relevant Image to Image task. 
+              Segmentation is an important tool in EM image analysis as it contributes to a better visualisation of certain organelles and complex cell structures, 
+              which facilitates the interpretation of EM data. Segmentation allows for detailed analysis of organelle morphology, spatial relationships and distribution within cells. 
+              This is crucial for understanding intracellular organisation and its relationship to cell function. 
+              Due to the small available dataset sizes we deploy data augmentation methods, make use of pretrained weights and train an ensemble model, which has been shown to provide 
+              better generalizability even when trained on smaller dataset sizes [1].
+              </p>
+            <p>@Poonam: Add Teaser Image</p>
+            <p><i>[1] Shaga Devan, Kavitha, et al. "Weighted average ensemble-based semantic segmentation in biological electron microscopy images." Histochemistry and Cell Biology 158.5 (2022): 447-462.</i></p>
+      
+
+            <h3>2D to 3D</h3>
+            <h4>Deep Learning Based Tomographic Reconstruction of Scanning Transmission Electron Microscopy (STEM) Images</h4>
+            <h5>Challenge: Evaluation with missing ground truth</h5>
+            <p>To introduce 2D to 3D tasks, we implement a learning based tomographic reconstruction of 2D projections obtained from STEM tomograms, following [1,2]. 
+              Reconstruction of a 3D volume allows visualisation of the true morphology, spatial relationships and connectivity of certain cellular structures and 
+              organelles within a cell, which may not be visible in 2D projections alone. Due to missing ground truth information in the case of tomographic reconstruction, 
+              we make use of pre-existing synthetic data to assess the model performance. 
+            </p>
+            <p>@Hannah: Add Teaser Image.</p>
+            <figure>
+              <img src="static/images/missing.png" alt="Depiction of the tomographic reconstruction. (Show tilt series, model, reconstruction of Nanoparticles)">
+              <figcaption id="fig:Tomo">
+                Figure C: Based on a given tilt series, we are able to generate a 3D reconstruction using deep learning.
+              </figcaption>
+            </figure>
+
+            <p><i>[1] Kniesel, Hannah, et al. "Clean implicit 3d structure from noisy 2d stem images." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</i></p>
+            <p><i>[2] Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis." Communications of the ACM 65.1 (2021): 99-106.</i></p>
+                  
+
+           
+        </div>
+
+    </div>
+</section>
+<!--End Links  -->
+
+
+
+<!--BibTex citation -->
+  <section class="section is-light" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+<!-- Footer  -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- End footer -->
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
