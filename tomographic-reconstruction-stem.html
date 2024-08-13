@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="DESCRIPTION META TAG">
+    <meta property="og:title" content="DEEP-EM: Tomographic Reconstruction for STEM" />
+    <meta property="og:description"
+        content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis." />
+    <meta property="og:url" content="URL OF THE WEBSITE" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <meta name="twitter:title" content="DEEP-EM: Tomographic Reconstruction for STEM">
+    <meta name="twitter:description"
+        content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="Deep Learning, Electron Microscopy, Data Analysis, Data Interpretation, Toolbox">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>DEEP-EM: Tomographic Reconstruction for STEM</title>
+    <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .button-55 {
+            align-self: center;
+            background-color: #fff;
+            background-image: none;
+            background-position: 0 90%;
+            background-repeat: repeat no-repeat;
+            background-size: 4px 3px;
+            border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+            border-style: solid;
+            border-width: 2px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            box-sizing: border-box;
+            color: #41403e;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Neucha, sans-serif;
+            font-size: 1rem;
+            line-height: 23px;
+            outline: none;
+            padding: .75rem;
+            text-decoration: none;
+            transition: all 235ms ease-in-out;
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-55:hover {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
+
+        .button-55:focus {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }
+
+        .green-background {
+            background-color: #dde9afff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+
+        .red-background {
+            background-color: #ffaaaaff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+
+        .orange-background {
+            background-color: #ffb380ff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        function toggleVisibility(id_content, id_button) {
+            var content = document.getElementById(id_content);
+            var btn = document.getElementById(id_button);
+
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                btn.innerHTML = "Show Less"
+            } else {
+                content.classList.add('hidden');
+                btn.innerHTML = "Show More"
+
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <!--<img src="static/images/icon.png"
+                            alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+                        -->
+                        <h1 class="title is-1 publication-title">2D to 3D</h1>
+                        <!--Add use case category (one of: Image to Value(s), Image to Image, 2D to 3D)-->
+                        <h2 class="title is-1 publication-title">Tomographic Reconstruction for STEM</h2>
+                        <!-- Add title of the use case-->
+                        <div class="is-size-5 publication-authors">
+                            <!-- authors -->
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
+                                    Kniesel</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan
+                                    Payer</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam
+                                    Poonam</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="" target="_blank">Tim Bergner</a><sup>2</sup>,
+                            </span>
+
+                            <span class="author-block">
+                                <a href="https://phermosilla.github.io/" target="_blank">Pedro
+                                    Hermosilla</a><sup>3</sup>
+                            </span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
+                                    Ropinski</a><sup>1</sup>,
+                            </span>
+
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm
+                                University<br><sup>2</sup>Central
+                                Facility Electron Microscopy, Ulm Univesity<br><sup>3</sup>Computer Vision Lab, TU
+                                Vienna</span>
+                            <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                        </div>
+
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Arxiv PDF link 
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                -->
+
+                                <!-- Supplementary PDF link 
+                                    <span class="link-block">
+                                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </span>
+                                    <span>Supplementary</span>
+                                    </a>
+                                </span>-->
+
+                                <!-- Github link 
+                                <span class="link-block">
+                                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                                </span> -->
+
+                                <!-- ArXiv abstract Link 
+                                <span class="link-block">
+                                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                                class="external-link button is-normal is-rounded is-dark">
+                                <span class="icon">
+                                    <i class="ai ai-arxiv"></i>
+                                </span>
+                                <span>arXiv</span>
+                                </a>
+                                </span>-->
+
+                                <span class="link-block">
+                                    <a href="https:/Link to Notebook" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span>notebook</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Teaser image
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <img src="static/images/tasks.png" alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+      <h2 class="subtitle has-text-centered">We propose to categorize tasks within the area of EM data analysis into Image to Value(s), Image to Image and 2D to 3D. We do so, based on their specific requirements for implementing a deep learning workflow. For more details, please see our paper.</h2>
+    </div>
+  </div>
+</section>
+End teaser image -->
+
+
+
+
+    <!-- Motivation -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <div class="content has-text-justified">
+                        <p>
+                            To introduce 2D to 3D tasks, we implement a learning based tomographic reconstruction of 2D
+                            projections
+                            obtained from STEM tomograms, following [1,2].
+                            Reconstruction of a 3D volume allows visualisation of the true morphology, spatial
+                            relationships and
+                            connectivity of certain cellular structures and
+                            organelles within a cell, which may not be visible in 2D projections alone. Due to missing
+                            ground truth
+                            information in the case of tomographic reconstruction,
+                            we make use of pre-existing synthetic data to assess the model performance.
+                        </p>
+
+                        <p>[1] Kniesel, Hannah, et al. "Clean implicit 3d structure from noisy 2d stem images."
+                            Proceedings of the
+                            IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</p>
+                        <p>[2] Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view
+                            synthesis."
+                            Communications of the ACM 65.1 (2021): 99-106.</p>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Motivation -->
+
+
+
+    <!--DEEP-EM TOOLBOX Workflow -->
+    <section class="section hero">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">DEEP-EM TOOLBOX: Workflow</h2>
+            <div class="content has-text-justified">
+                <figure>
+                    <img src="static/images/tomographic-reconstruction-stem/Teaser.png"
+                        alt="Depiction of the tomographic reconstruction. (Show tilt series, model, reconstruction of Nanoparticles)">
+                    <figcaption id="fig:Tomo">
+                        Based on a given tilt series, we are able to generate a 3D reconstruction using self-supervised
+                        deep learning.
+                        Due to the generalization ability of the deep learning model, we are able to supress the missing
+                        wedge effect.
+                        Moreover, due to the tendency of neural networks to learn smooth functions, the noise of the
+                        projection images is suppressed.
+                    </figcaption>
+                </figure>
+
+                <div class="orange-background">
+                    <h3>Task</h3>
+                    <p>
+                        We categorize this use case as a 2D to 3D <u>task</u>, as it requires a stack of 2D projection
+                        images as input and is able to generate a 3D reconstruction as output.
+                        In this specific case of 3D tomographic reconstruction, we follow the works of [1,2],
+                        who tackle the task of reconstruction by combining physical simulation processes for the
+                        computation of projection images, which are then used to compare to the true projection images
+                        to train the
+                        <abbr title="Deep Learning">DL</abbr> model representing the 3D reconstruction
+                        (see <a href="#fig:Tomo-pipeline">Figure below</a>).
+                    </p>
+
+                    <p>
+                        This <abbr title="Deep Learning">DL</abbr> model will be trained such that the input is a 3D
+                        position within the 3D reconstruction space, and the output is the density of the reconstruction
+                        at this position. For further details, we refer the reader to the
+                        corresponding exemplary notebook (linked at the top of this project page).
+                    </p>
+
+                    <p>
+                        As this model does not work with image data as input, but rather with 3D positions, we choose to
+                        use an
+                        <abbr title="Multilayer Perceptron">MLP</abbr> as the <u>backbone</u> network.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/tomographic-reconstruction-stem/3dreconstruction.png"
+                            alt="Depiction of the tomographic reconstruction pipeline.">
+                        <figcaption id="fig:Tomo-pipeline">
+                            We follow works of [1,2], to model the 3D tomographic
+                            reconstruction through a combination of a physics simulator and a deep learning model. The
+                            physics simulator corresponds to the STEM image formation process which is able to compute a
+                            synthetic micrograph as acquired by a predefined projection angle based on the 3D
+                            reconstruction, represented by a deep learning model.
+                        </figcaption>
+                    </figure>
+
+
+
+
+
+
+                </div>
+                <div class="green-background">
+                    <h3>Data</h3>
+                    <p>
+                        During data <u>acquisition</u>, we leverage two main sources: First, we use existing
+                        <u>synthetic data</u> from
+                        [1] to assess the model's performance based on ground truth data.
+                        This data consists of a noisy tilt series, retrieved by modeling the image formation of a STEM,
+                        a clean tilt series,
+                        which does not model noise sources of the STEM image formation, and a phantom volume on which
+                        the tilt series have been computed.
+                    </p>
+                    <p>
+                        Second, we use a <u>real tilt series</u> to qualitatively investigate the performance of the
+                        model on real data.
+                        As the implemented task of tomographic reconstruction is self-supervised, the data does not need
+                        to be <u>annotated</u>.
+                        Again, we encourage the research community to swap the data with some of their own and run the
+                        script.
+                    </p>
+                    <p>
+                        We apply <u>data preprocessing</u> in subsequent steps. First, we require the
+                        <u>reformatting</u> of data such that it matches the following format:
+                        For the real data, we require a single folder containing a series of single .tif files ordered
+                        by their names according to the projection angles,
+                        which should be provided in a .rawtlt file. This file should contain the projection angles in
+                        degrees separated by a line break.
+                        For the synthetic data, we additionally require a folder similar to the one described above with
+                        clean projections.
+                        Lastly, for the synthetic data, we require the underlying 3D phantom volume in .raw format with
+                        a bit depth of eight.
+                    </p>
+                    <p>
+                        To decrease computation time and cost, we implement an option to <u>resize</u> the input images
+                        by downscaling the projection images before the reconstruction.
+                        We <u>normalize</u> the input tilt series using min-max normalization. We do this to ensure that
+                        all images are in a fixed interval [0,1],
+                        as this is a requirement of the STEM image formation process.
+                    </p>
+                    <p>
+                        We do not apply <u>data augmentation</u> to increase the variance of the dataset as the
+                        implemented tomographic reconstruction is a special case of
+                        <abbr title="Deep Learning">DL</abbr> where the model is overfitting to the single
+                        reconstruction, and the generalization ability is only used within the reconstruction space
+                        to make the model generalize to unknown projection angles. This means that the model needs to be
+                        retrained for every reconstruction.
+                    </p>
+                    <p>
+                        Additionally, the training, validation, and test <u>split</u> is managed in a special fashion to
+                        make the approach applicable to real data, where ground truth is unknown:
+                        The training split contains the noisy tilt series only. The validation split, in the case of
+                        synthetic data, contains the clean projections.
+                        For real data, as clean projections are unknown, the validation loss is similar to the training
+                        loss and computed on the noisy projections.
+                        Lastly, in the case of synthetic data, the phantom volume is used as the test set.
+                        In the case of real data, test set evaluation can only be done in a qualitative fashion.
+                    </p>
+
+
+
+                </div>
+                <div class="red-background">
+                    <h3> Model</h3>
+
+                    <p>
+                        Based on the very specific task and architecture of the 3D reconstruction, as well as the
+                        requirement for the model to overfit to a single reconstruction, we are not using pretrained
+                        model weights for <u>initializing</u> the <abbr title="Multilayer Perceptron">MLP</abbr>.
+                        During training, we again use <a href="https://wandb.ai/site" target="_blank">Weights &
+                            Biases</a> for <u>logging</u> training and validation losses, as well as visualizations of
+                        reconstructed micrographs and the corresponding real micrographs of the validation data.
+                    </p>
+                    <p>
+                        We <u>evaluate</u> the model <u>quantitatively</u> on the synthetic phantom volume by computing
+                        the error between the predicted reconstruction and the phantom.
+                        We additionally perform a <u>qualitative</u> assessment of the model by visualizing the
+                        predicted reconstruction.
+                        In the case of real data, we are only able to evaluate the reconstruction in a
+                        <u>qualitative</u> fashion, as the ground truth of the imaged sample is unknown.
+                    </p>
+
+
+
+
+
+                </div>
+                <p>[1] Kniesel, Hannah, et al. "Clean implicit 3d structure from noisy 2d stem images." Proceedings of
+                    the
+                    IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</p>
+                <p>[2] Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis."
+                    Communications of the ACM 65.1 (2021): 99-106.</p>
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+    <!--End DEEP-EM TOOLBOX Workflow-->
+
+
+
+
+    <!--Use your own data -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Use Your Own Data</h2>
+            <div class="content has-text-justified">
+                <p>
+                    Here we explain how you need to preprocess your data to apply the model for your use
+                    case. As this approach is self-supervised it does not require annotated data.</p>
+                <h3>Data Structuring</h3>
+                <h4>Real Data</h4>
+                <p>
+                    For generating a tomogram based on a tilt series of real data we require a single folder containing
+                    <b>.tif</b> files with a single micrograph per file.
+                    Additionally, we require a single .rawtlt file inside the data folder.
+                    This .rawtlt file is a file filled with the tilt angles of the corresponding micrograph and
+                    separated by line breaks.
+                    The .tif files need to be sorted based on
+                    their name such that they match the order of projection angles presented in the .rawtlt file.
+                </p>
+                <p>For converting different formats to the needed .tif files we recommend using <a
+                        href="https://imagej.net/ij/">ImageJ</a>, as it is free to
+                    use and powerful. Within <a href="https://imagej.net/ij/">ImageJ</a> you can export your data as
+                    <b>Image Sequence</b> which will lead to
+                    the correct format for the images. Also, <a href="https://bio3d.colorado.edu/imod/">IMOD</a> can be
+                    used with the mrc2tif command to reformat .mrc
+                    files into the required .tif image stacks.
+                </p>
+
+                <h4>Synthetic Data</h4>
+                <p>You can also test the notebook on additional synthetic data to assess the performance in a
+                    quantitative fashion. In this case, we
+                    require the supply of ground truth information for synthetic datasets.</p>
+                <p> Hence, we require a set of noise-free micrographs that are structured in a folder similar to the one
+                    described before in the real data. These micrographs are used for validation purposes.</p>
+                <p>Finally, we require the phantom volume on which the synthetic data is based. We require this data to
+                    be in .raw dataformat containing a 3D datastructure with uint8 voxel values. </p>
+
+                <h3>Data Preprocessing</h3>
+                <h4>Data Alignment</h4>
+                <p>We require the micrographs to be aligned. This can for example be done using SIFT Image Alignment of
+                    the <a href="https://imagej.net/ij/">ImageJ</a> tool. A more exact method is the alignment using
+                    gold particles. This allows for tracking and aligning the images more precisely. This can be done
+                    using the <a href="https://bio3d.colorado.edu/imod/">IMOD</a> software. </p>
+
+                <h4>Tilt Axis Correction</h4>
+                <p>We require the tilt series to have a vertical tilt axis.
+                    In some cases this requires the rotation of the images by 90°.
+                    Further, as our implementation assumes a perfectly
+                    straight vertical tilt axis, tilt axis which are not perfectly aligned with the y-axis need to be
+                    corrected. Tilt axis correction can be done using <a href="https://imagej.net/ij/">ImageJ</a>. </p>
+
+                <p><b>All other data preprocessing steps are directly implemented in the provided notebook (linked at the
+                    top of this project page). Within the notebook we further describe where to exactly plug in your own data.</p></b>
+                <p></p>
+
+
+            </div>
+        </div>
+    </section>
+    <!--End use your own data  -->
+
+
+
+    <!--Links -->
+    <section class="section hero">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Contact</h2>
+
+            <div class="content has-text-justified">
+                <p>If you have any questions regarding this use case, please do not hesitate to contact <a
+                        href="TODO">Tristan Payer</a></p> <!--Add contact info here-->
+            </div>
+        </div>
+    </section>
+    <!--End Links  -->
+
+
+
+    <!--BibTex citation -->
+    <section class="section is-light" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>BibTex Code Here</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer.
+                            <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>

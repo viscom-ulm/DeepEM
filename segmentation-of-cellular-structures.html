@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="DESCRIPTION META TAG">
+    <meta property="og:title" content="DEEP-EM: Segmentation of Cellular Structures" />
+    <meta property="og:description"
+        content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis." />
+    <meta property="og:url" content="URL OF THE WEBSITE" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <meta name="twitter:title" content="DEEP-EM: Segmentation of Cellular Structures">
+    <meta name="twitter:description"
+        content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="Deep Learning, Electron Microscopy, Data Analysis, Data Interpretation, Toolbox">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>DEEP-EM: Segmentation of Cellular Structures</title>
+    <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .button-55 {
+            align-self: center;
+            background-color: #fff;
+            background-image: none;
+            background-position: 0 90%;
+            background-repeat: repeat no-repeat;
+            background-size: 4px 3px;
+            border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+            border-style: solid;
+            border-width: 2px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            box-sizing: border-box;
+            color: #41403e;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Neucha, sans-serif;
+            font-size: 1rem;
+            line-height: 23px;
+            outline: none;
+            padding: .75rem;
+            text-decoration: none;
+            transition: all 235ms ease-in-out;
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-55:hover {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
+
+        .button-55:focus {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }
+
+        .green-background {
+            background-color: #dde9afff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+
+        .red-background {
+            background-color: #ffaaaaff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+
+        .orange-background {
+            background-color: #ffb380ff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        function toggleVisibility(id_content, id_button) {
+            var content = document.getElementById(id_content);
+            var btn = document.getElementById(id_button);
+
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                btn.innerHTML = "Show Less"
+            } else {
+                content.classList.add('hidden');
+                btn.innerHTML = "Show More"
+
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <!--<img src="static/images/icon.png"
+                            alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+                        -->
+                        <h1 class="title is-1 publication-title">Image to Image</h1>
+                        <!--Add use case category (one of: Image to Value(s), Image to Image, 2D to 3D)-->
+                        <h2 class="title is-1 publication-title">Segmentation of Cellular Structures</h2>
+                        <!-- Add title of the use case-->
+                        <div class="is-size-5 publication-authors">
+                            <!-- authors -->
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
+                                    Kniesel</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan
+                                    Payer</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam
+                                    Poonam</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="" target="_blank">Tim Bergner</a><sup>2</sup>,
+                            </span>
+
+                            <span class="author-block">
+                                <a href="https://phermosilla.github.io/" target="_blank">Pedro
+                                    Hermosilla</a><sup>3</sup>
+                            </span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
+                                    Ropinski</a><sup>1</sup>,
+                            </span>
+
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm
+                                University<br><sup>2</sup>Central
+                                Facility Electron Microscopy, Ulm Univesity<br><sup>3</sup>Computer Vision Lab, TU
+                                Vienna</span>
+                            <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                        </div>
+
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Arxiv PDF link 
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                -->
+
+                                <!-- Supplementary PDF link 
+                                    <span class="link-block">
+                                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </span>
+                                    <span>Supplementary</span>
+                                    </a>
+                                </span>-->
+
+                                <!-- Github link 
+                                <span class="link-block">
+                                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                                </span> -->
+
+                                <!-- ArXiv abstract Link 
+                                <span class="link-block">
+                                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                                class="external-link button is-normal is-rounded is-dark">
+                                <span class="icon">
+                                    <i class="ai ai-arxiv"></i>
+                                </span>
+                                <span>arXiv</span>
+                                </a>
+                                </span>-->
+
+                                <span class="link-block">
+                                    <a href="https:/Link to Notebook" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span>notebook</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Teaser image
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <img src="static/images/tasks.png" alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+      <h2 class="subtitle has-text-centered">We propose to categorize tasks within the area of EM data analysis into Image to Value(s), Image to Image and 2D to 3D. We do so, based on their specific requirements for implementing a deep learning workflow. For more details, please see our paper.</h2>
+    </div>
+  </div>
+</section>
+End teaser image -->
+
+
+
+
+    <!-- Motivation -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <div class="content has-text-justified">
+                        <p>
+                            We choose the segmentation of certain cell organelles as a relevant Image to Image task.
+                            Segmentation is an important tool in EM image analysis as it contributes to a better
+                            visualisation of
+                            certain
+                            organelles and complex cell structures,
+                            which facilitates the interpretation of EM data. Segmentation allows for detailed analysis
+                            of organelle
+                            morphology, spatial relationships and distribution within cells.
+                            This is crucial for understanding intracellular organisation and its relationship to cell
+                            function.
+                            Due to the small available dataset sizes we deploy data augmentation methods, make use of
+                            pretrained weights
+                            and train an ensemble model, which has been shown to provide
+                            better generalizability even when trained on smaller dataset sizes [1].
+                        </p>
+
+                        <p><i>[1] Shaga Devan, Kavitha, et al. "Weighted average ensemble-based semantic segmentation in
+                                biological
+                                electron microscopy images." Histochemistry and Cell Biology 158.5 (2022): 447-462.</i>
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Motivation -->
+
+
+
+    <!--DEEP-EM TOOLBOX Workflow -->
+    <section class="section hero">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">DEEP-EM TOOLBOX: Workflow</h2>
+            <div class="content has-text-justified">
+                <figure>
+                    <img src="static/images/segmentation-of-cellular-structures/Teaser-ensemble.png"
+                        alt="Teaser for segmentation of cellular structures">
+                    <figcaption id="fig:teaser">
+                        For the segmentation of cellular structures we follow [1] and train a so called "ensemble"
+                        model.
+                        An ensemble model is a set of models which are used to make multiple predictions for the same
+                        input data.
+                        The predictions are then combined to retrieve a more robust prediction.
+                    </figcaption>
+                </figure>
+
+                <div class="orange-background">
+                    <h3>Task</h3>
+                    <p>
+                        We categorize this segmentation as an <u>Image to Image</u> <u>task</u>, as we require an image
+                        as input which will then
+                        be translated into a semantic mask, also represented as an image. In the case of this notebook,
+                        we follow the work of
+                        [1] for defining the model.
+                        As a <u>task-specific</u> architecture, we use an encoder-decoder network. More specifically, we
+                        make use of the
+                        U-Net [2]
+                        architecture,
+                        which was especially designed for biomedical image segmentation. Our goal is to develop a
+                        so-called "ensemble" model.
+                        An ensemble model is a set of models that are used to make multiple predictions for the same
+                        input data. The predictions
+                        are then combined by a majority voting between all trained models. To do so, we use multiple
+                        <abbr title="Convolutional Neural Network">CNN</abbr> <u>backbone</u> architectures and include
+                        them in our
+                        task-specific encoder-decoder architecture. Similar to our previous example notebook, we are
+                        using
+                        <abbr title="Convolutional Neural Network">CNN</abbr> architecture, as it is specially developed
+                        for images and
+                        performs well on small dataset sizes, compared to <abbr title="Vision Transformer">ViT</abbr>
+                        backbones.
+                        This allows us to get a more robust prediction, even though the training dataset is comparably
+                        small.
+                    </p>
+
+
+
+
+                </div>
+                <div class="green-background">
+                    <h3>Data</h3>
+                    <p>
+                        Similar to the first example use case, we make use of pre-existing <u>real data</u> from
+                        [3]
+                        for <u>data acquisition</u>. Still, we encourage the research community to test the provided
+                        script on their own data.
+                        This requires gathering and annotating the data. We again propose the usage of the
+                        CVAT [4] <u>annotation
+                            tool</u>.
+                        By doing so, the annotated data can simply be uploaded and plugged into the already provided
+                        pipeline.
+                        For details, we refer the reader to our project page and corresponding notebook.
+                        As <u>annotation type</u> we are working with pixel-level annotations of segmentation masks,
+                        which are color-coded images grouping similar cellular structures, namely nucleus, cytoplasm,
+                        and background.
+                    </p>
+
+                    <p>
+                        For <u>data preprocessing</u>, we <u>split</u> the dataset into training, validation, and test
+                        sets using 60%-20%-20% splits.
+                        Lastly, we deploy different <u>augmentations</u> to the input images to increase the variance in
+                        the rather small datasets.
+                        The applied augmentations include vertical flipping, which flips the images along the vertical
+                        axis, and random 90-degree
+                        rotations that rotate the images by 90 degrees in any direction. We also apply horizontal
+                        flipping to mirror the images
+                        along the horizontal axis, and transposing to swap the image's width and height. Additionally,
+                        grid distortion is used to
+                        introduce slight warps and distortions across the image grid. These transformations are applied
+                        on-the-fly with a probability
+                        of one, which means that each training sample is slightly altered every time before it is
+                        presented to the model.
+                        This ensures a large variance in the training data, thus improving the model's ability to
+                        generalize from the data.
+                    </p>
+
+                    <p>
+                        We <u>reformat</u> our data from single-channel grayscale images to 3-channel RGB images so that
+                        we are able to use
+                        pretrained model weights where the model was trained on natural images. We do so because the
+                        number of pretrained models
+                        for <abbr title="Electron Microscopy">EM</abbr> is very limited, but we require multiple
+                        pretrained backbones to initialize
+                        the ensemble model. To address the difference between the pretraining data and our EM data, we
+                        <u>normalize</u> the EM pixel
+                        intensities similarly to z-score normalization but match the mean and standard deviation of the
+                        pretraining data.
+                        This helps reduce the gap between natural images used during pretraining and the <abbr
+                            title="Electron Microscopy">EM</abbr> images.
+                    </p>
+
+
+
+                </div>
+                <div class="red-background">
+                    <h3> Model</h3>
+                    <p>
+                        As mentioned earlier, we are falling back on pretrained models of natural images for the <u>initialization</u> of our model. 
+                        Despite the domain gap between natural images and <abbr title="Electron Microscopy">EM</abbr>, pretrained weights from 
+                        ImageNet [5]
+                        can deliver helpful prior information to the backbone.
+                    </p>
+                    
+                    <p>
+                        We use the standard output as well as 
+                        <a href="https://wandb.ai/site" target="_blank">Weights & Biases</a> 
+                        for <u>logging</u> metrics for every model of the ensemble structure. Metrics include training and validation loss as well as 
+                        <abbr title="Intersection over Union">IoU</abbr> on the validation set, which is a metric specific for assessing the performance 
+                        of segmentation models.
+                    </p>
+                    
+                    <p>
+                        Finally, during <u>evaluation</u> we accumulate the predictions of the models and pick the most likely prediction, forming the 
+                        ensemble model. We assess the performance <u>quantitatively</u> by computing the <abbr title="Intersection over Union">IoU</abbr> 
+                        for each model separately on the test set and finally combine their predictions to compute the 
+                        <abbr title="Intersection over Union">IoU</abbr> for the ensemble model.
+                    </p>
+                    
+                    <p>
+                        We add <u>qualitative</u> evaluation on a subset of the test data by visualizing the model's input, output, and corresponding 
+                        ground truth. Again, we assess this for each model separately as well as on the combined ensemble model.
+                    </p>
+                    
+
+
+                </div>
+                <p>[1] Shaga Devan, Kavitha, et al. "Weighted average ensemble-based semantic segmentation in
+                    biological
+                    electron microscopy images." Histochemistry and Cell Biology 158.5 (2022): 447-462.
+                </p>
+                <p>[2] Ronneberger, Olaf, Philipp Fischer, and Thomas Brox. "U-net: Convolutional networks for
+                    biomedical
+                    image segmentation." Medical image computing and computer-assisted intervention–MICCAI 2015: 18th
+                    international conference, Munich, Germany, October 5-9, 2015, proceedings, part III 18. Springer
+                    International Publishing, 2015.</p>
+                <p>[3] Morath, Volker, et al. "Semi-automatic determination of cell surface areas used in systems
+                    biology." Front Biosci (Elite Ed) 5 (2013): 533-45.</p>
+                <p>[4] B. Sekachev et al., Opencv/cvat: V1.1.0, version v1.1.0, Aug. 2020. doi: 10 . 5281 / zenodo .
+                    4009388. [Online]. Available: https://doi.org/10.5281/zenodo.4009388.</p>
+                    <p>[5] Deng, Jia, et al. "Imagenet: A large-scale hierarchical image database." 2009 IEEE conference on computer vision and pattern recognition. Ieee, 2009.</p>
+
+            </div>
+        </div>
+    </section>
+    <!--End DEEP-EM TOOLBOX Workflow-->
+
+
+
+
+    <!--Use your own data -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Use Your Own Data</h2>
+            <div class="content has-text-justified">
+                <p>
+                    Here we explain how you need to preprocess and annotate your data to apply the model for your use
+                    case. We require that all data for training, testing and validation is annotated
+                    and collected and then uploaded to the pytorch lightning studio.</p>
+                <h3>Data Structuring</h3>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <p></p>
+                <h3>Data Annotation</h3>
+                <p>
+                    For data annotation we recomment using the <a href="https://www.cvat.ai/">CVAT</a> tool. It is
+                    free to use
+                    but requires a user account.
+                    A quick user guide can be found <a href="https://docs.cvat.ai/docs/getting_started/">here</a>.
+                    Multiple instruction videos can also be found on the <a
+                        href="https://www.youtube.com/@LearnOpenCV">LearnOpenCV youtube channel</a> (for example <a
+                        href="https://www.youtube.com/watch?v=yxX_0-zr-2U">this</a>).
+                    For annotating the location labels within this use case we implement the use of point
+                    annotations.
+                    We export the data using the <i>Segmentation mask 1.1</i> format.
+                </p>
+                <button id="togglebtn-quan-ann" class="button-55"
+                    onclick="toggleVisibility('content-quan-ann', 'togglebtn-quan-ann')">Show
+                    More</button>
+                <div id="content-quan-ann" class="hidden">
+                    <p></p>
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-1.png" alt="CVAT task 1">
+                    </figure>
+                    <p>When starting CVAT, you first need to create a new task. You can give it a name, add annotation
+                        types and upload your data.</p>
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-2.png" alt="CVAT task 2">
+                    </figure>
+                    <p>Next, click on the <b>Add label</b> button. Name it based on the classes you want to annotate. In
+                        our case these are "naked", "budding", "enveloped".
+                        As annotation type choose <b>Points</b>. You should also pick a color, as this will simplify the
+                        annotation process. For adding new labels click <b>Continue</b>.
+                        Once you added all nessecary labels click <b>Cancel</b>.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-3.png" alt="CVAT task 3">
+                    </figure>
+                    <p>Now you can upload the data you wish to annotate. Finally, click <b>Submit & Open</b> to continue
+                        with the annotation of the uploaded data.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-4.png" alt="CVAT job">
+                    </figure>
+                    <p>This will open following view. Click on the <b>job</b> (in this view the <b>Job #1150327</b>) to
+                        start the annotation job.
+                    </p>
+
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-5.png" alt="CVAT annotate">
+                    </figure>
+                    <p>To then annotate your data, select the <b>Draw new mask</b> tool. Select the <b>Label</b> you
+                        wish to annotate from the dropdown menu. Then click
+                        <b>Shape</b> to annotate
+                        individual virus capsids with the label class.
+                        
+                    </p>
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-6.png" alt="CVAT annotate">
+                    </figure>
+                    <p>When you finished annotating a single mask, click on the tick in the top left corner.
+                        You can use the arrows on the top middle to navigate through all of your data and to see your
+                        annotation progress.
+                    </p>
+
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-7.png" alt="CVAT export 1">
+                    </figure>
+                    <p>Once you are done annotating data, click on the <b>Menu</b> and select <b>Export job dataset</b>.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-8.png" alt="CVAT export 2">
+                    </figure>
+                    <p>During export select the <b>Segmentation mask 1.1</b> format and give the folder a name. It will
+                        prepare the dataset for download.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/segmentation-of-cellular-structures/CVAT-9.png" alt="CVAT download">
+                    </figure>
+                    <p>In the horizontal menu bar at the top go to <b>Requests</b>. It will show a request <b>Export
+                            Annotations</b>. On the right of this request click on the three dots to download your
+                        annotated data. And you are done.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--End use your own data  -->
+
+
+
+    <!--Links -->
+    <section class="section hero">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Contact</h2>
+
+            <div class="content has-text-justified">
+                <p>If you have any questions regarding this use case, please do not hesitate to contact <a
+                        href="TODO">Tristan Payer</a></p> <!--Add contact info here-->
+            </div>
+        </div>
+    </section>
+    <!--End Links  -->
+
+
+
+    <!--BibTex citation -->
+    <section class="section is-light" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>BibTex Code Here</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer.
+                            <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>

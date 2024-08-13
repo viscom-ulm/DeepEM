@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="DESCRIPTION META TAG">
+    <meta property="og:title" content="DEEP-EM: Explainable Virus Quantification" />
+    <meta property="og:description"
+        content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis." />
+    <meta property="og:url" content="URL OF THE WEBSITE" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <meta name="twitter:title" content="DEEP-EM: Explainable Virus Quantification">
+    <meta name="twitter:description"
+        content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="Deep Learning, Electron Microscopy, Data Analysis, Data Interpretation, Toolbox">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>DEEP-EM: Explainable Virus Quantification</title>
+    <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .button-55 {
+            align-self: center;
+            background-color: #fff;
+            background-image: none;
+            background-position: 0 90%;
+            background-repeat: repeat no-repeat;
+            background-size: 4px 3px;
+            border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+            border-style: solid;
+            border-width: 2px;
+            box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+            box-sizing: border-box;
+            color: #41403e;
+            cursor: pointer;
+            display: inline-block;
+            font-family: Neucha, sans-serif;
+            font-size: 1rem;
+            line-height: 23px;
+            outline: none;
+            padding: .75rem;
+            text-decoration: none;
+            transition: all 235ms ease-in-out;
+            border-bottom-left-radius: 15px 255px;
+            border-bottom-right-radius: 225px 15px;
+            border-top-left-radius: 255px 15px;
+            border-top-right-radius: 15px 225px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .button-55:hover {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+            transform: translate3d(0, 2px, 0);
+        }
+
+        .button-55:focus {
+            box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+        }
+
+        .green-background {
+            background-color: #dde9afff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+
+        .red-background {
+            background-color: #ffaaaaff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+
+        .orange-background {
+            background-color: #ffb380ff;
+            /* Green background */
+            padding: 20px;
+            /* Padding inside the element */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+            font-size: 16px;
+            /* Font size */
+            margin: 20px 0;
+            /* Margin outside the element */
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        function toggleVisibility(id_content, id_button) {
+            var content = document.getElementById(id_content);
+            var btn = document.getElementById(id_button);
+
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                btn.innerHTML = "Show Less"
+            } else {
+                content.classList.add('hidden');
+                btn.innerHTML = "Show More"
+
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <!--<img src="static/images/icon.png"
+                            alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+                        -->
+                        <h1 class="title is-1 publication-title">Image to Value(s)</h1>
+                        <!--Add use case category (one of: Image to Value(s), Image to Image, 2D to 3D)-->
+                        <h2 class="title is-1 publication-title">Explainable Virus Quantification</h2>
+                        <!-- Add title of the use case-->
+                        <div class="is-size-5 publication-authors">
+                            <!-- authors -->
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
+                                    Kniesel</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan
+                                    Payer</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam
+                                    Poonam</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="" target="_blank">Tim Bergner</a><sup>2</sup>,
+                            </span>
+
+                            <span class="author-block">
+                                <a href="https://phermosilla.github.io/" target="_blank">Pedro
+                                    Hermosilla</a><sup>3</sup>
+                            </span>
+                            <span class="author-block">
+                                <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
+                                    Ropinski</a><sup>1</sup>,
+                            </span>
+
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm
+                                University<br><sup>2</sup>Central
+                                Facility Electron Microscopy, Ulm Univesity<br><sup>3</sup>Computer Vision Lab, TU
+                                Vienna</span>
+                            <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                        </div>
+
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Arxiv PDF link 
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                -->
+
+                                <!-- Supplementary PDF link 
+                                    <span class="link-block">
+                                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </span>
+                                    <span>Supplementary</span>
+                                    </a>
+                                </span>-->
+
+                                <!-- Github link 
+                                <span class="link-block">
+                                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                    <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                                </span> -->
+
+                                <!-- ArXiv abstract Link 
+                                <span class="link-block">
+                                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                                class="external-link button is-normal is-rounded is-dark">
+                                <span class="icon">
+                                    <i class="ai ai-arxiv"></i>
+                                </span>
+                                <span>arXiv</span>
+                                </a>
+                                </span>-->
+
+                                <span class="link-block">
+                                    <a href="https:/Link to Notebook" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span>notebook</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Teaser image
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <img src="static/images/tasks.png" alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+      <h2 class="subtitle has-text-centered">We propose to categorize tasks within the area of EM data analysis into Image to Value(s), Image to Image and 2D to 3D. We do so, based on their specific requirements for implementing a deep learning workflow. For more details, please see our paper.</h2>
+    </div>
+  </div>
+</section>
+End teaser image -->
+
+
+
+
+    <!-- Motivation -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <div class="content has-text-justified">
+                        <p>
+                            Within this image-to-value(s) tasks, we are developing a regression model to quantify HCMV
+                            capsids
+                            and their
+                            maturation stages during secondary envelopment in TEM images.
+                            Secondary envelopment of HCMV is the process by which viral capsids acquire a final envelope
+                            by budding into
+                            cytoplasmic vesicles, a step essential for the production
+                            of infectious progeny [1]. During this process, different maturation stages - naked, budding
+                            or enveloped
+                            capsids - can be observed in TEM images [2].
+                            Quantifying these stages and comparing wild-type viruses with mutants that have defects in
+                            secondary
+                            envelopment can provide valuable insights into the proteins involved
+                            and their role in this critical process [2,3,4].
+                            In our notebook we aim to detect the number of naked, budding and enveloped virus particles
+                            within an input
+                            image.
+                            We use pre-trained model weights to avoid over-fitting on the training data provided. We
+                            also focus on
+                            additional explanatory techniques (GradCAM [5]) to make the model more trustworthy, reliable
+                            and easier to
+                            detect incorrect predictions.
+                        </p>
+
+                        <p><i>[1] Mettenleiter, Thomas C. "Budding events in herpesvirus morphogenesis." Virus research
+                                106.2 (2004):
+                                167-180.</i></p>
+                        <p><i>[2] Read, Clarissa, et al. "Regulation of human cytomegalovirus secondary envelopment by a
+                                C-terminal
+                                tetralysine motif in pUL71." Journal of Virology 93.13 (2019): 10-1128.</i></p>
+                        <p><i>[3] Cappadona, Ilaria, et al. "Human cytomegalovirus pUL47 modulates tegumentation and
+                                capsid accumulation
+                                at the viral assembly complex." Journal of virology 89.14 (2015): 7314-7328.</i></p>
+                        <p><i>[4] Read, Clarissa, Paul Walther, and Jens von Einem. "Quantitative electron microscopy to
+                                study HCMV
+                                morphogenesis." Human Cytomegaloviruses: Methods and Protocols (2021): 265-289.</i></p>
+                        <p><i>[5] Selvaraju, Ramprasaath R., et al. "Grad-cam: Visual explanations from deep networks
+                                via gradient-based
+                                localization." Proceedings of the IEEE international conference on computer vision.
+                                2017.</i></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Motivation -->
+
+
+
+    <!--DEEP-EM TOOLBOX Workflow -->
+    <section class="section hero">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">DEEP-EM TOOLBOX: Workflow</h2>
+            <div class="content has-text-justified">
+                <figure>
+                    <img src="static/images/explainable-virus-quantification/Teaser.png" alt="Teaser for explainable virus quantification">
+                    <figcaption id="fig:teaser">
+                        For the explainable virus quantification we train a regression model to predict the number of "naked", "budding" and "enveloped" virus capsids in the input image.
+                        We use GradCAM [5] as an explainable AI technique, to make the model more trustworthy and the predictions easier to coprehend.
+                    </figcaption>
+                </figure>
+
+                <div class="orange-background">
+                    <h3>Task</h3>
+                    <p>
+                        We categorize the <u>task</u> of this use case into <u>Image to Value(s)</u> as the input will
+                        be an
+                        <abbr title="Electron Microscopy">EM</abbr> image, and the output will be three values defining
+                        the number
+                        of naked, budding, and enveloped HCMV capsids in the input image. Next, we define the model
+                        <u>architecture</u>:
+                        for selecting the <u>backbone</u>, we take into account that we are working with image data,
+                        which opens the
+                        possibility of using <abbr title="Convolutional Neural Network">CNN</abbr> or
+                        <abbr title="Vision Transformer">ViT</abbr> architectures. Given the limited amount of data, we
+                        choose to
+                        use <abbr title="Convolutional Neural Network">CNN</abbr> models. Specifically, we select
+                        ResNet50
+                        [1] because it
+                        allows us to
+                        utilize pretrained <abbr title="Electron Microscopy">EM</abbr> weights from CEM500k
+                        [2].
+                        Regarding the <u>task-specific</u> architecture, we follow the standard of using the backbone as
+                        a feature
+                        encoder and defining a task-specific head with an output dimensionality of three, matching the
+                        number of
+                        values to predict the secondary envelopment stages within the
+                        <abbr title="Transmission Electron Microscopy">TEM</abbr> images.
+                    </p>
+
+
+                </div>
+                <div class="green-background">
+                    <h3>Data</h3>
+                    <p>
+                        For data <u>acquisition</u>, we make use of pre-existing <u>real data</u> from
+                        [3]
+                        that has already been <u>annotated</u>. However, we encourage the research community to gather
+                        their own datasets
+                        to use our example use case. The <u>annotation type</u> of the data are instance annotations
+                        marking capsid locations
+                        with classes \(C=\{\text{"naked"}, \text{"budding"}, \text{"enveloped"}\}\). For your own data,
+                        we recommend using the
+                        CVAT <u>annotation tool</u>
+                        [4],
+                        as this will allow you to directly plug in your data to run the provided script. For more
+                        details, we refer the reader
+                        to our project page and the corresponding notebook. Based on these annotations, we can derive
+                        the number of naked,
+                        budding, and enveloped virus capsids.
+                    </p>
+
+                    <p>
+                        For data <u>preprocessing</u>, we <u>split</u> the dataset into training, validation, and test
+                        sets, using 20% for testing,
+                        16% for validation, and 64% for training. We choose a relatively large test split, as dataset
+                        sizes in
+                        <abbr title="Electron Microscopy">EM</abbr> are usually small. By doing so, we can ensure that
+                        the model is sufficiently
+                        evaluated to account for potential overfitting to the training data. For <u>resizing</u> we crop
+                        random patches of
+                        224×224 pixels from the full-resolution images, to match the input size of our pretrained
+                        backbone during training.
+                        We balance image patches containing virus capsids with patches that do not contain virus capsids
+                        through informed sampling
+                        of the patch location. This allows us to account for potential bias in the dataset, as the
+                        occurrence of virus capsids
+                        is not uniformly distributed. On the validation and test set we work in a sliding window
+                        fashion. We apply image
+                        <u>normalization</u> by z-score normalization, where we use the mean and standard deviation from
+                        the pretrained dataset.
+                        This is done to match the distribution of the pretrained dataset and better reuse the learned
+                        features from pretraining.
+                    </p>
+
+                    <p>
+                        To further increase variance in the dataset, we apply standard <u>augmentation</u> techniques
+                        like flipping and rotating
+                        the input images.
+                    </p>
+
+
+                </div>
+                <div class="red-background">
+                    <h3> Model</h3>
+                    <p>
+                        As mentioned before, we <u>initialize</u> the backbone model with
+                        <abbr title="Electron Microscopy">EM</abbr>-specific pretrained weights from CEM500k
+                        [2].
+                        We also <u>log</u> important metrics using
+                        <a href="https://wandb.ai/site" target="_blank">Weights & Biases</a>, such as training loss,
+                        validation loss, and
+                        validation mean average error. We visualize a subset of the validation set during training with
+                        model input, output,
+                        prediction, and ground truth. This allows us to quantitatively and qualitatively assess the
+                        training development of the model.
+                        We specifically deploy explainability using GradCAM
+                        [5],
+                        which helps us to sidestep the black-box nature of the model.
+                    </p>
+
+                    <p>
+                        Lastly, we <u>evaluate</u> the overall performance of the model on the test set. We do this in a
+                        <u>quantitative</u> and <u>qualitative</u> fashion and again use GradCAM as a method of
+                        <u>explaining</u> the model's predictions. This allows us to visualize possible biases in the
+                        trained model.
+                    </p>
+
+
+                </div>
+                <p>[1] He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep residual learning for image recognition. In
+                    Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 770-778).</p>
+                <p>[2] Conrad, Ryan, and Kedar Narayan. "CEM500K, a large-scale heterogeneous unlabeled cellular
+                    electron
+                    microscopy image dataset for deep learning." Elife 10 (2021): e65894.</p>
+                <p>[3] Shaga Devan, Kavitha, et al. "Improved automatic detection of herpesvirus secondary envelopment
+                    stages in electron microscopy by augmenting training data with synthetic labelled images generated
+                    by a generative adversarial network." Cellular Microbiology 23.2 (2021): e13280.</p>
+                <p>[4] B. Sekachev et al., Opencv/cvat: V1.1.0, version v1.1.0, Aug. 2020. doi: 10 . 5281 / zenodo .
+                    4009388. [Online]. Available: https://doi.org/10.5281/zenodo.4009388.</p>
+                <p>[5] Selvaraju, Ramprasaath R., et al. "Grad-cam: Visual explanations from deep networks via
+                    gradient-based localization." Proceedings of the IEEE international conference on computer vision.
+                    2017.</p>
+
+            </div>
+        </div>
+    </section>
+    <!--End DEEP-EM TOOLBOX Workflow-->
+
+
+
+
+    <!--Use your own data -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Use Your Own Data</h2>
+            <div class="content has-text-justified">
+                <p>
+                    Here we explain how you need to preprocess and annotate your data to apply the model for your use
+                    case. We require that all data for training, testing and validation is annotated
+                    and collected and then uploaded to the pytorch lightning studio.</p>
+                <h3>Data Structuring</h3>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <p></p>
+                <h3>Data Annotation</h3>
+                <p>
+                    For data annotation we recomment using the <a href="https://www.cvat.ai/">CVAT</a> tool. It is
+                    free to use
+                    but requires a user account.
+                    A quick user guide can be found <a href="https://docs.cvat.ai/docs/getting_started/">here</a>.
+                    Multiple instruction videos can also be found on the <a
+                        href="https://www.youtube.com/@LearnOpenCV">LearnOpenCV youtube channel</a> (for example <a
+                        href="https://www.youtube.com/watch?v=yxX_0-zr-2U">this</a>).
+                    For annotating the location labels within this use case we implement the use of point
+                    annotations.
+                    We export the data using the <i>CVAT for images 1.1</i> format.
+                </p>
+                <button id="togglebtn-quan-ann" class="button-55"
+                    onclick="toggleVisibility('content-quan-ann', 'togglebtn-quan-ann')">Show
+                    More</button>
+                <div id="content-quan-ann" class="hidden">
+                    <p></p>
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-1.png" alt="CVAT task 1">
+                    </figure>
+                    <p>When starting CVAT, you first need to create a new task. You can give it a name, add annotation
+                        types and upload your data.</p>
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-2.png" alt="CVAT task 2">
+                    </figure>
+                    <p>Next, click on the <b>Add label</b> button. Name it based on the classes you want to annotate. In
+                        our case these are "naked", "budding", "enveloped".
+                        As annotation type choose <b>Points</b>. You should also pick a color, as this will simplify the
+                        annotation process. For adding new labels click <b>Continue</b>.
+                        Once you added all nessecary labels click <b>Cancel</b>.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-3.png" alt="CVAT task 3">
+                    </figure>
+                    <p>Now you can upload the data you wish to annotate. Finally, click <b>Submit & Open</b> to continue
+                        with the annotation of the uploaded data.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-4.png" alt="CVAT job">
+                    </figure>
+                    <p>This will open following view. Click on the <b>job</b> (in this view the <b>Job #1150022</b>) to
+                        start the annotation job.
+                    </p>
+
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-5.png" alt="CVAT annotate">
+                    </figure>
+                    <p>To then annotate your data, select the <b>Draw new points</b> tool. Select the <b>Label</b> you
+                        wish to annotate from the dropdown menue. Then click
+                        <b>Shape</b> to annotate
+                        individual virus capsids with the label class. (<b>Track</b> will allow you to place annotations
+                        over multiple frames, which is helpful when annotating videos, tomograms or similar).
+                        You can use the arrows on the top middle to navigate through all of your data and to see your
+                        annotation progress.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-6.png" alt="CVAT export 1">
+                    </figure>
+                    <p>Once you are done annotating data, click on the <b>Menu</b> and select <b>Export job dataset</b>.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-7.png" alt="CVAT export 2">
+                    </figure>
+                    <p>During export select the <b>CVAT for Images 1.1</b> format and give the folder a name. It will
+                        prepare the dataset for download.
+                    </p>
+
+                    <figure>
+                        <img src="static/images/explainable-virus-quantification/CVAT-8.png" alt="CVAT download">
+                    </figure>
+                    <p>In the horizontal menu bar at the top go to <b>Requests</b>. It will show a request <b>Export
+                            Annotations</b>. On the right of this request click on the three dots to download your
+                        annotated data. And you are done.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--End use your own data  -->
+
+
+
+    <!--Links -->
+    <section class="section hero">
+        <div class="container is-max-desktop content">
+            <h2 class="title is-3">Contact</h2>
+
+            <div class="content has-text-justified">
+                <p>If you have any questions regarding this use case, please do not hesitate to contact <a
+                        href="TODO">Tristan Payer</a></p> <!--Add contact info here-->
+            </div>
+        </div>
+    </section>
+    <!--End Links  -->
+
+
+
+    <!--BibTex citation -->
+    <section class="section is-light" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>BibTex Code Here</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer.
+                            <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
