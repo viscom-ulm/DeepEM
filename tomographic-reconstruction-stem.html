@@ -495,8 +495,8 @@ End teaser image -->
                 <h4>Real Data</h4>
                 <p>
                     For generating a tomogram based on a tilt series of real data we require a single folder containing
-                    <b>.tif</b> files with a single micrograph per file.
-                    Additionally, we require a single .rawtlt file inside the data folder.
+                    <code>.tif</code> files with a single micrograph per file.
+                    Additionally, we require a single <code>.rawtlt</code> file inside the data folder.
                     This .rawtlt file is a file filled with the tilt angles of the corresponding micrograph and
                     separated by line breaks.
                     The .tif files need to be sorted based on
@@ -510,6 +510,23 @@ End teaser image -->
                     used with the mrc2tif command to reformat .mrc
                     files into the required .tif image stacks.
                 </p>
+                <p>
+                    We further require that a <code>metadata.json</code> file placed in the same folder as the .tif
+                    files and the .rawtlt file. The content of the file needs to be as follows:
+                </p>
+                <pre><code>
+                    {
+                        "slice_thickness_nm": 800,
+                        "pixelsize_nmperpixel": 3.3,
+                        "original_px_resolution": 2042
+                    }
+                </code></pre>
+                <p>The values within the content need to be adapted based on the dataset used.</p>
+                <p><code>slice_thickness_nm</code>... approximated slice thickness in nm of the visualized sample. If
+                    unknown, 1000 should be set.</p>
+                <p><code>pixelsize_nmperpixel</code>... pixel resolution in px/nm of the micrographs.</p>
+                <p><code>original_px_resolution</code>... resolution in pixel of the micrographs.</p>
+
 
                 <h4>Synthetic Data</h4>
                 <p>You can also test the notebook on additional synthetic data to assess the performance in a
@@ -534,8 +551,12 @@ End teaser image -->
                     straight vertical tilt axis, tilt axis which are not perfectly aligned with the y-axis need to be
                     corrected. Tilt axis correction can be done using <a href="https://imagej.net/ij/">ImageJ</a>. </p>
 
-                <p><b>All other data preprocessing steps are directly implemented in the provided notebook (linked at the
-                    top of this project page). Within the notebook we further describe where to exactly plug in your own data.</p></b>
+                <p><b>All other data preprocessing steps are directly implemented in the provided notebook (linked at
+                        the
+                        top of this project page). Within the notebook we further describe where to exactly plug in your
+                        own data.</p></b>
+
+                <p><b>Example datasets can be found and tested within the provided notebook.</p></b>
                 <p></p>
 
 
@@ -553,7 +574,8 @@ End teaser image -->
 
             <div class="content has-text-justified">
                 <p>If you have any questions regarding this use case, please do not hesitate to contact <a
-                        href="https://viscom.uni-ulm.de/members/hannah-kniesel/">Hannah Kniesel</a></p> <!--Add contact info here-->
+                        href="https://viscom.uni-ulm.de/members/hannah-kniesel/">Hannah Kniesel</a></p>
+                <!--Add contact info here-->
             </div>
         </div>
     </section>
