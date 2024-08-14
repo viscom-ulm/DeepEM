@@ -427,32 +427,40 @@ End teaser image -->
                 <div class="red-background">
                     <h3> Model</h3>
                     <p>
-                        As mentioned earlier, we are falling back on pretrained models of natural images for the <u>initialization</u> of our model. 
-                        Despite the domain gap between natural images and <abbr title="Electron Microscopy">EM</abbr>, pretrained weights from 
+                        As mentioned earlier, we are falling back on pretrained models of natural images for the
+                        <u>initialization</u> of our model.
+                        Despite the domain gap between natural images and <abbr title="Electron Microscopy">EM</abbr>,
+                        pretrained weights from
                         ImageNet [5]
                         can deliver helpful prior information to the backbone.
                     </p>
-                    
+
                     <p>
-                        We use the standard output as well as 
-                        <a href="https://wandb.ai/site" target="_blank">Weights & Biases</a> 
-                        for <u>logging</u> metrics for every model of the ensemble structure. Metrics include training and validation loss as well as 
-                        <abbr title="Intersection over Union">IoU</abbr> on the validation set, which is a metric specific for assessing the performance 
+                        We use the standard output as well as
+                        <a href="https://wandb.ai/site" target="_blank">Weights & Biases</a>
+                        for <u>logging</u> metrics for every model of the ensemble structure. Metrics include training
+                        and validation loss as well as
+                        <abbr title="Intersection over Union">IoU</abbr> on the validation set, which is a metric
+                        specific for assessing the performance
                         of segmentation models.
                     </p>
-                    
+
                     <p>
-                        Finally, during <u>evaluation</u> we accumulate the predictions of the models and pick the most likely prediction, forming the 
-                        ensemble model. We assess the performance <u>quantitatively</u> by computing the <abbr title="Intersection over Union">IoU</abbr> 
-                        for each model separately on the test set and finally combine their predictions to compute the 
+                        Finally, during <u>evaluation</u> we accumulate the predictions of the models and pick the most
+                        likely prediction, forming the
+                        ensemble model. We assess the performance <u>quantitatively</u> by computing the <abbr
+                            title="Intersection over Union">IoU</abbr>
+                        for each model separately on the test set and finally combine their predictions to compute the
                         <abbr title="Intersection over Union">IoU</abbr> for the ensemble model.
                     </p>
-                    
+
                     <p>
-                        We add <u>qualitative</u> evaluation on a subset of the test data by visualizing the model's input, output, and corresponding 
-                        ground truth. Again, we assess this for each model separately as well as on the combined ensemble model.
+                        We add <u>qualitative</u> evaluation on a subset of the test data by visualizing the model's
+                        input, output, and corresponding
+                        ground truth. Again, we assess this for each model separately as well as on the combined
+                        ensemble model.
                     </p>
-                    
+
 
 
                 </div>
@@ -469,7 +477,8 @@ End teaser image -->
                     biology." Front Biosci (Elite Ed) 5 (2013): 533-45.</p>
                 <p>[4] B. Sekachev et al., Opencv/cvat: V1.1.0, version v1.1.0, Aug. 2020. doi: 10 . 5281 / zenodo .
                     4009388. [Online]. Available: https://doi.org/10.5281/zenodo.4009388.</p>
-                    <p>[5] Deng, Jia, et al. "Imagenet: A large-scale hierarchical image database." 2009 IEEE conference on computer vision and pattern recognition. Ieee, 2009.</p>
+                <p>[5] Deng, Jia, et al. "Imagenet: A large-scale hierarchical image database." 2009 IEEE conference on
+                    computer vision and pattern recognition. Ieee, 2009.</p>
 
             </div>
         </div>
@@ -489,12 +498,20 @@ End teaser image -->
                     case. We require that all data for training, testing and validation is annotated
                     and collected and then uploaded to the pytorch lightning studio.</p>
                 <h3>Data Structuring</h3>
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                <p>We require you to split the data in a test and train set. Our provided notebook will automatically
+                    pick a validation split (20%) from the provided training data.</p>
+                <p>You should provide one folder containing the <b>training images</b> and one folder containing the
+                    corresponding <b>training masks</b>, which were exported from the <a
+                        href="https://www.cvat.ai/">CVAT</a> tool as described below.
+                </p>
+                <p>Similarly, you should provide one folder containing the <b>test images</b> and one folder containing
+                    the
+                    corresponding <b>test masks</b>, which were exported from the <a
+                        href="https://www.cvat.ai/">CVAT</a> tool as described below.
+                </p>
+                <p>We recomment to use at least 20% of your dataset for testing.</p>
+                <p>Within the provided notebook we descibe where you need to adapt the code in order to plug in your
+                    data.</p>
                 <p></p>
                 <h3>Data Annotation</h3>
                 <p>
@@ -552,7 +569,7 @@ End teaser image -->
                         wish to annotate from the dropdown menu. Then click
                         <b>Shape</b> to annotate
                         individual virus capsids with the label class.
-                        
+
                     </p>
 
                     <figure>
