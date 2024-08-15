@@ -252,12 +252,18 @@
                                 </a>
                                 </span>-->
 
-                                <span class="link-block">
+                                <!--<span class="link-block">
                                     <a href="https:/Link to Notebook" target="_blank"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span>notebook</span>
                                     </a>
-                                </span>
+                                </span>-->
+
+                                <a target="_blank"
+                                    href="https://lightning.ai/hannah-kniesel/studios/deep-em-toolbox-segmentation-of-cellular-structures">
+                                    <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg"
+                                        alt="Open Studio" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -351,8 +357,9 @@ End teaser image -->
                         which was especially designed for biomedical image segmentation. Our goal is to develop a
                         so-called "ensemble" model.
                         An ensemble model is a set of models that are used to make multiple predictions for the same
-                        input data. The predictions
-                        are then combined by a majority voting between all trained models. To do so, we use multiple
+                        input data. The predictions are then combined by a weighted average between all trained models.
+                        The weights are computed by the performance of the model on the validation set. For the
+                        ensemble, we use multiple
                         <abbr title="Convolutional Neural Network">CNN</abbr> <u>backbone</u> architectures and include
                         them in our
                         task-specific encoder-decoder architecture. Similar to our previous example notebook, we are
