@@ -42,6 +42,28 @@
       display: none;
     }
 
+    button.round-button {
+      background-color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: black;
+      padding: 13px 13px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+      width: 45px;
+      height: 45px;
+    }
+
+    button.round-button:hover {
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    button.round-button:active {
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+
     .button-55 {
       align-self: center;
       background-color: #fff;
@@ -162,6 +184,21 @@
       } else {
         content.classList.add('hidden');
         btn.innerHTML = "Show More"
+
+      }
+    }
+
+    function toggleVisibility_triangle(id_content, id_button) {
+      var content = document.getElementById(id_content);
+      var btn = document.getElementById(id_button);
+
+
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        btn.innerHTML = "&#9660;"
+      } else {
+        content.classList.add('hidden');
+        btn.innerHTML = "&#9654;"
 
       }
     }
@@ -355,198 +392,352 @@ End teaser image -->
         onclick="toggleVisibility('content-terminology', 'togglebtn-terminology')">Show More</button>
       <div id="content-terminology" class="hidden">
         <p></p>
-        <p>
-          <strong>Loss function</strong> is a mathematical function that quantifies the difference between the predicted
-          output of a neural network and the actual target value (often also referred to as <i>annotation</i>, <i>ground
-            truth</i> or <i>label</i>). It serves as a crucial component in training deep learning models by providing a
-          measure of how well or poorly the model is performing. The primary objective during training is to minimize
-          this loss function, which in turn improves the model's predictions.
-        </p>
-        <p>
-          <strong>Metric</strong> In the context of deep learning, a metric is a quantitative measure used to evaluate
-          the performance of a model. Metrics provide insights into how well the model is performing on tasks such as
-          classification, regression, or other predictive tasks by comparing the model's predictions to the actual
-          ground truth values. Metrics help in assessing the effectiveness of the model, guiding the tuning of
-          hyperparameters, and making decisions about model improvements. Unlike loss functions, which are optimized
-          during training, metrics are primarily used for evaluation purposes, providing a clearer understanding of the
-          model's predictive capabilities and generalization to unseen data.
-        </p>
-        <p>
-          <strong>Gradient Descent</strong> Gradient descent is a fundamental optimization algorithm used in deep
-          learning to minimize the loss function. The algorithm iteratively adjusts the trainable parameters (weights
-          and biases) of the neural network to reduce this loss. The core idea involves computing the gradient (partial
-          derivative) of the loss function with respect to each parameter. These gradients indicate the direction and
-          rate of change needed to decrease the loss. The parameters are then updated in the opposite direction of the
-          gradient, scaled by a learning rate, which controls the step size of the updates. Mathematically, the update
-          rule for a parameter θ at update step t is given by θ<sub>t</sub> = θ<sub>t-1</sub> - η∇<sub>θ</sub>L, where η
-          is the learning rate, ∇<sub>θ</sub>L is the gradient of the loss L with respect to θ. This iterative process
-          continues until the algorithm converges to a minimum of the loss function, ideally reaching optimal parameter
-          values that allow the neural network to make accurate predictions. Gradient descent variants, such as
-          stochastic gradient descent (SGD) and mini-batch gradient descent, improve efficiency and performance by
-          adjusting how the gradients are computed and applied.
-        </p>
-        <p>
-          <strong>Architectures</strong> refer to the specific design and configuration of neural networks, dictating
-          how layers are arranged and interconnected. Common architectures include Convolutional Neural Networks (CNNs)
-          for image processing, Recurrent Neural Networks (RNNs) for sequential data, and Transformer models for tasks
-          like natural language processing or image processing. Each architecture is tailored to handle specific types
-          of input and output dimensions, ensuring optimal processing and learning.
-          At the core of these architectures are neurons, the fundamental units of a neural network. A neuron receives
-          input, processes it using a set of weights, and then applies an activation function, such as ReLU (Rectified
-          Linear Unit), Sigmoid, or Tanh, to introduce non-linearity, enabling the network to learn complex functions.
-          Layers, which are collections of neurons, form the structural components of a neural network. There are
-          various types of layers, each serving a distinct purpose. For example, input layers handle the raw data,
-          hidden layers process the input through multiple transformations, and output layers produce the final
-          predictions. The architecture must also adapt the input dimensions, like the dimension of the input data, and
-          the output dimensions, for example to ensure the correct number of classes in classification tasks, to suit
-          the problem being addressed. The thoughtful design of these architectures, the role of neurons, the
-          appropriate activation functions, and the strategic use of different types of layers are essential for the
-          network to effectively learn from the data and perform the desired tasks.
-        </p>
-        <p>
-          <strong>Hyperparameters</strong> in the context of deep learning are the parameters set before the training
-          process begins, which govern the overall behavior and performance of the neural network. Unlike model
-          parameters, which are learned during training, hyperparameters need to be manually defined. They include
-          aspects such as the learning rate, batch size, number of epochs, and architecture-specific choices like the
-          number of layers and units per layer. The choice of hyperparameters can significantly impact the model's
-          ability to learn effectively and generalize to new data. Tuning these hyperparameters is often a complex and
-          iterative process, involving techniques such as grid search, random search, or more sophisticated methods like
-          Bayesian optimization to find the optimal settings that enhance model performance.
-        </p>
-        <p>
-          <strong>Training</strong> in deep learning is the process where a neural network learns from a dataset by
-          adjusting its weights to minimize the error of its predictions. The dataset is often too large to process all
-          at once, so it is divided into smaller subsets called batches. A batch is a small, manageable portion of the
-          dataset used to update the model's weights. Training on batches is necessary because it allows for efficient
-          computation and memory usage, making it feasible to train large models on large datasets.
-          An iteration refers to a single update of the model's weights using one batch of data. Multiple iterations
-          make up an epoch, which is a complete pass through the entire training dataset. Training on batches helps
-          achieve a balance between speed and accuracy, as each batch update can quickly provide feedback to the model,
-          allowing it to adjust its weights incrementally.
-          Using a batch size of 1, also known as online learning, can be inefficient and noisy. With a batch size of 1,
-          the model's weights are updated after every single data point, leading to highly variable gradient updates
-          that can make the training process unstable and slow. Larger batch sizes help in smoothing out these updates,
-          providing more stable and reliable gradients, which can lead to more efficient convergence.
-          Throughout many epochs, the model iteratively processes batches of data, computes predictions, and updates its
-          parameters using optimization algorithms such as stochastic gradient descent. The goal is to minimize a
-          predefined loss function that quantifies the discrepancy between the predicted outputs and the actual targets.
-          By iteratively refining its weights through batch processing, the model learns the underlying patterns in the
-          data effectively, leading to improved performance and generalization.
-        </p>
-        <p>
-          <strong>Learning Rate</strong> The learning rate is a critical hyperparameter that determines the step size at
-          each iteration while moving towards a minimum of the loss function. A learning rate that is too high can cause
-          the training process to converge too quickly to a suboptimal solution, or even diverge. Conversely, a learning
-          rate that is too low can make the training process very slow, potentially getting stuck in local minima.
-        </p>
-        <p>
-          <strong>Learning Rate Scheduler</strong> To address the challenges of selecting a proper learning rate,
-          learning rate schedulers are used. These dynamically adjust the learning rate during training to improve
-          performance and convergence speed. Common strategies include:
-        <ul>
-          <li><i>Step Decay</i>: Reduces the learning rate by a factor at fixed intervals (epochs).</li>
-          <li><i>Exponential Decay</i>: Gradually decreases the learning rate exponentially over time.</li>
-          <li><i>Cosine Annealing</i>: Reduces the learning rate following a cosine curve, which can help in exploring
-            wider regions of the loss landscape initially and then fine-tuning as training progresses.</li>
-          <li><i>Cyclic Learning Rate</i>: Varies the learning rate cyclically between a minimum and maximum boundary,
-            which can help escape local minima and improve training performance.</li>
-        </ul>
-        </p>
-        <p>
-          <strong>Optimization Algorithms</strong> Optimization algorithms are used to adjust the weights of the model
-          to minimize the loss function. Different optimizers offer various advantages depending on the problem and the
-          dataset. Here are some commonly used optimizers:
-        <ul>
-          <li><i>Stochastic Gradient Descent (SGD)</i>: SGD updates the model's parameters using the gradient of the
-            loss function with respect to the parameters for each batch of data. It is simple and effective but can be
-            slow to converge and may oscillate near the minimum.</li>
-          <li><i>Momentum</i>: An extension of SGD, momentum helps accelerate SGD by navigating in the relevant
-            direction and dampening oscillations. It accumulates a velocity vector in the direction of the gradient's
-            consistent component, speeding up the training process.</li>
-          <li><i>Adagrad</i>: Adagrad adapts the learning rate for each parameter based on its gradients' historical
-            sum. It is particularly useful for dealing with sparse data but can suffer from decaying learning rates over
-            time.</li>
-          <li><i>RMSprop</i>: RMSprop adjusts the learning rate for each parameter by dividing by a running average of
-            recent gradients' magnitudes. It mitigates Adagrad's issue of decaying learning rates and performs well in
-            practice.</li>
-          <li><i>Adam</i>: Adam (Adaptive Moment Estimation) combines the benefits of both Adagrad and RMSprop. It
-            computes adaptive learning rates for each parameter using the first and second moments of the gradients.
-            Adam is widely used due to its robust performance across various tasks.</li>
-          <li><i>AdamW</i>: An extension of Adam, AdamW decouples weight decay (used for regularization) from the
-            gradient updates. This improves the optimizer's performance, particularly when using L2 regularization.</li>
+        <button id="btn-loss" class="round-button"
+          onclick="toggleVisibility_triangle('loss', 'btn-loss')">&#9654;</button>
+        <strong>Loss function</strong>
+        <div id="loss" class="hidden">
+          <p>
+            is a mathematical function that quantifies the difference between the predicted
+            output of a neural network and the actual target value (often also referred to as <i>annotation</i>,
+            <i>ground
+              truth</i> or <i>label</i>). It serves as a crucial component in training deep learning models by providing
+            a
+            measure of how well or poorly the model is performing. The primary objective during training is to minimize
+            this loss function, which in turn improves the model's predictions.
+          </p>
+        </div>
+        <p></p>
 
-        </ul>
-        </p>
-        <p>
-          <strong>Batch Size</strong> The batch size is a crucial hyperparameter in deep learning training that defines
-          the number of samples processed before the model's internal parameters are updated. It influences both the
-          learning dynamics and computational efficiency of the training process. Choosing the right batch size involves
-          balancing several trade-offs. Smaller batch sizes (e.g., 32 or 64) provide more frequent updates to the model
-          parameters, which can lead to a smoother convergence and better generalization to new data. However, they may
-          introduce higher noise in the gradient estimates, which can make the training process less stable. Larger
-          batch sizes (e.g., 256 or 512) offer more accurate gradient estimates and can leverage parallel processing
-          capabilities of modern GPUs more efficiently, potentially speeding up the training process. Yet, they require
-          more memory and can lead to less frequent updates, which might result in slower convergence and risk of
-          getting stuck in local minima. Empirically, a batch size that balances these factors is typically chosen based
-          on the specific dataset and computational resources available. Adaptive strategies, such as progressively
-          increasing the batch size during training, can also be employed to combine the benefits of both small and
-          large batch sizes.
-        </p>
-        <p>
-          <strong>Validation</strong> is a critical step in deep learning used to evaluate the model's performance on a
-          separate dataset not seen during training. This dataset, called the validation set, is used to tune
-          hyperparameters, select the best model, and prevent overfitting. Overfitting occurs when a model learns the
-          training data too well, capturing noise and specific patterns that do not generalize to new, unseen data. This
-          leads to poor performance on validation or test sets. In contrast, generalization is the model's ability to
-          perform well on new, unseen data, indicating that it has learned the underlying patterns in the training data
-          without memorizing it. During training, the model's performance on the validation set is monitored, and
-          adjustments are made to improve generalization. This helps ensure that the model does not just memorize the
-          training data but learns to generalize to new, unseen data, enhancing its robustness and applicability in
-          real-world scenarios.
-        </p>
-        <p>
-          <strong>Test</strong> The test phase, sometimes also refered to as inference, is where the trained model is
-          evaluated on a completely separate dataset called the test set. This dataset is used to assess the model's
-          final performance and its ability to generalize to new data. During inference, the model makes predictions on
-          new data points, and its performance metrics (such as accuracy, precision, recall) are calculated. This phase
-          is crucial for understanding how well the model will perform in real-world scenarios and ensures that the
-          model's performance is robust and reliable.
-        </p>
-        <p>
-          <strong>Supervised Learning</strong> is the standard approach of machine learning where the model is trained
-          on labeled data. In this paradigm, the training dataset consists of input-output pairs, where each input $x$
-          is associated with a known output $y$ (label). The goal of supervised learning is to learn a mapping function
-          from inputs to outputs, allowing the model to make accurate predictions on new, unseen data. Supervised
-          learning is widely used in various domains such as image recognition, speech recognition, and medical
-          diagnosis, due to its effectiveness in learning from explicit examples.
-        </p>
-        <p>
-          <strong>Weakly Supervised Learning</strong> is a machine learning approach where the model is trained using
-          partially labeled or noisy data, as opposed to fully labeled data in traditional supervised learning. In
-          weakly supervised learning, the training dataset may contain only high-level labels, partial labels, or noisy
-          labels, which provide limited or ambiguous information about the ground truth. Despite the challenges posed by
-          the lack of precise labels, weakly supervised learning algorithms aim to infer meaningful patterns and
-          relationships from the available data to make predictions or perform tasks. This approach often requires
-          innovative techniques, such as label aggregation, data augmentation, or learning from indirect supervision
-          signals. Weakly supervised learning is particularly useful in scenarios where obtaining fully labeled data is
-          expensive, time-consuming, or impractical, allowing models to be trained on larger, more diverse datasets.
-          Additionally, weak supervision can function as implicit standardization: For example when human opinion on the
-          full annotation is ambiguous, the annotations in a weak scenario might be unambiguous. Hence, the model is
-          able to learn a standardization from the unambiguous weak labels.
-        </p>
-        <p>
-          <strong>Unsupervised Learning</strong> is particularly valuable for pretraining models on large, unlabeled
-          datasets. Instead of relying on labeled examples, unsupervised learning algorithms explore the raw input data
-          to extract meaningful features or representations without explicit guidance. Pretraining involves training a
-          model on a large amount of unlabeled data to learn general patterns and structures in the data. Once
-          pretrained, the model can be fine-tuned on smaller labeled datasets for specific tasks, such as classification
-          or regression. Fine-tuning adjusts the pretrained model's parameters to make it better suited for the specific
-          task at hand, leveraging the knowledge gained during pretraining. Unsupervised pretraining followed by
-          fine-tuning has proven to be effective in improving model performance, especially in scenarios where labeled
-          data is scarce or expensive to obtain. It plays a crucial role in various applications such as natural
-          language processing, computer vision, and speech recognition, enabling the development of more accurate and
-          robust deep learning models.
-        </p>
+        <p></p>
+        <button id="btn-metric" class="round-button"
+          onclick="toggleVisibility_triangle('metric', 'btn-metric')">&#9654;</button>
+        <strong>Metric</strong>
+        <div id="metric" class="hidden">
+          <p>In the context of deep learning, a metric is a quantitative measure used to evaluate
+            the performance of a model. Metrics provide insights into how well the model is performing on tasks such as
+            classification, regression, or other predictive tasks by comparing the model's predictions to the actual
+            ground truth values. Metrics help in assessing the effectiveness of the model, guiding the tuning of
+            hyperparameters, and making decisions about model improvements. Unlike loss functions, which are optimized
+            during training, metrics are primarily used for evaluation purposes, providing a clearer understanding of
+            the
+            model's predictive capabilities and generalization to unseen data.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-gradientdescent" class="round-button"
+          onclick="toggleVisibility_triangle('gradientdescent', 'btn-gradientdescent')">&#9654;</button>
+        <strong>Gradient Descent</strong>
+        <div id="gradientdescent" class="hidden">
+          <p>Gradient descent is a fundamental optimization algorithm used in deep
+            learning to minimize the loss function. The algorithm iteratively adjusts the trainable parameters (weights
+            and biases) of the neural network to reduce this loss. The core idea involves computing the gradient
+            (partial
+            derivative) of the loss function with respect to each parameter. These gradients indicate the direction and
+            rate of change needed to decrease the loss. The parameters are then updated in the opposite direction of the
+            gradient, scaled by a learning rate, which controls the step size of the updates. Mathematically, the update
+            rule for a parameter θ at update step t is given by θ<sub>t</sub> = θ<sub>t-1</sub> - η∇<sub>θ</sub>L, where
+            η
+            is the learning rate, ∇<sub>θ</sub>L is the gradient of the loss L with respect to θ. This iterative process
+            continues until the algorithm converges to a minimum of the loss function, ideally reaching optimal
+            parameter
+            values that allow the neural network to make accurate predictions. Gradient descent variants, such as
+            stochastic gradient descent (SGD) and mini-batch gradient descent, improve efficiency and performance by
+            adjusting how the gradients are computed and applied.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-architecture" class="round-button"
+          onclick="toggleVisibility_triangle('architecture', 'btn-architecture')">&#9654;</button>
+        <strong>Architectures</strong>
+        <div id="architecture" class="hidden">
+          <p> refer to the specific design and configuration of neural networks, dictating
+            how layers are arranged and interconnected. Common architectures include Convolutional Neural Networks
+            (CNNs)
+            for image processing, Recurrent Neural Networks (RNNs) for sequential data, and Transformer models for tasks
+            like natural language processing or image processing. Each architecture is tailored to handle specific types
+            of input and output dimensions, ensuring optimal processing and learning.
+            At the core of these architectures are neurons, the fundamental units of a neural network. A neuron receives
+            input, processes it using a set of weights, and then applies an activation function, such as ReLU (Rectified
+            Linear Unit), Sigmoid, or Tanh, to introduce non-linearity, enabling the network to learn complex functions.
+            Layers, which are collections of neurons, form the structural components of a neural network. There are
+            various types of layers, each serving a distinct purpose. For example, input layers handle the raw data,
+            hidden layers process the input through multiple transformations, and output layers produce the final
+            predictions. The architecture must also adapt the input dimensions, like the dimension of the input data,
+            and
+            the output dimensions, for example to ensure the correct number of classes in classification tasks, to suit
+            the problem being addressed. The thoughtful design of these architectures, the role of neurons, the
+            appropriate activation functions, and the strategic use of different types of layers are essential for the
+            network to effectively learn from the data and perform the desired tasks.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-hyperparameter" class="round-button"
+          onclick="toggleVisibility_triangle('hyperparameter', 'btn-hyperparameter')">&#9654;</button>
+        <strong>Hyperparameters</strong>
+        <div id="hyperparameter" class="hidden">
+          <p>
+            in the context of deep learning are the parameters set before the training
+            process begins, which govern the overall behavior and performance of the neural network. Unlike model
+            parameters, which are learned during training, hyperparameters need to be manually defined. They include
+            aspects such as the learning rate, batch size, number of epochs, and architecture-specific choices like the
+            number of layers and units per layer. The choice of hyperparameters can significantly impact the model's
+            ability to learn effectively and generalize to new data. Tuning these hyperparameters is often a complex and
+            iterative process, involving techniques such as grid search, random search, or more sophisticated methods
+            like
+            Bayesian optimization to find the optimal settings that enhance model performance.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-training" class="round-button"
+          onclick="toggleVisibility_triangle('training', 'btn-training')">&#9654;</button>
+        <strong>Training</strong>
+        <div id="training" class="hidden">
+          <p>
+            in deep learning is the process where a neural network learns from a dataset by
+            adjusting its weights to minimize the error of its predictions. The dataset is often too large to process
+            all
+            at once, so it is divided into smaller subsets called batches. A batch is a small, manageable portion of the
+            dataset used to update the model's weights. Training on batches is necessary because it allows for efficient
+            computation and memory usage, making it feasible to train large models on large datasets.
+            An iteration refers to a single update of the model's weights using one batch of data. Multiple iterations
+            make up an epoch, which is a complete pass through the entire training dataset. Training on batches helps
+            achieve a balance between speed and accuracy, as each batch update can quickly provide feedback to the
+            model,
+            allowing it to adjust its weights incrementally.
+            Using a batch size of 1, also known as online learning, can be inefficient and noisy. With a batch size of
+            1,
+            the model's weights are updated after every single data point, leading to highly variable gradient updates
+            that can make the training process unstable and slow. Larger batch sizes help in smoothing out these
+            updates,
+            providing more stable and reliable gradients, which can lead to more efficient convergence.
+            Throughout many epochs, the model iteratively processes batches of data, computes predictions, and updates
+            its
+            parameters using optimization algorithms such as stochastic gradient descent. The goal is to minimize a
+            predefined loss function that quantifies the discrepancy between the predicted outputs and the actual
+            targets.
+            By iteratively refining its weights through batch processing, the model learns the underlying patterns in
+            the
+            data effectively, leading to improved performance and generalization.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-learningrate" class="round-button"
+          onclick="toggleVisibility_triangle('learningrate', 'btn-learningrate')">&#9654;</button>
+        <strong>Learning Rate</strong>
+        <div id="learningrate" class="hidden">
+          <p>
+            The learning rate is a critical hyperparameter that determines the step size at
+            each iteration while moving towards a minimum of the loss function. A learning rate that is too high can
+            cause
+            the training process to converge too quickly to a suboptimal solution, or even diverge. Conversely, a
+            learning
+            rate that is too low can make the training process very slow, potentially getting stuck in local minima.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-learningratescheduler" class="round-button"
+          onclick="toggleVisibility_triangle('learningratescheduler', 'btn-learningratescheduler')">&#9654;</button>
+        <strong>Learning Rate Scheduler</strong>
+        <div id="learningratescheduler" class="hidden">
+          <p>
+            To address the challenges of selecting a proper learning rate,
+            learning rate schedulers are used. These dynamically adjust the learning rate during training to improve
+            performance and convergence speed. Common strategies include:
+          <ul>
+            <li><i>Step Decay</i>: Reduces the learning rate by a factor at fixed intervals (epochs).</li>
+            <li><i>Exponential Decay</i>: Gradually decreases the learning rate exponentially over time.</li>
+            <li><i>Cosine Annealing</i>: Reduces the learning rate following a cosine curve, which can help in exploring
+              wider regions of the loss landscape initially and then fine-tuning as training progresses.</li>
+            <li><i>Cyclic Learning Rate</i>: Varies the learning rate cyclically between a minimum and maximum boundary,
+              which can help escape local minima and improve training performance.</li>
+          </ul>
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-optimization" class="round-button"
+          onclick="toggleVisibility_triangle('optimization', 'btn-optimization')">&#9654;</button>
+        <strong>Optimization Algorithms</strong>
+        <div id="optimization" class="hidden">
+          <p>
+            Optimization algorithms are used to adjust the weights of the model
+            to minimize the loss function. Different optimizers offer various advantages depending on the problem and
+            the
+            dataset. Here are some commonly used optimizers:
+          <ul>
+            <li><i>Stochastic Gradient Descent (SGD)</i>: SGD updates the model's parameters using the gradient of the
+              loss function with respect to the parameters for each batch of data. It is simple and effective but can be
+              slow to converge and may oscillate near the minimum.</li>
+            <li><i>Momentum</i>: An extension of SGD, momentum helps accelerate SGD by navigating in the relevant
+              direction and dampening oscillations. It accumulates a velocity vector in the direction of the gradient's
+              consistent component, speeding up the training process.</li>
+            <li><i>Adagrad</i>: Adagrad adapts the learning rate for each parameter based on its gradients' historical
+              sum. It is particularly useful for dealing with sparse data but can suffer from decaying learning rates
+              over
+              time.</li>
+            <li><i>RMSprop</i>: RMSprop adjusts the learning rate for each parameter by dividing by a running average of
+              recent gradients' magnitudes. It mitigates Adagrad's issue of decaying learning rates and performs well in
+              practice.</li>
+            <li><i>Adam</i>: Adam (Adaptive Moment Estimation) combines the benefits of both Adagrad and RMSprop. It
+              computes adaptive learning rates for each parameter using the first and second moments of the gradients.
+              Adam is widely used due to its robust performance across various tasks.</li>
+            <li><i>AdamW</i>: An extension of Adam, AdamW decouples weight decay (used for regularization) from the
+              gradient updates. This improves the optimizer's performance, particularly when using L2 regularization.
+            </li>
+
+          </ul>
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-batchsize" class="round-button"
+          onclick="toggleVisibility_triangle('batchsize', 'btn-batchsize')">&#9654;</button>
+        <strong>Batch Size</strong>
+        <div id="batchsize" class="hidden">
+          <p>
+            The batch size is a crucial hyperparameter in deep learning training that defines
+            the number of samples processed before the model's internal parameters are updated. It influences both the
+            learning dynamics and computational efficiency of the training process. Choosing the right batch size
+            involves
+            balancing several trade-offs. Smaller batch sizes (e.g., 32 or 64) provide more frequent updates to the
+            model
+            parameters, which can lead to a smoother convergence and better generalization to new data. However, they
+            may
+            introduce higher noise in the gradient estimates, which can make the training process less stable. Larger
+            batch sizes (e.g., 256 or 512) offer more accurate gradient estimates and can leverage parallel processing
+            capabilities of modern GPUs more efficiently, potentially speeding up the training process. Yet, they
+            require
+            more memory and can lead to less frequent updates, which might result in slower convergence and risk of
+            getting stuck in local minima. Empirically, a batch size that balances these factors is typically chosen
+            based
+            on the specific dataset and computational resources available. Adaptive strategies, such as progressively
+            increasing the batch size during training, can also be employed to combine the benefits of both small and
+            large batch sizes.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-validation" class="round-button"
+          onclick="toggleVisibility_triangle('validation', 'btn-validation')">&#9654;</button>
+        <strong>Validation</strong>
+        <div id="validation" class="hidden">
+          <p>
+            is a critical step in deep learning used to evaluate the model's performance on a
+            separate dataset not seen during training. This dataset, called the validation set, is used to tune
+            hyperparameters, select the best model, and prevent overfitting. Overfitting occurs when a model learns the
+            training data too well, capturing noise and specific patterns that do not generalize to new, unseen data.
+            This
+            leads to poor performance on validation or test sets. In contrast, generalization is the model's ability to
+            perform well on new, unseen data, indicating that it has learned the underlying patterns in the training
+            data
+            without memorizing it. During training, the model's performance on the validation set is monitored, and
+            adjustments are made to improve generalization. This helps ensure that the model does not just memorize the
+            training data but learns to generalize to new, unseen data, enhancing its robustness and applicability in
+            real-world scenarios.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-test" class="round-button"
+          onclick="toggleVisibility_triangle('test', 'btn-test')">&#9654;</button>
+        <strong>Test</strong>
+        <div id="test" class="hidden">
+          <p>
+            The test phase, sometimes also refered to as inference, is where the trained model is
+            evaluated on a completely separate dataset called the test set. This dataset is used to assess the model's
+            final performance and its ability to generalize to new data. During inference, the model makes predictions
+            on
+            new data points, and its performance metrics (such as accuracy, precision, recall) are calculated. This
+            phase
+            is crucial for understanding how well the model will perform in real-world scenarios and ensures that the
+            model's performance is robust and reliable.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-supervisedlearning" class="round-button"
+          onclick="toggleVisibility_triangle('supervisedlearning', 'btn-supervisedlearning')">&#9654;</button>
+        <strong>Supervised Learning</strong>
+        <div id="supervisedlearning" class="hidden">
+          <p>
+            is the standard approach of machine learning where the model is trained
+            on labeled data. In this paradigm, the training dataset consists of input-output pairs, where each input \( x \)
+            is associated with a known output \( y \) (label). The goal of supervised learning is to learn a mapping
+            function
+            from inputs to outputs, allowing the model to make accurate predictions on new, unseen data. Supervised
+            learning is widely used in various domains such as image recognition, speech recognition, and medical
+            diagnosis, due to its effectiveness in learning from explicit examples.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-weaklysupervisedlearning" class="round-button"
+          onclick="toggleVisibility_triangle('weaklysupervisedlearning', 'btn-weaklysupervisedlearning')">&#9654;</button>
+        <strong>Weakly Supervised Learning</strong>
+        <div id="weaklysupervisedlearning" class="hidden">
+          <p>
+            is a machine learning approach where the model is trained using
+            partially labeled or noisy data, as opposed to fully labeled data in traditional supervised learning. In
+            weakly supervised learning, the training dataset may contain only high-level labels, partial labels, or
+            noisy
+            labels, which provide limited or ambiguous information about the ground truth. Despite the challenges posed
+            by
+            the lack of precise labels, weakly supervised learning algorithms aim to infer meaningful patterns and
+            relationships from the available data to make predictions or perform tasks. This approach often requires
+            innovative techniques, such as label aggregation, data augmentation, or learning from indirect supervision
+            signals. Weakly supervised learning is particularly useful in scenarios where obtaining fully labeled data
+            is
+            expensive, time-consuming, or impractical, allowing models to be trained on larger, more diverse datasets.
+            Additionally, weak supervision can function as implicit standardization: For example when human opinion on
+            the
+            full annotation is ambiguous, the annotations in a weak scenario might be unambiguous. Hence, the model is
+            able to learn a standardization from the unambiguous weak labels.
+          </p>
+        </div>
+        <p></p>
+
+        <p></p>
+        <button id="btn-unsupervisedlearning" class="round-button"
+          onclick="toggleVisibility_triangle('unsupervisedlearning', 'btn-unsupervisedlearning')">&#9654;</button>
+        <strong>Unsupervised Learning</strong>
+        <div id="unsupervisedlearning" class="hidden">
+          <p>
+            is particularly valuable for pretraining models on large, unlabeled
+            datasets. Instead of relying on labeled examples, unsupervised learning algorithms explore the raw input
+            data
+            to extract meaningful features or representations without explicit guidance. Pretraining involves training a
+            model on a large amount of unlabeled data to learn general patterns and structures in the data. Once
+            pretrained, the model can be fine-tuned on smaller labeled datasets for specific tasks, such as
+            classification
+            or regression. Fine-tuning adjusts the pretrained model's parameters to make it better suited for the
+            specific
+            task at hand, leveraging the knowledge gained during pretraining. Unsupervised pretraining followed by
+            fine-tuning has proven to be effective in improving model performance, especially in scenarios where labeled
+            data is scarce or expensive to obtain. It plays a crucial role in various applications such as natural
+            language processing, computer vision, and speech recognition, enabling the development of more accurate and
+            robust deep learning models.
+          </p>
+        </div>
+        <p></p>
+
       </div>
     </div>
   </section>
