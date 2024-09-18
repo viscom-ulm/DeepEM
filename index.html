@@ -595,116 +595,125 @@ End teaser image -->
               individually for each task in mind. We title the introduced tasks based on the required type of input data
               and the expected output.</p>
 
-            <h5>Image to Value(s)</h5>
-            <p>These tasks are defined by their image input and the output of a single or multiple values. Common
+            <p><b>Image to Value(s)</b>
+              Tasks are defined by their image input and the output of a single or multiple values. Common
               examples
-              involve classification, regression, or detection.</p>
-            <p>Classification in the context of <abbr title="Electron Microscopy">EM</abbr> refers to the process of
+              involve classification, regression, or detection.<br>
+              Classification in the context of <abbr title="Electron Microscopy">EM</abbr> refers to the process of
               categorizing <abbr title="Electron Microscopy">EM</abbr> images or their specific regions into predefined
               classes based on their visual characteristics. For example, it can be used to identify "good" or "bad"
               imaging regions of the sample of interest [1]. This is done by making the
               model predict a probability distribution which models the probability of the input image to belong to a
-              predefined set of classes (for example, <code>C = {"good", "bad"}</code>).</p>
-            <p>Regression tasks in <abbr title="Electron Microscopy">EM</abbr> refer to a type of predictive modeling
+              predefined set of classes (for example, <code>C = {"good", "bad"}</code>).
+              <br>Regression tasks in <abbr title="Electron Microscopy">EM</abbr> refer to a type of predictive modeling
               technique used to predict a continuous output variable based on an input micrograph. Unlike
               classification, which assigns discrete classes to the input data, regression outputs a continuous value.
               This technique is particularly valuable for tasks that require quantifying certain properties of an <abbr
-                title="Electron Microscopy">EM</abbr> image, such as the number of visible virus particles.</p>
-            <p>Lastly, detection refers to the process of identifying and locating specific objects or features by a
+                title="Electron Microscopy">EM</abbr> image, such as the number of visible virus particles.
+              <br>Lastly, detection refers to the process of identifying and locating specific objects or features by a
               bounding box within an image. Unlike simple classification, which assigns labels to entire images, or
               regression, which predicts continuous values, detection combines both tasks: it involves pinpointing exact
               bounding boxes by regressing its position and size, as well as classifying the object located within the
               bounding box. It allows for deriving information about position, count, and sizes of the detected objects.
               This process is essential for tasks where understanding spatial distributions and feature characteristics,
-              such as of virus particles within a micrograph, are critical.</p>
+              such as of virus particles within a micrograph, are critical.
+            </p>
 
-            <h5>Image to Image</h5>
-            <p>Tasks are defined by an image input as well as an output also in the form of an image. Common examples
+            <p><b>Image to Image</b>
+              Tasks are defined by an image input as well as an output also in the form of an image. Common examples
               involve transforming the input image into a new image representation. These tasks are fundamental in
               various applications within <abbr title="Electron Microscopy">EM</abbr>, where enhancing, restoring, or
               analyzing images is crucial for extracting valuable information from <abbr
-                title="Electron Microscopy">EM</abbr> data.</p>
-            <p>In denoising, the noisy input image is translated into a noise-free version. In super-resolution, a
+                title="Electron Microscopy">EM</abbr> data.
+              <br>In denoising, the noisy input image is translated into a noise-free version. In super-resolution, a
               low-resolution micrograph is translated into a high-resolution micrograph, thereby enhancing the detail
               and clarity of the observed structures. Lastly, in segmentation, the input micrograph is translated into a
               segmented image where different regions represent distinct components, such as certain cellular organelles
               or virus particles. This involves the classification of each pixel in the input micrograph. Segments,
               which are formed by adjacent groups of uniformly classified pixels, are typically labeled, providing a
-              clear distinction between different parts of the sample.</p>
+              clear distinction between different parts of the sample.
+            </p>
 
-            <h5>2D to 3D</h5>
-            <p>Tasks are characterized by their process of converting multiple two-dimensional (2D) images into a
+            <p><b>2D to 3D</b>
+              Tasks are characterized by their process of converting multiple two-dimensional (2D) images into a
               three-dimensional (3D) representation. These tasks are essential in various fields, such as structural
               biology and material science, where understanding the 3D structure of samples from 2D projections is
               crucial. By integrating information from multiple 2D projections, these methods aim to produce an accurate
               and detailed 3D representation of the sample, enhancing our understanding of its spatial organization and
-              functional features.</p>
-            <p>Common examples correspond to <abbr title="Electron Tomography">ET</abbr>, Subtomogram Averaging, and
+              functional features.
+              <br>Common examples correspond to <abbr title="Electron Tomography">ET</abbr>, Subtomogram Averaging, and
               Single Particle Reconstruction. In the case of <abbr title="Electron Tomography">ET</abbr> and Subtomogram
               Averaging, the input is defined by one or multiple tilt series. For Single Particle Reconstruction, the
-              input corresponds to a set of picked particles.</p>
+              input corresponds to a set of picked particles.
+            </p>
 
-            <h4>Architecture</h4>
+            <h4>Model Architecture</h4>
             <p>A model in the context of <abbr title="Deep Learning">DL</abbr> is a learnable function approximation
               based on a predefined set of trainable parameters (often also referred to as "model weights") and
               non-linear activation functions. The term "model" is often used interchangeably with the term "neural
               network" or "<abbr title="Deep Neural Network">DNN</abbr>". The learned function of a model is able to
-              approximate the input-output dependencies of a set of training data.</p>
-            <p>How well a function can be approximated usually depends on the model's architecture and number of
+              approximate the input-output dependencies of a set of training data.<br>
+              How well a function can be approximated usually depends on the model's architecture and number of
               trainable parameters. This is often referred to as the "capacity" of the model. Furthermore, a model's
               ability to generalize—i.e., to apply learned knowledge from the training data to new, unseen data—reflects
               its effectiveness and robustness. This then supports the automated analysis and interpretation of input
               <abbr title="Electron Microscopy">EM</abbr> images for tasks such as those introduced previously.
             </p>
 
-            <h5>Backbone</h5>
-            <p>The backbone of a model is the core component responsible for feature extraction and processing from the
+            <p><b>Backbone</b>
+              The backbone of a model is the core component responsible for feature extraction and processing from the
               input data. It acts as the core architecture upon which a model is built, enabling the extraction of
               meaningful representations that can be used to perform specific tasks. The selection of a backbone is
-              primarily determined by the nature of the input data and the type of task at hand.</p>
-            <p>Furthermore, the choice of backbone must balance the parameter-to-data ratio. When working with limited
+              primarily determined by the nature of the input data and the type of task at hand.
+              <br>Furthermore, the choice of backbone must balance the parameter-to-data ratio. When working with
+              limited
               datasets, it is crucial to use a model with a capacity that matches the amount of available data to avoid
               overfitting. Overfitting occurs when a model learns the training data too well, capturing noise and
               specific patterns that do not generalize to new, unseen data. To mitigate this, the model's complexity
-              should be controlled according to the data's size and quality.</p>
-            <p>Different backbone architectures, such as <abbr title="Multilayer Perceptron">MLP</abbr>, <abbr
+              should be controlled according to the data's size and quality.
+              <br>Different backbone architectures, such as <abbr title="Multilayer Perceptron">MLP</abbr>, <abbr
                 title="Convolutional Neural Network">CNN</abbr>, and <abbr title="Vision Transformer">ViT</abbr>, offer
               distinct advantages based on the data characteristics and computational constraints. Each type of backbone
               is designed to handle specific aspects of data processing, making the choice of backbone a critical factor
-              in the overall model performance.</p>
-            <p><em>MLPs</em> are primarily used for integrating structured or tabular data and are not typically suited
+              in the overall model performance.
+              <br><em>MLPs</em> are primarily used for integrating structured or tabular data and are not typically
+              suited
               for processing image data due to their high computational demands and risk of overfitting. They are,
-              however, effective as classification heads when combined with different feature extractors.</p>
-            <p><em>CNNs</em> are specifically designed for processing image data. They excel at capturing local features
+              however, effective as classification heads when combined with different feature extractors.
+              <br><em>CNNs</em> are specifically designed for processing image data. They excel at capturing local
+              features
               and are invariant to translations in image space. Therefore, they are particularly effective for tasks
               involving spatial relationships within images, making them ideal for <abbr
-                title="Electron Microscopy">EM</abbr> image analysis.</p>
-            <p>Lastly, while Transformers were originally developed for natural language processing, they were adapted
+                title="Electron Microscopy">EM</abbr> image analysis.
+              <br>Lastly, while Transformers were originally developed for natural language processing, they were
+              adapted
               into so-called <em>ViTs</em> to handle image data by processing image patches through self-attention
               mechanisms. They are effective at capturing global contexts and are well-suited for large datasets, where
               they usually outperform standard <abbr title="Convolutional Neural Network">CNN</abbr> architectures.
               Variants like Swin Transformers [2] and Data-efficient Image Transformers (DeiTs)
-              [3] offer additional improvements for specific tasks.</p>
+              [3] offer additional improvements for specific tasks.
+            </p>
 
-            <h5>Task Specific</h5>
-            <p>The task-specific architecture of a model encompasses the design and arrangement of its components,
+            <p><b>Task Specific</b>
+              The task-specific architecture of a model encompasses the design and arrangement of its components,
               including the types of layers, their arrangement, and the activation functions used, all of which define
-              how the model processes input data to generate output.</p>
-            <p>Different tasks within the realm of <abbr title="Deep Learning">DL</abbr> necessitate the use of tailored
+              how the model processes input data to generate output.
+              <br>Different tasks within the realm of <abbr title="Deep Learning">DL</abbr> necessitate the use of
+              tailored
               architectures to effectively address the unique challenges posed by each task category. This ensures the
               model is capable of accurately interpreting and processing the data to produce meaningful and reliable
               outcomes. Here, the aforementioned three task groups of Image to Value(s), Image to Image, and 2D to 3D
-              have a significant impact on the model's architecture.</p>
-            <p><em>Image to Value(s)</em> tasks mainly follow the use of a feature encoder (backbone) and a
+              have a significant impact on the model's architecture.
+              <br><em>Image to Value(s)</em> tasks mainly follow the use of a feature encoder (backbone) and a
               task-specific prediction head to tailor the features extracted by the backbone to better suit the specific
-              task at hand. This involves transforming the abstract, high-level features into task-relevant outputs.</p>
-            <p><em>Image to Image</em> tasks generally utilize encoder-decoder architectures, like U-Net
+              task at hand. This involves transforming the abstract, high-level features into task-relevant outputs.
+              <br><em>Image to Image</em> tasks generally utilize encoder-decoder architectures, like U-Net
               [4]. The encoder's role is to process the input <abbr title="Electron Microscopy">EM</abbr> images and
               compress them into a lower-dimensional, abstract
               representation within the embedding/latent space. The decoder takes the compressed representation from the
               encoder and reconstructs it back to the original spatial dimensions.
-            </p>
-            <p>Finally, <em>2D to 3D</em> tasks are inherently complex due to their diverse interpretations and
+
+              <br>Finally, <em>2D to 3D</em> tasks are inherently complex due to their diverse interpretations and
               approaches. They can be interpreted and solved in different fashions, such that some approaches leverage
               architectures similar to Image to Value(s) task architectures and others leverage Image to Image-like
               architectures. One method [5] involves using optimization grids where no actual
@@ -712,7 +721,7 @@ End teaser image -->
               optimized. Another approach utilizes scalable data structures for efficient 3D representation
               [6]. Additionally, some techniques employ standard <abbr title="Multilayer Perceptron">MLP</abbr>-based
               architectures to estimate the density at specific
-              positions in a 3D grid [7,8]<cite>kniesel2022clean, mildenhall2021nerf</cite>. Alternatively, other
+              positions in a 3D grid [7,8]. Alternatively, other
               methods
               adapt Image to Image models, using a 3D decoder to reconstruct the 3D model from the encodings of multiple
               2D images.
@@ -724,32 +733,34 @@ End teaser image -->
             </p>
             <p></p>
 
-            <p><i>[1] Yuichi Yokoyama, Tohru Terada, Kentaro Shimizu, Kouki Nishikawa, Daisuke Kozai, Atsuhiro
-              Shimada, Akira Mizoguchi, Yoshinori Fujiyoshi, and Kazutoshi Tani. Development of a deep
-              learning-based method to identify “good” regions of a cryo-electron microscopy grid. Biophysical
-              Reviews, 12:349–354, 2020.</i></p>
-            <p><i>[2] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining
-              Guo. Swin transformer: Hierarchical vision transformer using shifted windows. In Proceedings of
-              the IEEE/CVF international conference on computer vision, pages 10012–10022, 2021.</i></p>
-            <p><i>[3] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, and
-              Herv´e J´egou. Training data-efficient image transformers & distillation through attention. In
-              International conference on machine learning, pages 10347–10357. PMLR, 2021</i></p>
-            <p><i>[4] Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-net: Convolutional networks for biomedi-
-              cal image segmentation. In Medical image computing and computer-assisted intervention–MICCAI
-              2015: 18th international conference, Munich, Germany, October 5-9, 2015, proceedings, part III
-              18, pages 234–241. Springer, 2015.</i></p>
-            <p><i>[5] Animesh Karnewar, Tobias Ritschel, Oliver Wang, and Niloy Mitra. Relu fields: The little non-
-              linearity that could. In ACM SIGGRAPH 2022 conference proceedings, pages 1–9, 2022</i></p>
-            <p><i>[6] Alex Yu, Ruilong Li, Matthew Tancik, Hao Li, Ren Ng, and Angjoo Kanazawa. Plenoctrees
-              for real-time rendering of neural radiance fields. In Proceedings of the IEEE/CVF International
-              Conference on Computer Vision, pages 5752–5761, 2021</i></p>
-            <p><i>[7] Hannah Kniesel, Timo Ropinski, Tim Bergner, Kavitha Shaga Devan, Clarissa Read, Paul
-              Walther, Tobias Ritschel, and Pedro Hermosilla. Clean implicit 3d structure from noisy 2d
-              stem images. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
-              Recognition, pages 20762–20772, 2022.</i></p>
-            <p><i>[8] Ben Mildenhall, Pratul P Srinivasan, Matthew Tancik, Jonathan T Barron, Ravi Ramamoorthi,
-              and Ren Ng. Nerf: Representing scenes as neural radiance fields for view synthesis. Communica-
-              tions of the ACM, 65(1):99–106, 2021.</i></p>
+            <p><small><i>[1] Yuichi Yokoyama, Tohru Terada, Kentaro Shimizu, Kouki Nishikawa, Daisuke Kozai, Atsuhiro
+                  Shimada, Akira Mizoguchi, Yoshinori Fujiyoshi, and Kazutoshi Tani. Development of a deep
+                  learning-based method to identify “good” regions of a cryo-electron microscopy grid. Biophysical
+                  Reviews, 12:349–354, 2020.</i></small></p>
+            <p><small><i>[2] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining
+                  Guo. Swin transformer: Hierarchical vision transformer using shifted windows. In Proceedings of
+                  the IEEE/CVF international conference on computer vision, pages 10012–10022, 2021.</i></small></p>
+            <p><small><i>[3] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, and
+                  Herv´e J´egou. Training data-efficient image transformers & distillation through attention. In
+                  International conference on machine learning, pages 10347–10357. PMLR, 2021</i></small></p>
+            <p><small><i>[4] Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-net: Convolutional networks for
+                  biomedi-
+                  cal image segmentation. In Medical image computing and computer-assisted intervention–MICCAI
+                  2015: 18th international conference, Munich, Germany, October 5-9, 2015, proceedings, part III
+                  18, pages 234–241. Springer, 2015.</i></small></p>
+            <p><small><i>[5] Animesh Karnewar, Tobias Ritschel, Oliver Wang, and Niloy Mitra. Relu fields: The little
+                  non-
+                  linearity that could. In ACM SIGGRAPH 2022 conference proceedings, pages 1–9, 2022</i></small></p>
+            <p><small><i>[6] Alex Yu, Ruilong Li, Matthew Tancik, Hao Li, Ren Ng, and Angjoo Kanazawa. Plenoctrees
+                  for real-time rendering of neural radiance fields. In Proceedings of the IEEE/CVF International
+                  Conference on Computer Vision, pages 5752–5761, 2021</i></small></p>
+            <p><small><i>[7] Hannah Kniesel, Timo Ropinski, Tim Bergner, Kavitha Shaga Devan, Clarissa Read, Paul
+                  Walther, Tobias Ritschel, and Pedro Hermosilla. Clean implicit 3d structure from noisy 2d
+                  stem images. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+                  Recognition, pages 20762–20772, 2022.</i></small></p>
+            <p><small><i>[8] Ben Mildenhall, Pratul P Srinivasan, Matthew Tancik, Jonathan T Barron, Ravi Ramamoorthi,
+                  and Ren Ng. Nerf: Representing scenes as neural radiance fields for view synthesis. Communica-
+                  tions of the ACM, 65(1):99–106, 2021.</i></small></p>
           </div>
 
         </div>
@@ -770,8 +781,291 @@ End teaser image -->
           <div id="content-data" class="hidden">
             <p></p>
             <h4>Acquisition</h4>
+            <p>
+              Data Acquisition in the context of deep learning (DL) for electron microscopy (EM) does not only refer to
+              the process of imaging.
+              It rather describes the process of gathering and preparing the data that will be used to train, validate,
+              and test a deep learning model.
+              This step is critical as the quality, quantity, and diversity of the data directly influence the model's
+              performance and generalization ability.
+              For data acquisition in EM, there are two primary sources: the EM for real data acquisition and the use of
+              synthetic data, each with distinct benefits and downsides.
+
+
+            <p>
+              <strong>Real Data</strong> describes data which has been collected using an electron microscope.
+              For making use of real data there are again two approaches. First, existing data can be reused.
+              This often involves searching through databases and often (re)structuring the data due to the lack of
+              standardization in EM images.
+              While this method is resource-efficient, it can be labor-intensive and might not provide the desired
+              dataset for the task in mind.
+              Second, data can specifically be acquired for training specific DL models.
+              This approach allows for the collection of precise data tailored to specific research needs.
+              Therefore, it ensures high-quality, task-specific datasets but is both time-consuming and costly.
+
+            </p>
+            <p>
+              <strong>Synthetic Data</strong> provides a cost-effective alternative to extend datasets.
+              Synthetic data refers to data that is artificially generated rather than collected from real-world
+              events.
+              In the context of DL, especially for EM and other domains where obtaining large amounts of labeled data
+              can be challenging, synthetic data plays a crucial role.
+              Generation of synthetic data can be grouped into the modeling and simulation of physical processes and the
+              training of generative models.
+              The simulation of physical processes requires a deep understanding of the imaging process to be
+              modeled.
+              Additionally, the retrieval of realistic phantom samples is difficult.
+              Phantom samples refer to artificially created data that mimics the properties and characteristics of real
+              experimental data (like the underlying sample to be imaged).
+
+
+              <br>
+              Generative models, such as Generative Adversarial Networks (GANs) [1] or
+              (Stable) Diffusion models [2], are a class of machine learning algorithms
+              designed to produce new data samples that closely resemble a given training dataset.
+              These models have advanced to the point where they can generate synthetic images almost indistinguishable
+              from real data.
+              Nevertheless, the training of generative models still requires an initial acquisition of training data to
+              learn the underlying data distribution.
+              This challenge can be mitigated to a certain extent by fine-tuning existing models previously trained on
+              natural images.
+              Additionally, generative models usually do not require labeled data, making the data collection and
+              preparation step less cost and time intensive.
+
+
+              <br>
+              Another benefit of synthetic data is the ability to directly derive labeled data.
+              This is the case when generating synthetic data based on a simulation process, but also when using
+              specialized generative models like ControlNet [3], Textual Inversion
+              [4] or versions of GANs [5].
+            </p>
+
             <h4>Annotation</h4>
+            <p>
+              Data Annotation describes the process of labeling electron microscopy (EM) images specific to the task in
+              mind to create a structured dataset that can be used for training, validating, and testing machine
+              learning models.
+              High-quality annotations are as crucial as large datasets for the performance of deep learning (DL)
+              models, directly impacting model learning and predictions.
+            </p>
+
+            <figure>
+              <img src="static/images/AnnotationTypes.jpg" alt="Depiction of different annotation types"
+                style="width:80%;">
+              <figcaption>Figure 1: Depiction of different annotation types, which can be grouped into <em>Image
+                  Level</em>,
+                <em>Instance Level</em>, and <em>Pixel Level</em> based on the overall complexity and level of
+                information of the annotation.
+              </figcaption>
+            </figure>
+
+            <p>
+              <strong>Annotation Types</strong> refer to different ways in which data can be labeled to provide the
+              necessary information for training models.
+              They highly correlate with DL tasks and training strategies. Training strategies in deep learning refer to
+              distinct characteristics based on the nature of the available data and the specific task at hand. Common
+              strategies include fully supervised, weakly supervised, and unsupervised learning.
+              Fully supervised learning uses detailed annotations for high accuracy but can be time-consuming and
+              expensive. Weakly supervised learning uses easier-to-obtain labels, reducing costs and sometimes improving
+              standardization by focusing on clear, unambiguous aspects of the data.<br>
+              Unsupervised learning finds patterns in unlabeled data, useful when large amounts of unlabeled data are
+              available, but generally less accurate than supervised methods. Hence, they usually require additional
+              fine-tuning on labeled data. Techniques such as contrastive learning [6,7,8], or masked autoencoders
+              [9] fall into this category. Self-supervised learning, a subset of unsupervised
+              learning, derives labels from the data itself.
+              This is often the case in image-to-image tasks like denoising or super-resolution. For these tasks,
+              experimental labels can be acquired using image pairs, such as clean-noisy or low-high resolution pairs.
+              Moreover, 2D to 3D tasks often leverage self-supervision to infer a 3D structure from a set of 2D images.
+              Within the provided toolbox, we mainly focus on supervised and self-supervised strategies.
+              <br>
+
+
+              Supervised annotation types include labels like classification, regression, keypoints, bounding boxes, and
+              segmentation masks.
+              These can be categorized based on annotation complexity and information density into image-level,
+              instance-level, and pixel-level annotations (see Figure 1). Image-level
+              annotations involve simple class labels for each image. Instance-level annotations, such as regression
+              labels, keypoints, and bounding boxes, provide more detail, defining specific points or regions within an
+              image. Pixel-level annotations, like segmentation masks, are the most complex, offering pixel-wise
+              classification to delineate object boundaries.
+              However, annotation formats can vary, requiring careful parsing to ensure consistency. Visualizing
+              annotated data can help verify accuracy and align with task requirements.
+            </p>
+
+            <p>
+              <strong>Active Learning</strong> can be leveraged to reduce the amount of labeled data needed while
+              maintaining high accuracy during model training.
+              It describes an iterative training-selection schema, which picks the most informative samples
+              [10,11,12,13], from a pool of unlabeled data for annotation (see Figure 2).
+              By iteratively selecting only the most informative samples, instead of labeling the full dataset, labeling
+              cost can be reduced.
+            </p>
+
+            <p>
+              <strong>Annotation Tools</strong> are specialized software applications or platforms used to label and
+              annotate data for training and evaluation of DL models.
+              These tools are essential for creating the ground truth datasets required for supervised learning. They
+              are designed to facilitate the process of adding labels, shapes, or other markers to data, making it
+              usable for model training and evaluation.
+              Some tools offer features like automated suggestions, collaboration support, and quality control,
+              enhancing efficiency and accuracy. Semi-automatic annotation combines automated tools with human
+              oversight, speeding up the process for complex labels like segmentation masks or bounding boxes. This
+              approach leverages both machine and human strengths to improve annotation efficiency, crucial in fields
+              like EM where expert knowledge is often required.
+              We evaluated some annotation tools, focusing on cost-free options.
+            </p>
+
+            <figure>
+              <img src="static/images/ActiveLearning.jpg" alt="Active Learning Process" style="width:55%;">
+              <figcaption>Figure 2: Active Learning can significantly reduce the time and effort required for labeling
+                datasets.
+                This is achieved through an iterative process: initially, a model is trained on the existing labeled
+                data. The model then identifies the most informative samples from the unlabeled data pool. An expert
+                annotates these selected samples, and the model is subsequently retrained with the new annotations.
+                Although this technique is more computationally intensive, it effectively minimizes the time and cost
+                associated with expert annotations.</figcaption>
+            </figure>
+
             <h4>Preprocessing</h4>
+            <p>
+              Data preprocessing corresponds to the transformation of raw data into a standardized format that is
+              suitable for training a model. The primary objective of data preprocessing is to improve the quality, and
+              in some cases the amount, of the data and, consequently, the performance of the model by ensuring that the
+              data is clean, consistent, and relevant.
+              We highlight key preprocessing steps for electron microscopy (EM) data to develop a robust workflow.
+            </p>
+            <p>
+              <strong>Reformatting</strong> data is essential for aligning data formats to simplify data loading and
+              further preprocessing. By standardizing data formats, this process ensures that the data is consistently
+              structured and readily compatible with the model, streamlining the workflow and reducing the risk of
+              errors during training.
+            </p>
+            <p>
+              <strong>Cleaning</strong> the data involves removing corrupted and duplicate images to prevent overfitting
+              and ensuring data integrity. Enhancing image quality by adjusting contrast, brightness, and reducing noise
+              through methods such as mean filtering [14], median filtering [15], non-local means [16], BM3D [17],
+              or pretrained models [18] can improve the signal-to-noise ratio (SNR) and enhance
+              training signal.
+            </p>
+            <p>
+              <strong>Splitting</strong> the dataset properly into training, validation, and testing sets is vital. The
+              training set, the largest portion, helps the model learn patterns. The validation set is used for tuning
+              hyperparameters and preventing overfitting. The testing set evaluates the model's performance on unseen
+              data. Typically, 70-80% of data is for training, with 10-15% each for validation and testing.
+              Methods like k-fold cross-validation and bootstrapping can enhance evaluation but are computationally
+              intensive. K-fold cross-validation works by partitioning the dataset into <em>k</em> equally sized
+              subsets, or "folds", and performing <em>k</em> separate training and validation processes. In each
+              iteration, one fold is used as the validation set while the remaining <em>k-1</em> folds are combined to
+              train the model, with the performance metrics averaged over all <em>k</em> iterations to provide a more
+              reliable estimate of the model's generalization ability.
+              In comparison, bootstrapping involves repeatedly sampling from the original dataset with replacement to
+              create multiple training subsets, each of which is used to train and evaluate the model. This method helps
+              estimate the variability of model performance and provides insight into the stability and robustness of
+              the model by analyzing the results across these different resampled datasets.
+            </p>
+            <p>
+              <strong>Resizing</strong> input images is often required, as EM images often have high resolutions,
+              requiring adaptation of the resolution for making them fit to the input sizes of common deep learning (DL)
+              models. Besides downscaling the images, cropping can be a good option.
+              While downscaling usually leads to a loss of information, cropping, hence dividing images into smaller
+              patches which are processed sequentially while maintaining original pixel resolution, keeps relevant
+              information, introduces variance to the data, and finally enhances the robustness of the model.
+            </p>
+            <p>
+              <strong>Normalizing</strong> images means that pixel intensity values are standardized, aiding model
+              learning. <em>Min-max normalization</em> scales values to a fixed range, while <em>z-score
+                normalization</em> transforms data to have a mean of zero and standard deviation of one. Both methods
+              ensure consistent input data, enhancing training and performance.
+              While z-score normalization should not be used if values are required to lie in a fixed range, its
+              advantage is that it accounts for the distribution of the data, making it more robust to outliers compared
+              to min-max normalization.
+            </p>
+            <strong>Augmenting</strong> data defines the process of slightly changing the appearance of the input
+            images to increase training data diversity without new data collection, improving model robustness. It can
+            be applied to address data imbalances using techniques such as SMOTE [19]. It can
+            be applied during preprocessing or on-the-fly during training.
+            Techniques include rotating, flipping, cropping, resizing, applying Gaussian blur, noise, and color
+            jittering. For image segmentation tasks, specific methods like copy-paste [20]
+            have been developed.
+            More advanced techniques leverage generative models [21],
+            [22,23], such as generative adversarial networks (GANs)
+            [1] or Stable Diffusion [2], to synthetically
+            generate augmented data. However, training such models usually requires large amounts of training data,
+            which can be sidestepped to some extent by fine-tuning existing models trained on natural images.
+            </p>
+
+            <p></p>
+            <p><small><i>[1] Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil
+                  Ozair,
+                  Aaron Courville, and Yoshua Bengio. Generative adversarial networks. Communications of the
+                  ACM, 63(11):139–144, 2020.</i></small></p>
+            <p><small><i>[2] Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Bj¨orn Ommer. High-
+                  resolution image synthesis with latent diffusion models. In Proceedings of the IEEE/CVF confer-
+                  ence on computer vision and pattern recognition, pages 10684–10695, 2022</i></small></p>
+            <p><small><i>[3] Lvmin Zhang, Anyi Rao, and Maneesh Agrawala. Adding conditional control to text-to-image
+                  diffusion models. In Proceedings of the IEEE/CVF International Conference on Computer Vision,
+                  pages 3836–3847, 2023.</i></small></p>
+            <p><small><i>[4] Rinon Gal, Yuval Alaluf, Yuval Atzmon, Or Patashnik, Amit H Bermano, Gal Chechik, and
+                  Daniel Cohen-Or. An image is worth one word: Personalizing text-to-image generation using
+                  textual inversion. arXiv preprint arXiv:2208.01618, 2022.</i></small></p>
+            <p><small><i>[5] Kavitha Shaga Devan, Paul Walther, Jens von Einem, Timo Ropinski, Hans A Kestler, and
+                  Clarissa Read. Improved automatic detection of herpesvirus secondary envelopment stages in
+                  electron microscopy by augmenting training data with synthetic labelled images generated by a
+                  generative adversarial network. Cellular Microbiology, 23(2):e13280, 2021.</i></small></p>
+            <p><small><i>[6] Ting Chen, Simon Kornblith, Mohammad Norouzi, and Geoffrey Hinton. A simple framework for
+                  contrastive learning of visual representations. In International conference on machine learning,
+                  pages 1597–1607. PMLR, 2020.</i></small></p>
+            <p><small><i>[7] Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross Girshick. Momentum contrast for
+                  unsupervised visual representation learning. In Proceedings of the IEEE/CVF conference on
+                  computer vision and pattern recognition, pages 9729–9738, 2020.</i></small></p>
+            <p><small><i>[8] Ryan Conrad and Kedar Narayan. Cem500k, a large-scale heterogeneous unlabeled cellular
+                  elec-
+                  tron microscopy image dataset for deep learning. Elife, 10:e65894, 2021.</i></small></p>
+            <p><small><i>[9] Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Dollar, and Ross Girshick. Masked
+                  autoencoders are scalable vision learners. In Proceedings of the IEEE/CVF conference on computer
+                  vision and pattern recognition, pages 16000–16009, 2022</i></small></p>
+            <p><small><i>[10] Xiongquan Li, Xukang Wang, Xuhesheng Chen, Yao Lu, Hongpeng Fu, and Ying Cheng Wu.
+                  Unlabeled data selection for active learning in image classification. Scientific Reports, 14(1):424,
+                  2024.</i></small></p>
+            <p><small><i>[11] Neil Houlsby, Ferenc Huszar, Zoubin Ghahramani, and Mate Lengyel. Bayesian active learning
+                  for classification and preference learning. arXiv preprint arXiv:1112.5745, 2011</i></small></p>
+            <p><small><i>[12] Razvan Caramalau, Binod Bhattarai, Danail Stoyanov, and Tae-Kyun Kim. Mobyv2al: Self-
+                  supervised active learning for image classification. arXiv preprint arXiv:2301.01531,
+                  2023.</i></small></p>
+            <p><small><i>[13] Melanie Gaillochet, Christian Desrosiers, and Herve Lombaert. Active learning for medical
+                  image
+                  segmentation with stochastic batches. Medical Image Analysis, 90:102958, 2023</i></small></p>
+
+            <p><small><i>[14] Rafael C Gonzalez. Digital image processing. Pearson education india, 2009.</i></small>
+            </p>
+            <p><small><i>[15] Thomas Huang, GJTGY Yang, and Greory Tang. A fast two-dimensional median filtering algo-
+                  rithm. IEEE transactions on acoustics, speech, and signal processing, 27(1):13–18, 1979</i></small>
+            </p>
+            <p><small><i>[16] Antoni Buades, Bartomeu Coll, and Jean-Michel Morel. Non-local means denoising. Image
+                  Processing On Line, 1:208–212, 2011</i></small></p>
+            <p><small>[17] Kostadin Dabov, Alessandro Foi, Vladimir Katkovnik, and Karen Egiazarian. Image denoising
+                with block-matching and 3d filtering. In Image processing: algorithms and systems, neural net-
+                works, and machine learning, volume 6064, pages 354–365. SPIE, 2006 <i></i></small></p>
+            <p><small><i>[18] Tristan Bepler, Kotaro Kelley, Alex J Noble, and Bonnie Berger. Topaz-denoise: general
+                  deep
+                  denoising models for cryoem and cryoet. Nature communications, 11(1):5208, 2020.</i></small></p>
+            <p><small><i>[19] Nitesh V Chawla, Kevin W Bowyer, Lawrence O Hall, and W Philip Kegelmeyer. Smote:
+                  synthetic
+                  minority over-sampling technique. Journal of artificial intelligence research, 16:321–357,
+                  2002.</i></small></p>
+            <p><small><i>[20] Golnaz Ghiasi, Yin Cui, Aravind Srinivas, Rui Qian, Tsung-Yi Lin, Ekin D Cubuk, Quoc V Le,
+                  and
+                  Barret Zoph. Simple copy-paste is a strong data augmentation method for instance segmentation.
+                  In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pages
+                  2918–2928, 2021</i></small></p>
+            <p><small><i>[21] C Shivashankar and Shane Miller. Semantic data augmentation with generative models. In
+                  Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages
+                  863–873, 2023</i></small></p>
+            <p><small><i>[22] Antreas Antoniou, Amos Storkey, and Harrison Edwards. Data augmentation generative adver-
+                  sarial networks. arXiv preprint arXiv:1711.04340, 2017.</i></small></p>
+            <p><small><i>[23] Hiroshi Ohno. Auto-encoder-based generative models for data augmentation on regression
+                  prob-
+                  lems. Soft Computing, 24(11):7999–8009, 2020.</i></small></p>
           </div>
 
         </div>
@@ -788,7 +1082,178 @@ End teaser image -->
           <div id="content-model" class="hidden">
             <p></p>
             <h4>Training</h4>
+            <p>
+              Successful model training requires correct parameter initialization, suitable hyperparameter tuning, and
+              careful monitoring to avoid potential issues.
+            </p>
+
+            <p>
+              <strong>Initialization</strong> refers to the process of setting the initial values of a model's
+              parameters before training begins. This can be done either by training the model from scratch, starting
+              with random or predefined weights [1,2,3], or by using pretrained weights, like
+              [4].
+              Pretrained weights refer to the parameters of a neural network that have been previously learned from a
+              large dataset and a specific task. Using pretrained weights allows a model to benefit from existing
+              knowledge, improving learning efficiency and performance by leveraging features already extracted from
+              similar data or tasks.
+              The use of pretrained weights typically necessitates that the model architecture closely resembles the
+              original one used during pretraining. Large-scale models are often pretrained on RGB images, while
+              electron microscopy (EM) data generally uses single-channel grayscale images. Consequently, adapting
+              pretrained weights for EM may require modifications: Either, the input layer can be adapted to match the
+              requirements of the data or the data can be adapted by converting grayscale images to RGB format to match
+              the requirements of the architecture.
+            </p>
+
+            <p>
+              <strong>Hyperparameter Tuning</strong> is the process of optimizing the parameters that govern the
+              learning process of a model, such as learning rate, batch size, optimizer, and the number of epochs. For
+              details about the mentioned hyperparameters, please see the provided taxonomy on our project page.
+              This fine-tuning aims to enhance model performance by finding the optimal set of hyperparameters that best
+              fit the training data. Techniques like grid search, random search, and Bayesian optimization are commonly
+              used for finding a suitable set of hyperparameters. Grid search systematically evaluates a predefined set
+              of hyperparameter combinations, random search samples from a range of values randomly, and Bayesian
+              optimization employs probabilistic models to efficiently explore the hyperparameter space by focusing on
+              promising regions based on past evaluations.
+              Tools like Weights & Biases Sweeps [5] and learning rate finders
+              [6] can further streamline this process. The learning rate finder works by
+              gradually increasing the learning rate and observing the resulting changes in the loss function, which
+              helps to identify the range where the learning rate is most effective, improving model convergence and
+              performance.
+            </p>
+
+            <p>
+              <strong>Logging</strong> involves systematically recording details about the training (and evaluation)
+              processes of a model. This includes capturing metrics such as loss and accuracy on train, validation, and
+              test splits of the data, as well as system performance and hyperparameter settings, which are essential
+              for tracking progress, diagnosing issues, and ensuring reproducibility of experiments.
+              Logging can be used to reveal overfitting and guide mitigation strategies like early stopping, data
+              augmentation, adding more data, using a smaller model, or regularization techniques. Tools like
+              TensorBoard [7], Weights & Biases [5], and MLflow Tracking are
+              commonly used.
+              Logging should also include visualization of model inputs, outputs, and ground truth labels on a small
+              subset of the data. Further, explainable AI techniques [8],
+              [9,10] like GradCAM
+              [11], t-SNE [12], and PCA
+              [13] can offer insights into model behavior and reveal biases.
+              GradCAM is a technique used to visualize which regions of an image contribute most to a deep learning (DL)
+              model's predictions, highlighting possible areas of interest in EM images. t-SNE and PCA are
+              dimensionality reduction methods that help in understanding and visualizing complex data structures by
+              reducing high-dimensional data into more interpretable lower dimensions, aiding in the analysis of
+              features extracted from EM images.
+              Lastly, saving model weights and the optimizer's state at intervals allows for training resumption and
+              retrieval of intermediate models. Logging gradients helps identify issues like exploding or vanishing
+              gradients, with solutions like adjusting learning rates, applying gradient clipping, or adding skip
+              connections.
+              Overall, careful initialization, hyperparameter tuning, logging, and visualization are essential for
+              successful model training in electron microscopy.
+            </p>
+
             <h4>Evaluation</h4>
+            <p>
+              Estimating the overall performance of the trained model is crucial for direct comparison to other methods
+              and approaches as well as investigating whether the model is applicable in practice. Especially due to the
+              Black Box nature of deep learning (DL) models, it is hard to interpret their decisions, which is crucial
+              in scientific research areas like electron microscopy (EM) data analysis. Hence, ensuring that the model's
+              predictions are reliable and valid in real-world scenarios is critical, requiring extensive evaluation
+              strategies.
+              Model evaluation can be split into quantitative and qualitative evaluation. Quantitative evaluation
+              provides absolute numbers but lacks explanations, while qualitative evaluation offers insights into why
+              the model performs as it does.
+            </p>
+
+            <p>
+              <strong>Quantitative</strong> evaluation involves using statistical metrics to assess the performance and
+              accuracy of models in interpreting EM images. Typically, suitable task-specific metrics are computed on
+              the test set, relying on available ground truth information. When ground truth data is unavailable for
+              real test data, synthetic data can be used, especially for 2D to 3D tasks or image-to-image tasks like
+              denoising and super-resolution. However, synthetic and real data often have a significant domain gap,
+              making the evaluation less reliable. Therefore, additional evaluation techniques should be applied.
+            </p>
+
+            <p>
+              <strong>Qualitative</strong> evaluation in DL for EM involves visually inspecting and assessing the
+              results produced by models to understand their performance and practical utility. While qualitative
+              evaluation can usually not provide a full overview of the test set, it offers sampling-based insights into
+              the "why" behind performance metrics. It often provides insights that quantitative metrics alone may not
+              reveal. Displaying the model's input, output, and ground truth labels helps in understanding model
+              performance.
+            </p>
+
+            <p>
+              <strong>Explainability</strong> techniques such as GradCAM [11], t-SNE
+              [12], and PCA [13] on learned features
+              can provide further insights and reveal potential biases. Additionally, SHAP (SHapley Additive
+              exPlanations) [14] values and LIME (Local Interpretable Model-agnostic
+              Explanations) [15] can uncover biases and insights missed by pure performance
+              metrics.
+              SHAP is a method used to interpret the predictions of machine learning models by assigning contributions
+              to each feature based on their impact on the model's output. It provides a unified measure of feature
+              importance and model interpretability by leveraging Shapley values from cooperative game theory, ensuring
+              that the explanation of each prediction is both accurate and consistent across different
+              instances.
+              LIME is a method designed to explain the predictions of complex models by approximating them with simpler,
+              interpretable models in the local vicinity of the instance being analyzed. This approach enables users to
+              understand and interpret model predictions by focusing on the behavior of the model in the immediate
+              neighborhood of the input data, making it applicable to a wide range of machine learning models, including
+              DL.
+            </p>
+
+            <p>
+              <strong>User Studies</strong> can give further insights into model performance. A user study involves
+              assessing the model's performance and usability through feedback from expert users. This method provides
+              insights into how effectively the model meets practical needs and user expectations, offering a valuable
+              perspective beyond traditional evaluation techniques. However, this type of evaluation can be particularly
+              time- and cost-intensive.
+            </p>
+
+
+
+            <p><small><i>[1] Jim YF Yam and Tommy WS Chow. A weight initialization method for improving training speed
+                  in feedforward neural network. Neurocomputing, 30(1-4):219–232, 2000.</i></small></p>
+            <p><small><i>[2] Siddharth Krishna Kumar. On weight initialization in deep neural networks. arXiv preprint
+                  arXiv:1704.08863, 2017.</i></small></p>
+            <p><small><i>[3] Meenal V Narkhede, Prashant P Bartakke, and Mukul S Sutaone. A review on weight
+                  initialization
+                  strategies for neural networks. Artificial intelligence review, 55(1):291–322, 2022</i></small></p>
+            <p><small><i>[4] Ryan Conrad and Kedar Narayan. Cem500k, a large-scale heterogeneous unlabeled cellular
+                  elec-
+                  tron microscopy image dataset for deep learning. Elife, 10:e65894, 2021.</i></small></p>
+            <p><small><i>[5] Lukas Biewald. Experiment tracking with weights and biases, 2020. Software available from
+                  wandb.com.</i></small></p>
+            <p><small><i>[6] Leslie N Smith. Cyclical learning rates for training neural networks. In 2017 IEEE winter
+                  con-
+                  ference on applications of computer vision (WACV), pages 464–472. IEEE, 2017</i></small></p>
+            <p><small><i>[7] Martin Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen, Craig Citro, Greg S
+                  Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin, et al. Tensorflow: Large-scale machine
+                  learning on heterogeneous distributed systems. arXiv preprint arXiv:1603.04467, 2016.</i></small></p>
+            <p><small><i>[8] Ahmad Chaddad, Jihao Peng, Jian Xu, and Ahmed Bouridane. Survey of explainable ai
+                  techniques
+                  in healthcare. Sensors, 23(2):634, 2023.</i></small></p>
+            <p><small><i>[9] Andreas Holzinger, Anna Saranti, Christoph Molnar, Przemyslaw Biecek, and Wojciech Samek.
+                  Explainable ai methods-a brief overview. In International workshop on extending explainable AI
+                  beyond deep models and classifiers, pages 13–38. Springer, 2022</i></small></p>
+            <p><small><i>[10] Wojciech Samek, Thomas Wiegand, and Klaus-Robert Mueller. Explainable artificial intel-
+                  ligence: Understanding, visualizing and interpreting deep learning models. arXiv preprint
+                  arXiv:1708.08296, 2017.</i></small></p>
+            <p><small><i>[11] Ramprasaath R Selvaraju, Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi
+                  Parikh, and Dhruv Batra. Grad-cam: Visual explanations from deep networks via gradient-
+                  based localization. In Proceedings of the IEEE international conference on computer vision, pages
+                  618–626, 2017</i></small></p>
+            <p><small><i>[12] Laurens Van der Maaten and Geoffrey Hinton. Visualizing data using t-sne. Journal of
+                  machine
+                  learning research, 9(11), 2008</i></small></p>
+            <p><small><i>[13] Karl Pearson F.R.S. Liii. on lines and planes of closest fit to systems of points in
+                  space. The
+                  London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 2(11):559–572,
+                  1901.</i></small></p>
+            
+            <p><small><i>[14] Scott M Lundberg and Su-In Lee. A unified approach to interpreting model predictions. Advances
+              in neural information processing systems, 30, 2017.</i></small></p>
+            <p><small><i>[15] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”why should I trust you?”: Explaining
+              the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Confer-
+              ence on Knowledge Discovery and Data Mining, San Francisco, CA, USA, August 13-17, 2016,
+              pages 1135–1144, 2016.</i></small></p>
+            
           </div>
 
         </div>
