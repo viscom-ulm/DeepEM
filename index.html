@@ -571,19 +571,184 @@ End teaser image -->
 
         <div class="orange-background">
           <h3>Task</h3>
-          <p>
-            For developing DL solutions for complex datasets, such as EM images, it is essential to grasp both the
-            inherent characteristics of the data and the specific tasks that need to be addressed. This section will
-            outline the necessary steps for defining tasks and architectures, providing a comprehensive foundation
-            for effectively applying deep learning techniques to EM image analysis.
-          </p>
+
+          <p>In <abbr title="Deep Learning">DL</abbr>, a task refers to a specific problem or objective that is desired
+            to be addressed.
+            This section will outline the necessary steps for defining tasks, providing a comprehensive foundation for
+            effectively applying <abbr title="Deep Learning">DL</abbr> techniques to EM image analysis.
+            Specifically, within this paper we categorize tasks in the area of <abbr
+              title="Electron Microscopy">EM</abbr> into three objectives: 1) Image to Value(s), 2) Image to Image, 3)
+            2D to 3D.
+            Each task defines the nature of the data interactions and the desired outcomes, guiding the development and
+            training of the model to perform effectively on that particular problem.</p>
 
           <button id="togglebtn-task-model" class="button-55"
             onclick="toggleVisibility('content-task-model', 'togglebtn-task-model')">Show More</button>
           <div id="content-task-model" class="hidden">
             <p></p>
             <h4>Definition</h4>
+            <p>Task definition encompasses knowledge over the type of input data the model will process, the expected
+              output or prediction, and the overall goal of the analysis. The type of input data in the case of <abbr
+                title="Electron Microscopy">EM</abbr> usually corresponds to micrographs, making it well suited for the
+              application of <abbr title="Deep Learning">DL</abbr> methods which originate from the area of <abbr
+                title="Computer Vision">CV</abbr>. The output as well as the overall goal need to be defined
+              individually for each task in mind. We title the introduced tasks based on the required type of input data
+              and the expected output.</p>
+
+            <h5>Image to Value(s)</h5>
+            <p>These tasks are defined by their image input and the output of a single or multiple values. Common
+              examples
+              involve classification, regression, or detection.</p>
+            <p>Classification in the context of <abbr title="Electron Microscopy">EM</abbr> refers to the process of
+              categorizing <abbr title="Electron Microscopy">EM</abbr> images or their specific regions into predefined
+              classes based on their visual characteristics. For example, it can be used to identify "good" or "bad"
+              imaging regions of the sample of interest [1]. This is done by making the
+              model predict a probability distribution which models the probability of the input image to belong to a
+              predefined set of classes (for example, <code>C = {"good", "bad"}</code>).</p>
+            <p>Regression tasks in <abbr title="Electron Microscopy">EM</abbr> refer to a type of predictive modeling
+              technique used to predict a continuous output variable based on an input micrograph. Unlike
+              classification, which assigns discrete classes to the input data, regression outputs a continuous value.
+              This technique is particularly valuable for tasks that require quantifying certain properties of an <abbr
+                title="Electron Microscopy">EM</abbr> image, such as the number of visible virus particles.</p>
+            <p>Lastly, detection refers to the process of identifying and locating specific objects or features by a
+              bounding box within an image. Unlike simple classification, which assigns labels to entire images, or
+              regression, which predicts continuous values, detection combines both tasks: it involves pinpointing exact
+              bounding boxes by regressing its position and size, as well as classifying the object located within the
+              bounding box. It allows for deriving information about position, count, and sizes of the detected objects.
+              This process is essential for tasks where understanding spatial distributions and feature characteristics,
+              such as of virus particles within a micrograph, are critical.</p>
+
+            <h5>Image to Image</h5>
+            <p>Tasks are defined by an image input as well as an output also in the form of an image. Common examples
+              involve transforming the input image into a new image representation. These tasks are fundamental in
+              various applications within <abbr title="Electron Microscopy">EM</abbr>, where enhancing, restoring, or
+              analyzing images is crucial for extracting valuable information from <abbr
+                title="Electron Microscopy">EM</abbr> data.</p>
+            <p>In denoising, the noisy input image is translated into a noise-free version. In super-resolution, a
+              low-resolution micrograph is translated into a high-resolution micrograph, thereby enhancing the detail
+              and clarity of the observed structures. Lastly, in segmentation, the input micrograph is translated into a
+              segmented image where different regions represent distinct components, such as certain cellular organelles
+              or virus particles. This involves the classification of each pixel in the input micrograph. Segments,
+              which are formed by adjacent groups of uniformly classified pixels, are typically labeled, providing a
+              clear distinction between different parts of the sample.</p>
+
+            <h5>2D to 3D</h5>
+            <p>Tasks are characterized by their process of converting multiple two-dimensional (2D) images into a
+              three-dimensional (3D) representation. These tasks are essential in various fields, such as structural
+              biology and material science, where understanding the 3D structure of samples from 2D projections is
+              crucial. By integrating information from multiple 2D projections, these methods aim to produce an accurate
+              and detailed 3D representation of the sample, enhancing our understanding of its spatial organization and
+              functional features.</p>
+            <p>Common examples correspond to <abbr title="Electron Tomography">ET</abbr>, Subtomogram Averaging, and
+              Single Particle Reconstruction. In the case of <abbr title="Electron Tomography">ET</abbr> and Subtomogram
+              Averaging, the input is defined by one or multiple tilt series. For Single Particle Reconstruction, the
+              input corresponds to a set of picked particles.</p>
+
             <h4>Architecture</h4>
+            <p>A model in the context of <abbr title="Deep Learning">DL</abbr> is a learnable function approximation
+              based on a predefined set of trainable parameters (often also referred to as "model weights") and
+              non-linear activation functions. The term "model" is often used interchangeably with the term "neural
+              network" or "<abbr title="Deep Neural Network">DNN</abbr>". The learned function of a model is able to
+              approximate the input-output dependencies of a set of training data.</p>
+            <p>How well a function can be approximated usually depends on the model's architecture and number of
+              trainable parameters. This is often referred to as the "capacity" of the model. Furthermore, a model's
+              ability to generalize—i.e., to apply learned knowledge from the training data to new, unseen data—reflects
+              its effectiveness and robustness. This then supports the automated analysis and interpretation of input
+              <abbr title="Electron Microscopy">EM</abbr> images for tasks such as those introduced previously.
+            </p>
+
+            <h5>Backbone</h5>
+            <p>The backbone of a model is the core component responsible for feature extraction and processing from the
+              input data. It acts as the core architecture upon which a model is built, enabling the extraction of
+              meaningful representations that can be used to perform specific tasks. The selection of a backbone is
+              primarily determined by the nature of the input data and the type of task at hand.</p>
+            <p>Furthermore, the choice of backbone must balance the parameter-to-data ratio. When working with limited
+              datasets, it is crucial to use a model with a capacity that matches the amount of available data to avoid
+              overfitting. Overfitting occurs when a model learns the training data too well, capturing noise and
+              specific patterns that do not generalize to new, unseen data. To mitigate this, the model's complexity
+              should be controlled according to the data's size and quality.</p>
+            <p>Different backbone architectures, such as <abbr title="Multilayer Perceptron">MLP</abbr>, <abbr
+                title="Convolutional Neural Network">CNN</abbr>, and <abbr title="Vision Transformer">ViT</abbr>, offer
+              distinct advantages based on the data characteristics and computational constraints. Each type of backbone
+              is designed to handle specific aspects of data processing, making the choice of backbone a critical factor
+              in the overall model performance.</p>
+            <p><em>MLPs</em> are primarily used for integrating structured or tabular data and are not typically suited
+              for processing image data due to their high computational demands and risk of overfitting. They are,
+              however, effective as classification heads when combined with different feature extractors.</p>
+            <p><em>CNNs</em> are specifically designed for processing image data. They excel at capturing local features
+              and are invariant to translations in image space. Therefore, they are particularly effective for tasks
+              involving spatial relationships within images, making them ideal for <abbr
+                title="Electron Microscopy">EM</abbr> image analysis.</p>
+            <p>Lastly, while Transformers were originally developed for natural language processing, they were adapted
+              into so-called <em>ViTs</em> to handle image data by processing image patches through self-attention
+              mechanisms. They are effective at capturing global contexts and are well-suited for large datasets, where
+              they usually outperform standard <abbr title="Convolutional Neural Network">CNN</abbr> architectures.
+              Variants like Swin Transformers [2] and Data-efficient Image Transformers (DeiTs)
+              [3] offer additional improvements for specific tasks.</p>
+
+            <h5>Task Specific</h5>
+            <p>The task-specific architecture of a model encompasses the design and arrangement of its components,
+              including the types of layers, their arrangement, and the activation functions used, all of which define
+              how the model processes input data to generate output.</p>
+            <p>Different tasks within the realm of <abbr title="Deep Learning">DL</abbr> necessitate the use of tailored
+              architectures to effectively address the unique challenges posed by each task category. This ensures the
+              model is capable of accurately interpreting and processing the data to produce meaningful and reliable
+              outcomes. Here, the aforementioned three task groups of Image to Value(s), Image to Image, and 2D to 3D
+              have a significant impact on the model's architecture.</p>
+            <p><em>Image to Value(s)</em> tasks mainly follow the use of a feature encoder (backbone) and a
+              task-specific prediction head to tailor the features extracted by the backbone to better suit the specific
+              task at hand. This involves transforming the abstract, high-level features into task-relevant outputs.</p>
+            <p><em>Image to Image</em> tasks generally utilize encoder-decoder architectures, like U-Net
+              [4]. The encoder's role is to process the input <abbr title="Electron Microscopy">EM</abbr> images and
+              compress them into a lower-dimensional, abstract
+              representation within the embedding/latent space. The decoder takes the compressed representation from the
+              encoder and reconstructs it back to the original spatial dimensions.
+            </p>
+            <p>Finally, <em>2D to 3D</em> tasks are inherently complex due to their diverse interpretations and
+              approaches. They can be interpreted and solved in different fashions, such that some approaches leverage
+              architectures similar to Image to Value(s) task architectures and others leverage Image to Image-like
+              architectures. One method [5] involves using optimization grids where no actual
+              <abbr title="Deep Neural Network">DNN</abbr> is employed; instead, the 3D reconstruction is directly
+              optimized. Another approach utilizes scalable data structures for efficient 3D representation
+              [6]. Additionally, some techniques employ standard <abbr title="Multilayer Perceptron">MLP</abbr>-based
+              architectures to estimate the density at specific
+              positions in a 3D grid [7,8]<cite>kniesel2022clean, mildenhall2021nerf</cite>. Alternatively, other
+              methods
+              adapt Image to Image models, using a 3D decoder to reconstruct the 3D model from the encodings of multiple
+              2D images.
+            </p>
+
+            <p>By meticulously defining tasks and selecting appropriate model architectures, researchers can optimize
+              <abbr title="Deep Learning">DL</abbr> applications for electron microscopy and other advanced imaging
+              techniques.
+            </p>
+
+            <p>[1] Yuichi Yokoyama, Tohru Terada, Kentaro Shimizu, Kouki Nishikawa, Daisuke Kozai, Atsuhiro
+              Shimada, Akira Mizoguchi, Yoshinori Fujiyoshi, and Kazutoshi Tani. Development of a deep
+              learning-based method to identify “good” regions of a cryo-electron microscopy grid. Biophysical
+              Reviews, 12:349–354, 2020.</p>
+            <p>[2] Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining
+              Guo. Swin transformer: Hierarchical vision transformer using shifted windows. In Proceedings of
+              the IEEE/CVF international conference on computer vision, pages 10012–10022, 2021.</p>
+            <p>[3] Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, and
+              Herv´e J´egou. Training data-efficient image transformers & distillation through attention. In
+              International conference on machine learning, pages 10347–10357. PMLR, 2021</p>
+            <p>[4] Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-net: Convolutional networks for biomedi-
+              cal image segmentation. In Medical image computing and computer-assisted intervention–MICCAI
+              2015: 18th international conference, Munich, Germany, October 5-9, 2015, proceedings, part III
+              18, pages 234–241. Springer, 2015.</p>
+            <p>[5] Animesh Karnewar, Tobias Ritschel, Oliver Wang, and Niloy Mitra. Relu fields: The little non-
+              linearity that could. In ACM SIGGRAPH 2022 conference proceedings, pages 1–9, 2022</p>
+            <p>[6] Alex Yu, Ruilong Li, Matthew Tancik, Hao Li, Ren Ng, and Angjoo Kanazawa. Plenoctrees
+              for real-time rendering of neural radiance fields. In Proceedings of the IEEE/CVF International
+              Conference on Computer Vision, pages 5752–5761, 2021</p>
+            <p>[7] Hannah Kniesel, Timo Ropinski, Tim Bergner, Kavitha Shaga Devan, Clarissa Read, Paul
+              Walther, Tobias Ritschel, and Pedro Hermosilla. Clean implicit 3d structure from noisy 2d
+              stem images. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+              Recognition, pages 20762–20772, 2022.</p>
+            <p>[8] Ben Mildenhall, Pratul P Srinivasan, Matthew Tancik, Jonathan T Barron, Ravi Ramamoorthi,
+              and Ren Ng. Nerf: Representing scenes as neural radiance fields for view synthesis. Communica-
+              tions of the ACM, 65(1):99–106, 2021.</p>
           </div>
 
         </div>
@@ -735,7 +900,8 @@ End teaser image -->
           <img src="static/images/tomographic-reconstruction-stem/Teaser.gif"
             alt="Depiction of the tomographic reconstruction. (Show tilt series, model, reconstruction of Nanoparticles)">
           <figcaption id="fig:Tomo">
-            Based on a given tilt series, we are able to generate a 3D reconstruction using self-supervised deep learning.
+            Based on a given tilt series, we are able to generate a 3D reconstruction using self-supervised deep
+            learning.
           </figcaption>
         </figure>
 
