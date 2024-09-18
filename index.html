@@ -82,6 +82,21 @@
       box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
     }
 
+    .gray-background {
+      background-color: rgb(228, 228, 228);
+      /* Green background */
+      padding: 20px;
+      /* Padding inside the element */
+      border-radius: 10px;
+      /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Subtle shadow for depth */
+      font-size: 16px;
+      /* Font size */
+      margin: 20px 0;
+      /* Margin outside the element */
+    }
+
     .green-background {
       background-color: #dde9afff;
       /* Green background */
@@ -1246,14 +1261,16 @@ End teaser image -->
                   space. The
                   London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 2(11):559–572,
                   1901.</i></small></p>
-            
-            <p><small><i>[14] Scott M Lundberg and Su-In Lee. A unified approach to interpreting model predictions. Advances
-              in neural information processing systems, 30, 2017.</i></small></p>
-            <p><small><i>[15] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”why should I trust you?”: Explaining
-              the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Confer-
-              ence on Knowledge Discovery and Data Mining, San Francisco, CA, USA, August 13-17, 2016,
-              pages 1135–1144, 2016.</i></small></p>
-            
+
+            <p><small><i>[14] Scott M Lundberg and Su-In Lee. A unified approach to interpreting model predictions.
+                  Advances
+                  in neural information processing systems, 30, 2017.</i></small></p>
+            <p><small><i>[15] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. ”why should I trust you?”:
+                  Explaining
+                  the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Confer-
+                  ence on Knowledge Discovery and Data Mining, San Francisco, CA, USA, August 13-17, 2016,
+                  pages 1135–1144, 2016.</i></small></p>
+
           </div>
 
         </div>
@@ -1281,103 +1298,112 @@ End teaser image -->
         <p>We design our notebooks in such way, that they follow the suggested DEEP-EM TOOLBOX workflow stages.
           Within our notebooks, we further provide additional info on how to annotate and preprocess your own data in
           order to plug it into the pipeline of the use case.</p>
+
         <h3>Image to Value(s)</h3>
-        <h4>Explainable Virus Quantification</h4>
-        <h5>Challenge: Deep Learning as Black Box</h5>
-        <p>Within this Image to Value(s) task, we are developing a regression model to quantify virus capsids and their
-          mutation stages ("naked", "budding", "enveloped") during secondary envelopment in TEM images.
-          We encourage researchers to adapt this notebook to use their own data to simplify the analysis of EM images in
-          their own lab.
-          For further details please see the project page.
-        </p>
-        <button class="button-55"
-          onclick="location.href='https://viscom-ulm.github.io/DeepEM/explainable-virus-quantification';">
-          Go to Project
-        </button>
-        <figure>
-          <img src="static/images/explainable-virus-quantification/Teaser.png"
-            alt="Teaser explainable virus quantification">
-          <figcaption id="fig:teaser-ensemble">
-            For the explainable virus quantification we train a regression model to predict the number of "naked",
-            "budding" and "enveloped" virus capsids in the input image.
-            We use GradCAM as an explainable AI technique, to make the model more trustworthy and the predictions
-            easier to coprehend.
-          </figcaption>
-        </figure>
+        <div class="gray-background">
+
+          <h4>Explainable Virus Quantification</h4>
+          <h5>Challenge: Deep Learning as Black Box</h5>
+          <p>Within this Image to Value(s) task, we are developing a regression model to quantify virus capsids and
+            their
+            mutation stages ("naked", "budding", "enveloped") during secondary envelopment in TEM images.
+            We encourage researchers to adapt this notebook to use their own data to simplify the analysis of EM images
+            in
+            their own lab.
+            For further details please see the project page.
+          </p>
+          <button class="button-55"
+            onclick="location.href='https://viscom-ulm.github.io/DeepEM/explainable-virus-quantification';">
+            Go to Project
+          </button>
+          <figure>
+            <img src="static/images/explainable-virus-quantification/Teaser.png"
+              alt="Teaser explainable virus quantification">
+            <figcaption id="fig:teaser-ensemble">
+              For the explainable virus quantification we train a regression model to predict the number of "naked",
+              "budding" and "enveloped" virus capsids in the input image.
+              We use GradCAM as an explainable AI technique, to make the model more trustworthy and the predictions
+              easier to coprehend.
+            </figcaption>
+          </figure>
+        </div>
 
 
         <hr>
 
 
         <h3>Image to Image</h3>
-        <h4>Segmentation of Cellular Structures</h4>
-        <h5>Challenge: Robustness with small dataset sizes</h5>
+        <div class="gray-background">
+          <h4>Segmentation of Cellular Structures</h4>
+          <h5>Challenge: Robustness with small dataset sizes</h5>
 
-        <p>We choose the segmentation of certain cell organelles as a relevant Image to Image task.
-          Segmentation is an important tool in EM image analysis as it contributes to a better visualisation of
-          certain
-          organelles and complex cell structures,
-          which facilitates the interpretation of EM data. Segmentation allows for detailed analysis of organelle
-          morphology, spatial relationships and distribution within cells.
-          This is crucial for understanding intracellular organisation and its relationship to cell function.
-          Due to the small available dataset sizes we deploy data augmentation methods, make use of pretrained weights
-          and train an ensemble model, which has been shown to provide
-          better generalizability even when trained on smaller dataset sizes [1].
-          For further details please see the project page.
-        </p>
-        <button class="button-55"
-          onclick="location.href='https://viscom-ulm.github.io/DeepEM/segmentation-of-cellular-structures';">
-          Go to Project
-        </button>
-        <figure>
-          <img src="static/images/segmentation-of-cellular-structures/Teaser-ensemble.png"
-            alt="Depiction of ensemble model">
-          <figcaption id="fig:teaser-ensemble">
-            For the segmentation of cellular structures we follow [1] and train a so called "ensemble" model.
-            An ensemble model is a set of models which are used to make multiple predictions for the same input data.
-            The predictions are then combined to retrieve a more robust prediction.
+          <p>We choose the segmentation of certain cell organelles as a relevant Image to Image task.
+            Segmentation is an important tool in EM image analysis as it contributes to a better visualisation of
+            certain
+            organelles and complex cell structures,
+            which facilitates the interpretation of EM data. Segmentation allows for detailed analysis of organelle
+            morphology, spatial relationships and distribution within cells.
+            This is crucial for understanding intracellular organisation and its relationship to cell function.
+            Due to the small available dataset sizes we deploy data augmentation methods, make use of pretrained weights
+            and train an ensemble model, which has been shown to provide
+            better generalizability even when trained on smaller dataset sizes [1].
+            For further details please see the project page.
+          </p>
+          <button class="button-55"
+            onclick="location.href='https://viscom-ulm.github.io/DeepEM/segmentation-of-cellular-structures';">
+            Go to Project
+          </button>
+          <figure>
+            <img src="static/images/segmentation-of-cellular-structures/Teaser-ensemble.png"
+              alt="Depiction of ensemble model">
+            <figcaption id="fig:teaser-ensemble">
+              For the segmentation of cellular structures we follow [1] and train a so called "ensemble" model.
+              An ensemble model is a set of models which are used to make multiple predictions for the same input data.
+              The predictions are then combined to retrieve a more robust prediction.
 
-          </figcaption>
-        </figure>
-        <p><i>[1] Shaga Devan, Kavitha, et al. "Weighted average ensemble-based semantic segmentation in biological
-            electron microscopy images." Histochemistry and Cell Biology 158.5 (2022): 447-462.</i></p>
+            </figcaption>
+          </figure>
+          <p><i>[1] Shaga Devan, Kavitha, et al. "Weighted average ensemble-based semantic segmentation in biological
+              electron microscopy images." Histochemistry and Cell Biology 158.5 (2022): 447-462.</i></p>
 
-
+        </div>
         <hr>
 
         <h3>2D to 3D</h3>
-        <h4>Deep Learning Based Tomographic Reconstruction of Scanning Transmission Electron Microscopy (STEM) Images
-        </h4>
-        <h5>Challenge: Evaluation with missing ground truth</h5>
-        <p>To introduce 2D to 3D tasks, we implement a learning based tomographic reconstruction of 2D projections
-          obtained from STEM tomograms, following [1,2].
-          Reconstruction of a 3D volume allows visualisation of the true morphology, spatial relationships and
-          connectivity of certain cellular structures and
-          organelles within a cell, which may not be visible in 2D projections alone. Due to missing ground truth
-          information in the case of tomographic reconstruction,
-          we make use of pre-existing synthetic data to assess the model performance.
-          For further details please see the project page.
-        </p>
-        <button class="button-55"
-          onclick="location.href='https://viscom-ulm.github.io/DeepEM/tomographic-reconstruction-stem';">
-          Go to Project
-        </button>
-        <figure>
-          <img src="static/images/tomographic-reconstruction-stem/Teaser.gif"
-            alt="Depiction of the tomographic reconstruction. (Show tilt series, model, reconstruction of Nanoparticles)">
-          <figcaption id="fig:Tomo">
-            Based on a given tilt series, we are able to generate a 3D reconstruction using self-supervised deep
-            learning.
-          </figcaption>
-        </figure>
+        <div class="gray-background">
+
+          <h4>Deep Learning Based Tomographic Reconstruction of Scanning Transmission Electron Microscopy (STEM) Images
+          </h4>
+          <h5>Challenge: Evaluation with missing ground truth</h5>
+          <p>To introduce 2D to 3D tasks, we implement a learning based tomographic reconstruction of 2D projections
+            obtained from STEM tomograms, following [1,2].
+            Reconstruction of a 3D volume allows visualisation of the true morphology, spatial relationships and
+            connectivity of certain cellular structures and
+            organelles within a cell, which may not be visible in 2D projections alone. Due to missing ground truth
+            information in the case of tomographic reconstruction,
+            we make use of pre-existing synthetic data to assess the model performance.
+            For further details please see the project page.
+          </p>
+          <button class="button-55"
+            onclick="location.href='https://viscom-ulm.github.io/DeepEM/tomographic-reconstruction-stem';">
+            Go to Project
+          </button>
+          <figure>
+            <img src="static/images/tomographic-reconstruction-stem/Teaser.gif"
+              alt="Depiction of the tomographic reconstruction. (Show tilt series, model, reconstruction of Nanoparticles)">
+            <figcaption id="fig:Tomo">
+              Based on a given tilt series, we are able to generate a 3D reconstruction using self-supervised deep
+              learning.
+            </figcaption>
+          </figure>
 
 
-        <p></p>
-        <p><i>[1] Kniesel, Hannah, et al. "Clean implicit 3d structure from noisy 2d stem images." Proceedings of the
-            IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</i></p>
-        <p><i>[2] Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis."
-            Communications of the ACM 65.1 (2021): 99-106.</i></p>
-
+          <p></p>
+          <p><i>[1] Kniesel, Hannah, et al. "Clean implicit 3d structure from noisy 2d stem images." Proceedings of the
+              IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</i></p>
+          <p><i>[2] Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis."
+              Communications of the ACM 65.1 (2021): 99-106.</i></p>
+        </div>
         <hr>
 
       </div>
