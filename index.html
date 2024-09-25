@@ -338,20 +338,43 @@ End teaser image -->
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Despite advancements in computer vision, deep learning application in EM labs remains limited. This paper
-              outlines various application areas within EM and presents a straightforward deep learning workflow for
-              developing solutions in this context.
-              We aim to bridge the gap between deep learning experts and electron microscopy (EM) researchers,
-              acknowledging the significant potential of deep learning in enhancing the analysis of EM micrographs. With
-              its proven success in computer vision tasks, deep learning can revolutionize EM image analysis through
-              supported, automated, and standardized methodologies. We introduce the Deep Learning Toolbox for Electron
-              Microscopy Researchers to integrate deep learning into EM data analysis.
-              Our primary objective is to foster effective collaboration between domain experts and data scientists,
-              addressing differences in terminology and expertise. We also introduce a platform to compile recent
-              advancements in deep learning for EM, demonstrating its capabilities through three exemplary notebooks for
-              tasks such as virus quantification in EM images, segmentation, and tomographic reconstruction. The
-              platform is designed for plug-and-play use by EM researchers, and we encourage contributions from the
-              research community to make their work accessible.
+              Despite advancements in Computer Vision (<abbr title="Computer Vision">CV</abbr>), Deep Learning (<abbr
+                title="Deep Learning">DL</abbr>)
+              application in Electron Microscopy (<abbr title="Electron Microscopy">EM</abbr>) labs remains limited.
+              This paper outlines
+              various application areas within <abbr title="Electron Microscopy">EM</abbr>, and introduces the DEEP-EM
+              TOOLBOX which supports the application and adaption of <abbr title="Deep Learning">DL</abbr> solutions
+              within <abbr title="Electron Microscopy">EM</abbr> labs.
+
+              With the help of this DEEP-EM TOOLBOX we aim to bridge the gap between <abbr
+                title="Deep Learning">DL</abbr> experts and <abbr title="Electron Microscopy">EM</abbr> researchers,
+              while acknowledging the significant potential of <abbr title="Deep Learning">DL</abbr> in enhancing the
+              analysis of <abbr title="Electron Microscopy">EM</abbr> micrographs. With its proven success in <abbr
+                title="Computer Vision">CV</abbr> tasks, <abbr title="Deep Learning">DL</abbr> can revolutionize <abbr
+                title="Electron Microscopy">EM</abbr> image analysis through supported, automated, and standardized
+              methodologies.
+
+              Our primary objective is to foster interdisciplinary collaboration between domain experts and data
+              scientists, addressing differences in terminology and expertise. We therefore introduce this toolbox to
+              compile recent advancements in <abbr title="Deep Learning">DL</abbr> for <abbr
+                title="Electron Microscopy">EM</abbr>.
+
+              We believe, as <abbr title="Electron Microscopy">EM</abbr> is an active and vastly changing field of
+              research a "one-fits-all" model is not applicable. We therefore propose to categorize possible <abbr
+                title="Electron Microscopy">EM</abbr> specific use cases into three tasks: Image to Value(s), Image to
+              Image, and 2D to 3D. We demonstrate the capabilities of the toolbox by providing three exemplary use cases
+              such as viral particle quantification, cellular structure segmentation, and tomographic reconstruction.
+
+
+              The use cases are designed for plug-and-play use by <abbr title="Electron Microscopy">EM</abbr>
+              researchers, such that they can be easily adapted to new data sets and requirements.
+
+              We introduce a standardized workflow to implement <abbr title="Deep Learning">DL</abbr> based solutions,
+              such that adaptations to the use cases are more accessible.
+
+              We encourage contributions from the research community to also make their <abbr
+                title="Deep Learning">DL</abbr> approaches accessible within the toolbox.
+
             </p>
           </div>
         </div>
@@ -678,7 +701,8 @@ End teaser image -->
         <div id="supervisedlearning" class="hidden">
           <p>
             is the standard approach of machine learning where the model is trained
-            on labeled data. In this paradigm, the training dataset consists of input-output pairs, where each input \( x \)
+            on labeled data. In this paradigm, the training dataset consists of input-output pairs, where each input \(
+            x \)
             is associated with a known output \( y \) (label). The goal of supervised learning is to learn a mapping
             function
             from inputs to outputs, allowing the model to make accurate predictions on new, unseen data. Supervised
@@ -1485,7 +1509,8 @@ End teaser image -->
       </div>
       <div class="content has-text-justified">
         <p>For providing exemplary notebooks, we are using lighting studio, as they are easy to setup, access and work
-          with. A quick introduction can be found here: (https://lightning.ai/docs/overview/studios)</p>
+          with. A quick introduction can be found here: (https://lightning.ai/docs/overview/studios). Within the studio
+          we use [jupyter notebooks](https://jupyter.org/) for easy structuring of the code and accessability. </p>
         <p>We design our notebooks in such way, that they follow the suggested DEEP-EM TOOLBOX workflow stages.
           Within our notebooks, we further provide additional info on how to annotate and preprocess your own data in
           order to plug it into the pipeline of the use case.</p>

@@ -397,7 +397,8 @@ End teaser image -->
                         we recommend using the
                         CVAT <u>annotation tool</u>
                         [4],
-                        as this will allow you to directly plug in your data to run the provided script. For more
+                        as this will allow you to directly plug in your data to run the provided script. 
+                        When using your own data, it is also possible to change the number and value of the classes. For more
                         details, we refer the reader
                         to our project page and the corresponding notebook. Based on these annotations, we can derive
                         the number of naked,
@@ -407,7 +408,7 @@ End teaser image -->
                     <p>
                         For data <u>preprocessing</u>, we <u>split</u> the dataset into training, validation, and test
                         sets, using 20% for testing,
-                        16% for validation, and 64% for training. We choose a relatively large test split, as dataset
+                        20% for validation, and 60% for training. We choose a relatively large test split, as dataset
                         sizes in
                         <abbr title="Electron Microscopy">EM</abbr> are usually small. By doing so, we can ensure that
                         the model is sufficiently
@@ -415,11 +416,7 @@ End teaser image -->
                         random patches of
                         224×224 pixels from the full-resolution images, to match the input size of our pretrained
                         backbone during training.
-                        We balance image patches containing virus capsids with patches that do not contain virus capsids
-                        through informed sampling
-                        of the patch location. This allows us to account for potential bias in the dataset, as the
-                        occurrence of virus capsids
-                        is not uniformly distributed. On the validation and test set we work in a sliding window
+                        On the validation and test set we work in a sliding window
                         fashion. We apply image
                         <u>normalization</u> by z-score normalization, where we use the mean and standard deviation from
                         the pretrained dataset.
@@ -429,7 +426,7 @@ End teaser image -->
 
                     <p>
                         To further increase variance in the dataset, we apply standard <u>augmentation</u> techniques
-                        like flipping and rotating
+                        like resizing and rotating
                         the input images.
                     </p>
 
