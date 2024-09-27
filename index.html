@@ -335,7 +335,7 @@ End teaser image -->
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
+
           <div class="content has-text-justified">
             <p>
               Despite advancements in Computer Vision (<abbr title="Computer Vision">CV</abbr>), Deep Learning (<abbr
@@ -376,6 +376,17 @@ End teaser image -->
                 title="Deep Learning">DL</abbr> approaches accessible within the toolbox.
 
             </p>
+
+            <p>More specifically, we </p>
+            <ul>
+              <li>developed a standardized workflow for implementing deep learning (DL) models for electron microscopy
+                (EM) data analysis, streamlining future adaptations.</li>
+              <li>categorized DL methods in EM use cases into three tasks: Image to Value(s), Image to Image, and 2D to
+                3D, enabling targeted solutions.</li>
+              <li>implemented three DL use cases for EM, using Lightning AI Studio with Jupyter notebooks for virus
+                quantification, cell structure segmentation, and tomographic reconstruction.</li>
+            </ul>
+
           </div>
         </div>
       </div>
@@ -1500,6 +1511,20 @@ End teaser image -->
   <section class="section hero">
     <div class="container is-max-desktop content">
       <h2 class="title is-3">Use Cases</h2>
+      <div class="content has-text-justified">
+        <p>All code and scripts are provided on the <a href="https://lightning.ai/studios">Lighting AI Studio</a>
+          platform, which is designed to make running code as easy
+          as possible for anyone. While an account is required, this provides access to a free monthly "computing
+          budget", which can be expanded with additional purchases if needed. Lightning AI Studio offers an environment
+          equipped with GPUs for efficient code execution. We developed <a href="https://jupyter.org/">Jupyter
+            Notebooks</a>
+          on this platform, allowing code and explanations to be seamlessly integrated into a single file. Though our
+          toolbox does not include a
+          detailed guide, many online resources explain how to use Jupyter Notebooks, and Lightning AI Studio which are
+          they
+          are highly intuitive to
+          navigate.</p>
+      </div>
       <div class="hero-body">
         <img src="static/images/tasks.png" alt="Categories of deep learning tasks in the context of EM." />
         <h6 class="subtitle has-text-centered">Tasks in the Area of EM data analysis can be categorized by the
@@ -1508,9 +1533,7 @@ End teaser image -->
           For each category, we introduce one exemplary notebooks, tackling EM specific challenges. </h6>
       </div>
       <div class="content has-text-justified">
-        <p>For providing exemplary notebooks, we are using lighting studio, as they are easy to setup, access and work
-          with. A quick introduction can be found here: (https://lightning.ai/docs/overview/studios). Within the studio
-          we use [jupyter notebooks](https://jupyter.org/) for easy structuring of the code and accessability. </p>
+
         <p>We design our notebooks in such way, that they follow the suggested DEEP-EM TOOLBOX workflow stages.
           Within our notebooks, we further provide additional info on how to annotate and preprocess your own data in
           order to plug it into the pipeline of the use case.</p>
