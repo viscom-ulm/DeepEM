@@ -120,6 +120,8 @@
     }
 
     .green-background {
+      position: relative;
+      top: -25px;
       background-color: #dde9afff;
       /* Green background */
       padding: 20px;
@@ -149,19 +151,22 @@
       /* Margin outside the element */
     }
 
+    /* Orange Background */
     .orange-background {
+      position: relative;
+      top: -25px;
       background-color: #ffb380ff;
-      /* Green background */
+      /* Orange background */
       padding: 20px;
-      /* Padding inside the element */
+      /* Internal padding for spacing content */
       border-radius: 10px;
       /* Rounded corners */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      /* Subtle shadow for depth */
+      /* Shadow for depth */
       font-size: 16px;
       /* Font size */
-      margin: 20px 0;
-      /* Margin outside the element */
+      margin: 0;
+      /* Remove external margins to avoid spacing issues */
     }
 
     .navbar-item:hover {
@@ -172,6 +177,103 @@
 
     .navbar {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .tabs {
+      width: auto;
+      display: flex;
+      justify-content: left;
+      background-color: #ffb38000;
+      color: black;
+      padding: 10px;
+      padding-bottom: 0px;
+      /* Ensure no internal space at the bottom */
+      border-radius: 10px 10px 0 0;
+      margin: 0;
+      /* Remove any margin from the tabs */
+      gap: 0;
+      /* No gap between tabs */
+    }
+
+    /* Tab Buttons */
+    .tab-button-orange {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s;
+      border-radius: 10px 10px 0 0;
+      background-color: rgb(252, 209, 180);
+
+
+    }
+
+    .tab-button-orange:hover {
+      background-color: #ffb380ff;
+    }
+
+    .tab-button-orange.active {
+      background-color: #ffb380ff;
+      border-radius: 10px 10px 0 0;
+    }
+
+
+
+    /* Tab Buttons */
+    .tab-button-green {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: black;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s;
+      border-radius: 10px 10px 0 0;
+      background-color: rgb(243, 253, 201);
+
+
+    }
+
+    .tab-button-green:hover {
+      background-color: #dde9afff;
+    }
+
+    .tab-button-green.active {
+      background-color: #dde9afff;
+      border-radius: 10px 10px 0 0;
+    }
+
+    /* Tab Icons */
+    .tab-icon {
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 0 0 10px 10px;
+      width: 60%;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-content.active {
+      display: block;
     }
   </style>
 
@@ -210,6 +312,33 @@
         content.classList.add('hidden');
         btn.innerHTML = "&#9654;"
 
+      }
+    }
+
+    function toggleContent(event, section, tabId, tabclass, em_content, dl_content) {
+      const emContent = document.getElementById(em_content);
+      const dlContent = document.getElementById(dl_content);
+
+      // Remove the active class from all buttons
+      const buttons = document.querySelectorAll(tabclass);
+      buttons.forEach((button) => button.classList.remove("active"));
+
+      // Hide all tab contents
+      // const contents = document.querySelectorAll(".tab-content");
+      // contents.forEach((content) => content.classList.remove("active"));
+      // Show the clicked tab and make its button active
+      document.getElementById(tabId).classList.add("active");
+      event.currentTarget.classList.add("active");
+
+
+      if (section === "em") {
+        // Show EM content and update button to DL mode
+        emContent.style.display = "block";
+        dlContent.style.display = "none";
+      } else {
+        // Show DL content and update button to EM mode
+        emContent.style.display = "none";
+        dlContent.style.display = "block";
       }
     }
 
@@ -319,68 +448,38 @@
         <div class="column is-four-fifths">
 
           <div class="content has-text-justified">
+
             <p>
-              Despite advancements in Computer Vision (<abbr title="Computer Vision">CV</abbr>), Deep Learning (<abbr
-                title="Deep Learning">DL</abbr>)
-              application in Electron Microscopy (<abbr title="Electron Microscopy">EM</abbr>) labs remains limited.
-              This paper outlines
-              various application areas within <abbr title="Electron Microscopy">EM</abbr>, and introduces the DEEP-EM
-              TOOLBOX which supports the application and adaption of <abbr title="Deep Learning">DL</abbr> solutions
-              within <abbr title="Electron Microscopy">EM</abbr> labs.
-
-              With the help of this DEEP-EM TOOLBOX we aim to bridge the gap between <abbr
-                title="Deep Learning">DL</abbr> experts and <abbr title="Electron Microscopy">EM</abbr> researchers,
-              while acknowledging the significant potential of <abbr title="Deep Learning">DL</abbr> in enhancing the
-              analysis of <abbr title="Electron Microscopy">EM</abbr> micrographs. With its proven success in <abbr
-                title="Computer Vision">CV</abbr> tasks, <abbr title="Deep Learning">DL</abbr> can revolutionize <abbr
-                title="Electron Microscopy">EM</abbr> image analysis through supported, automated, and standardized
-              methodologies.
-
-              Our primary objective is to foster interdisciplinary collaboration between domain experts and data
-              scientists, addressing differences in terminology and expertise. We therefore introduce this toolbox to
-              compile recent advancements in <abbr title="Deep Learning">DL</abbr> for <abbr
-                title="Electron Microscopy">EM</abbr>.
-
-              We believe, as <abbr title="Electron Microscopy">EM</abbr> is an active and vastly changing field of
-              research a "one-fits-all" model is not applicable. We therefore propose to categorize possible <abbr
-                title="Electron Microscopy">EM</abbr> specific use cases into three tasks: Image to Value(s), Image to
-              Image, and 2D to 3D. We demonstrate the capabilities of the toolbox by providing three exemplary use cases
-              such as viral particle quantification, cellular structure segmentation, and tomographic reconstruction.
-
-
-              The use cases are designed for plug-and-play use by <abbr title="Electron Microscopy">EM</abbr>
-              researchers, such that they can be easily adapted to new data sets and requirements.
-
-              We introduce a standardized workflow to implement <abbr title="Deep Learning">DL</abbr> based solutions,
-              such that adaptations to the use cases are more accessible.
-
-              We encourage contributions from the research community to also make their <abbr
-                title="Deep Learning">DL</abbr> approaches accessible within the toolbox.
-
+              Despite advancements in <abbr title="Computer Vision">CV</abbr>, the application of Deep Learning
+              (<abbr title="Deep Learning">DL</abbr>) in Electron Microscopy (<abbr
+                title="Electron Microscopy">EM</abbr>) labs remains limited.
+              We believe this is due to the interdisciplinary nature of EM, where expertise in data collection and
+              annotation resides in EM labs,
+              while expertise in model development and evaluation methods lies within DL labs.
             </p>
-
-            <p>More specifically, we </p>
-            <ul>
-              <li>developed a standardized workflow for implementing deep learning (DL) models for electron microscopy
-                (EM) data analysis, streamlining future adaptations.</li>
-              <li>categorized DL methods in EM use cases into three tasks: Image to Value(s), Image to Image, and 2D to
-                3D, enabling targeted solutions.</li>
-              <li>implemented three DL use cases for EM, using Lightning AI Studio with Jupyter notebooks for virus
-                quantification, cell structure segmentation, and tomographic reconstruction.</li>
-            </ul>
-
             <p>
-              Integrating deep learning into electron microscopy (EM) is particularly challenging due to its interdisciplinary
-              nature. While EM labs possess extensive expertise in data and annotation, deep learning (DL) experts are
-              responsible for model development. In our DEEP-EM TOOLBOX, we aim to bridge this gap by offering user-friendly
-              use cases developed by deep learning researchers. These use cases are designed to be easily adaptable by EM
-              researchers to meet their specific needs.
-      
-              Our approach separates data collection and annotation (where EM labs excel) from model development (which lies
-              with DL labs), empowering EM researchers to train custom models tailored to their specific applications, without
-              requiring coding experience. The only necessary step is adapting the dataset for training. For annotating data
-              for all provided use cases, we recommend using the Computer Vision Annotation Tool (CVAT), a tool well-suited
-              for this task.
+              To bridge this gap, we introduce the <strong>DEEP-EM TOOLBOX</strong>, disentangling the
+              complexities of DL for EM.
+              The toolbox provides a simple workflow for implementing DL solutions, separating low-level training
+              details from high-level execution.
+              This enables EM experts to train their own models while allowing DL experts to implement training and
+              evaluation methods with minimal overhead.
+            </p>
+            <p>
+              Specialized solutions within the toolbox facilitate the training of lab-specific models by categorizing
+              use cases into tasks
+              based on model input/output. We showcase one example use case for each task, designed to be easily
+              adaptable within EM labs.
+            </p>
+            <p>
+              The toolbox also encourages contributions from the research community. By following the provided workflow,
+              these contributions
+              become accessible to both the DL and EM communities, fostering collaboration.
+            </p>
+            <p>
+              The DEEP-EM TOOLBOX includes a dedicated webpage featuring the paper's main objectives, getting-started
+              tutorials, detailed
+              documentation for each use case, and guidance on contributing original work.
             </p>
 
           </div>
@@ -400,79 +499,415 @@
     <div class="container is-max-desktop content">
       <h2 class="title is-3">Workflow</h2>
       <div class="hero-body">
-        <img src="static/images/workflow.png" alt="deep learning workflow in the context of EM." />
+        <img src="static/images/workflow/workflow.jpg" alt="deep learning workflow in the context of EM." />
         <h6 class="subtitle has-text-centered">
           Figure 1: We propose a simple workflow for developing deep learning solutions for the supported analysis of EM
           data.
-          The workflow is clustered into three categories: 1) Task; 2) Data; 3) Model </h6>
+          The workflow is designed in such way, that it allows DL experts to implement and provide DL solutions and
+          evaluation methods with minimal overhead, while EM experts are able to train their own models.
+        </h6>
+        <p style="font-size: 70%;"><i><a href="https://www.flaticon.com/free-icons/image-processing"
+              title="image processing icons">Image
+              processing icons created by BomSymbols - Flaticon</a>, <a
+              href="https://www.flaticon.com/free-icons/ai-brain" title="ai brain icons">Ai brain icons created by Eklip
+              Studio - Flaticon</a>, <a href="https://www.flaticon.com/free-icons/evaluation"
+              title="evaluation icons">Evaluation icons created by justicon - Flaticon</a>, <a
+              href="https://www.flaticon.com/free-icons/inference" title="inference icons">Inference icons created by
+              Freepik - Flaticon</a></i></p>
       </div>
       <div class="content has-text-justified">
-        <p>The introduced DEEP-EM TOOLBOX follows a generalizable workflow, which we introduce in the
-          following.
-          In our workflow (Figure 1) we propose 3 clusters:</p>
-        <ul>
-          <li>Task (orange).</li>
-          <li>Data (green).</li>
-          <li>Model (red).</li>
-        </ul>
-
         <p>
-          The standardized workflow allows easier access and realization of adaptions to the methods.
-          Additionally, we identify and analyse possible challenges with applying DL to EM data and
-          discuss how to tackle them.
-
-
+          <strong>Main Objective:</strong> Our primary objective is to equip Electron Microscopy (EM) experts with tools
+          developed by Deep Learning (DL) experts,
+          enabling them to create specialized solutions within their EM labs. This approach facilitates the adaptation
+          of existing methods to new appearances of the data (for example due to new sample preparation techniques,
+          different detectors or different modalities)
+          based on the lab's specific needs. It allows training on lab-specific data and customization
+          of tasks by simply providing data aligned with the lab's interests and requirements.
+          The workflow enables the adoption of DL solutions without requiring any additional implementation effort.
         </p>
+
+
         <p></p>
 
+
+        <div class="tabs">
+          <button class="tab-button-orange active" id='dl-specialists-development-btn'
+            onclick="toggleContent(event, 'em', 'dl-specialists-development-btn', '.tab-button-orange', 'em-specialist-development', 'dl-specialist-development')">
+            <img src="static/images/icon-virus.png" alt="EM Specialists" class="tab-icon">
+            EM Specialists
+          </button>
+          <button class="tab-button-orange" id='em-specialists-development-btn'
+            onclick="toggleContent(event, 'dl', 'em-specialists-development-btn', '.tab-button-orange', 'em-specialist-development', 'dl-specialist-development')">
+            <img src="static/images/icon-artificial-intelligence.png" alt="DL Specialists" class="tab-icon">
+            DL Specialists
+          </button>
+        </div>
         <div class="orange-background">
-          <h3>Task</h3>
+          <div id="em-specialist-development" style="display: block;">
+            <h3>Development</h3>
 
-          <p>In <abbr title="Deep Learning">DL</abbr>, a task refers to a specific problem or objective that is desired
-            to be addressed.
-            This section will outline the necessary steps for defining tasks, providing a comprehensive foundation for
-            effectively applying <abbr title="Deep Learning">DL</abbr> techniques to EM image analysis.
-            Specifically, within this paper we categorize tasks in the area of <abbr
-              title="Electron Microscopy">EM</abbr> into three objectives: 1) Image to Value(s), 2) Image to Image, 3)
-            2D to 3D.
-            Each task defines the nature of the data interactions and the desired outcomes, guiding the development and
-            training of the model to perform effectively on that particular problem.</p>
+            <p>
+              In deep learning for electron microscopy (EM), model <strong>development</strong> refers to the process of
+              creating and
+              optimizing deep learning models to address specific challenges within EM. This process is built on three
+              key
+              steps.
+            <ul>
+              <li><strong>Data:</strong> high-quality and well-annotated datasets tailored to the lab's needs.</li>
+              <li><strong>Model Training:</strong> training models by optimizing architectures and parameters.</li>
+              <li><strong>Model Evaluation:</strong> evaluating their performance using task-specific metrics.</li>
+            </ul>
 
-          <button id="togglebtn-task-model" class="button-55"
-            onclick="toggleVisibility('content-task-model', 'togglebtn-task-model')">Show More</button>
+            Together, these steps enable the adaptation of deep learning techniques to EM tasks, ensuring models are
+            effective
+            and tailored to lab-specific applications.
+            </p>
+
+            <h4>1. Data</h4>
+            <p>
+              High-quality data is the foundation of deep learning model development. For EM, this includes acquiring,
+              annotating, preprocessing,
+              and structuring data to ensure it is suitable for training and evaluating models. Properly handling data
+              ensures model reliability and robustness.
+            </p>
+
+            <p>
+              Recognizing that expertise in data preparation primarily resides within EM labs, our workflow is designed
+              to
+              bridge the gap by providing EM experts with the necessary guidance from DL experts. This approach enables
+              labs to prepare their data effectively for successful model training.
+            </p>
+            <p>
+              Moreover, our codebase is structured to allow model training adaptation solely through changes in data and
+              its annotations. For instance, the number or type of classes in segmentation tasks can be easily tailored
+              to
+              fit specific use cases. Each use case includes a detailed guide on implementing such adaptations, ensuring
+              flexibility and ease of use.
+            </p>
+            <p></p>
+
+            <div class="hidden" id="content-data">
+
+              <h6>1.1. Data Acquisition</h6>
+              <p>
+                Data acquisition involves collecting raw electron microscopy images or datasets. This may include
+                imaging
+                samples under various modalities
+                (e.g., TEM, SEM) to capture diverse features. It is critical to ensure the dataset is representative of
+                the
+                problem domain to improve model performance.
+                Expertise in sample preparation, imaging modalities and data collection plays an important role and
+                usually lies within the EM-lab.
+              </p>
+              <p></p>
+
+              <h6>1.2. Data Annotation</h6>
+              <p>
+                Data annotation is the process of labeling images for specific tasks such as
+                segmentation, classification, or object detection. In the context of deep learning for electron
+                microscopy
+                (EM), proper annotation is crucial for training models that perform well on real-world data.
+              </p>
+              <p>
+                Each use case includes a detailed instruction on how to annotate data such that it can be used in a
+                "plug-and-play"
+                fashion. This way, we ensure that the training, validation and test data can be easily adapted to suit
+                the specific needs of any EM lab without the need for additional code changes.
+              </p>
+              <p>
+                The provided use cases within this paper make use of the <strong>Computer Vision Annotation Tool
+                  (CVAT)</strong>, an easy-to-use and easy-to-setup tool. For a step-by-step guide on how to get
+                started, please refer to our <a href="TODO">Getting Started</a> guide. Detailed use case specific
+                instructions for EM specialists can be found in each corresponding use case.
+              </p>
+              <p></p>
+
+              <h6>1.3. Data Preprocessing</h6>
+
+              <p>Data Preprocessing is an essential step in preparing data for training deep learning
+                models. This process consists of three key stages:
+                1) <i>Data Reformatting</i>, 2) <i>Image Enhancement</i>, and 3) <i>Data Augmentation</i>.</p>
+
+              <p><i>Data Reformatting</i> ensures that the data provided by EM specialists is compatible with the code
+                developed by DL experts. While this step is mandatory and cannot be skipped, we have designed the
+                workflow
+                to abstract away the complexity of <i>Image Enhancement</i> and <i>Data Augmentation</i>, handling these
+                steps
+                entirely within the DL expert's domain.</p>
+
+              <p>Each use case includes detailed guidance for EM specialists on how to reformat common EM data
+                formats—such as 2D or 3D `.tif`
+                or `.mrc` files—into formats that are compatible with the training workflow. This ensures accessibility
+                and ease of use for EM researchers, allowing them to focus on their domain expertise without requiring
+                deep knowledge of DL techniques.
+                Since our use cases primarily rely on the .tif format, we provide a quick guide on how to reformat data
+                using the freely available EM tool <em>ImageJ</em>. Detailed instructions for these steps can be found
+                in
+                each <a href="TODO">use case</a>.
+              </p>
+
+              <h6>1.4. Data Structuring</h6>
+              <p>
+                Data Structuring acts as the interface between DL experts and EM experts. Structuring
+                the data in a way that is compatible with the implemented use case is essential to bridge the expertise
+                of both domains.
+              </p>
+              <p>
+                Our workflow is designed to simplify this process, minimizing potential difficulties and errors. In most
+                cases, we ask EM specialists to provide all data required for training and validation within a single
+                file. The responsibility for splitting the data into appropriate subsets is handled at runtime by the DL
+                experts.
+              </p>
+              <p>
+                <strong>Training data</strong> is used to teach the model how to make predictions, while
+                <strong>validation data</strong> is used to evaluate the model's performance, prevent overfitting
+                and adjust hyperparameters to improve accuracy.
+              </p>
 
 
+
+
+
+
+            </div>
+            <p></p>
+
+            <button id="togglebtn-data" class="button-55"
+              onclick="toggleVisibility('content-data', 'togglebtn-data')">Show
+              More</button>
+            <p></p>
+
+          </div>
+          <p></p>
+
+          <div id="dl-specialist-development" style="display: none;">
+            DL Specialist
+
+            1.2. Data Annotation
+
+            <p>
+              For deep learning experts contributing to supervised learning tasks, the use of the CVAT tool is optional.
+              However, we do require that any custom annotation process be thoroughly documented. This ensures that the
+              setup is straightforward and that the tool can be freely used by EM researchers who need to access and
+              work with the annotated data.
+            </p>
+
+            Data Structuring
+
+            Our workflow recomments to structure training, testing and validation data within a single folder. This will
+            simplify data structuring for EM researchers.
+            Splitting the dataset accordingly should hence be done during runtime in the code.
+            This can be for instance done using the scipy method:
+
+            example <code class="">AAAA</code>
+
+            Data Preprocessing
+
+            <p>
+              As a <strong>deep learning (DL) specialist</strong> contributing to a project, we recommend implementing
+              image enhancement methods or providing detailed documentation on freely available tools that can be used
+              for these tasks. This ensures that all preprocessing steps are consistent and effective for the training
+              process. Additionally, it is important to consider the reformatting of image data to ensure it can be
+              correctly loaded into the provided code. While DL specialists handle preprocessing techniques related to
+              training strategies (e.g., normalization, resizing, augmentation), <strong>electron microscopy (EM)
+                specialists</strong> may need to prepare the data in formats compatible with the training pipeline.
+            </p>
+
+            <p>
+              Any preprocessing steps required by EM specialists should be clearly defined and documented in the use
+              case to facilitate easy implementation. To ensure compatibility, we encourage the use of common formats
+              in
+              EM, such as 2D or 3D .tif, .mrc, and others.
+            </p>
+          </div>
+
+
+
+
+
+          <h4>2. Model Training</h4>
+          <p>
+            Model training focuses on creating and optimizing deep learning models to solve specific EM tasks. It
+            includes configuring the
+            training process, monitoring progress, and refining parameters to maximize performance.
+          </p>
+          <p></p>
+
+          <div class="hidden" id="content-model-training">
+
+            <h6>2.1. Setup Logging</h6>
+            <p>
+              Logging plays a crucial role in tracking the training process, providing insights into
+              key metrics such as loss, accuracy, and other important indicators. Well-maintained logs help optimize the
+              model and identify potential issues, such as overfitting. <strong>Overfitting</strong> occurs when the
+              model becomes too tailored to the training data and struggles to generalize to unseen data. It can
+              typically be identified by analyzing training and validation curves.
+            </p>
+            <p>
+              In our use cases, logging is implemented using both standard output and a local logging directory at
+              <code>logs/current-datetime/</code>. While there are many advanced tools available to streamline the
+              logging process, we chose not to use them to avoid additional setup overhead for EM specialists. By
+              utilizing standard output and a local log directory, we simplify the process without sacrificing essential
+              information. The logs capture the following key data:
+            </p>
+            <ul>
+              <li>Hyperparameters of the run</li>
+              <li>Model checkpoints</li>
+              <li>Training/validation curves</li>
+              <li>Qualitative visualization of validation images</li>
+              <li>Results on test metrics</li>
+              <li>Qualitative visualization of test images</li>
+            </ul>
+
+            <h6>2.2. Define Hyperparameters</h6>
+            <p>
+              Hyperparameter tuning is a critical process that involves adjusting parameters to improve
+              the performance of a deep learning model. This is typically done by running the training code multiple
+              times with different settings and selecting the model that performs best based on its validation loss.
+              Proper tuning of these parameters can significantly influence the
+              model's convergence and overall performance.
+            </p>
+            <p>
+              The tuning process must be tailored to each specific use case, meaning it should be done every time a
+              model is trained. This requires collaboration between
+              <strong>DL</strong> and <strong>EM</strong> experts. To simplify the process, we use
+              <code>ipywidgets</code> (a Python library for creating interactive widgets) to enable input of
+              hyperparameters through a graphical user interface, rather than requiring manual changes in the code. DL
+              experts will define hyperparameters to tune and provide clear explanations for each hyperparameter as well
+              as offer practical tips to help users to select optimal settings.
+            </p>
+
+
+
+
+            <h6>2.3. Training and Validation</h6>
+            <p>
+              The training process involves iteratively feeding data into the model to minimize error, while validation
+              ensures that the model
+              generalizes well to unseen data. Regular validation during training helps prevent overfitting and guides
+              optimization.
+              This step is always implemented by the DL experts and does not require additional input of the DL expert.
+            </p>
+          </div>
+
+          <button id="togglebtn-model-training" class="button-55"
+            onclick="toggleVisibility('content-model-training', 'togglebtn-model-training')">Show More</button>
+          <p></p>
+
+          <h4>
+            3. Model Evaluation
+          </h4>
+          <p>
+            Model evaluation assesses the trained model's performance using specific metrics to determine its
+            effectiveness in solving the target task.
+            This step ensures the model meets the requirements for deployment or further refinement.
+          </p>
+          <p></p>
+
+          <div class="hidden" id="content-model-evaluation">
+            <h6>3.1. Choose Model</h6>
+            <p>
+              Within each training run, the use cases are designed to automatically select the best performing model
+              based on the validation loss. However, the use case implementation also provides the flexibility to test
+              previously trained models by supplying the corresponding model checkpoint by the EM specialists.
+
+              This
+              feature is particularly
+              useful for hyperparameter tuning.
+
+              Again, the model checkpoint can be defined by the EM specialist via a graphical user interface based on
+              <code>ipywidgets</code>.
+
+              Please note that it is important that the model checkpoint is written by the same use
+              case as the evaluation to ensure that the necessary keys match. If no checkpoint is provided by the EM
+              specialist, the evaluation will be conducted using the most recently trained model.
+            </p>
+
+            <h6>3.2. Evaluation</h6>
+            <p>
+              Evaluation is guided by the expertise of the DL specialist and does not require additional input from the
+              EM specialist. Each use case defines specific metrics tailored to the model's goals, with the DL
+              specialist selecting key metrics and methods that enable a comprehensive assessment of the model's
+              performance. To
+              support the EM specialist in making an informed decision about whether the model is ready for deployment
+              or requires further refinement, the DL specialist provides a clear explanation of what each metric or
+              method
+              measures and how it contributes to the evaluation process.
+            </p>
+
+          </div>
+
+          <button id="togglebtn-model-evaluation" class="button-55"
+            onclick="toggleVisibility('content-model-evaluation', 'togglebtn-model-evaluation')">Show More</button>
+          <p></p>
+
+
+        </div>
+
+
+
+
+        <div class="tabs">
+          <button class="tab-button-green active" id='dl-specialists-inference-btn'
+            onclick="toggleContent(event, 'em', 'dl-specialists-inference-btn', '.tab-button-green', 'em-specialist-inference', 'dl-specialist-inference')">
+            <img src="static/images/icon-virus.png" alt="EM Specialists" class="tab-icon">
+            EM Specialists
+          </button>
+          <button class="tab-button-green" id='em-specialists-inference-btn'
+            onclick="toggleContent(event, 'dl', 'em-specialists-inference-btn', '.tab-button-green', 'em-specialist-inference', 'dl-specialist-inference')">
+            <img src="static/images/icon-artificial-intelligence.png" alt="DL Specialists" class="tab-icon">
+            DL Specialists
+          </button>
         </div>
         <div class="green-background">
-          <h3>Data</h3>
-          <p>
-            Even though it is well known that large dataset sizes can drastically improve the performance of DL
-            models, more data does not always equate to better model performance. High-quality data is essential
-            for deriving meaningful correlations between inputs and outputs, providing a strong learning signal.
-            Models must also be robust against artifacts in EM data and generalize across different sampling
-            methods, detectors, and microscopes. Ensuring balanced occurrence and variance within datasets is
-            crucial. Achieving optimal model performance requires balancing data quality, variance, robustness,
-            and dataset size. This is vital because a trained model functions as a black box, making it difficult to
-            correct biases or errors later.
-          </p>
-          <button id="togglebtn-data" class="button-55"
-            onclick="toggleVisibility('content-data', 'togglebtn-data')">Show More</button>
+
+          <div id="em-specialist-inference" style="display: block;">
+            <h3>Inference</h3>
+            <p>
+              Inference is the process of using a thoroughly trained and tested deep learning model to make predictions
+              on new,
+              unseen data. It finally allows to use the model to support the analysis of EM data.
+            </p>
+            <h4>1. Define Data</h4>
+            <p>
+              To perform inference with a trained model, you first need to define the data you want the model to make
+              predictions on. This could be a specific set of EM data that you wish to analyze. The data can be provided
+              as a single file for prediction or as a folder containing multiple files, allowing for automatic
+              processing of all the included data. This flexibility ensures the model can handle both individual cases
+              and larger datasets efficiently.
+            </p>
+            <h4>2. Choose Model</h4>
+            <p>
+              The EM specialist is responsible for selecting a previously trained model for inference. This model should
+              be based on the best-performing hyperparameters identified during training. It is essential that the model
+              has been evaluated thoroughly according to the evaluation criteria provided by the DL expert, ensuring
+              that the evaluation results are promising. Only models with strong performance, as indicated by the
+              evaluation metrics, should be used for making predictions, ensuring reliable and accurate results.
+            </p>
+            <h4>2. Make Prediction</h4>
+            <p>
+              The model will be used to make predictions on the provided data. However, it's important to remember that
+              no trained model is perfect, and human oversight remains essential. The results generated by the model
+              should always be carefully checked for plausibility to ensure accuracy and reliability.
+            </p>
+
+
+          </div>
+
+          <div id="dl-specialist-inference" style="display: none;">
+            DL Specialist
+            <h3>Inference</h3>
+            <p></p>
+            <h4>1. Define Data</h4>
+            <h4>2. Choose Model</h4>
+            <h4>2. Make Prediction</h4>
+
+          </div>
 
 
         </div>
-        <div class="red-background">
-          <h3> Model</h3>
-          <p>
-            Model training is the process of teaching a DL model to recognize patterns in data by adjusting its
-            parameters to minimize prediction errors. Model evaluation assesses the trained model’s performance
-            on unseen data to determine its effectiveness and generalization capabilities, ensuring that it can
-            accurately predict outcomes in real-world scenarios.
-          </p>
-          <button id="togglebtn-model" class="button-55"
-            onclick="toggleVisibility('content-model', 'togglebtn-model')">Show More</button>
 
-
-        </div>
       </div>
     </div>
   </section>
