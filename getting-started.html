@@ -64,6 +64,8 @@
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
     }
 
+
+
     .button-55 {
       align-self: center;
       background-color: #fff;
@@ -342,7 +344,7 @@
       <div class="content has-text-justified">
         <p>
           In order to use the provided toolbox within Lighting AI Studios, a registration is required. Please setup an
-          user account by following this link: <a href="https://lightning.ai/sign-up">https://lightning.ai/sign-up</a>.
+          user account by following <a href="https://lightning.ai/sign-up">this link</a>.
           For further assistance during registration, please click the "Show More" button below.
         </p>
 
@@ -392,8 +394,8 @@
 
         <h2 class="title is-4">2. Pricing</h2>
         <p>Lighting AI Studios offers three plans: one free plan and two paid plans.
-          For details on the plans pleasefollow this link: <a
-            href="https://lightning.ai/pricing">https://lightning.ai/pricing</a></p>
+          For details on the plans please follow <a
+            href="https://lightning.ai/pricing">this link</a></p>
         <p>
           By completing the registration steps outlined above, you'll gain access to Lightning AI Studio's free plan,
           which includes 15 compute credits per month. This plan allows the use of a free, CPU-based Studio for up to 4
@@ -408,18 +410,152 @@
 
         <h2 class="title is-4">3. Use</h2>
         <div class="content has-text-justified">
+          <p>For getting started with one of the use cases go to our <a href="TODO">Use Case Subpage</a> and scroll down
+            to the use cases. Here the uses cases are structured into the introduced tasks of <b>Image to Value(s)</b>,
+            <b>Image to Image</b> and <b>2D to 3D<b>.
+          </p>
 
+          <button id="togglebtn-lighting-use" class="button-55"
+            onclick="toggleVisibility('lighting-use', 'togglebtn-lighting-use')">Show More</button>
+
+
+          <div id="lighting-use" class="hidden">
+            <p></p>
+            <img src="static/images/getting-started/Lighting-Use1.jpg" alt="Lighting-Use1" />
+            <p>Click on the purple "Open in Studio" button to get to the Use Cases project page. This will open up
+              Lightning Studio in a new tab.</p>
+
+            <img src="static/images/getting-started/Lighting-Use2.jpg" alt="Lighting-Use2" />
+            <p>You can now scan over the project page to get familiar with the basic idea of the use case. Once you are
+              familiar, again click on the purple "Open in Studio" button. This will now open the code
+              base.<b>Hint:</b>Lightning Studio is recommending to use the <a
+                href="https://www.google.com/chrome/?brand=YTUH&ds_kid=43700010867267964&gad_source=1&gclid=Cj0KCQiA4fi7BhC5ARIsAEV1YiZCXKp4ySN3htzjzgwy4fDM2j85ABMJ0P3R23K3CbcU8oHb1zurSGkaAirvEALw_wcB&gclsrc=aw.ds">Google
+                Chrome browser</a> for optimal support.</p>
+            <p>The code base will be duplicated into your own Lightning teamspace such that you are not directly working
+              on the published code base. This
+              allows you to make changes without interferring with the published use case.</p>
+            <p>Thanks to Lightning studio there is no additional setup required. The studio is published in such way
+              that it contains at least one example dataset for training your first model. Further, the studio
+              environment will have all dependencies installed, allowing you to get started right away.</p>
+            <img src="static/images/getting-started/Lighting-Use3.jpg" alt="Lighting-Use3" />
+            <p>In case you wish to change the GPU type you can do so on the top right corner as shown above. For a more
+              detailed documentation please see <a
+                href="https://lightning.ai/docs/overview/getting-started/studios-in-10-minutes">here.</a></p>
+
+            <img src="static/images/getting-started/Lighting-Use4.jpg" alt="Lighting-Use4" />
+            <p>We structure the code based on the introduced workflow. This means that each use case is published with
+              one <b>1_Development.ipynb</b> and one <b>2_Inference.ipynb</b>. For training your model open the
+              <b>1_Development.ipynb</b>. This will open a jupyter notebook, which might remind you of Google Colab.
+              Jupyter notebooks are able to combine text as well as code cells. You will need to follow the notebook
+              from top to bottom and execute each cell. Each step will be defined in detail within the notebook, if it
+              requires your additional input.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Use5.jpg" alt="Lighting-Use5" />
+            <p> To execute a cell (also called "run" a cell) you can hover the curser on the top left of the cell. An
+              arrow (&#9655;) will appear. Click on that arrow.
+            </p>
+            <p>Otherwise you can use a keyboard shortcut. First you will need to click inside the cell to select it.
+              By pressing <code>Ctrl</code>+<code>Enter</code>, the cell will be executed. If you press
+              <code>Shift</code>+<code>Enter</code>, the currently selected cell will be executed and the next cell will
+              be selected.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Use6.jpg" alt="Lighting-Use6" />
+            <p>If you wish to train multiple models, or if something goes wrong in the meantime, we recommend to start
+              fresh. To do so, restart the kernel as shown above and then again follow the notebook from top to bottom
+              executing each cell.
+            </p>
+
+            <p>Once you are finished with training your model you can go on to the <b>2_Inference.ipynb</b>. This
+              notebook should be used for the application of the model on new, unseen data - finally supporting the
+              analysis of EM data.</p>
+
+            <p>For further reading and a quick overview of how to use jupyter notebooks we recommend <a
+                href="https://colab.research.google.com/drive/16pBJQePbqkz3QFV54L4NIkOn1kwpuRrj#scrollTo=4pA2fSmgwMxr">this</a>
+              tutorial. It
+              is based on Google Colab, but it follows the same concepts, as our toolbox (similar to Google Colab) is
+              based on jupyter notebooks. Please skip the first sections and go directly to "Getting Started".</p>
+          </div>
         </div>
 
-        <h2 class="title is-4">4. Collaboration</h2>
+        <h2 class="title is-4">4. Upload Data</h2>
         <div class="content has-text-justified">
+          <p>In order to train you model on your labs specific data, you will need to upload it and structure it as
+            described within the notebook. To upload your data please follow the steps below. A more detailed
+            instruction can also be found <a href="https://lightning.ai/docs/overview/prep-data">here</a>.</p>
+          <button id="togglebtn-lighting-data" class="button-55"
+            onclick="toggleVisibility('lighting-data', 'togglebtn-lighting-data')">Show More</button>
 
+
+          <div id="lighting-data" class="hidden">
+            <p></p>
+            <img src="static/images/getting-started/Lighting-Data1.jpg" alt="Lighting-Data1" />
+            <p>To upload your own data for training, click on the icon as shown above on the right of the screen.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Data2.jpg" alt="Lighting-Data2" />
+            <p>Here you should select <code>studios</code> > <code>this studio</code> and finally navigate to where the
+              data should be placed.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Data3.jpg" alt="Lighting-Data3" />
+            <p>Once you navigated to the correct position (or somewhere inside the studio, as this can also be changed
+              later), click on the "Add data" button in the top right corner as shown above.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Data4.jpg" alt="Lighting-Data4" />
+            <p>You can now drag and drop the data for uploading. The upload of the data can take a while, depending on
+              the size of your dataset.</p>
+
+            <img src="static/images/getting-started/Lighting-Data5.jpg" alt="Lighting-Data5" />
+            <p>To go back to the codebase (which is referred to as "Studio" in the Lightning AI termonology) of the use
+              case, click on the icon on the right as shown above. </p>
+
+            <img src="static/images/getting-started/Lighting-Data6.jpg" alt="Lighting-Data6" />
+            <p>Once the data upload has finished,
+              you will be able to see the data within the Studio of the use case inside the
+              menue on the left side, as shown above. If the data is not yet placed at the correct position, you can
+              right-click it for
+              copy/cut/paste operations, or use the standard keyboard shortcuts like <code>Crtl</code>+<code>X</code>,
+              <code>Crtl</code>+<code>V</code>.
+            </p>
+          </div>
         </div>
 
-        <h2 class="title is-4">5. Upload Data</h2>
+        <h2 class="title is-4">5. Collaboration</h2>
         <div class="content has-text-justified">
+          <p>At some point within the process you probably wish to share the work with fellow collegues. This could be
+            for working together on improving the model training, or by allowing your collegues access to a model which
+            you've trained. This can be achieved easily using teamspaces of the Lightning AI studio. For an introduction
+            into what a teamspace is, please see <a
+              href="https://lightning.ai/docs/team-management/teamspaces">here</a>. For further details on how to enable
+            sharing see below.</p>
+          <button id="togglebtn-lighting-collaboration" class="button-55"
+            onclick="toggleVisibility('lighting-collaboration', 'togglebtn-lighting-collaboration')">Show More</button>
+
+
+          <div id="lighting-collaboration" class="hidden">
+            <p></p>
+            <img src="static/images/getting-started/Lighting-Collab2.jpg" alt="Lighting-Collab3" />
+            <p>For sharing the Studio of your current use case, you will first need to enable the sharing of this
+              Studio. This can be done by clicking in the top right on the <code>Share</code> button, and enable the
+              <code>Studio Access</code>.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Collab3.jpg" alt="Lighting-Collab3" />
+            <p>Next go to your teamspace. This can be done by clicking on the teamspace name in the top left corner.</p>
+
+            <img src="static/images/getting-started/Lighting-Collab4.jpg" alt="Lighting-Collab4" />
+            <p>Within your teamspace go to the top right corner and click <code>Invite</code> >
+              <code>Invite Member</code>. Note that the invited members are required to register with Lighting in order
+              to use the Studio.
+            </p>
+          </div>
 
         </div>
+
+
 
       </div>
 
@@ -445,13 +581,12 @@
         also offers paid options for faster, AI-assisted annotation. Whether used directly in the browser or set up
         locally, CVAT is an easy-to-use, flexible solution for efficient annotation.
         In the following we will explain how to setup CVAT in the browser. If you require a local setup please see their
-        documentation and follow this link: <a href="https://docs.cvat.ai/docs/administration/basics/installation/"></a>
+        documentation and follow: <a href="https://docs.cvat.ai/docs/administration/basics/installation/">this link</a>
       </p>
       <img src="static/images/getting-started/CVAT1.png" alt="CVAT1" />
 
       <h2 class="title is-4">1. Registration</h2>
-      In order to use CVAT Annotation registration is required. To register please follow this link:
-      https://app.cvat.ai/auth/register
+      In order to use CVAT Annotation registration is required. To register please follow <a href="https://app.cvat.ai/auth/register">this link</a>:
 
 
       <h2 class="title is-4">2. Pricing</h2>

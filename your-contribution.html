@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMDataset Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        pre {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>EMDataset Documentation</h1>
+
+    <h2>Overview</h2>
+    <p>
+        The <code>EMDataset</code> class is an abstract dataset class designed for deep learning tasks in the context of
+        Electron Microscopy (EM) data. It extends PyTorch's <code>Dataset</code> and provides a structured approach for:
+    </p>
+    <ul>
+        <li><strong>Data Loading:</strong> Handles loading raw data from specified file paths.</li>
+        <li><strong>Annotation Loading:</strong> Assumes raw data is paired with relevant metadata or annotations,
+            defined by <code>annotations_dir</code>.</li>
+        <li><strong>Preprocessing:</strong> Enables data preparation steps like denoising or contrast enhancement, which
+            are saved to disk for supervision by EM specialists.</li>
+        <li><strong>Postprocessing:</strong> Provides a mechanism for reconstructing results (e.g., stitching
+            predictions from patches into a full image).</li>
+    </ul>
+    <p>This class defines the structure and workflow for handling datasets, but specific behaviors (like loading data or
+        implementing postprocessing logic) must be customized by subclassing.</p>
+
+    <h2>Attributes</h2>
+    <ul>
+        <li><code>logger</code>: A logging object to handle messages and status updates during preprocessing.</li>
+        <li><code>data_paths</code>: A list of file paths to the raw or preprocessed data.</li>
+        <li><code>annotations_dir</code>: Directory to annotations.</li>
+        <li><code>transform</code>: An optional callable to apply transformations on the data.</li>
+    </ul>
+
+    <h2>Methods</h2>
+
+    <h3><code>__init__(self, logger, data_paths, split, size_train_split=0.6, annotations_dir=None, transform=None)</code>
+    </h3>
+    <p>Initializes the dataset, processes the data paths, and splits the dataset into training, validation, and test
+        sets.</p>
+    <ul>
+        <li><strong>Parameters:</strong>
+            <ul>
+                <li><code>logger</code> (<code>callable</code>): Logger for tracking preprocessing progress and dataset
+                    setup.</li>
+                <li><code>data_paths</code> (<code>list</code>): List of file paths to raw input data.</li>
+                <li><code>split</code> (<code>str</code>): Dataset split ("train", "val", or "test").</li>
+                <li><code>size_train_split</code> (<code>float</code>, optional): Fraction of the dataset to assign to
+                    the training split (default: <code>0.6</code>).</li>
+                <li><code>annotations_dir</code> (<code>str</code>, optional): Directory to annotations.</li>
+                <li><code>transform</code> (<code>callable</code>, optional): Transformations to apply to samples during
+                    data retrieval.</li>
+            </ul>
+        </li>
+    </ul>
+    <pre><code>dataset = EMDataset(logger=my_logger, data_paths=["file1.tif", "file2.tif"], split="train")</code></pre>
+
+    <h3><code>__len__(self)</code></h3>
+    <p>Returns the total number of samples in the dataset.</p>
+    <ul>
+        <li><strong>Returns:</strong>
+            <ul>
+                <li><code>int</code>: Number of samples.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3><code>__getitem__(self, index)</code></h3>
+    <p>Retrieves the <code>index</code>-th sample from the dataset.</p>
+    <ul>
+        <li><strong>Parameters:</strong>
+            <ul>
+                <li><code>index</code> (<code>int</code>): Index of the sample.</li>
+            </ul>
+        </li>
+        <li><strong>Returns:</strong>
+            <ul>
+                <li><code>object</code>: Processed data (e.g., image or tensor). The exact return type depends on the
+                    implementation of <code>load_data</code> and <code>transform</code>.</li>
+            </ul>
+        </li>
+    </ul>
+    <pre><code>
+# Example usage
+dataset[0]  # Retrieves the first sample.
+    </code></pre>
+
+    <h3><code>preprocess(self, data_paths)</code></h3>
+    <p>Preprocesses the input data (e.g., denoising, contrast enhancing). By default, it returns the input file paths
+        unchanged. This can be overridden in subclasses to implement custom preprocessing steps.</p>
+    <p>Note that the method should write the preprocessed data to disk. If possible, it should be saved in human
+        readable format (like images) such that the preprocessing steps can be supervised by the EM-specialist.</p>
+    <ul>
+        <li><strong>Parameters:</strong>
+            <ul>
+                <li><code>data_paths</code> (<code>list</code>): List of file paths to the raw input data.</li>
+            </ul>
+        </li>
+        <li><strong>Returns:</strong>
+            <ul>
+                <li><code>list</code>: List of file paths to the preprocessed data (default: input
+                    <code>data_paths</code>).
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <pre><code>
+def preprocess(self, data_paths):
+    # Default behavior: no preprocessing, return input file paths unchanged
+    return data_paths
+    </code></pre>
+
+    <h3><code>postprocess(self, predictions, **kwargs)</code></h3>
+    <p>Reconstructs the full-sized image or volume from model predictions. This method can be customized by defining
+        additional parameters for specific postprocessing tasks (e.g., patch stitching).</p>
+    <ul>
+        <li><strong>Parameters:</strong>
+            <ul>
+                <li><code>predictions</code> (<code>list</code>): List of predictions for individual patches.</li>
+                <li><code>**kwargs</code>: Additional parameters for custom postprocessing logic (e.g.,
+                    <code>original_shape</code>, <code>patch_positions</code>, <code>patch_size</code>).
+                </li>
+            </ul>
+        </li>
+        <li><strong>Returns:</strong>
+            <ul>
+                <li><code>torch.Tensor</code> or <code>np.ndarray</code>: The reconstructed full-sized image or volume.
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <pre><code>
+def postprocess(self, predictions, original_shape, patch_positions, patch_size):
+    full_image = stitch_patches(predictions, patch_positions, original_shape, patch_size)
+    return full_image
+    </code></pre>
+
+    <h3><code>load_data(self, file_path)</code></h3>
+    <p>Abstract method for loading raw data and its corresponding annotation from the specified file path. Must be
+        implemented by the subclass.</p>
+    <ul>
+        <li><strong>Parameters:</strong>
+            <ul>
+                <li><code>file_path</code> (<code>str</code>): File path to the data.</li>
+            </ul>
+        </li>
+        <li><strong>Returns:</strong>
+            <ul>
+                <li>The loaded data (e.g., image or tensor).</li>
+            </ul>
+        </li>
+    </ul>
+    <pre><code>
+def load_data(self, file_path):
+    return torch.load(file_path)
+    </code></pre>
+
+    <h3><code>check_datastructure(self, data_paths, annotations_dir)</code></h3>
+    <p>Checks that the provided data follows the expected structure. This method should be implemented by the subclass
+        to verify the structure of raw data and annotations.</p>
+    <ul>
+        <li><strong>Parameters:</strong>
+            <ul>
+                <li><code>data_paths</code> (<code>list</code>): List of file paths to the data.</li>
+                <li><code>annotations_dir</code> (<code>str</code>): Directory containing annotations.</li>
+            </ul>
+        </li>
+        <li><strong>Returns:</strong>
+            <ul>
+                <li><code>bool</code>: <code>True</code> if the data structure is correct, otherwise <code>False</code>.
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <pre><code>
+def check_datastructure(self, data_paths, annotations_dir):
+    # Implement custom logic to verify data structure
+    return True
+    </code></pre>
+
+    <h1>Logger Class Documentation</h1>
+
+    <div class="section">
+        <h2>Introduction</h2>
+        <p>The <strong>Logger</strong> class is designed to simplify the process of logging various aspects of model
+            training and evaluation. It ensures that the relevant information is saved in a structured format, which can
+            later be reviewed to monitor training progress and results. This class requires minimal setup and can be
+            easily extended to suit specific needs.</p>
+        <p>Within our template, we provide a simple logger that does not require additional setup for electron
+            microscopy (EM) specialists. The logger creates a folder at <code>./logs/current-datetime/</code> to store
+            logs.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Features</h2>
+        <p>The logger automatically saves the following information in its log directory:</p>
+        <ul>
+            <li>Used hyperparameters (in <code>hyperparameters.json</code>)</li>
+            <li>The best performing model checkpoint (based on validation loss)</li>
+            <li>Training and validation loss curves (in <code>training_curves.png</code>)</li>
+            <li>Qualitative visualizations of sampled validation images</li>
+            <li>Test metrics (in <code>test_metrics.json</code>)</li>
+            <li>Qualitative visualizations of sampled test images</li>
+        </ul>
+        <p>The logger also supports resource usage logging, including CPU, RAM, and GPU memory usage.</p>
+    </div>
+
+    <div class="section">
+        <h2>Class Overview</h2>
+        <p>The <strong>Logger</strong> class provides a set of methods to log different aspects of the training process.
+            Here’s an overview of the key methods available:</p>
+        <ul>
+            <li><strong><code>__init__()</code></strong>: Initializes the logger, creates directories for logs, and sets
+                up logging configuration.</li>
+            <li><strong><code>log_info(message)</code></strong>: Logs an informational message to both stdout and the
+                log file.</li>
+            <li><strong><code>log_warning(message)</code></strong>: Logs a warning message to both stdout and the log
+                file.</li>
+            <li><strong><code>log_error(message)</code></strong>: Logs an error message to stderr and the log file.</li>
+            <li><strong><code>log_hyperparameters(hyperparams)</code></strong>: Saves hyperparameters to a JSON file.
+            </li>
+            <li><strong><code>save_checkpoint(model, val_loss, epoch)</code></strong>: Saves the best-performing model
+                checkpoint based on validation loss.</li>
+            <li><strong><code>plot_training_curves(train_loss, val_loss)</code></strong>: Plots and saves training and
+                validation loss curves.</li>
+            <li><strong><code>log_test_metrics(metrics)</code></strong>: Logs test metrics to a JSON file.</li>
+            <li><strong><code>get_resource_usage()</code></strong>: Logs system resource usage including CPU, RAM, and
+                GPU memory (if available).</li>
+            <li><strong><code>log_resource_usage()</code></strong>: Saves the resource usage information to a log file.
+            </li>
+            <li><strong><code>save_sample_images(**kwargs)</code></strong>: A placeholder method to save qualitative
+                visualizations of sampled images (requires implementation by the DL specialist).</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Method Details</h2>
+        <h3><code>__init__()</code></h3>
+        <p>Initializes the logger, creates necessary directories for logs, and sets up file and stream logging handlers.
+        </p>
+        <pre><code>
+def __init__(self):
+    # Creates directories for logs, checkpoints, plots, and samples
+    # Sets up the logging handlers for logging to both file and stdout
+</code></pre>
+
+        <h3><code>log_info(message)</code></h3>
+        <p>Logs an informational message to both stdout and the log file.</p>
+        <pre><code>
+def log_info(self, message):
+    self.logger.info(message)
+    print(f"[INFO] {message}")
+</code></pre>
+
+        <h3><code>log_warning(message)</code></h3>
+        <p>Logs a warning message to both stdout and the log file.</p>
+        <pre><code>
+def log_warning(self, message):
+    self.logger.warning(message)
+    print(f"[WARNING] {message}")
+</code></pre>
+
+        <h3><code>log_error(message)</code></h3>
+        <p>Logs an error message to stderr and the log file.</p>
+        <pre><code>
+def log_error(self, message):
+    self.logger.error(message)
+    print(f"[ERROR] {message}", file=sys.stderr)
+</code></pre>
+
+        <h3><code>log_hyperparameters(hyperparams)</code></h3>
+        <p>Saves hyperparameters to a JSON file in the log directory.</p>
+        <pre><code>
+def log_hyperparameters(self, hyperparams):
+    hyperparams_path = os.path.join(self.log_dir, "hyperparameters.json")
+    with open(hyperparams_path, "w") as f:
+        json.dump(hyperparams, f, indent=4)
+    self.log_info(f"Hyperparameters saved to {hyperparams_path}")
+</code></pre>
+
+        <h3><code>save_checkpoint(model, val_loss, epoch)</code></h3>
+        <p>Saves the model checkpoint with the best validation loss.</p>
+        <pre><code>
+def save_checkpoint(self, model, val_loss, epoch):
+    checkpoint_path = os.path.join(self.checkpoints_dir, f"best_model_epoch_{epoch}.pth")
+    torch.save(model.state_dict(), checkpoint_path)
+    self.log_info(f"Checkpoint saved: {checkpoint_path} (Validation Loss: {val_loss:.4f})")
+</code></pre>
+
+        <h3><code>plot_training_curves(train_loss, val_loss)</code></h3>
+        <p>Plots and saves the training and validation loss curves.</p>
+        <pre><code>
+def plot_training_curves(self, train_loss, val_loss):
+    plt.figure()
+    plt.plot(train_loss, label="Train Loss")
+    plt.plot(val_loss, label="Validation Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.legend()
+    plt.title("Training and Validation Loss")
+    
+    plot_path = os.path.join(self.plots_dir, "training_curves.png")
+    plt.savefig(plot_path)
+    plt.close()
+    self.log_info(f"Training curves saved to {plot_path}")
+</code></pre>
+
+        <h3><code>log_test_metrics(metrics)</code></h3>
+        <p>Logs test metrics to a JSON file.</p>
+        <pre><code>
+def log_test_metrics(self, metrics):
+    metrics_path = os.path.join(self.log_dir, "test_metrics.json")
+    with open(metrics_path, "w") as f:
+        json.dump(metrics, f, indent=4)
+    self.log_info(f"Test metrics saved to {metrics_path}")
+</code></pre>
+
+        <h3><code>get_resource_usage()</code></h3>
+        <p>Logs the current system and GPU resource usage (if available).</p>
+        <pre><code>
+def get_resource_usage(self):
+    # Logs CPU and memory usage, GPU memory (if available)
+    resources = { ... }
+    return resources, resources_str
+</code></pre>
+
+        <h3><code>log_resource_usage()</code></h3>
+        <p>Saves resource usage information to a log file.</p>
+        <pre><code>
+def log_resource_usage(self):
+    resources, resources_str = self.get_resource_usage()
+    with open(resource_log_path, "a") as f:
+        f.write(f"{timestamp}: {resources_str}")
+</code></pre>
+
+        <h3><code>save_sample_images(**kwargs)</code></h3>
+        <p>This method must be implemented by the DL specialist. It allows saving qualitative visualizations of sampled
+            images.</p>
+        <pre><code>
+def save_sample_images(self, **kwargs):
+    raise NotImplementedError("This method must be implemented by the DL specialist.")
+</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Extending the Logger</h2>
+        <p>The logger class can be extended to include additional logging functionality. If you decide to use external
+            tools for logging, please provide detailed documentation to ensure that the EM specialists can understand
+            how to use the logging system effectively.</p>
+        <p>To extend the logger, modify the <code>src/Logger.py</code> file and implement new logging methods as needed.
+        </p>
+    </div>
+
+</body>
+
+</html>
