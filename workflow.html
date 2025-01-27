@@ -382,139 +382,24 @@
     </div>
   </nav>
 
-
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <img src="static/images/icon.png"
-              alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
-
-            <h1 class="title is-1 publication-title">DEEP-EM TOOLBOX:</h1>
-            <h2 class="title is-1 publication-title">Deep Learning Toolbox for Electron Microscopy Researchers</h2>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
-                  Kniesel</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan
-                  Payer</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam Poonam</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="" target="_blank">Tim Bergner</a><sup>2</sup>,
-              </span>
-
-              <span class="author-block">
-                <a href="https://phermosilla.github.io/" target="_blank">Pedro Hermosilla</a><sup>3</sup>
-              </span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
-                  Ropinski</a><sup>1</sup>,
-              </span>
-
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm University<br><sup>2</sup>Central
-                Facility for Electron Microscopy, Ulm University<br><sup>3</sup>Computer Vision Lab, TU Vienna</span>
-              <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- Arxiv PDF link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Paper abstract -->
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-
-          <div class="content has-text-justified">
-
-            <p>
-              Despite advancements in <abbr title="Computer Vision">CV</abbr>, the application of Deep Learning
-              (<abbr title="Deep Learning">DL</abbr>) in Electron Microscopy (<abbr
-                title="Electron Microscopy">EM</abbr>) labs remains limited.
-              We believe this is due to the interdisciplinary nature of EM, where expertise in data collection and
-              annotation resides in EM labs,
-              while expertise in model development and evaluation methods lies within DL labs.
-            </p>
-            <p>
-              To bridge this gap, we introduce the <strong>DEEP-EM TOOLBOX</strong>, disentangling the
-              complexities of DL for EM.
-              The toolbox provides a simple workflow for implementing DL solutions, separating low-level training
-              details from high-level execution.
-              This enables EM experts to train their own models while allowing DL experts to implement training and
-              evaluation methods with minimal overhead.
-            </p>
-            <p>
-              Specialized solutions within the toolbox facilitate the training of lab-specific models by categorizing
-              use cases into tasks
-              based on model input/output. We showcase one example use case for each task, designed to be easily
-              adaptable within EM labs.
-            </p>
-            <p>
-              The toolbox also encourages contributions from the research community. By following the provided workflow,
-              these contributions
-              become accessible to both the DL and EM communities, fostering collaboration.
-            </p>
-            <p>
-              The DEEP-EM TOOLBOX includes a dedicated webpage featuring the paper's main objectives, getting-started
-              tutorials, detailed
-              documentation for each use case, and guidance on contributing original work.
-            </p>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p>
-      <strong>Main Objective:</strong> Our primary objective is to equip Electron Microscopy (EM) experts with tools
-      developed by Deep Learning (DL) experts,
-      enabling them to create specialized solutions within their EM labs. This approach facilitates the adaptation
-      of existing methods to new appearances of the data (for example due to new sample preparation techniques,
-      different detectors or different modalities)
-      based on the lab's specific needs. It allows training on lab-specific data and customization
-      of tasks by simply providing data aligned with the lab's interests and requirements.
-      The workflow enables the adoption of DL solutions without requiring any additional implementation effort.
-    </p>
-
-  </section>
-  <!-- End paper abstract -->
-
-
-
-
-
-
   <!--Workflow -->
   <section class="section hero">
     <div class="container is-max-desktop content">
       <h2 class="title is-3">Workflow</h2>
+      <p>
+        Our workflow standardizes the process of implementing deep learning (DL) use cases for electron microscopy
+        (EM). It is designed for DL experts by streamlining training, testing, and inference through a PyTorch-based
+        toolbox with a jupyter notebook based interface for easy use by EM experts.
+        DL experts can easily contribute their own use cases using <a href="TODO">our template</a>. This approach
+        enables
+        electron
+        microscopists to work with a single, user-friendly implementation to get more familiar in the area of deep
+        learning,
+        while simplifying the development process for DL
+        specialists.
+      </p>
       <div class="hero-body">
+
         <img src="static/images/workflow/workflow.jpg" alt="deep learning workflow in the context of EM." />
         <h6 class="subtitle has-text-centered">
           Figure 1: We propose a simple workflow for developing deep learning solutions for the supported analysis of EM
@@ -531,21 +416,13 @@
               href="https://www.flaticon.com/free-icons/inference" title="inference icons">Inference icons created by
               Freepik - Flaticon</a></i></p>
       </div>
-      <div class="content has-text-justified">
-        <p>
-          <strong>Main Objective:</strong> Our primary objective is to equip Electron Microscopy (EM) experts with tools
-          developed by Deep Learning (DL) experts,
-          enabling them to create specialized solutions within their EM labs. This approach facilitates the adaptation
-          of existing methods to new appearances of the data (for example due to new sample preparation techniques,
-          different detectors or different modalities)
-          based on the lab's specific needs. It allows training on lab-specific data and customization
-          of tasks by simply providing data aligned with the lab's interests and requirements.
-          The workflow enables the adoption of DL solutions without requiring any additional implementation effort.
-        </p>
 
-        <p>Abstract</p>
-        <p>Include: How to get started with first use case. </p>
-        <p>Terminology</p>
+      <p>In the following, we will introduce the steps of the workflow to EM specialists as well as DL specialists.
+        Please open the corresponding tab when reading.</p>
+      <div class="content has-text-justified">
+
+
+        <p></p>
 
 
         <div class="tabs">
@@ -876,78 +753,95 @@
           <p>
             Model training focuses on creating and optimizing deep learning models to solve specific EM tasks. It
             includes configuring the
-            training process, monitoring progress, and refining parameters to maximize performance.
-            Contributing your work as a DL specialist, this is where your main expertise will come into play.
+            training process, monitoring progress, refining modelparameters and finding a well suited set of
+            hyperparameters to maximize performance.
           </p>
           <p></p>
 
           <div class="hidden" id="content-model-training-dl">
 
-            <h6>2.1. Setup Logging</h6>
+            <h6>2.1. Hyperparameter Tuning</h6>
             <p>
-              Logging plays a crucial role in tracking the training process, providing insights into
-              key metrics such as loss, accuracy, and other important indicators. Well-maintained logs help optimize the
-              model and identify potential issues, such as overfitting.
+              Hyperparameters are adjustable parameters in machine
+              learning and deep learning models that are set before training begins. Unlike model parameters, which
+              are learned from the training data (e.g., weights in a neural network), hyperparameters are defined by
+              the user and govern the learning process or model structure.
+              Hence, hyperparameter tuning is a crucial process that can significantly enhance the performance
+              of a deep learning model. It aims to find the best suited hyperparameters by leveraging a structured
+              search.
+              Specifically, when the dataset and hence the aim of the model is changed a hyperparameter seach is
+              required.
+              Successful tuning requires collaboration between DL and EM experts.
+              Therefore, our toolbox simplifies this process by implementing an automatic hyperparameter search over a
+              predefined search space.
+              All hyperparamters of each use case are introduced within the corresponding notebook.
+              The DL experts and developer of the notebooks will give a short explanation about each hyperparameter and
+              its possible influence.
+              A simple form, defined within the `1_Development.ipynb` of each use case, can be used to define the seach
+              space over which
+              hyperparameters will be tuned. However, for
+              inexperienced users, the DL developers provide a default setup of a search space which can be used without
+              additional interaction.
             </p>
+
+            <h6>2.2. Training and Validation</h6>
             <p>
-              In our use cases, logging is implemented using both standard output and a local logging directory at
-              <code>logs/current-datetime/</code>. While there are many advanced tools available to streamline the
-              logging process, we chose not to use them to avoid additional setup overhead for EM specialists. By
-              utilizing standard output and a local log directory, we simplify the process without sacrificing essential
-              information. The logs capture the following key data:
+              The training and validation of the model are primarily handled by deep learning experts. However, the
+              logging module in our workflow provides EM specialists with an accessible way to gain insights into the
+              training and validation process. Well-maintained logs help optimize the
+              model and identify potential issues, such as overfitting or bias within data. By overseeing the process
+              through the logger class, EM specialists can develop a
+              fundamental understanding, fostering a solid foundation for effective collaboration.
+            </p>
+
+            <p>
+              In our workflow, logging is implemented using both standard output and a local logging directory at
+              <code>logs/data-current-datetime/</code>.
+              The logs capture the following key data:
             </p>
             <ul>
-              <li>Hyperparameters of the run</li>
-              <li>Model checkpoints</li>
-              <li>Training/validation curves</li>
-              <li>Qualitative visualization of validation images</li>
-              <li>Results on test metrics</li>
-              <li>Qualitative visualization of test images</li>
+              <li><strong>Hyperparameters of the run</strong>: The used hyperparameters are saved at
+                <code>log-path/TrainingRun/hyperparameters.json</code>. For more details see the section above
+                (2.1.)
+              </li>
+              <li><strong>Model checkpoints</strong>: Model checkpoints are saved snapshots of a model's state (e.g.,
+                weights and biases) at a specific point during training. They allow you to resume training from that
+                point or use the saved model for inference, ensuring progress isn't lost if training is interrupted. We
+                save the best model, according to the validation loss in
+                <code>log-path/TrainingRun/checkpoints/best_model.pth</code>, which will be loaded for inference.
+                Additionally, we save the latest model checkpoint for possible resuming of training in
+                <code>log-path/TrainingRun/checkpoints/latest_model.pth</code>
+              </li>
+              <li><strong>Training/validation curves</strong>: Training/validation curves are being saved at
+                <code>log-path/TrainingRun/plots/training_curves.png</code>. These graphs show how a
+                model's performance changes over time during training, by plotting the models loss
+                against epochs. They help diagnose overfitting, underfitting, or other issues by comparing the model's
+                performance on the training data (training curve) versus unseen validation data (validation curve).
+                These loss curves can be noisy (going up-and-down) but they should generally decrease over the training
+                time (along the x-axis).
+              </li>
+              <li><strong>Qualitative visualization of validation images</strong>: Qualitative visualization of
+                validation images involves displaying sample images from the validation dataset alongside the model's
+                predictions. These images can be found at <code>log-path/TrainingRun/samples/</code> This helps users
+                visually assess the model's performance, such as how well it identifies
+                objects or segments regions, highlighting strengths and weaknesses in a more intuitive way.</li>
+              <li><strong>Results on test metrics</strong>: Results on test metrics refer to the quantitative evaluation
+                of a model's performance on a separate, unseen test dataset. These metrics provide an objective measure
+                of how well the model
+                generalizes to new data and performs its intended task. You can find these results at
+                <code>log-path/TrainingRun/?/</code>
+              </li>
+              <li><strong>Qualitative visualization of test images</strong>: Qualitative visualization of test images
+                involves showcasing examples from the test dataset alongside the model's predictions, allowing users to
+                see how the model performs on completely unseen data. Again, these images can be found at
+                <code>log-path/TrainingRun/samples/</code>. It provides an intuitive, visual way to evaluate
+                strengths, weaknesses, and any patterns in the model's behavior beyond numerical metrics.
+              </li>
             </ul>
-
-            <p>
-              When contributing your own use case, we provide a Logger class within our template, which you can find <a
-                href="TODO">here</a>. We recomment to use this Logger class to achieve standardized logging.
-              If needed, you can extend this logger class.
-              We also allow the use of more advanced tools. However, if you descide to use these tools, we require you
-              to document their use in detail and provide a simple "getting started" guide.
+            <p>Additional text logs are being saved to <code>log-path/TrainingRun/log.txt</code> and
+              <code>log-path/log.txt</code>
             </p>
 
-            <h6>2.2. Define Hyperparameters</h6>
-            <p>
-              <strong>Hyperparameter tuning</strong> is a crucial process that can significantly enhance the performance
-              of a deep learning model.
-              Successful tuning requires collaboration between <strong>DL</strong> and <strong>EM</strong> experts.
-              To streamline this process, we request that contributors document all key hyperparameters in their code.
-            </p>
-
-            <p>
-              Adjusting hyperparameters should not require direct changes to the code. To achieve this, we recommend
-              utilizing
-              <code>ipywidgets</code>
-              (<a href="https://ipywidgets.readthedocs.io/en/stable/">documentation available here</a>).
-              Each hyperparameter should include a brief explanation along with practical tips to help EM specialists select
-              optimal settings.
-            </p>
-
-            <p>
-              Our template includes a simple implementation of <code>ipywidgets</code> to facilitate this process. You
-              can find the template
-              <a href="TODO">here</a>.
-            </p>
-
-
-
-
-
-
-
-            <h6>2.3. Training and Validation</h6>
-            <p>
-              Training and Validation heavily depends on the goal and method of your contributed use case. 
-              We do not make special requirements during this step regarding the method. 
-              We provide a Model class within our <a href="TODO">template</a> which takes care of required steps such as logging and checkpoint saving. 
-            </p>
           </div>
 
           <button id="togglebtn-model-training-dl" class="button-55"
@@ -961,35 +855,30 @@
             Model evaluation assesses the trained model's performance using specific metrics to determine its
             effectiveness in solving the target task.
             This step ensures the model meets the requirements for deployment or further refinement.
+            The way, how a model is being evaluated heavily depends on the model goal or aim. This will hence be
+            provided by the DL expert within each use case.
           </p>
           <p></p>
 
           <div class="hidden" id="content-model-evaluation-dl">
             <h6>3.1. Choose Model</h6>
-            <p>
-              Within each training run, the use cases are designed to automatically select the best performing model
-              based on the validation loss. However, the use case implementation also needs to provide the flexibility to test
-              previously trained models by supplying the corresponding model checkpoint by the EM specialists.
-
-              This
-              feature is particularly
-              useful for hyperparameter tuning.
-
-              Again, the model checkpoint can be defined by the EM specialist via a graphical user interface based on
-              <code>ipywidgets</code>.
-
-              If no checkpoint is provided by the EM
-              specialist, the evaluation will need to be conducted using the most recently trained model.
+            <p>Our workflow implementation typically selects the most recently trained model for evaluation. However, we
+              also provide the flexibility to test previously trained models by an optional input by the EM specialist,
+              based on a simple text input form.
             </p>
+           
 
             <h6>3.2. Evaluation</h6>
             <p>
-              Evaluation needs to be guided by the expertise of the DL specialist and should not require additional input from the
-              EM specialist. Each use case should define specific metrics or evaluation methods tailored to the model's goals, with the DL
+              The evaluation od the model is guided by the expertise of the DL specialist and does not require additional
+              input from the
+              EM specialist. Each use case defines specific metrics or evaluation methods tailored to the model's
+              goals, with the DL
               specialist selecting these key metrics and methods that enable a comprehensive assessment of the model's
               performance. To
               support the EM specialist in making an informed decision about whether the model is ready for deployment
-              or requires further refinement, the DL specialist needs to provide a clear explanation of what each metric or
+              or requires further refinement, the DL specialist provides a clear explanation of what each metric
+              or
               method
               measures and how it contributes to the evaluation process.
             </p>
@@ -997,7 +886,8 @@
           </div>
 
           <button id="togglebtn-model-evaluation-dl" class="button-55"
-            onclick="toggleVisibility('content-model-evaluation-dl', 'togglebtn-model-evaluation-dl')">Show More</button>
+            onclick="toggleVisibility('content-model-evaluation-dl', 'togglebtn-model-evaluation-dl')">Show
+            More</button>
           <p></p>
 
 
@@ -1056,12 +946,13 @@
           <div id="dl-specialist-inference" style="display: none;">
             DL Specialist
             <h3>Inference</h3>
-            <p>During inference EM specialists are able to choose a thoroughly trained and tested deep learning model to make predictions
+            <p>During inference EM specialists are able to choose a thoroughly trained and tested deep learning model to
+              make predictions
               on new,
               unseen data. It finally allows to use the model to support the analysis of EM data.</p>
             <h4>1. Define Data</h4>
-            <p>             
-              The EM specialist is able to provide the data 
+            <p>
+              The EM specialist is able to provide the data
               as a single file for prediction or as a folder containing multiple files, allowing for automatic
               processing of all the included data. This flexibility ensures the model can handle both individual cases
               and larger datasets efficiently.
@@ -1071,11 +962,12 @@
               The EM specialist is responsible for selecting a previously trained model for inference. This model should
               be based on the best-performing hyperparameters identified during training. It is essential that the model
               has been evaluated thoroughly according to the evaluation criteria provided by the DL expert, ensuring
-              that the evaluation results are promising. 
+              that the evaluation results are promising.
             </p>
             <h4>2. Make Prediction</h4>
             <p>
-              DL experts need to implement the functionality of making predictions based on the defined model and data of the EM specialist.
+              DL experts need to implement the functionality of making predictions based on the defined model and data
+              of the EM specialist.
             </p>
           </div>
 

@@ -40,6 +40,13 @@
   <style>
     .hidden {
       display: none;
+      padding: 20px;
+      background-color: rgb(202, 202, 202);
+      /* Treat the container as an inline block */
+      text-align: center;
+      /* Center horizontally */
+      vertical-align: middle;
+      /* Vertical centering */
     }
 
     button.round-button {
@@ -189,14 +196,14 @@
       var content = document.getElementById(id_content);
       var btn = document.getElementById(id_button);
 
-
-      if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
-        btn.innerHTML = "Show Less"
+      if (content.style.display === "none" || content.style.display === "") {
+        // If the content is hidden, show it
+        content.style.display = "inline-block";
+        btn.innerHTML = "Show Less";
       } else {
-        content.classList.add('hidden');
-        btn.innerHTML = "Show More"
-
+        // If the content is shown, hide it
+        content.style.display = "none";
+        btn.innerHTML = "Show More";
       }
     }
 
@@ -236,12 +243,16 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
 
-        <a class="navbar-item" href="#getting-started">
-          Getting Started
+        <a class="navbar-item" href="#workflow">
+          Workflow
         </a>
 
         <a class="navbar-item" href="#use-cases">
           Use Cases
+        </a>
+
+        <a class="navbar-item" href="#getting-started">
+          Getting Started
         </a>
 
         <a class="navbar-item" href="#your-contribution">
@@ -251,73 +262,29 @@
     </div>
   </nav>
 
-
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <img src="static/images/icon.png"
-              alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
-
-            <h1 class="title is-1 publication-title">DEEP-EM TOOLBOX:</h1>
-            <h2 class="title is-1 publication-title">Getting Started</h2>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
-                  Kniesel</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan
-                  Payer</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam Poonam</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="" target="_blank">Tim Bergner</a><sup>2</sup>,
-              </span>
-
-              <span class="author-block">
-                <a href="https://phermosilla.github.io/" target="_blank">Pedro Hermosilla</a><sup>3</sup>
-              </span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
-                  Ropinski</a><sup>1</sup>,
-              </span>
-
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm University<br><sup>2</sup>Central
-                Facility for Electron Microscopy, Ulm University<br><sup>3</sup>Computer Vision Lab, TU Vienna</span>
-              <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- Arxiv PDF link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+  <section class="section hero">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">Getting Started</h2>
+      <div class="content has-text-justified">
+        <p>
+          Our <strong>DEEP-EM playground</strong> leverages two powerful external tools to ensure accessibility and ease of use for everyone:
+        </p>
+        <ol>
+          <li>
+            <strong>Lightning AI</strong>: This platform provides seamless access to our use cases, enabling effortless collaboration and utilization of GPU environments directly within your browser.
+          </li>
+          <li>
+            <strong>CVAT (Computer Vision Annotation Tool)</strong>: This tool simplifies the process of annotating your own data, making it straightforward and efficient.
+          </li>
+        </ol>
+        <p>
+          In the sections below, we provide a brief introduction to help you get started with each of these tools.
+        </p>
+        <p>Before starting off with your first use case, make sure to read the content at <a href="TODO">Workflow</a> carefully.</p>
       </div>
     </div>
   </section>
 
-
-
-
-
-  <!--Workflow -->
   <section class="section hero is-light">
     <div class="container is-max-desktop content">
       <h2 class="title is-3">Lightning AI Studio</h2>
@@ -394,8 +361,7 @@
 
         <h2 class="title is-4">2. Pricing</h2>
         <p>Lighting AI Studios offers three plans: one free plan and two paid plans.
-          For details on the plans please follow <a
-            href="https://lightning.ai/pricing">this link</a></p>
+          For details on the plans please follow <a href="https://lightning.ai/pricing">this link</a></p>
         <p>
           By completing the registration steps outlined above, you'll gain access to Lightning AI Studio's free plan,
           which includes 15 compute credits per month. This plan allows the use of a free, CPU-based Studio for up to 4
@@ -490,6 +456,10 @@
 
           <div id="lighting-data" class="hidden">
             <p></p>
+
+            <h4>Upload your own data</h4>
+
+
             <img src="static/images/getting-started/Lighting-Data1.jpg" alt="Lighting-Data1" />
             <p>To upload your own data for training, click on the icon as shown above on the right of the screen.
             </p>
@@ -520,6 +490,41 @@
               copy/cut/paste operations, or use the standard keyboard shortcuts like <code>Crtl</code>+<code>X</code>,
               <code>Crtl</code>+<code>V</code>.
             </p>
+
+
+            <div style="text-align: left;">
+              <h4>Notes on Data Ownership & Security with Lightning AI</h4>
+
+              <h5>Key Points</h5>
+              <p>When using Lightning AI’s services, here are the important aspects related to your data:</p>
+
+              <ul>
+                <li><strong>Data Ownership:</strong> You retain ownership of your data and models (referred to as
+                  "Customer Models"). Lightning AI does not own them.</li>
+                <li><strong>Access to Your Models:</strong> Lightning AI has administrative access to your models only
+                  for operational purposes (like support or troubleshooting), not for unauthorized use.</li>
+                <li><strong>Performance Data:</strong> Lightning AI can use performance data (e.g., how well your models
+                  perform) for any purpose, but not your original models.</li>
+                <li><strong>Security Measures:</strong> Lightning AI commits to using commercial-grade security measures
+                  to protect your data. If there's a breach, they will notify you promptly.</li>
+              </ul>
+
+              <h5>What Does This Mean for Your Sensitive Data?</h5>
+              <p>While Lightning AI ensures they won't access your models for unauthorized purposes, they will have
+                access to them for providing the services you requested, such as technical support. They are required to
+                protect your data with appropriate security measures and notify you if there’s a breach.</p>
+
+              <p><span class="important">Important:</span> If you upload sensitive data, it’s recommended to understand
+                their security protocols. You are also responsible for ensuring you
+                have the legal rights to the data you upload.</p>
+
+              <p>Ultimately, if you are concerned about privacy, review their security policies and ensure your data
+                handling complies with relevant regulations. You can find further details <a
+                  href="https://lightning.ai/policies/terms-of-service/">here</a> and <a
+                  href="https://lightning.ai/policies/privacy-policy/">here</a>.</p>
+
+            </div>
+
           </div>
         </div>
 
@@ -586,7 +591,8 @@
       <img src="static/images/getting-started/CVAT1.png" alt="CVAT1" />
 
       <h2 class="title is-4">1. Registration</h2>
-      In order to use CVAT Annotation registration is required. To register please follow <a href="https://app.cvat.ai/auth/register">this link</a>:
+      In order to use CVAT Annotation registration is required. To register please follow <a
+        href="https://app.cvat.ai/auth/register">this link</a>:
 
 
       <h2 class="title is-4">2. Pricing</h2>

@@ -234,12 +234,16 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
 
-        <a class="navbar-item" href="#getting-started">
-          Getting Started
+        <a class="navbar-item" href="#workflow">
+          Workflow
         </a>
 
         <a class="navbar-item" href="#use-cases">
           Use Cases
+        </a>
+
+        <a class="navbar-item" href="#getting-started">
+          Getting Started
         </a>
 
         <a class="navbar-item" href="#your-contribution">
@@ -250,89 +254,33 @@
   </nav>
 
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <img src="static/images/icon.png"
-              alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
-
-            <h1 class="title is-1 publication-title">DEEP-EM TOOLBOX:</h1>
-            <h2 class="title is-1 publication-title">Use Cases</h2>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
-                  Kniesel</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/tristan-payer/" target="_blank">Tristan
-                  Payer</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/poonam/" target="_blank">Poonam Poonam</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="" target="_blank">Tim Bergner</a><sup>2</sup>,
-              </span>
-
-              <span class="author-block">
-                <a href="https://phermosilla.github.io/" target="_blank">Pedro Hermosilla</a><sup>3</sup>
-              </span>
-              <span class="author-block">
-                <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
-                  Ropinski</a><sup>1</sup>,
-              </span>
-
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm University<br><sup>2</sup>Central
-                Facility for Electron Microscopy, Ulm University<br><sup>3</sup>Computer Vision Lab, TU Vienna</span>
-              <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
-            </div>
-
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <!-- Arxiv PDF link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
 
   <!--Links -->
-  <section class="section hero is-light">
+  <section class="section hero">
     <div class="container is-max-desktop content">
       <div class="content has-text-justified">
+        <h1>Use Cases</h1>
 
 
 
 
         <p>
-          In deep learning for electron microscopy (EM), we categorize use cases into three main tasks based on model
-          inputs and outputs: 1) Image to Value(s), 2) Image to Image, and 3) 2D to 3D. For each of these tasks, we
-          implement and demonstrate a specific use case. The implementation follows a structured schema, referred to as
-          "Workflow" in our <a href="TODO">paper</a> which abstracts the complexities while offering maximum flexibility
-          for developers.
-          This workflow enables a straightforward setup process: EM specialists can easily follow the <a
-            href="TODO">"Getting Started"</a>
-          page to set up data and run the code, while deep learning developers can efficiently implement their methods
-          with minimal additional overhead. For more details on contributing and utilizing the workflow, please see <a
-            href="TODO">here</a>.
+          In deep learning for electron microscopy (EM), we classify use cases into three primary tasks based on model
+          inputs and outputs:
         </p>
+        <ol>
+          <li>Image to Value(s)</li>
+          <li>Image to Image</li>
+          <li>2D to 3D</li>
+        </ol>
+        <p>
+          For each task, we provide a specific use case demonstration. Our <a href="TODO">workflow</a> makes it easy to
+          adapt these use cases to your needs in a plug-and-play fashion: simply swap the annotated data to address a
+          different problem.
+          For example, a semantic segmentation model trained to segment cell nuclei can be adapted to segment
+          mitochondria with sufficient training data.
+        </p>
+
       </div>
       <div class="hero-body">
         <img src="static/images/tasks.png" alt="Categories of deep learning tasks in the context of EM." />
@@ -341,20 +289,23 @@
           method into <strong>Image to Value(s)</strong>, <strong>Image to Image</strong> and <strong>2D to 3D</strong>.
           For each category, we introduce one exemplary notebooks, tackling EM specific challenges. </h6>
       </div>
-    </div>
-  </section>
 
-  <section class="section hero">
-    <div class="container is-max-desktop content">
-      <p></p>
       <div
         style="border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
         <strong style="color: #e65100;">Highlight:</strong>
         Please note that we only provide pretrained model weights and data for exemplary purposes.
-        We do not provide ready-trained solutions but a tool for adapting deep learning solutions and training models based on
+        We do not provide ready-trained solutions but a tool for adapting deep learning solutions and training models
+        based on
         the specific needs of EM labs.
       </div>
       <p></p>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop content">
+      <p></p>
+
 
       <div class="content has-text-justified">
         <h3>Image to Value(s)</h3>
@@ -385,6 +336,10 @@
               easier to coprehend.
             </figcaption>
           </figure>
+
+          <p>If you have any questions or encounter any issues while dealing with this use-case please feel free to
+            contact <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/">Hannah Kniesel</a> or <a
+              href="https://viscom.uni-ulm.de/members/tristan-payer/">Tristan Payer</a>.</p>
         </div>
         <hr>
       </div>
@@ -393,7 +348,7 @@
 
 
 
-  <section class="section hero is-light">
+  <section class="section hero">
     <div class="container is-max-desktop content">
 
       <div class="content has-text-justified">
@@ -433,13 +388,15 @@
           <p><i>[1] Shaga Devan, Kavitha, et al. "Weighted average ensemble-based semantic segmentation in biological
               electron microscopy images." Histochemistry and Cell Biology 158.5 (2022): 447-462.</i></p>
 
+          <p>If you have any questions or encounter any issues while dealing with this use-case please feel free to
+            contact <a href="https://viscom.uni-ulm.de/members/poonam/">Poonam</a>.</p>
         </div>
         <hr>
       </div>
     </div>
   </section>
 
-  <section class="section hero ">
+  <section class="section hero is-light">
     <div class="container is-max-desktop content">
 
       <div class="content has-text-justified">
@@ -479,6 +436,10 @@
               IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.</i></p>
           <p><i>[2] Mildenhall, Ben, et al. "Nerf: Representing scenes as neural radiance fields for view synthesis."
               Communications of the ACM 65.1 (2021): 99-106.</i></p>
+
+          <p>If you have any questions or encounter any issues while dealing with this use-case please feel free to
+            contact <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/">Hannah Kniesel</a>.</p>
+
         </div>
         <hr>
       </div>
@@ -487,7 +448,7 @@
   <!--End Links  -->
 
   <!--BibTex citation -->
-  <section class="section hero is-light" id="BibTeX">
+  <section class="section hero " id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>BibTex Code Here</code></pre>
