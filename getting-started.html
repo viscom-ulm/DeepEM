@@ -38,6 +38,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <style>
+    .title-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      /* Adds spacing between the icon and text */
+    }
+
+    .title-container img {
+      width: 30px;
+      /* Adjust the size as needed */
+      height: auto;
+      margin-top: 20px;
+    }
+
     .hidden {
       display: none;
       padding: 20px;
@@ -267,27 +281,35 @@
       <h2 class="title is-3">Getting Started</h2>
       <div class="content has-text-justified">
         <p>
-          Our <strong>DEEP-EM playground</strong> leverages two powerful external tools to ensure accessibility and ease of use for everyone:
+          Our <strong>DEEP-EM playground</strong> leverages two powerful external tools to ensure accessibility and ease
+          of use for everyone:
         </p>
         <ol>
           <li>
-            <strong>Lightning AI</strong>: This platform provides seamless access to our use cases, enabling effortless collaboration and utilization of GPU environments directly within your browser.
+            <strong>Lightning AI</strong>: This platform provides seamless access to our use cases, enabling effortless
+            collaboration and utilization of GPU environments directly within your browser.
           </li>
           <li>
-            <strong>CVAT (Computer Vision Annotation Tool)</strong>: This tool simplifies the process of annotating your own data, making it straightforward and efficient.
+            <strong>CVAT (Computer Vision Annotation Tool)</strong>: This tool simplifies the process of annotating your
+            own data, making it straightforward and efficient.
           </li>
         </ol>
         <p>
           In the sections below, we provide a brief introduction to help you get started with each of these tools.
         </p>
-        <p>Before starting off with your first use case, make sure to read the content at <a href="TODO">Workflow</a> carefully.</p>
+        <p>Before starting off with your first use case, make sure to read the content at <a href="TODO">Workflow</a>
+          carefully.</p>
       </div>
     </div>
   </section>
 
   <section class="section hero is-light">
     <div class="container is-max-desktop content">
-      <h2 class="title is-3">Lightning AI Studio</h2>
+      <div class="title-container">
+        <img src="https://lightning.ai/static/media/logo-dark.82b2cc7df5d987ca34bf210ac51cf827.svg"
+          alt="Lightning AI Logo">
+        <h2 class="title is-3">Lightning AI Studio</h2>
+      </div>
       <div class="content has-text-justified">
         <p>
           We choose Lightning AI Studios for our toolbox because it provides a persistent, cloud-based environment
@@ -300,13 +322,13 @@
           for AI development.
         </p>
       </div>
-      <div class="hero-body">
+      <!--<div class="hero-body">
         <img src="static/images/getting-started/LightningAI1.webp" alt="DALL·E generated image - 'A futuristic and minimalistic cloud-based workspace, visually represented as a
         sleek, glowing virtual laptop floating in a digital cloud environment.'" />
         <h6 class="subtitle has-text-centered">
           DALL·E generated image - "A futuristic and minimalistic cloud-based workspace, visually represented as a
           sleek, glowing virtual laptop floating in a digital cloud environment." </h6>
-      </div>
+      </div>-->
       <h2 class="title is-4">1. Registration</h2>
       <div class="content has-text-justified">
         <p>
@@ -492,8 +514,9 @@
             </p>
 
 
-            <div style="text-align: left;">
-              <h4>Notes on Data Ownership & Security with Lightning AI</h4>
+            <div
+              style="text-align: left;border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
+              <strong style="color: #e65100;">Notes on Data Ownership & Security with Lightning AI:</strong>
 
               <h5>Key Points</h5>
               <p>When using Lightning AI’s services, here are the important aspects related to your data:</p>
@@ -524,6 +547,7 @@
                   href="https://lightning.ai/policies/privacy-policy/">here</a>.</p>
 
             </div>
+
 
           </div>
         </div>
@@ -575,7 +599,11 @@
   <!--CVAT -->
   <section class="section hero">
     <div class="container is-max-desktop content">
-      <h2 class="title">Data Annotation with CVAT</h2>
+      <div class="title-container">
+        <img src="https://cdn.prod.website-files.com/62c2f68750086204ad7a18f9/640616a471bfc400062bc25c_Avatar%2004.png"
+          alt="Lightning AI Logo">
+        <h2 class="title is-3">CVAT Data Annotation</h2>
+      </div>
 
       <p>
         CVAT (Computer Vision Annotation Tool) is a free, browser-based tool for annotating images and videos, commonly
@@ -588,7 +616,7 @@
         In the following we will explain how to setup CVAT in the browser. If you require a local setup please see their
         documentation and follow: <a href="https://docs.cvat.ai/docs/administration/basics/installation/">this link</a>
       </p>
-      <img src="static/images/getting-started/CVAT1.png" alt="CVAT1" />
+      <!--<img src="static/images/getting-started/CVAT1.png" alt="CVAT1" />-->
 
       <h2 class="title is-4">1. Registration</h2>
       In order to use CVAT Annotation registration is required. To register please follow <a
@@ -742,6 +770,33 @@
           you can reduce the image quality during upload. This option is available under the <em>"Advanced
             Configuration"</em> section.
         </p>
+
+        <div
+          style="text-align: left; border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
+          <strong style="color: #e65100;">Note on Data Privacy:</strong>
+
+
+          <p>
+            When using the CVAT annotation tool in your browser, your data is uploaded to CVAT.ai's servers. According
+            to
+            their <a href="https://www.cvat.ai/privacy">Privacy Policy</a>, CVAT.ai is committed to protecting your
+            personal
+            information and outlines the rights you
+            have under various data protection regulations. They state that your data is stored securely on their <a
+              href="https://aws.amazon.com/ru/privacy/?nc1=f_pr">AWS</a>
+            instances and is not distributed further. If you delete a project or task, all related data will be deleted
+            as
+            well.</p>
+
+          <p>For more detailed information, we refer to CVAT.ai's <a href="https://www.cvat.ai/terms-of-use">Terms of
+              Use</a>
+            and <a href="https://www.cvat.ai/privacy">Privacy Policy</a>. If you have specific
+            concerns or require further clarification, it's advisable to contact CVAT.ai directly through their <a
+              href="https://www.cvat.ai/contact-us/labeling-services">
+              page</a>.</p>
+        </div>
+        <p></p>
+
 
         <img src="static/images/getting-started/CVAT3-6.png" alt="CVAT4" />
         <p>

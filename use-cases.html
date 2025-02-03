@@ -293,7 +293,12 @@
       <div
         style="border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
         <strong style="color: #e65100;">Highlight:</strong>
-        Please note that we only provide pretrained model weights and data for exemplary purposes.
+
+
+        Each use case has a primary focus and an exemplary application. By exchanging the underlying data (as described
+        within each use case), the application can be changed.
+
+        Please note that we only provide pretrained model weights and data on the exemplary application for testing purposes.
         We do not provide ready-trained solutions but a tool for adapting deep learning solutions and training models
         based on
         the specific needs of EM labs.
@@ -311,16 +316,25 @@
         <h3>Image to Value(s)</h3>
         <div class="gray-background">
 
-          <h4>Explainable Virus Quantification</h4>
-          <h5>Challenge: Deep Learning as Black Box</h5>
-          <p>Within this Image to Value(s) task, we are developing a regression model to quantify virus capsids and
-            their
-            mutation stages ("naked", "budding", "enveloped") during secondary envelopment in TEM images.
-            We encourage researchers to adapt this notebook to use their own data to simplify the analysis of EM images
-            in
-            their own lab.
-            For further details please see the project page.
-          </p>
+          <h4>Primary Focus: Explainable Object Counting in Microscopy Images</h4>
+          <h5>Application: Explainable Virus Capsid Quantification</h5>
+
+
+          <h6>Challenge: Deep Learning as Black Box</h6>
+          <h6>Required Labels: Location Labels</h6>
+
+
+          <div>
+            <p>
+              <strong>TL;DR</strong> 🧬✨
+              We developed a regression model to quantify virus capsids and their mutation stages
+              ("naked" 🩲, "budding" 🌱, "enveloped" 📦) during secondary envelopment in TEM images.
+              Researchers can adapt the provided notebook for their own EM data analysis.
+              Click the "Open in Studio" button to get started. 🚀.
+            </p>
+          </div>
+
+
           <a target="_blank"
             href="https://lightning.ai/hannah-kniesel/studios/deep-em-toolbox-explainable-virus-quantification">
             <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg"
