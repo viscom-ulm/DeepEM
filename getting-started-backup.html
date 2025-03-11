@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="DEEP-EM TOOLBOX" />
+  <meta property="og:description"
+    content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis." />
+  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+
+  <meta name="twitter:title" content="DEEP-EM TOOLBOX">
+  <meta name="twitter:description"
+    content="Unlock the power of Deep Learning in Electron Microscopy with the DEEP-EM TOOLBOX standardized workflows for EM image analysis.">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Deep Learning, Electron Microscopy, Data Analysis, Data Interpretation, Toolbox">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>DEEP-EM TOOLBOX</title>
+  <link rel="icon" type="image/x-icon" href="static/images/icon.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    .title-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      /* Adds spacing between the icon and text */
+    }
+
+    .title-container img {
+      width: 30px;
+      /* Adjust the size as needed */
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .hidden {
+      display: none;
+      padding: 20px;
+      background-color: rgb(202, 202, 202);
+      /* Treat the container as an inline block */
+      text-align: center;
+      /* Center horizontally */
+      vertical-align: middle;
+      /* Vertical centering */
+    }
+
+    button.round-button {
+      background-color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: black;
+      padding: 13px 13px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease;
+      width: 45px;
+      height: 45px;
+    }
+
+    button.round-button:hover {
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    button.round-button:active {
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+    .button-55 {
+      align-self: center;
+      background-color: #fff;
+      background-image: none;
+      background-position: 0 90%;
+      background-repeat: repeat no-repeat;
+      background-size: 4px 3px;
+      border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+      border-style: solid;
+      border-width: 2px;
+      box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+      box-sizing: border-box;
+      color: #41403e;
+      cursor: pointer;
+      display: inline-block;
+      font-family: Neucha, sans-serif;
+      font-size: 1rem;
+      line-height: 23px;
+      outline: none;
+      padding: .75rem;
+      text-decoration: none;
+      transition: all 235ms ease-in-out;
+      border-bottom-left-radius: 15px 255px;
+      border-bottom-right-radius: 225px 15px;
+      border-top-left-radius: 255px 15px;
+      border-top-right-radius: 15px 225px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-55:hover {
+      box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+      transform: translate3d(0, 2px, 0);
+    }
+
+    .button-55:focus {
+      box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+
+    .gray-background {
+      background-color: rgb(228, 228, 228);
+      /* Green background */
+      padding: 20px;
+      /* Padding inside the element */
+      border-radius: 10px;
+      /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Subtle shadow for depth */
+      font-size: 16px;
+      /* Font size */
+      margin: 20px 0;
+      /* Margin outside the element */
+    }
+
+    .green-background {
+      background-color: #dde9afff;
+      /* Green background */
+      padding: 20px;
+      /* Padding inside the element */
+      border-radius: 10px;
+      /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Subtle shadow for depth */
+      font-size: 16px;
+      /* Font size */
+      margin: 20px 0;
+      /* Margin outside the element */
+    }
+
+    .red-background {
+      background-color: #ffaaaaff;
+      /* Green background */
+      padding: 20px;
+      /* Padding inside the element */
+      border-radius: 10px;
+      /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Subtle shadow for depth */
+      font-size: 16px;
+      /* Font size */
+      margin: 20px 0;
+      /* Margin outside the element */
+    }
+
+    .orange-background {
+      background-color: #ffb380ff;
+      /* Green background */
+      padding: 20px;
+      /* Padding inside the element */
+      border-radius: 10px;
+      /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* Subtle shadow for depth */
+      font-size: 16px;
+      /* Font size */
+      margin: 20px 0;
+      /* Margin outside the element */
+    }
+
+    .navbar-item:hover {
+      background-color: #f5f5f5;
+      color: #4a4a4a;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    function toggleVisibility(id_content, id_button) {
+      var content = document.getElementById(id_content);
+      var btn = document.getElementById(id_button);
+
+      if (content.style.display === "none" || content.style.display === "") {
+        // If the content is hidden, show it
+        content.style.display = "inline-block";
+        btn.innerHTML = "Show Less";
+      } else {
+        // If the content is shown, hide it
+        content.style.display = "none";
+        btn.innerHTML = "Show More";
+      }
+    }
+
+    function toggleVisibility_triangle(id_content, id_button) {
+      var content = document.getElementById(id_content);
+      var btn = document.getElementById(id_button);
+
+
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        btn.innerHTML = "&#9660;"
+      } else {
+        content.classList.add('hidden');
+        btn.innerHTML = "&#9654;"
+
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://viscom-ulm.github.io/DeepEM/">
+        <img src="static/images/icon.png" alt="Logo" width="28" height="28">
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+
+        <a class="navbar-item" href="workflow.html">
+          Workflow
+        </a>
+
+        <a class="navbar-item" href="use-cases.html">
+          Use Cases
+        </a>
+
+        <a class="navbar-item" href="getting-started.html">
+          Getting Started
+        </a>
+
+        <a class="navbar-item" href="your-contribution.html">
+          Your Contribution!
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section hero">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">Getting Started</h2>
+      <div class="content has-text-justified">
+        <p>
+          Our <strong>DEEP-EM playground</strong> leverages two powerful external tools to ensure accessibility and ease
+          of use for everyone:
+        </p>
+        <ol>
+          <li>
+            <strong>Lightning AI</strong>: This platform provides seamless access to our use cases, enabling effortless
+            collaboration and utilization of GPU environments directly within your browser.
+          </li>
+          <li>
+            <strong>CVAT (Computer Vision Annotation Tool)</strong>: This tool simplifies the process of annotating your
+            own data, making it straightforward and efficient.
+          </li>
+        </ol>
+        <p>
+          In the sections below, we provide a brief introduction to help you get started with each of these tools.
+        </p>
+        <p>Before starting off with your first use case, make sure to read the content at <a href="workflow.html">Workflow</a>
+          carefully.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop content">
+      <div class="title-container">
+        <img src="https://lightning.ai/static/media/logo-dark.82b2cc7df5d987ca34bf210ac51cf827.svg"
+          alt="Lightning AI Logo">
+        <h2 class="title is-3">Lightning AI Studio</h2>
+      </div>
+      <div class="content has-text-justified">
+        <p>
+          We choose Lightning AI Studios for our toolbox because it provides a persistent, cloud-based environment
+          that is always ready to use—like having a laptop in the cloud. This allows us to include data, pretrained
+          weights, and files directly in the Studio, ensuring everything is available without extra setup. Users can
+          access it through a browser after registration, with default GPUs preconfigured by the developers for seamless
+          use. The platform supports
+          collaboration by enabling easy sharing of files and weights. With free compute credits, a pay-as-you-go model,
+          and no installation required, Lightning AI Studios offers a user-friendly, efficient, and scalable solution
+          for AI development.
+        </p>
+      </div>
+      <!--<div class="hero-body">
+        <img src="static/images/getting-started/LightningAI1.webp" alt="DALL·E generated image - 'A futuristic and minimalistic cloud-based workspace, visually represented as a
+        sleek, glowing virtual laptop floating in a digital cloud environment.'" />
+        <h6 class="subtitle has-text-centered">
+          DALL·E generated image - "A futuristic and minimalistic cloud-based workspace, visually represented as a
+          sleek, glowing virtual laptop floating in a digital cloud environment." </h6>
+      </div>-->
+      <h2 class="title is-4">1. Registration</h2>
+      <div class="content has-text-justified">
+        <p>
+          In order to use the provided toolbox within Lighting AI Studios, a registration is required. Please setup an
+          user account by following <a href="https://lightning.ai/sign-up">this link</a>.
+          For further assistance during registration, please click the "Show More" button below.
+        </p>
+
+        <button id="togglebtn-lighting-registration" class="button-55"
+          onclick="toggleVisibility('lighting-registration', 'togglebtn-lighting-registration')">Show More</button>
+
+
+        <div id="lighting-registration" class="hidden">
+          <p></p>
+          <img src="static/images/getting-started/Lighting-Registration1.jpg" alt="Lighting-Registration1" />
+          <p>Once you have registered, you will be prompted to the "Get Started" Dialogues. In the following you can
+            basically leave everything with default settings. This will setup the studio in a sufficient way.</p>
+
+          <img src="static/images/getting-started/Lighting-Registration2.jpg" alt="Lighting-Registration2" />
+          <p>First you are asked to choose "Light Mode" or "Dark Mode" of your studio. You can follow your preferences.
+          </p>
+
+          <img src="static/images/getting-started/Lighting-Registration3.jpg" alt="Lighting-Registration3" />
+          <p>Next, you can choose a "coding experience", which refers to the design of your studio. You can choose from
+            different IDEs. Leaving this with the default of "VSCode" will lead to a similar looking studio as the one
+            introduced further below.</p>
+
+          <img src="static/images/getting-started/Lighting-Registration4.jpg" alt="Lighting-Registration4" />
+          <p>Lightning AI Studio asks us to choose the data we are working with. This is mainly relevant if you would
+            wish to develop own code within the studio, as this adapts starting code and tutorials.
+            As we are working with EM images, we will set it to "images, video".</p>
+
+          <img src="static/images/getting-started/Lighting-Registration5.jpg" alt="Lighting-Registration5" />
+          <p>Lighting AI Studion will ask you to verify your phone number in order to get the free plan.</p>
+
+          <img src="static/images/getting-started/Lighting-Registration6.jpg" alt="Lighting-Registration6" />
+          <p>In an optional step, you can setup your own github with this studio. Again, this is mainly of relevance
+            when you wish to develop own code. We hence skip this step by clicking "Next".</p>
+
+          <img src="static/images/getting-started/Lighting-Registration7.jpg" alt="Lighting-Registration7" />
+          <p>Again, in an optional step you can invite collaborators and collegues. We will skip this step for now and
+            click "Open Studio".</p>
+
+          <img src="static/images/getting-started/Lighting-Registration8.jpg" alt="Lighting-Registration8" />
+          <p>Finally, you are asked to choose a starting tutorial. This is again only of relevance when you wish to
+            develop own code. Hence, we choose "Skip - I'll bring my own code and data".</p>
+
+          <p>With this you are done with the registration. You can close the browser now.</p>
+
+        </div>
+
+
+        <h2 class="title is-4">2. Pricing</h2>
+        <p>Lighting AI Studios offers three plans: one free plan and two paid plans.
+          For details on the plans please follow <a href="https://lightning.ai/pricing">this link</a></p>
+        <p>
+          By completing the registration steps outlined above, you'll gain access to Lightning AI Studio's free plan,
+          which includes 15 compute credits per month. This plan allows the use of a free, CPU-based Studio for up to 4
+          hours at a time, with the option to restart it after each session to continue using it at no cost. For deep
+          learning tasks, we recommend GPU-based Studios, which require compute credits. The number of credits consumed
+          depends on the type of GPU selected. All use cases in our toolbox are pre-configured with a default GPU setup
+          optimized for computation, ensuring smooth and efficient performance. Additional credits can be added as
+          needed using the pay-as-you-go model.
+
+
+        </p>
+
+        <h2 class="title is-4">3. Use</h2>
+        <div class="content has-text-justified">
+          <p>For getting started with one of the use cases go to our <a href="use-cases.html">Use Case Subpage</a> and scroll down
+            to the use cases. Here the uses cases are structured into the introduced tasks of <b>Image to Value(s)</b>,
+            <b>Image to Image</b> and <b>2D to 3D<b>.
+          </p>
+
+          <button id="togglebtn-lighting-use" class="button-55"
+            onclick="toggleVisibility('lighting-use', 'togglebtn-lighting-use')">Show More</button>
+
+
+          <div id="lighting-use" class="hidden">
+            <p></p>
+            <img src="static/images/getting-started/Lighting-Use1.jpg" alt="Lighting-Use1" />
+            <p>Click on the purple "Open in Studio" button to get to the Use Cases project page. This will open up
+              Lightning Studio in a new tab.</p>
+
+            <img src="static/images/getting-started/Lighting-Use2.jpg" alt="Lighting-Use2" />
+            <p>You can now scan over the project page to get familiar with the basic idea of the use case. Once you are
+              familiar, again click on the purple "Open in Studio" button. This will now open the code
+              base.<b>Hint:</b>Lightning Studio is recommending to use the <a
+                href="https://www.google.com/chrome/?brand=YTUH&ds_kid=43700010867267964&gad_source=1&gclid=Cj0KCQiA4fi7BhC5ARIsAEV1YiZCXKp4ySN3htzjzgwy4fDM2j85ABMJ0P3R23K3CbcU8oHb1zurSGkaAirvEALw_wcB&gclsrc=aw.ds">Google
+                Chrome browser</a> for optimal support.</p>
+            <p>The code base will be duplicated into your own Lightning teamspace such that you are not directly working
+              on the published code base. This
+              allows you to make changes without interferring with the published use case.</p>
+            <p>Thanks to Lightning studio there is no additional setup required. The studio is published in such way
+              that it contains at least one example dataset for training your first model. Further, the studio
+              environment will have all dependencies installed, allowing you to get started right away.</p>
+            <img src="static/images/getting-started/Lighting-Use3.jpg" alt="Lighting-Use3" />
+            <p>In case you wish to change the GPU type you can do so on the top right corner as shown above. For a more
+              detailed documentation please see <a
+                href="https://lightning.ai/docs/overview/getting-started/studios-in-10-minutes">here.</a></p>
+
+            <img src="static/images/getting-started/Lighting-Use4.jpg" alt="Lighting-Use4" />
+            <p>We structure the code based on the introduced workflow. This means that each use case is published with
+              one <b>1_Development.ipynb</b> and one <b>2_Inference.ipynb</b>. For training your model open the
+              <b>1_Development.ipynb</b>. This will open a jupyter notebook, which might remind you of Google Colab.
+              Jupyter notebooks are able to combine text as well as code cells. You will need to follow the notebook
+              from top to bottom and execute each cell. Each step will be defined in detail within the notebook, if it
+              requires your additional input.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Use5.jpg" alt="Lighting-Use5" />
+            <p> To execute a cell (also called "run" a cell) you can hover the curser on the top left of the cell. An
+              arrow (&#9655;) will appear. Click on that arrow.
+            </p>
+            <p>Otherwise you can use a keyboard shortcut. First you will need to click inside the cell to select it.
+              By pressing <code>Ctrl</code>+<code>Enter</code>, the cell will be executed. If you press
+              <code>Shift</code>+<code>Enter</code>, the currently selected cell will be executed and the next cell will
+              be selected.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Use6.jpg" alt="Lighting-Use6" />
+            <p>If you wish to train multiple models, or if something goes wrong in the meantime, we recommend to start
+              fresh. To do so, restart the kernel as shown above and then again follow the notebook from top to bottom
+              executing each cell.
+            </p>
+
+            <p>Once you are finished with training your model you can go on to the <b>2_Inference.ipynb</b>. This
+              notebook should be used for the application of the model on new, unseen data - finally supporting the
+              analysis of EM data.</p>
+
+            <p>For further reading and a quick overview of how to use jupyter notebooks we recommend <a
+                href="https://colab.research.google.com/drive/16pBJQePbqkz3QFV54L4NIkOn1kwpuRrj#scrollTo=4pA2fSmgwMxr">this</a>
+              tutorial. It
+              is based on Google Colab, but it follows the same concepts, as our toolbox (similar to Google Colab) is
+              based on jupyter notebooks. Please skip the first sections and go directly to "Getting Started".</p>
+          </div>
+        </div>
+
+        <h2 class="title is-4">4. Upload Data</h2>
+        <div class="content has-text-justified">
+          <p>In order to train you model on your labs specific data, you will need to upload it and structure it as
+            described within the notebook. To upload your data please follow the steps below. A more detailed
+            instruction can also be found <a href="https://lightning.ai/docs/overview/prep-data">here</a>.</p>
+          <button id="togglebtn-lighting-data" class="button-55"
+            onclick="toggleVisibility('lighting-data', 'togglebtn-lighting-data')">Show More</button>
+
+
+          <div id="lighting-data" class="hidden">
+            <p></p>
+
+            <h4>Upload your own data</h4>
+
+
+            <img src="static/images/getting-started/Lighting-Data1.jpg" alt="Lighting-Data1" />
+            <p>To upload your own data for training, click on the icon as shown above on the right of the screen.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Data2.jpg" alt="Lighting-Data2" />
+            <p>Here you should select <code>studios</code> > <code>this studio</code> and finally navigate to where the
+              data should be placed.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Data3.jpg" alt="Lighting-Data3" />
+            <p>Once you navigated to the correct position (or somewhere inside the studio, as this can also be changed
+              later), click on the "Add data" button in the top right corner as shown above.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Data4.jpg" alt="Lighting-Data4" />
+            <p>You can now drag and drop the data for uploading. The upload of the data can take a while, depending on
+              the size of your dataset.</p>
+
+            <img src="static/images/getting-started/Lighting-Data5.jpg" alt="Lighting-Data5" />
+            <p>To go back to the codebase (which is referred to as "Studio" in the Lightning AI termonology) of the use
+              case, click on the icon on the right as shown above. </p>
+
+            <img src="static/images/getting-started/Lighting-Data6.jpg" alt="Lighting-Data6" />
+            <p>Once the data upload has finished,
+              you will be able to see the data within the Studio of the use case inside the
+              menue on the left side, as shown above. If the data is not yet placed at the correct position, you can
+              right-click it for
+              copy/cut/paste operations, or use the standard keyboard shortcuts like <code>Crtl</code>+<code>X</code>,
+              <code>Crtl</code>+<code>V</code>.
+            </p>
+
+
+            <div
+              style="text-align: left;border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
+              <strong style="color: #e65100;">Notes on Data Ownership & Security with Lightning AI:</strong>
+
+              <h5>Key Points</h5>
+              <p>When using Lightning AI’s services, here are the important aspects related to your data:</p>
+
+              <ul>
+                <li><strong>Data Ownership:</strong> You retain ownership of your data and models (referred to as
+                  "Customer Models"). Lightning AI does not own them.</li>
+                <li><strong>Access to Your Models:</strong> Lightning AI has administrative access to your models only
+                  for operational purposes (like support or troubleshooting), not for unauthorized use.</li>
+                <li><strong>Performance Data:</strong> Lightning AI can use performance data (e.g., how well your models
+                  perform) for any purpose, but not your original models.</li>
+                <li><strong>Security Measures:</strong> Lightning AI commits to using commercial-grade security measures
+                  to protect your data. If there's a breach, they will notify you promptly.</li>
+              </ul>
+
+              <h5>What Does This Mean for Your Sensitive Data?</h5>
+              <p>While Lightning AI ensures they won't access your models for unauthorized purposes, they will have
+                access to them for providing the services you requested, such as technical support. They are required to
+                protect your data with appropriate security measures and notify you if there’s a breach.</p>
+
+              <p><span class="important">Important:</span> If you upload sensitive data, it’s recommended to understand
+                their security protocols. You are also responsible for ensuring you
+                have the legal rights to the data you upload.</p>
+
+              <p>Ultimately, if you are concerned about privacy, review their security policies and ensure your data
+                handling complies with relevant regulations. You can find further details <a
+                  href="https://lightning.ai/policies/terms-of-service/">here</a> and <a
+                  href="https://lightning.ai/policies/privacy-policy/">here</a>.</p>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <h2 class="title is-4">5. Collaboration</h2>
+        <div class="content has-text-justified">
+          <p>At some point within the process you probably wish to share the work with fellow collegues. This could be
+            for working together on improving the model training, or by allowing your collegues access to a model which
+            you've trained. This can be achieved easily using teamspaces of the Lightning AI studio. For an introduction
+            into what a teamspace is, please see <a
+              href="https://lightning.ai/docs/team-management/teamspaces">here</a>. For further details on how to enable
+            sharing see below.</p>
+          <button id="togglebtn-lighting-collaboration" class="button-55"
+            onclick="toggleVisibility('lighting-collaboration', 'togglebtn-lighting-collaboration')">Show More</button>
+
+
+          <div id="lighting-collaboration" class="hidden">
+            <p></p>
+            <img src="static/images/getting-started/Lighting-Collab2.jpg" alt="Lighting-Collab3" />
+            <p>For sharing the Studio of your current use case, you will first need to enable the sharing of this
+              Studio. This can be done by clicking in the top right on the <code>Share</code> button, and enable the
+              <code>Studio Access</code>.
+            </p>
+
+            <img src="static/images/getting-started/Lighting-Collab3.jpg" alt="Lighting-Collab3" />
+            <p>Next go to your teamspace. This can be done by clicking on the teamspace name in the top left corner.</p>
+
+            <img src="static/images/getting-started/Lighting-Collab4.jpg" alt="Lighting-Collab4" />
+            <p>Within your teamspace go to the top right corner and click <code>Invite</code> >
+              <code>Invite Member</code>. Note that the invited members are required to register with Lighting in order
+              to use the Studio.
+            </p>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </section>
+  <!--End workflow  -->
+
+
+
+
+
+  <!--CVAT -->
+  <section class="section hero">
+    <div class="container is-max-desktop content">
+      <div class="title-container">
+        <img src="https://cdn.prod.website-files.com/62c2f68750086204ad7a18f9/640616a471bfc400062bc25c_Avatar%2004.png"
+          alt="Lightning AI Logo">
+        <h2 class="title is-3">CVAT Data Annotation</h2>
+      </div>
+
+      <p>
+        CVAT (Computer Vision Annotation Tool) is a free, browser-based tool for annotating images and videos, commonly
+        used in computer vision tasks. It supports various annotation types like bounding boxes, segmentation masks, and
+        points, and allows multiple users to collaborate on the same dataset for faster annotation. CVAT is especially
+        useful for researchers
+        working with electron microscopy (EM) data, as it is one of the few free tools that supports the .tif format. It
+        also offers paid options for faster, AI-assisted annotation. Whether used directly in the browser or set up
+        locally, CVAT is an easy-to-use, flexible solution for efficient annotation.
+        In the following we will explain how to setup CVAT in the browser. If you require a local setup please see their
+        documentation and follow: <a href="https://docs.cvat.ai/docs/administration/basics/installation/">this link</a>
+      </p>
+      <!--<img src="static/images/getting-started/CVAT1.png" alt="CVAT1" />-->
+
+      <h2 class="title is-4">1. Registration</h2>
+      In order to use CVAT Annotation registration is required. To register please follow <a
+        href="https://app.cvat.ai/auth/register">this link</a>:
+
+
+      <h2 class="title is-4">2. Pricing</h2>
+      <p>CVAT offers both cloud-based and self-hosted versions to suit different user needs. The cloud version,
+        available via <a href="https://www.cvat.ai/pricing/cloud" target="_blank">CVAT Cloud Pricing</a>, provides a
+        scalable, hosted solution, while the self-hosted version, detailed in <a
+          href="https://www.cvat.ai/pricing/on-prem" target="_blank">CVAT On-Prem Pricing</a>, allows for local
+        installation and management. The free version includes the ability to manage up to 3 parallel projects and
+        supports 10 tasks in total, with a maximum of 5 tasks per project. Tasks represent individual units of work
+        within a project, and they can be split into multiple jobs for parallel data annotation by different workers,
+        making it easier to handle large datasets efficiently.</p>
+
+
+      <h2 class="title is-4">3. Setup</h2>
+      <p>
+        <strong>Accessing CVAT:</strong> After registering, visit <a href="https://cvat.ai" target="_blank">CVAT.ai</a>
+        and click the <em>"Start using CVAT"</em> button. If you're not logged in, you'll be prompted to log in or
+        register.
+        Once logged in, the tool will open.
+      </p>
+
+      <p>
+        For details on setting up the CVAT tool and an introduction into first steps, click on the "Show More" button.
+      </p>
+
+      <p>Additionally, for users seeking a more
+        technical introduction, a comprehensive guide is available here: <a
+          href="https://docs.cvat.ai/docs/getting_started/">CVAT Getting Started.</a></p>
+
+      <button id="togglebtn-cvat-setup" class="button-55"
+        onclick="toggleVisibility('cvat-setup', 'togglebtn-cvat-setup')">Show More</button>
+
+      <div id="cvat-setup" class="hidden">
+        <p></p>
+        <h4 class="title is-4">3.1. Create Organization</h4>
+        <p>
+          <strong>Collaborating with CVAT:</strong> CVAT allows multiple workers to annotate data simultaneously,
+          speeding up the process.
+          To maximize the benefits of collaboration, we recommend setting up an organization first.
+          The free CVAT version supports one organization with up to two workers.
+        </p>
+
+        <p>
+          <strong>Setting Up an Organization:</strong> To create an organization, click on your profile in the top-right
+          corner,
+          navigate to <em>"Organization"</em>, and select <em>"Create"</em>.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-8.png" alt="CVAT-organization" />
+
+        <p>
+          <strong>Setting Up Your Organization:</strong> After clicking <em>"Create"</em> under the
+          <em>"Organization"</em> menu,
+          you can enter details about your organization, such as its name. This step helps organize and manage your
+          collaborative annotation projects efficiently.
+        </p>
+        <img src="static/images/getting-started/CVAT3-9.png" alt="CVAT-organization2" />
+
+        <h4 class="title is-4">3.2. Invite Members</h4>
+        <p></p>
+        <p>
+          <strong>Organization Overview:</strong> Once the organization is created, you will see the organization
+          overview page.
+          Here, you can invite members to join your organization, enabling them to share and collaborate on annotation
+          tasks efficiently.
+        </p>
+        <img src="static/images/getting-started/CVAT3-10.png" alt="CVAT-organization3" />
+
+        <p>
+          <strong>Adding Members:</strong> To add a member, click on <em>"Invite members"</em>.
+          This will allow you to send invitations to collaborators via their email addresses.
+          Note that invited members will also need to register on CVAT to join your organization.
+        </p>
+        <p>
+          <strong>Splitting Tasks:</strong> When creating a new project, you can distribute annotation tasks among the
+          members
+          of your organization, making the process more efficient and collaborative.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-11.png" alt="CVAT-organization4" />
+
+      </div>
+
+      <h2 class="title is-4">4. Use and Collaborate</h2>
+      <p>
+        <strong>Setting Up Projects:</strong> Once everything is set up, we recommend creating a project for each
+        dataset you wish to annotate.
+        A project acts as a collection of data and annotations, helping you organize and manage them effectively.
+        Projects also allow you to invite users for collaboration or share them with your team.
+      </p>
+      <p>For a quick overview on how to use and collaborate CVAT please click the "Show More" button. </p>
+
+
+      <button id="togglebtn-cvat-use" class="button-55"
+        onclick="toggleVisibility('cvat-use', 'togglebtn-cvat-use')">Show More</button>
+
+      <div id="cvat-use" class="hidden">
+        <p></p>
+        <h4 class="title is-4">4.1. Create Project</h4>
+
+        <p>
+          <strong>Creating a Project:</strong> To create a project, click on the <em>"Project"</em> menu item in the
+          top-left corner.
+          Then, click on the <em>"+"</em> button in the top-right corner to start creating your project.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-1.png" alt="CVAT1" />
+        <p>
+          <strong>Defining Project Details:</strong> When creating a project, you can specify the project name and the
+          labels to be used for annotating the dataset.
+          The choice of annotation labels will depend on the specific use case, which will be discussed in detail
+          within the use case. In this example, we define point annotations for the class <em>"enveloped"</em>.
+        </p>
+        <p>
+          <strong>Viewing Your Project:</strong> Once you submit the project, it will appear under the
+          <em>"Projects"</em> menu item for easy access and management.
+        </p>
+
+
+        <img src="static/images/getting-started/CVAT3-4.png" alt="CVAT2" />
+
+        <p></p>
+        <h4 class="title is-4">4.2. Create Tasks</h4>
+        <p>
+          <strong>Generating a Task:</strong> Next, you need to create a task within your project.
+          Tasks are individual units of work and can be divided into multiple jobs, allowing multiple workers to
+          annotate data in parallel. To create a task, open the project, click on the <em>"+"</em> button, and
+          select <em>"Create a new task"</em>.
+        </p>
+
+
+
+        <img src="static/images/getting-started/CVAT3-5.png" alt="CVAT3" />
+        <p>
+          <strong>Configuring the Task:</strong> When creating a task, you can give it a name and assign or upload the
+          data to be annotated.
+          The labels available for annotation are based on the project labels you defined earlier.
+        </p>
+        <p>
+          <strong>Uploading Data:</strong> The simplest way to upload data is by dragging and dropping files from your
+          local system.
+          Alternatively, CVAT supports connecting a file share, adding remote sources, or using cloud storage.
+        </p>
+        <p>
+          <strong>Tip:</strong> If you plan to download only the annotations later and already have the images stored
+          locally,
+          you can reduce the image quality during upload. This option is available under the <em>"Advanced
+            Configuration"</em> section.
+        </p>
+
+        <div
+          style="text-align: left; border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
+          <strong style="color: #e65100;">Note on Data Privacy:</strong>
+
+
+          <p>
+            When using the CVAT annotation tool in your browser, your data is uploaded to CVAT.ai's servers. According
+            to
+            their <a href="https://www.cvat.ai/privacy">Privacy Policy</a>, CVAT.ai is committed to protecting your
+            personal
+            information and outlines the rights you
+            have under various data protection regulations. They state that your data is stored securely on their <a
+              href="https://aws.amazon.com/ru/privacy/?nc1=f_pr">AWS</a>
+            instances and is not distributed further. If you delete a project or task, all related data will be deleted
+            as
+            well.</p>
+
+          <p>For more detailed information, we refer to CVAT.ai's <a href="https://www.cvat.ai/terms-of-use">Terms of
+              Use</a>
+            and <a href="https://www.cvat.ai/privacy">Privacy Policy</a>. If you have specific
+            concerns or require further clarification, it's advisable to contact CVAT.ai directly through their <a
+              href="https://www.cvat.ai/contact-us/labeling-services">
+              page</a>.</p>
+        </div>
+        <p></p>
+
+
+        <img src="static/images/getting-started/CVAT3-6.png" alt="CVAT4" />
+        <p>
+          <strong>Task Submission:</strong> Once the task is submitted, it will appear within your project for easy
+          access and management.
+        </p>
+
+        <p></p>
+        <h4 class="title is-4">4.3. Collaborate</h4>
+        <img src="static/images/getting-started/CVAT3-12.png" alt="CVAT5" />
+        <p>
+          <strong>Assigning a Worker:</strong> To assign a worker to this task, open the task by clicking on it.
+          Click within the text field "Assignee:".This will show a dropdown menue of your organizations collaborators.
+          Choose the member you wish to assign the task to.
+          Once the tasks are setup they will be shown as a "Job".
+          To see all jobs click on the "Job" menue item on the top left.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-13.png" alt="CVAT6" />
+
+        <p></p>
+        <h4 class="title is-4">4.4. Annotate</h4>
+        <p>
+          <strong>Opening the Annotation Tool:</strong> To start annotating, click on the job (click the image of the
+          job within the <em>"Job"</em> menu item).
+          This will open the annotation tool, allowing you to begin working on the data.
+        </p>
+        <p>
+          <strong>Navigation:</strong> Use the icons in the top center of the tool to navigate through the dataset and
+          move between images.
+        </p>
+        <p>
+          <strong>Annotation Process:</strong> The way you annotate the data depends on the labels defined for your
+          project.
+          A detailed description of how to annotate based on the labels can be found separately in each use case.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-14.png" alt="CVAT6" />
+      </div>
+
+      <h2 class="title is-4">5. Export Annotations</h2>
+
+      <p>
+        <strong>Exporting Annotations:</strong> Once all jobs and tasks are completed, you can export the annotations
+        for the entire dataset. For details click the "Show More" button.
+      </p>
+
+      <button id="togglebtn-cvat-export" class="button-55"
+        onclick="toggleVisibility('cvat-export', 'togglebtn-cvat-export')">Show More</button>
+
+      <div id="cvat-export" class="hidden">
+        <p></p>
+        <h4 class="title is-4">5.1. Export Annotations Format</h4>
+
+        <p>
+          <strong>How to Export:</strong> To export the annotations, go to the <em>"Projects"</em> menu in the top-left
+          corner.
+          For the project where you wish to export the annotations, click on the three dots and select <em>"Export
+            dataset"</em>.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-15.png" alt="CVAT6" />
+
+        <p>
+          <strong>Choosing the Export Format:</strong> Depending on the use case you are working with, select the
+          appropriate <em>"Export format"</em>.
+          Detailed definitions of the available formats can be found within the specific use case.
+        </p>
+        <p>
+          <strong>Export Settings:</strong> You can usually leave the <em>"Save images"</em> toggle unchecked, as the
+          images are already stored on your machine and
+          you only need the annotations. Once you've selected your settings, click <em>"Ok"</em>.
+        </p>
+        <p>
+          <strong>Reformatting:</strong> The annotations will be reformatted to match the chosen format, which might
+          take a few minutes to complete.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-16.png" alt="CVAT6" />
+
+        <p></p>
+        <h4 class="title is-4">5.2. Download Annotations</h4>
+
+        <p>
+          <strong>Accessing the Exported Annotations:</strong> Once the export is finished, the request will appear
+          under the <em>"Requests"</em> menu item in the top-left corner.
+        </p>
+        <p>
+          <strong>Downloading the Annotations:</strong> To download the annotations file, click on the three dots next
+          to the <em>"Export Annotations"</em> request and select <em>"Download"</em>.
+        </p>
+
+        <img src="static/images/getting-started/CVAT3-17.png" alt="CVAT6" />
+
+        <p>
+          <strong>Placing the Annotations File:</strong> Finally, to ensure the annotations file is loaded correctly,
+          you need to place it within a predefined data structure.
+          The specific location for the file will be detailed separately within each use case.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+  <!--CVAT-->
+
+
+
+  <!--BibTex citation -->
+  <section class="section hero is-light" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+  <!-- Footer  -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the of this website, we just ask that you link back to this page in the footer.
+              <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End footer -->
+
+  <!-- Statcounter tracking code -->
+
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+  <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
