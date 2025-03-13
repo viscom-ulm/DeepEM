@@ -328,8 +328,8 @@
           <div>
             <p>
               <strong>TL;DR</strong> 🧬✨
-              We developed a regression model to quantify virus capsids and their mutation stages
-              ("naked" 🩲, "budding" 🌱, "enveloped" 📦) during secondary envelopment in TEM images.
+              We developed a regression model to quantify maturation states ("naked", "budding", "enveloped") of human
+              cytomegalovirus (HCMV) during its final envelopment process i.e. secondary envelopment.
               Researchers can adapt the provided notebook for their own EM data analysis.
               Click the "Open in Studio" button to get started. 🚀.
             </p>
@@ -352,7 +352,7 @@
             </figcaption>
           </figure>
 
-          <p>If you have any questions or encounter any issues while dealing with this use-case please feel free to
+          <p>If you have any questions or encounter any issues while dealing with this use case please feel free to
             contact <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/">Hannah Kniesel</a> or <a
               href="https://viscom.uni-ulm.de/members/tristan-payer/">Tristan Payer</a>.</p>
         </div>
@@ -424,7 +424,9 @@
           <h5>Challenge: Evaluation with missing ground truth</h5>
           <p>To introduce 2D to 3D tasks, we implement a learning based tomographic reconstruction of 2D projections
             obtained from STEM tomograms, following [1,2].
-            Reconstruction of a 3D volume allows visualisation of the true morphology, spatial relationships and
+            These methods leverage deep learning alongside an image generation process that mimics the projection of a
+            3D scene onto a 2D image using a physics-based simulator (in our case, a STEM simulator). Reconstruction of
+            a 3D volume allows visualisation of the true morphology, spatial relationships and
             connectivity of certain cellular structures and
             organelles within a cell, which may not be visible in 2D projections alone. Due to missing ground truth
             information in the case of tomographic reconstruction,

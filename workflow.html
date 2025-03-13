@@ -390,7 +390,8 @@
         Our workflow standardizes the process of implementing deep learning (DL) use cases for electron microscopy
         (EM). It is designed for DL experts by streamlining training, testing, and inference through a PyTorch-based
         playground with a jupyter notebook based interface for easy use by EM experts.
-        DL experts can easily contribute their own use cases using <a href="your-contribution.html">our template</a>. This approach
+        DL experts can easily contribute their own use cases using <a href="your-contribution.html">our template</a>.
+        This approach
         enables
         electron
         microscopists to work with a single, user-friendly implementation to get more familiar in the area of deep
@@ -417,348 +418,349 @@
               Freepik - Flaticon</a></i></p>
       </div>
 
-      
+
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop content">
+
+      <div class="content has-text-justified">
+
+        <p></p>
+        <p>In the following, we will introduce the steps of the workflow to EM specialists as well as DL specialists.
+          Please open the corresponding tab when reading.</p>
+
+        <div class="tabs">
+          <button class="tab-button-orange active" id='dl-specialists-development-btn'
+            onclick="toggleContent(event, 'em', 'dl-specialists-development-btn', '.tab-button-orange', 'em-specialist-development', 'dl-specialist-development')">
+            <img src="static/images/icon-virus.png" alt="EM Specialists" class="tab-icon">
+            EM Specialists
+          </button>
+          <button class="tab-button-orange" id='em-specialists-development-btn'
+            onclick="toggleContent(event, 'dl', 'em-specialists-development-btn', '.tab-button-orange', 'em-specialist-development', 'dl-specialist-development')">
+            <img src="static/images/icon-artificial-intelligence.png" alt="DL Specialists" class="tab-icon">
+            DL Specialists
+          </button>
         </div>
-        </section>
+        <div class="orange-background">
+          <div id="em-specialist-development" style="display: block;">
+            <h3>Development</h3>
 
-      <section class="section hero is-light">
-        <div class="container is-max-desktop content">
+            <p>
+              In deep learning for electron microscopy (EM), model <strong>development</strong> refers to the
+              process of
+              creating and
+              optimizing deep learning models to address specific challenges within EM. This process is built on
+              three
+              key
+              steps.
+            <ol>
+              <li><strong>Data:</strong> high-quality and well-annotated datasets tailored to the lab's needs.</li>
+              <li><strong>Model Training:</strong> training models by optimizing architectures and parameters.</li>
+              <li><strong>Model Evaluation:</strong> evaluating their performance using task-specific metrics.</li>
+            </ol>
 
-          <div class="content has-text-justified">
+            Together, these steps enable the adaptation of deep learning techniques to EM tasks, ensuring models are
+            effective
+            and tailored to lab-specific applications.
+            </p>
 
+            <h4>1. Data</h4>
+            <p>
+              Recognizing that expertise in data preparation primarily resides within EM labs, our workflow is
+              designed
+              to
+              bridge the gap by providing EM experts with the necessary guidance from DL experts to develop their
+              own
+              datasets. This approach enables
+              labs to prepare their data effectively for successful model training.
+            </p>
+            <p>
+              We design the workflow in such way, that use cases consist of a primary focus (i.e. counting objects
+              in EM
+              images), which is then showcased in an examplary application (i.e. quantification of virus capsids
+              in EM
+              images). However, the use cases are not limited to the examplary application. We emphasize that the
+              application can be changed within the context of the primary focus (i.e. quantification of
+              midrochondira
+              in EM images).
+              By leveraging the introduced workflow, EM specialists are able to swap the application without the
+              need of
+              code changes, but only by exchaning the data. All nessecary information on how to exchange the data
+              will
+              be provided in a step-by-step guide within each use case.
+
+            </p>
             <p></p>
-            <p>In the following, we will introduce the steps of the workflow to EM specialists as well as DL specialists.
-              Please open the corresponding tab when reading.</p>
 
-            <div class="tabs">
-              <button class="tab-button-orange active" id='dl-specialists-development-btn'
-                onclick="toggleContent(event, 'em', 'dl-specialists-development-btn', '.tab-button-orange', 'em-specialist-development', 'dl-specialist-development')">
-                <img src="static/images/icon-virus.png" alt="EM Specialists" class="tab-icon">
-                EM Specialists
-              </button>
-              <button class="tab-button-orange" id='em-specialists-development-btn'
-                onclick="toggleContent(event, 'dl', 'em-specialists-development-btn', '.tab-button-orange', 'em-specialist-development', 'dl-specialist-development')">
-                <img src="static/images/icon-artificial-intelligence.png" alt="DL Specialists" class="tab-icon">
-                DL Specialists
-              </button>
-            </div>
-            <div class="orange-background">
-              <div id="em-specialist-development" style="display: block;">
-                <h3>Development</h3>
+            <div class="hidden" id="content-data">
 
-                <p>
-                  In deep learning for electron microscopy (EM), model <strong>development</strong> refers to the
-                  process of
-                  creating and
-                  optimizing deep learning models to address specific challenges within EM. This process is built on
-                  three
-                  key
-                  steps.
-                <ul>
-                  <li><strong>Data:</strong> high-quality and well-annotated datasets tailored to the lab's needs.</li>
-                  <li><strong>Model Training:</strong> training models by optimizing architectures and parameters.</li>
-                  <li><strong>Model Evaluation:</strong> evaluating their performance using task-specific metrics.</li>
-                </ul>
-
-                Together, these steps enable the adaptation of deep learning techniques to EM tasks, ensuring models are
-                effective
-                and tailored to lab-specific applications.
-                </p>
-
-                <h4>1. Data</h4>
-                <p>
-                  Recognizing that expertise in data preparation primarily resides within EM labs, our workflow is
-                  designed
-                  to
-                  bridge the gap by providing EM experts with the necessary guidance from DL experts to develop their
-                  own
-                  datasets. This approach enables
-                  labs to prepare their data effectively for successful model training.
-                </p>
-                <p>
-                  We design the workflow in such way, that use cases consist of a primary focus (i.e. counting objects
-                  in EM
-                  images), which is then showcased in an examplary application (i.e. quantification of virus particles
-                  in EM
-                  images). However, the use cases are not limited to the examplary application. We emphasize that the
-                  application can be changed within the context of the primary focus (i.e. quantification of
-                  midrochondira
-                  in EM images).
-                  By leveraging the introduced workflow, EM specialists are able to swap the application without the
-                  need of
-                  code changes, but only by exchaning the data. All nessecary information on how to exchange the data
-                  will
-                  be provided in a step-by-step guide within each use case.
-
-                </p>
-                <p></p>
-
-                <div class="hidden" id="content-data">
-
-                  <h6>1.1. Data Acquisition</h6>
-                  <p>
-                    Data acquisition involves collecting raw electron microscopy images or datasets. This may include
-                    imaging
-                    samples under various modalities
-                    (e.g., TEM, SEM) to capture diverse features. It is critical to ensure the dataset is representative
-                    of
-                    the
-                    problem domain to improve model performance.
-                    Expertise in sample preparation, imaging modalities and data collection plays an important role and
-                    usually lies within the EM-lab.
-                  </p>
-                  <p></p>
-
-                  <h6>1.2. Data Annotation</h6>
-                  <p>
-                    Data annotation is the process of labeling images for specific tasks such as
-                    segmentation, classification, or object detection. In the context of deep learning for electron
-                    microscopy
-                    (EM), proper annotation is crucial for training models that perform well on real-world data.
-                  </p>
-                  <p>
-                    Each use case includes a detailed instruction on how to annotate data such that it can be used in a
-                    "plug-and-play"
-                    fashion. This way, we ensure that the training, validation and test data can be easily adapted to
-                    suit
-                    the specific needs of any EM lab without the need for additional code changes.
-                  </p>
-                  <p>
-                    The provided use cases within this paper make use of the <strong>Computer Vision Annotation Tool
-                      (CVAT)</strong>, an easy-to-use and easy-to-setup tool. For a step-by-step guide on how to get
-                    started, please refer to our <a href="getting-started.html">Getting Started</a> guide. Detailed use case specific
-                    instructions for EM specialists can be found in each corresponding use case.
-                  </p>
-                  <p></p>
-
-                  <h6>1.3. Data Preprocessing</h6>
-
-                  <p>
-                    Data Preprocessing is a critical step in preparing data for training deep learning models. This
-                    process
-                    typically involves the following steps:
-                    <i>Data Reformatting</i>, <i>Image Enhancement</i>, and <i>Data Augmentation</i>.
-                  </p>
-
-                  <p>
-                    <i>Data Reformatting</i> ensures compatibility between the data provided by EM specialists and the
-                    code
-                    developed by DL experts.
-                    <i>Image Enhancement</i> may include techniques such as denoising or contrast adjustment to improve
-                    data
-                    quality.
-                    <i>Data Augmentation</i>, a widely-used method, artificially increases the diversity of training
-                    data
-                    without the need to acquire new samples.
-                    This augmentation process will be managed by the DL expert.
-                  </p>
-
-                  <p>
-                    To ensure smooth data reformatting, each use case includes detailed guidance for EM specialists on
-                    converting common EM data formats—such as 2D or 3D
-                    <code>.tif</code> or <code>.mrc</code> files—into formats compatible with the use case requirements.
-                  </p>
-
-                  <p>
-                    Similarly, DL experts will provide straightforward instructions for image enhancement, if necessary
-                    for
-                    the specific use case.
-                    Additionally, EM specialists are encouraged to leverage widely available tools for image
-                    enhancement, as
-                    this may further improve the performance of the trained models.
-                  </p>
-
-
-                  <h6>1.4. Data Structuring</h6>
-                  <p>
-                    Data Structuring serves as the critical interface between DL experts and EM
-                    specialists.
-                    Proper structuring ensures that the data aligns with the requirements of the implemented use case,
-                    bridging the expertise of both domains effectively.
-                  </p>
-
-                  <p>
-                    Data structuring tasks may involve renaming annotation files or organizing data into a predefined
-                    folder
-                    structure.
-                    To simplify this process, each use case provides detailed instructions outlining the required data
-                    structure, ensuring it is straightforward and easy to follow.
-                  </p>
-
-
-                </div>
-                <p></p>
-
-                <button id="togglebtn-data" class="button-55"
-                  onclick="toggleVisibility('content-data', 'togglebtn-data')">Show
-                  More</button>
-                <p></p>
-
-              </div>
+              <h6>1.1. Data Acquisition</h6>
+              <p>
+                Data acquisition involves collecting raw electron microscopy images or datasets. This may include
+                imaging
+                samples under various modalities
+                (e.g., TEM, SEM) to capture diverse features. It is critical to ensure the dataset is representative
+                of
+                the
+                problem domain to improve model performance.
+                Expertise in sample preparation, imaging modalities and data collection plays an important role and
+                usually lies within the EM-lab.
+              </p>
               <p></p>
 
-              <div id="dl-specialist-development" style="display: none;">
-                <h3>Development</h3>
+              <h6>1.2. Data Annotation</h6>
+              <p>
+                Data annotation is the process of labeling images for specific tasks such as
+                segmentation, classification, or object detection. In the context of deep learning for EM, proper
+                annotation is crucial for training models that perform well on real-world data.
+              </p>
+              <p>
+                Each use case includes a detailed instruction on how to annotate data such that it can be used in a
+                "plug-and-play"
+                fashion. This way, we ensure that the training, validation and test data can be easily adapted to
+                suit
+                the specific needs of any EM lab without the need for additional code changes.
+              </p>
+              <p>
+                The provided use cases within this paper make use of the <strong>Computer Vision Annotation Tool
+                  (CVAT)</strong>, an easy-to-use and easy-to-setup tool. For a step-by-step guide on how to get
+                started, please refer to our <a href="getting-started.html">Getting Started</a> guide. Detailed use case
+                specific
+                instructions for EM specialists can be found in each corresponding use case.
+              </p>
+              <p></p>
 
-                <p>
-                  In deep learning for electron microscopy (EM), we refer to the process of
-                  creating and
-                  optimizing deep learning models to address specific challenges within EM as development
-                  <strong>development</strong>.
-                  We structure the process based on three key steps.
-                <ul>
-                  <li><strong>Data:</strong> high-quality and well-annotated datasets tailored to the lab's needs.</li>
-                  <li><strong>Model Training:</strong> training models by optimizing architectures and parameters.</li>
-                  <li><strong>Model Evaluation:</strong> evaluating their performance using task-specific metrics.</li>
-                </ul>
+              <h6>1.3. Data Preprocessing</h6>
 
-                Together, these steps enable the adaptation of deep learning techniques to EM tasks, ensuring models are
-                effective and tailored to lab-specific applications.
-                </p>
-                <p>
-                  In the following, we describe the most important aspects of the introduced workflow based on the
-                  requirements of DL experts. If you wish to contribute your own work, please read carefully. We
-                  additionally provide a simple template on our <a href="your-contribution.html">Your Contribution!</a> page.
-                </p>
+              <p>
+                Data Preprocessing is a critical step in preparing data for training deep learning models. This
+                process
+                typically involves the following steps:
+                <i>Data Reformatting</i>, <i>Image Enhancement</i>, and <i>Data Augmentation</i>.
+              </p>
 
-                <h4>1. Data</h4>
+              <p>
+                <i>Data Reformatting</i> ensures compatibility between the data provided by EM specialists and the
+                code
+                developed by DL experts.
+                <i>Image Enhancement</i> may include techniques such as denoising or contrast adjustment to improve
+                data
+                quality.
+                <i>Data Augmentation</i>, a widely-used method, artificially increases the diversity of training
+                data
+                without the need to acquire new images.
+                This augmentation process will be managed by the DL expert.
+              </p>
 
-                <p>
-                  Recognizing that expertise in data preparation primarily resides within EM labs, our workflow is
-                  designed
-                  to
-                  bridge the gap by providing EM experts with the necessary guidance from DL experts to develop their
-                  own
-                  datasets. This approach enables
-                  labs to prepare their data effectively for successful model training.
-                </p>
-                <p>
-                  We design the workflow in such way, that use cases consist of a primary focus (i.e. counting objects
-                  in EM
-                  images), which is then showcased in an examplary application (i.e. quantification of virus particles
-                  in EM
-                  images). However, the use cases are not limited to the examplary application. We emphasize that the
-                  application can be changed within the context of the primary focus (i.e. quantification of
-                  midrochondira
-                  in EM images).
-                  By leveraging the introduced workflow, EM specialists are able to swap the application without the
-                  need of
-                  code changes, but only by exchaning the data. All nessecary information on how to exchange the data
-                  will
-                  be provided in a step-by-step guide within each use case.
+              <p>
+                To ensure smooth data reformatting, each use case includes detailed guidance for EM specialists on
+                converting common EM data formats—such as 2D or 3D
+                <code>.tif</code> or <code>.mrc</code> files—into formats compatible with the use case requirements.
+              </p>
 
-                </p>
-                <p></p>
-                <div class="hidden" id="content-data-dl">
-                  <p>
-                    High-quality data is the foundation of deep learning model development. For EM, this includes
-                    acquiring,
-                    annotating, preprocessing,
-                    and structuring data to ensure it is suitable for training and evaluating models. Properly handling
-                    data
-                    ensures model reliability and robustness.
-                  </p>
+              <p>
+                Similarly, DL experts will provide straightforward instructions for image enhancement, if necessary
+                for
+                the specific use case.
+                Additionally, EM specialists are encouraged to leverage widely available tools for image
+                enhancement, as
+                this may further improve the performance of the trained models.
+              </p>
 
 
-                  <h6>1.1. Data Acquisition</h6>
-                  <p>
-                    Data acquisition involves gathering raw electron microscopy (EM) images or datasets, often by
-                    imaging
-                    samples under various modalities (e.g., TEM, SEM) to capture diverse features. This step primarily
-                    relies on the expertise of the EM lab.
-                  </p>
+              <h6>1.4. Data Structuring</h6>
+              <p>
+                Data Structuring serves as the critical interface between DL experts and EM
+                specialists.
+                Proper structuring ensures that the data aligns with the requirements of the implemented use case,
+                bridging the expertise of both domains effectively.
+              </p>
 
-                  <h6>1.2. Data Annotation</h6>
-                  <p>A majow obstacle in the gathering of large, annotated EM datasets is the fact, that the annotation
-                    requires experts to do so. Our workflow is hence designed in such way, that data annotation can be
-                    done
-                    within the EM lab itself. This allows to annotate data, where there is the expertise for it and
-                    train
-                    models which directly fit the needs of the EM lab.</p>
-                  <p>
-                    To do so, each use case gives a detailed description on how to annotate the data accordingly using
-                    the
-                    <strong>Computer Vision Annotation
-                      Tool (CVAT)</strong>. CVAT is an easy-to-use and easy-to-setup tool. You can find a step-by-step guide
-                    on
-                    how to get started with annotating data using CVAT <a href="getting-started.html">here</a>.
-                  </p>
-
-                  <p>
-                    Our provided use cases within this paper make use of the <strong>Computer Vision Annotation
-                      Tool (CVAT)</strong>, an easy-to-use and easy-to-setup tool. If you wish to use the CVAT tool for
-                    your
-                    annotations, you find a step-by-step guide on how to get started with annotating data using CVAT <a
-                      href="getting-started.html">here</a>.
+              <p>
+                Data structuring tasks may involve renaming annotation files or organizing data into a predefined
+                folder
+                structure.
+                To simplify this process, each use case provides detailed instructions outlining the required data
+                structure, ensuring it is straightforward and easy to follow.
+              </p>
 
 
-                  </p>
+            </div>
+            <p></p>
 
-                  <p>
-                    However, the use of the CVAT tool is optional.
-                    Still, we do require that any custom annotation process be thoroughly documented. This ensures that
-                    the
-                    setup is straightforward and that the tool can be freely used by EM researchers who need to annotate
-                    their
-                    own data.
-                  </p>
+            <button id="togglebtn-data" class="button-55"
+              onclick="toggleVisibility('content-data', 'togglebtn-data')">Show
+              More</button>
+            <p></p>
 
-                  <h6>1.3. Data Preprocessing</h6>
-                  <p>
-                    Any preprocessing steps required by EM specialists should be clearly defined and documented in the
-                    use
-                    case to facilitate easy implementation.
-                  </p>
-                  <p>
-                    <strong>Data Preprocessing</strong> is a critical step in preparing data for training deep learning
-                    models.
-                    It is especially error prone as it functions as interface between DL experts and EM experts.
-                    This process involves three key stages: <strong>1) Data Reformatting</strong>, <strong>2) Image
-                      Enhancement</strong>,
-                    and <strong>3) Data Augmentation</strong>.
-                  </p>
-                  <ul>
-                    <li>
-                      <strong>Data Reformatting:</strong> Ensures that the data provided by EM specialists is compatible
-                      with the
-                      code developed by DL experts. This step requires input from EM specialists and is a necessary part
-                      of
-                      the workflow. To ensure compatibility, we encourage DL experts to use common formats in
-                      EM, such as 2D or 3D .tif, .mrc, and others.
-                    </li>
-                    <li>
-                      <strong>Image Enhancement:</strong> Can improve model training by enhancing image quality through
-                      tasks like denoising and contrast
-                      adjustment. These methods should be implemented in the code by the DL expert. Alternatively,
-                      if reimplementing external tools is impractical, a step-by-step guide on achieving the desired
-                      preprocessing must be provided.
-                    </li>
-                    <li>
-                      <strong>Data Augmentation:</strong> Techniques like random flips or rotations should be fully
-                      integrated
-                      into the provided codebase by the DL specialsts. Similarly resampling techniques due to imbalanced
-                      datasets should be provided by the DL experts if nessecary.
-                    </li>
-                  </ul>
-                  <p>
-                    Standardizing these preprocessing steps improves model performance, minimizes errors, and ensures a
-                    streamlined workflow
-                    with minimal effort required from EM specialists.
-                  </p>
+          </div>
+          <p></p>
 
-                  <h6>1.4. Data Structuring</h6>
-                  <p>
-                    Our proposed workflow recomments to structure training, testing and validation data within a single
-                    folder. This
-                    will simplify data structuring for EM researchers.
-                    Splitting the dataset accordingly should hence be done during runtime in the code.
-                    When using python this can be for instance done using the <a
-                      href="https://scikit-learn.org/dev/modules/generated/sklearn.model_selection.train_test_split.html">sklearn</a>:
+          <div id="dl-specialist-development" style="display: none;">
+            <h3>Development</h3>
+
+            <p>
+              In deep learning for electron microscopy (EM), we refer to the process of
+              creating and
+              optimizing deep learning models to address specific challenges within EM as development
+              <strong>development</strong>.
+              We structure the process based on three key steps.
+            <ol>
+              <li><strong>Data:</strong> high-quality and well-annotated datasets tailored to the lab's needs.</li>
+              <li><strong>Model Training:</strong> training models by optimizing architectures and parameters.</li>
+              <li><strong>Model Evaluation:</strong> evaluating their performance using task-specific metrics.</li>
+            </ol>
+
+            Together, these steps enable the adaptation of deep learning techniques to EM tasks, ensuring models are
+            effective and tailored to lab-specific applications.
+            </p>
+            <p>
+              In the following, we describe the most important aspects of the introduced workflow based on the
+              requirements of DL experts. If you wish to contribute your own work, please read carefully. We
+              additionally provide a simple template on our <a href="your-contribution.html">Your Contribution!</a>
+              page.
+            </p>
+
+            <h4>1. Data</h4>
+
+            <p>
+              Recognizing that expertise in data preparation primarily resides within EM labs, our workflow is
+              designed
+              to
+              bridge the gap by providing EM experts with the necessary guidance from DL experts to develop their
+              own
+              datasets. This approach enables
+              labs to prepare their data effectively for successful model training.
+            </p>
+            <p>
+              We design the workflow in such way, that use cases consist of a primary focus (i.e. counting objects
+              in EM
+              images), which is then showcased in an examplary application (i.e. quantification of virus capsids
+              in EM
+              images). However, the use cases are not limited to the examplary application. We emphasize that the
+              application can be changed within the context of the primary focus (i.e. quantification of
+              midrochondira
+              in EM images).
+              By leveraging the introduced workflow, EM specialists are able to swap the application without the
+              need of
+              code changes, but only by exchaning the data. All nessecary information on how to exchange the data
+              will
+              be provided in a step-by-step guide within each use case.
+
+            </p>
+            <p></p>
+            <div class="hidden" id="content-data-dl">
+              <p>
+                High-quality data is the foundation of deep learning model development. For EM, this includes
+                acquiring,
+                annotating, preprocessing,
+                and structuring data to ensure it is suitable for training and evaluating models. Properly handling
+                data
+                ensures model reliability and robustness.
+              </p>
+
+
+              <h6>1.1. Data Acquisition</h6>
+              <p>
+                Data acquisition involves gathering raw electron microscopy (EM) images or datasets, often by
+                imaging
+                samples under various modalities (e.g., TEM, STEM, SEM) to capture diverse features. This step primarily
+                relies on the expertise of the EM lab.
+              </p>
+
+              <h6>1.2. Data Annotation</h6>
+              <p>A majow obstacle in the gathering of large, annotated EM datasets is the fact, that the annotation
+                requires experts to do so. Our workflow is hence designed in such way, that data annotation can be
+                done
+                within the EM lab itself. This allows to annotate data, where there is the expertise for it and
+                train
+                models which directly fit the needs of the EM lab.</p>
+              <p>
+                To do so, each use case gives a detailed description on how to annotate the data accordingly using
+                the
+                <strong>Computer Vision Annotation
+                  Tool (CVAT)</strong>. CVAT is an easy-to-use and easy-to-setup tool. You can find a step-by-step guide
+                on
+                how to get started with annotating data using CVAT <a href="getting-started.html">here</a>.
+              </p>
+
+              <p>
+                Our provided use cases within this paper make use of the <strong>Computer Vision Annotation
+                  Tool (CVAT)</strong>, an easy-to-use and easy-to-setup tool. If you wish to use the CVAT tool for
+                your
+                annotations, you find a step-by-step guide on how to get started with annotating data using CVAT <a
+                  href="getting-started.html">here</a>.
+
+
+              </p>
+
+              <p>
+                However, the use of the CVAT tool is optional.
+                Still, we do require that any custom annotation process be thoroughly documented. This ensures that
+                the
+                setup is straightforward and that the tool can be freely used by EM researchers who need to annotate
+                their
+                own data.
+              </p>
+
+              <h6>1.3. Data Preprocessing</h6>
+              <p>
+                Any preprocessing steps required by EM specialists should be clearly defined and documented in the
+                use
+                case to facilitate easy implementation.
+              </p>
+              <p>
+                <strong>Data Preprocessing</strong> is a critical step in preparing data for training deep learning
+                models.
+                It is especially error prone as it functions as interface between DL experts and EM experts.
+                This process involves three key stages: <strong>1) Data Reformatting</strong>, <strong>2) Image
+                  Enhancement</strong>,
+                and <strong>3) Data Augmentation</strong>.
+              </p>
+              <ul>
+                <li>
+                  <strong>Data Reformatting:</strong> Ensures that the data provided by EM specialists is compatible
+                  with the
+                  code developed by DL experts. This step requires input from EM specialists and is a necessary part
+                  of
+                  the workflow. To ensure compatibility, we encourage DL experts to use common formats in
+                  EM, such as 2D or 3D .tif, .mrc, and others.
+                </li>
+                <li>
+                  <strong>Image Enhancement:</strong> Can improve model training by enhancing image quality through
+                  tasks like denoising and contrast
+                  adjustment. These methods should be implemented in the code by the DL expert. Alternatively,
+                  if reimplementing external tools is impractical, a step-by-step guide on achieving the desired
+                  preprocessing must be provided.
+                </li>
+                <li>
+                  <strong>Data Augmentation:</strong> Techniques like random flips or rotations should be fully
+                  integrated
+                  into the provided codebase by the DL specialsts. Similarly resampling techniques due to imbalanced
+                  datasets should be provided by the DL experts if nessecary.
+                </li>
+              </ul>
+              <p>
+                Standardizing these preprocessing steps improves model performance, minimizes errors, and ensures a
+                streamlined workflow
+                with minimal effort required from EM specialists.
+              </p>
+
+              <h6>1.4. Data Structuring</h6>
+              <p>
+                Our proposed workflow recomments to structure training, testing and validation data within a single
+                folder. This
+                will simplify data structuring for EM researchers.
+                Splitting the dataset accordingly should hence be done during runtime in the code.
+                When using python this can be for instance done using the <a
+                  href="https://scikit-learn.org/dev/modules/generated/sklearn.model_selection.train_test_split.html">sklearn</a>:
 
 
 
-                  </p>
-                  <pre>
+              </p>
+              <pre>
               <code class="">
                 from sklearn.model_selection import train_test_split
 
@@ -767,323 +769,321 @@
                 val, test = train_test_split(rest, test_size=0.5, random_state=42)
               </code>
             </pre>
-                </div>
-                <p></p>
-                <button id="togglebtn-data-dl" class="button-55"
-                  onclick="toggleVisibility('content-data-dl', 'togglebtn-data-dl')">Show
-                  More</button>
-
-              </div>
-              <p></p>
-
-
-
-
-
-              <h4>2. Model Training</h4>
-              <p>
-                Model training focuses on creating and optimizing deep learning models to solve specific EM tasks. It
-                includes configuring the
-                training process, monitoring progress, refining modelparameters and finding a well suited set of
-                hyperparameters to maximize performance.
-              </p>
-              <p></p>
-
-              <div class="hidden" id="content-model-training-dl">
-
-                <h6>2.1. Hyperparameter Tuning</h6>
-                <p>
-                  Hyperparameters are adjustable parameters in machine
-                  learning and deep learning models that are set before training begins. Unlike model parameters, which
-                  are learned from the training data (e.g., weights in a neural network), hyperparameters are defined by
-                  the user and govern the learning process or model structure.
-                  Hence, hyperparameter tuning is a crucial process that can significantly enhance the performance
-                  of a deep learning model. It aims to find the best suited hyperparameters by leveraging a structured
-                  search.
-                  Specifically, when the dataset and hence the aim of the model is changed a hyperparameter seach is
-                  required.
-                  Successful tuning requires collaboration between DL and EM experts.
-                  Therefore, our playground simplifies this process by implementing an automatic hyperparameter search over
-                  a
-                  predefined search space.
-                  All hyperparamters of each use case are introduced within the corresponding notebook.
-                  The DL experts and developer of the notebooks will give a short explanation about each hyperparameter
-                  and
-                  its possible influence.
-                  A simple form, defined within the `1_Development.ipynb` of each use case, can be used to define the
-                  seach
-                  space over which
-                  hyperparameters will be tuned. However, for
-                  inexperienced users, the DL developers provide a default setup of a search space which can be used
-                  without
-                  additional interaction.
-                </p>
-
-                <h6>2.2. Training and Validation</h6>
-                <p>
-                  The training and validation of the model are primarily handled by deep learning experts. However, the
-                  logging module in our workflow provides EM specialists with an accessible way to gain insights into
-                  the
-                  training and validation process. Well-maintained logs help optimize the
-                  model and identify potential issues, such as overfitting or bias within data. By overseeing the
-                  process
-                  through the logger class, EM specialists can develop a
-                  fundamental understanding, fostering a solid foundation for effective collaboration.
-                </p>
-
-                <p>
-                  In our workflow, logging is implemented using both standard output and a local logging directory at
-                  <code>logs/data-current-datetime/</code>.
-                  The logs capture the following key data:
-                </p>
-                <ul>
-                  <li><strong>Hyperparameters of the run</strong>: The used hyperparameters are saved at
-                    <code>log-path/TrainingRun/hyperparameters.json</code>. For more details see the section above
-                    (2.1.)
-                  </li>
-                  <li><strong>Model checkpoints</strong>: Model checkpoints are saved snapshots of a model's state
-                    (e.g.,
-                    weights and biases) at a specific point during training. They allow you to resume training from that
-                    point or use the saved model for inference, ensuring progress isn't lost if training is interrupted.
-                    We
-                    save the best model, according to the validation loss in
-                    <code>log-path/TrainingRun/checkpoints/best_model.pth</code>, which will be loaded for inference.
-                    Additionally, we save the latest model checkpoint for possible resuming of training in
-                    <code>log-path/TrainingRun/checkpoints/latest_model.pth</code>
-                  </li>
-                  <li><strong>Training/validation curves</strong>: Training/validation curves are being saved at
-                    <code>log-path/TrainingRun/plots/training_curves.png</code>. These graphs show how a
-                    model's performance changes over time during training, by plotting the models loss
-                    against epochs. They help diagnose overfitting, underfitting, or other issues by comparing the
-                    model's
-                    performance on the training data (training curve) versus unseen validation data (validation curve).
-                    These loss curves can be noisy (going up-and-down) but they should generally decrease over the
-                    training
-                    time (along the x-axis).
-                  </li>
-                  <li><strong>Qualitative visualization of validation images</strong>: Qualitative visualization of
-                    validation images involves displaying sample images from the validation dataset alongside the
-                    model's
-                    predictions. These images can be found at <code>log-path/TrainingRun/samples/</code> This helps
-                    users
-                    visually assess the model's performance, such as how well it identifies
-                    objects or segments regions, highlighting strengths and weaknesses in a more intuitive way.</li>
-                  <li><strong>Results on test metrics</strong>: Results on test metrics refer to the quantitative
-                    evaluation
-                    of a model's performance on a separate, unseen test dataset. These metrics provide an objective
-                    measure
-                    of how well the model
-                    generalizes to new data and performs its intended task. You can find these results at
-                    <code>log-path/Evaluate/test_results.txt</code>
-                  </li>
-                  <li><strong>Qualitative visualization of test images</strong>: Qualitative visualization of test
-                    images
-                    involves showcasing examples from the test dataset alongside the model's predictions, allowing users
-                    to
-                    see how the model performs on completely unseen data. Again, these images can be found at
-                    <code>log-path/Evaluate/samples/</code>. It provides an intuitive, visual way to evaluate
-                    strengths, weaknesses, and any patterns in the model's behavior beyond numerical metrics.
-                  </li>
-                </ul>
-                <p>Additional text logs are being saved to <code>log-path/TrainingRun/log.txt</code> and
-                  <code>log-path/log.txt</code>
-                </p>
-
-              </div>
-
-              <button id="togglebtn-model-training-dl" class="button-55"
-                onclick="toggleVisibility('content-model-training-dl', 'togglebtn-model-training-dl')">Show
-                More</button>
-              <p></p>
-
-              <h4>
-                3. Model Evaluation
-              </h4>
-              <p>
-                Model evaluation assesses the trained model's performance using specific metrics to determine its
-                effectiveness in solving the target task.
-                This step ensures the model meets the requirements for deployment or further refinement.
-                The way, how a model is being evaluated heavily depends on the model goal or aim. This will hence be
-                provided by the DL expert within each use case.
-              </p>
-              <p></p>
-
-              <div class="hidden" id="content-model-evaluation-dl">
-                <h6>3.1. Choose Model</h6>
-                <p>Our workflow implementation typically selects the most recently trained model for evaluation.
-                  However, we
-                  also provide the flexibility to test previously trained (or shared) models by an optional input of the
-                  model checkpoint path by the EM specialist,
-                  based on a simple text input form.
-                </p>
-
-
-                <h6>3.2. Evaluation</h6>
-                <p>
-                  The evaluation of the model is guided by the expertise of the DL specialist and does not require
-                  additional
-                  input from the
-                  EM specialist. Each use case defines specific metrics or evaluation methods tailored to the model's
-                  goals, with the DL
-                  specialist selecting these key metrics and methods that enable a comprehensive assessment of the
-                  model's
-                  performance. To
-                  support the EM specialist in making an informed decision about whether the model is ready for
-                  deployment
-                  or requires further refinement, the DL specialist provides a clear explanation of what each metric
-                  or
-                  method
-                  measures and how it contributes to the evaluation process.
-                </p>
-
-              </div>
-
-              <button id="togglebtn-model-evaluation-dl" class="button-55"
-                onclick="toggleVisibility('content-model-evaluation-dl', 'togglebtn-model-evaluation-dl')">Show
-                More</button>
-              <p></p>
-
-
             </div>
+            <p></p>
+            <button id="togglebtn-data-dl" class="button-55"
+              onclick="toggleVisibility('content-data-dl', 'togglebtn-data-dl')">Show
+              More</button>
+
+          </div>
+          <p></p>
 
 
 
 
-            <div class="tabs">
-              <button class="tab-button-green active" id='dl-specialists-inference-btn'
-                onclick="toggleContent(event, 'em', 'dl-specialists-inference-btn', '.tab-button-green', 'em-specialist-inference', 'dl-specialist-inference')">
-                <img src="static/images/icon-virus.png" alt="EM Specialists" class="tab-icon">
-                EM Specialists
-              </button>
-              <button class="tab-button-green" id='em-specialists-inference-btn'
-                onclick="toggleContent(event, 'dl', 'em-specialists-inference-btn', '.tab-button-green', 'em-specialist-inference', 'dl-specialist-inference')">
-                <img src="static/images/icon-artificial-intelligence.png" alt="DL Specialists" class="tab-icon">
-                DL Specialists
-              </button>
-            </div>
-            <div class="green-background">
 
-              <div id="em-specialist-inference" style="display: block;">
-                <h3>Inference</h3>
-                <p>
-                  Inference is the process of using a thoroughly trained and tested deep learning model to make
-                  predictions
-                  on new,
-                  unseen data. It finally allows to use the model to support the analysis of EM data.
-                </p>
-                <h4>1. Define Data</h4>
-                <p>
-                  To perform inference with a trained model, you first need to define the data you want the model to
-                  make
-                  predictions on. This could be a specific set of EM data that you wish to analyze. The data can be
-                  provided
-                  as a single file for prediction or as a folder containing multiple files, allowing for automatic
-                  processing of all the included data. This flexibility ensures the model can handle both individual
-                  cases
-                  and larger datasets efficiently.
-                </p>
-                <h4>2. Choose Model</h4>
-                <p>
-                  The EM specialist is responsible for selecting a previously trained model for inference. It is
-                  essential
-                  that the model
-                  has been evaluated thoroughly according to the evaluation criteria provided by the DL expert, ensuring
-                  that the evaluation results are promising. Only models with strong performance, as indicated by the
-                  evaluation metrics, should be used for making predictions, ensuring reliable and accurate results.
-                </p>
-                <h4>2. Make Prediction</h4>
-                <p>
-                  The model will be used to make predictions on the provided data. However, it's important to remember
-                  that
-                  no trained model is perfect, and human oversight remains essential. The results generated by the model
-                  should always be carefully checked for plausibility to ensure accuracy and reliability.
-                </p>
+          <h4>2. Model Training</h4>
+          <p>
+            Model training focuses on creating and optimizing deep learning models to solve specific EM tasks. It
+            includes configuring the
+            training process, monitoring progress, refining modelparameters and finding a well suited set of
+            hyperparameters to maximize performance.
+          </p>
+          <p></p>
+
+          <div class="hidden" id="content-model-training-dl">
+
+            <h6>2.1. Hyperparameter Tuning</h6>
+            <p>
+              Hyperparameters are adjustable parameters in machine
+              learning and deep learning models that are set before training begins. Unlike model parameters, which
+              are learned from the training data (e.g., weights in a neural network), hyperparameters are defined by
+              the user and govern the learning process or model structure.
+              Hence, hyperparameter tuning is a crucial process that can significantly enhance the performance
+              of a deep learning model. It aims to find the best suited hyperparameters by leveraging a structured
+              search.
+              Specifically, when the dataset and hence the aim of the model is changed a hyperparameter seach is
+              required.
+              Successful tuning requires collaboration between DL and EM experts.
+              Therefore, our playground simplifies this process by implementing an automatic hyperparameter search over
+              a
+              predefined search space.
+              All hyperparamters of each use case are introduced within the corresponding notebook.
+              The DL experts and developer of the notebooks will give a short explanation about each hyperparameter
+              and
+              its possible influence.
+              A simple form, defined within the `1_Development.ipynb` of each use case, can be used to define the
+              seach
+              space over which
+              hyperparameters will be tuned. However, for
+              inexperienced users, the DL developers provide a default setup of a search space which can be used
+              without
+              additional interaction.
+            </p>
+
+            <h6>2.2. Training and Validation</h6>
+            <p>
+              The training and validation of the model are primarily handled by deep learning experts. However, the
+              logging module in our workflow provides EM specialists with an accessible way to gain insights into
+              the
+              training and validation process. Well-maintained logs help optimize the
+              model and identify potential issues, such as overfitting or bias within data. By overseeing the
+              process
+              through the logger class, EM specialists can develop a
+              fundamental understanding, fostering a solid foundation for effective collaboration.
+            </p>
+
+            <p>
+              In our workflow, logging is implemented using both standard output and a local logging directory at
+              <code>logs/data-current-datetime/</code>.
+              The logs capture the following key data:
+            </p>
+            <ul>
+              <li><strong>Hyperparameters of the run</strong>: The used hyperparameters are saved at
+                <code>log-path/TrainingRun/hyperparameters.json</code>. For more details see the section above
+                (2.1.)
+              </li>
+              <li><strong>Model checkpoints</strong>: Model checkpoints are saved snapshots of a model's state
+                (e.g.,
+                weights and biases) at a specific point during training. They allow you to resume training from that
+                point or use the saved model for inference, ensuring progress isn't lost if training is interrupted.
+                We
+                save the best model, according to the validation loss in
+                <code>log-path/TrainingRun/checkpoints/best_model.pth</code>, which will be loaded for inference.
+                Additionally, we save the latest model checkpoint for possible resuming of training in
+                <code>log-path/TrainingRun/checkpoints/latest_model.pth</code>
+              </li>
+              <li><strong>Training/validation curves</strong>: Training/validation curves are being saved at
+                <code>log-path/TrainingRun/plots/training_curves.png</code>. These graphs show how a model's performance
+                changes over time during training by plotting the model's loss (a measure of how far predictions are
+                from the correct values) against epochs (one full pass through the training dataset). They help diagnose
+                overfitting, underfitting, or other issues by comparing the model's performance on the training data
+                (training curve) versus unseen validation data (validation curve). These loss curves can be noisy (going
+                up and down), but they should generally decrease over the training time (along the x-axis)
+              </li>
+              <li><strong>Qualitative visualization of validation images</strong>: Qualitative visualization of
+                validation images involves displaying sample images from the validation dataset alongside the
+                model's
+                predictions. These images can be found at <code>log-path/TrainingRun/samples/</code> This helps
+                users
+                visually assess the model's performance, such as how well it identifies
+                objects or segments regions, highlighting strengths and weaknesses in a more intuitive way.</li>
+              <li><strong>Results on test metrics</strong>: Results on test metrics refer to the quantitative
+                evaluation
+                of a model's performance on a separate, unseen test dataset. These metrics provide an objective
+                measure
+                of how well the model
+                generalizes to new data and performs its intended task. You can find these results at
+                <code>log-path/Evaluate/test_results.txt</code>
+              </li>
+              <li><strong>Qualitative visualization of test images</strong>: Qualitative visualization of test
+                images
+                involves showcasing examples from the test dataset alongside the model's predictions, allowing users
+                to
+                see how the model performs on completely unseen data. Again, these images can be found at
+                <code>log-path/Evaluate/samples/</code>. It provides an intuitive, visual way to evaluate
+                strengths, weaknesses, and any patterns in the model's behavior beyond numerical metrics.
+              </li>
+            </ul>
+            <p>Additional text logs are being saved to <code>log-path/TrainingRun/log.txt</code> and
+              <code>log-path/log.txt</code>
+            </p>
+
+          </div>
+
+          <button id="togglebtn-model-training-dl" class="button-55"
+            onclick="toggleVisibility('content-model-training-dl', 'togglebtn-model-training-dl')">Show
+            More</button>
+          <p></p>
+
+          <h4>
+            3. Model Evaluation
+          </h4>
+          <p>
+            Model evaluation assesses the trained model's performance using specific metrics to determine its
+            effectiveness in solving the target task.
+            This step ensures the model meets the requirements for deployment or further refinement.
+            The way, how a model is being evaluated heavily depends on the model goal or aim. This will hence be
+            provided by the DL expert within each use case.
+          </p>
+          <p></p>
+
+          <div class="hidden" id="content-model-evaluation-dl">
+            <h6>3.1. Choose Model</h6>
+            <p>Our workflow implementation typically selects the most recently trained model for evaluation.
+              However, we
+              also provide the flexibility to test previously trained (or shared) models by an optional input of the
+              model checkpoint path by the EM specialist,
+              based on a simple text input form.
+            </p>
 
 
-              </div>
+            <h6>3.2. Evaluation</h6>
+            <p>
+              The evaluation of the model is guided by the expertise of the DL specialist and does not require
+              additional
+              input from the
+              EM specialist. Each use case defines specific metrics or evaluation methods tailored to the model's
+              goals, with the DL
+              specialist selecting these key metrics and methods that enable a comprehensive assessment of the
+              model's
+              performance. To
+              support the EM specialist in making an informed decision about whether the model is ready for
+              deployment
+              or requires further refinement, the DL specialist provides a clear explanation of what each metric
+              or
+              method
+              measures and how it contributes to the evaluation process.
+            </p>
 
-              <div id="dl-specialist-inference" style="display: none;">
-                DL Specialist
-                <h3>Inference</h3>
-                <p>During inference EM specialists are able to choose a thoroughly trained and tested deep learning
-                  model to
-                  make predictions
-                  on new,
-                  unseen data. It finally allows to use the model to support the analysis of EM data.</p>
-                <h4>1. Define Data</h4>
-                <p>
-                  The EM specialist is able to provide the data
-                  as a single file for prediction or as a folder containing multiple files, allowing for automatic
-                  processing of all the included data. This flexibility ensures the model can handle both individual
-                  cases
-                  and larger datasets efficiently.
-                </p>
-                <h4>2. Choose Model</h4>
-                <p>
-                  The EM specialist is responsible for selecting a previously trained model for inference. This model
-                  should
-                  be based on the best-performing hyperparameters identified during training. It is essential that the
-                  model
-                  has been evaluated thoroughly according to the evaluation criteria provided by the DL expert, ensuring
-                  that the evaluation results are promising.
-                </p>
-                <h4>2. Make Prediction</h4>
-                <p>
-                  DL experts need to implement the functionality of making predictions based on the defined model and
-                  data
-                  of the EM specialist.
-                </p>
-              </div>
+          </div>
+
+          <button id="togglebtn-model-evaluation-dl" class="button-55"
+            onclick="toggleVisibility('content-model-evaluation-dl', 'togglebtn-model-evaluation-dl')">Show
+            More</button>
+          <p></p>
 
 
-            </div>
+        </div>
+
+
+
+
+        <div class="tabs">
+          <button class="tab-button-green active" id='dl-specialists-inference-btn'
+            onclick="toggleContent(event, 'em', 'dl-specialists-inference-btn', '.tab-button-green', 'em-specialist-inference', 'dl-specialist-inference')">
+            <img src="static/images/icon-virus.png" alt="EM Specialists" class="tab-icon">
+            EM Specialists
+          </button>
+          <button class="tab-button-green" id='em-specialists-inference-btn'
+            onclick="toggleContent(event, 'dl', 'em-specialists-inference-btn', '.tab-button-green', 'em-specialist-inference', 'dl-specialist-inference')">
+            <img src="static/images/icon-artificial-intelligence.png" alt="DL Specialists" class="tab-icon">
+            DL Specialists
+          </button>
+        </div>
+        <div class="green-background">
+
+          <div id="em-specialist-inference" style="display: block;">
+            <h3>Inference</h3>
+            <p>
+              Inference is the process of using a thoroughly trained and tested deep learning model to make
+              predictions
+              on new,
+              unseen data. It finally allows to use the model to support the analysis of EM data.
+            </p>
+            <h4>1. Define Data</h4>
+            <p>
+              To perform inference with a trained model, you first need to define the data you want the model to
+              make
+              predictions on. This could be a specific set of EM data that you wish to analyze. The data can be
+              provided
+              as a single file for prediction or as a folder containing multiple files, allowing for automatic
+              processing of all the included data. This flexibility ensures the model can handle both individual
+              cases
+              and larger datasets efficiently.
+            </p>
+            <h4>2. Choose Model</h4>
+            <p>
+              The EM specialist is responsible for selecting a previously trained model for inference. It is
+              essential
+              that the model
+              has been evaluated thoroughly according to the evaluation criteria provided by the DL expert, ensuring
+              that the evaluation results are promising. Only models with strong performance, as indicated by the
+              evaluation metrics, should be used for making predictions, ensuring reliable and accurate results.
+            </p>
+            <h4>2. Make Prediction</h4>
+            <p>
+              The model will be used to make predictions on the provided data. However, it's important to remember
+              that
+              no trained model is perfect, and human oversight remains essential. The results generated by the model
+              should always be carefully checked for plausibility to ensure accuracy and reliability.
+            </p>
+
+
+          </div>
+
+          <div id="dl-specialist-inference" style="display: none;">
+            DL Specialist
+            <h3>Inference</h3>
+            <p>During inference EM specialists are able to choose a thoroughly trained and tested deep learning
+              model to
+              make predictions
+              on new,
+              unseen data. It finally allows to use the model to support the analysis of EM data.</p>
+            <h4>1. Define Data</h4>
+            <p>
+              The EM specialist is able to provide the data
+              as a single file for prediction or as a folder containing multiple files, allowing for automatic
+              processing of all the included data. This flexibility ensures the model can handle both individual
+              cases
+              and larger datasets efficiently.
+            </p>
+            <h4>2. Choose Model</h4>
+            <p>
+              The EM specialist is responsible for selecting a previously trained model for inference. This model
+              should
+              be based on the best-performing hyperparameters identified during training. It is essential that the
+              model
+              has been evaluated thoroughly according to the evaluation criteria provided by the DL expert, ensuring
+              that the evaluation results are promising.
+            </p>
+            <h4>2. Make Prediction</h4>
+            <p>
+              DL experts need to implement the functionality of making predictions based on the defined model and
+              data
+              of the EM specialist.
+            </p>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!--End workflow  -->
+
+
+
+  <!--BibTex citation -->
+  <section class="section hero" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+  <!-- Footer  -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic
+                Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io"
+                target="_blank">Nerfies</a> project page.
+              You are free to borrow the of this website, we just ask that you link back to this page in the footer.
+              <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
 
           </div>
         </div>
-      </section>
-      <!--End workflow  -->
+      </div>
+    </div>
+  </footer>
+  <!-- End footer -->
 
+  <!-- Statcounter tracking code -->
 
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
-      <!--BibTex citation -->
-      <section class="section hero" id="BibTeX">
-        <div class="container is-max-desktop content">
-          <h2 class="title">BibTeX</h2>
-          <pre><code>BibTex Code Here</code></pre>
-        </div>
-      </section>
-      <!--End BibTex citation -->
-
-      <!-- Footer  -->
-      <footer class="footer">
-        <div class="container">
-          <div class="columns is-centered">
-            <div class="column is-8">
-              <div class="content">
-
-                <p>
-                  This page was built using the <a
-                    href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic
-                    Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io"
-                    target="_blank">Nerfies</a> project page.
-                  You are free to borrow the of this website, we just ask that you link back to this page in the footer.
-                  <br> This website is licensed under a <a rel="license"
-                    href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-                    Commons Attribution-ShareAlike 4.0 International License</a>.
-                </p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- End footer -->
-
-      <!-- Statcounter tracking code -->
-
-      <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-      <!-- End of Statcounter Code -->
+  <!-- End of Statcounter Code -->
 
 </body>
 
