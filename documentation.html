@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepEM Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #2c3e50;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .method {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: rgb(220, 220, 220);
+            padding: 1%
+        }
+
+        .abstract {
+            background: #fdecea;
+        }
+
+        .example {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .top-right {
+            position: relative;
+            float: right;
+            top: 15px;
+            right: 15px;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+
+        .legend {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-content {
+            display: none;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div style="display:none">
+        <h1>DeepEM Playground Template</h1>
+
+        <p><a href="https://github.com/HannahKniesel/DeepEM-Template">The template</a> provides guidelines for
+            contributing
+            your work to the <strong>DeepEM Playground</strong>. In the following we provide a short overview of the
+            template.</p>
+
+        <h2>Overview</h2>
+
+        <h3>Jupyter Notebooks</h3>
+
+        <p>Each use case consists of two main notebooks:</p>
+        <ul>
+            <li><strong><code>1_Development.ipynb</code></strong> – Used for model development and hyperparameter
+                tuning.
+            </li>
+            <li><strong><code>2_Inference.ipynb</code></strong> – Used for running inference on trained models.</li>
+        </ul>
+
+        <p>These notebooks serve as an <strong>interface between deep learning (DL) experts and electron microscopy (EM)
+                experts</strong>. To ensure consistency and simplify the learning process for EM researchers, the
+            notebooks
+            should follow a standardized structure.</p>
+
+        <p>Please update the <strong>markdown cells</strong> in the notebooks to describe your specific use case.</p>
+
+        <p>To assist you:</p>
+        <ul>
+            <li>Markdown text requiring your input is <span style="color:red"><strong>highlighted in
+                        red</strong></span>.
+            </li>
+            <li>Example markdown descriptions that should be modified for your use case are <span
+                    style="color:green"><strong>marked in green</strong></span>.</li>
+        </ul>
+
+        <p>Before submitting your use case, <strong>please remove all color formatting</strong>.</p>
+
+        <h3>Project Structure</h3>
+
+        <p>The <strong><code>deepEM/</code></strong> folder contains a lightweight library for implementing your use
+            case.
+        </p>
+        <ul>
+            <li>Only modify this library if absolutely necessary.</li>
+            <li>Otherwise, use the provided modules via appropriate imports.</li>
+        </ul>
+
+        <p>Your <strong>custom code implementation</strong> should be placed in the <code>src/</code> folder.</p>
+        <ul>
+            <li>All custom implementations need to implement the <code>Inferencer.py</code>, <code>Model.py</code>, and
+                <code>ModelTrainer.py</code> based on their corresponding modules of the <code>deepEM</code> library.
+            </li>
+            <li>A simple example is provided by implementing <a
+                    href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank">this
+                    tutorial</a>.</li>
+            <li>Adapt this code to implement your use case.</li>
+        </ul>
+
+        <p>For library documentation and available functions, please see below.</p>
+
+        <h3>Model Configuration</h3>
+
+        <p>The <strong>DeepEM</strong> library manages model parameters through a configuration file:</p>
+        <ul>
+            <li><strong><code>configs/parameters.json</code></strong> – Defines all <strong>hyperparameters</strong> for
+                training.</li>
+            <li>EM experts can use the <strong>API in <code>1_Development.ipynb</code></strong> to fine-tune
+                hyperparameters
+                via <strong>grid search</strong>.</li>
+        </ul>
+
+        <h3>Tunable vs. Non-Tunable Parameters</h3>
+
+        <ul>
+            <li><strong>Tunable hyperparameters</strong> should be clearly documented for adjustment.</li>
+            <li><strong>Non-tunable hyperparameters</strong> are not accessible to EM experts but should still be
+                included
+                <strong>with explanations</strong> to improve their understanding of the underlying method.
+            </li>
+        </ul>
+
+        <p>All parameters—both <strong>tunable and non-tunable</strong>—must be <strong>well-documented</strong>.</p>
+
+        <p>For detailed documentation, see <strong><code>configs/README.md</code></strong>.</p>
+
+
+        <hr>
+    </div>
+
+
+    <h2>DeepEM Documentation</h2>
+    The <code>DeepEM</code> library provides a simple, pytorch based framework for the implementation of training,
+    tuning and applying
+    deep learning models. It provides following modules:
+    <ol>
+        <li>A simple <code>Logger</code> class for monitoring training and tuning of the model</li>
+        <li>A module for automatic hyperparameter tuning (<code>ModelTuner</code>).</li>
+        <li>An <code>AbstractModelTrainer</code> which implements basic learning concepts like early
+            stopping or model checkpointing. </li>
+        <li>A <code>AbstractModel</code> to implement the deep learning model, based on the
+            <code>torch.nn.Module()</code> class.
+        </li>
+        <li>An <code>AbstractInfrence</code> module to do inference on single or multiple files.</li>
+    </ol>
+    <p>This approach not only simplifies implementation for DL experts but also establishes a standardized workflow,
+        reducing the learning curve for EM researchers. It enables them to modify the application of the use case simply
+        by
+        changing the training data, without requiring any code changes.</p>
+
+    <p><strong>Note</strong> To contribute your work to the DeepEM playground, you need to implement the
+        <code>@abstractmethod</code> within all abstract classes. All other classes function as helper classes and
+        should only be altered if absolutely nessecary.
+    </p>
+
+    <div class="legend">
+        <h3>Legend</h3>
+        <p>Methods highlighted in <span style="background: #fdecea; padding: 2px 5px;">this color</span> are abstract
+            methods that must be implemented by the DL specialist. All other methods are helper methods and can be
+            overwritten if nessecary.</p>
+    </div>
+
+    <hr>
+    <p></p>
+    <div class="section">
+        <a href="#" class="btn top-right">View Source Code</a>
+        <h2>AbstractModel Class</h2>
+        <p>The <strong>AbstractModel</strong> class is a base class for deep learning models, extending
+            <code>torch.nn.Module</code>. This class provides methods for resetting model parameters,
+            performing the forward pass, and making predictions. It is intended to be inherited by specific
+            model classes to define the architecture and training logic.
+        </p>
+        <h3>Class Overview</h3>
+        <p>
+            <strong>AbstractModel</strong> serves as a foundational model class that defines essential
+            methods for deep learning models. These include:
+        <ul>
+            <li><code>reset_model_parameters_recursive</code> - Recursively reset model parameters.</li>
+            <li><code>forward</code> - Defines the forward pass, which must be implemented by subclasses.</li>
+            <li><code>predict</code> - Makes predictions using the model.</li>
+        </ul>
+        </p>
+
+        <h3>Constructor</h3>
+        <div class="method">
+            <h3><code>__init__()</code></h3>
+            <p>Initializes the <strong>AbstractModel</strong> class, which extends <code>torch.nn.Module</code>.</p>
+            <p>This constructor serves as a base class for all deep learning models, providing methods for
+                resetting model parameters (i.e. in between multiple model runs during hyperparameter search),
+                performing
+                the forward pass, and making predictions.</p>
+        </div>
+
+        <h3>Methods <button onclick="toggleContent('model-methods')" class="btn" style="background-color: #238d64;">Show
+                More</button></h3>
+        <div id="model-methods" class="toggle-content" style="display: none;">
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>forward(x)</code></h3>
+                <p>The forward pass of the model.</p>
+                <p>Subclasses must implement this method, as each model will have its own architecture
+                    and forward pass logic.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>x (torch.Tensor)</code>: The input tensor to be passed through the model.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.Tensor</code>: The output tensor generated by the model.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>output = model(x)</code>
+                </div>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>predict(x)</code></h3>
+                <p>Makes predictions using the model.</p>
+                <p>This method sets the model into evaluation mode and performs inference without computing gradients
+                    (using <code>torch.no_grad()</code>).</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>x (torch.Tensor)</code>: The input tensor to generate a prediction.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.Tensor</code>: The predicted output from the model.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>predictions = model.predict(x)</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>reset_model_parameters_recursive()</code></h3>
+                <p>Recursively resets the parameters of all layers in the PyTorch model.</p>
+                <p>This method traverses the model and resets the parameters of any layers that have a
+                    <code>reset_parameters</code> method, commonly used in layers like <code>nn.Conv2d</code> and
+                    <code>nn.Linear</code>.
+                </p>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>model.reset_model_parameters_recursive()</code>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <p></p>
+    <div class="section">
+        <a href="#" class="btn top-right">View Source Code</a>
+        <h2>AbstractModelTrainer Class</h2>
+        <p>
+            The <strong>AbstractModelTrainer</strong> class is an abstract base class designed to facilitate the
+            training, validation,
+            and testing of deep learning models. It provides a structured workflow for model training, including dataset
+            handling,
+            logging, checkpointing, and early stopping mechanisms. It allows for automated hyperparameter tuning by leveraging <code>deepEM.ModelTuner.ModelTuner</code>
+        </p>
+        <h3>Class Overview</h3>
+        <p>
+            <strong>AbstractModelTrainer</strong> manages the entire training pipeline, ensuring modularity and
+            flexibility.
+            It is intended to be subclassed, requiring concrete implementations for setting up the model, datasets,
+            optimizer, and scheduler. Key functionalities include:
+        </p>
+        <ul>
+            <li><code>save_checkpoint(epoch, val_loss)</code> - Saves the best model checkpoint based on validation
+                loss.</li>
+            <li><code>load_checkpoint(checkpoint_path)</code> - Loads a model checkpoint, including optimizer and
+                scheduler states.</li>
+            <li><code>train_epoch(epoch)</code> - Executes a single epoch of training and validation.</li>
+            <li><code>test()</code> - Runs the test loop after training.</li>
+            <li><code>fit()</code> - Manages the full training process, including early stopping and logging.</li>
+        </ul>
+        <p>
+            This class supports GPU acceleration, integrates with a the <code>deepEM.Logger.Logger</code> for tracking training progress,
+            and provides dataset loaders for training, validation, and testing. Subclasses must define the specific
+            architecture and training behavior of the model.
+        </p>
+
+
+        <h3>Constructor</h3>
+        <div class="method">
+            <h3><code>__init__(data_path, logger, resume_from_checkpoint=None)</code></h3>
+            <p>Initializes the trainer class for training, validating, and testing models.</p>
+            <p><strong>Args:</strong></p>
+            <ul>
+                <li><code>data_path (str)</code>: Path to the dataset used for training, validation, and testing.</li>
+                <li><code>logger (Logger)</code>: Logger instance for logging events and training progress.</li>
+                <li><code>resume_from_checkpoint (str, optional)</code>: Path to a checkpoint to resume training from.
+                    Defaults to <code>None</code>.</li>
+            </ul>
+        </div>
+
+        <h3>Methods <button onclick="toggleContent('trainer-methods')" class="btn" style="background-color: #238d64;">Show
+                More</button></h3>
+        <div id="trainer-methods" class="toggle-content" style="display: none;">
+            
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>setup_model()</code></h3>
+                <p>Setup and return the model for training, validation, and testing.</p>
+                <p>This method must be implemented by the DL expert.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>deepEM.Model.AbstractModel</code>: The initialized model ready for training, validation, and
+                        testing.</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>setup_datasets()</code></h3>
+                <p>Setup and return the datasets for training, validation, and testing.</p>
+                <p>The data path provided by the EM specialist can be accessed via <code>self.data_path</code>.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.utils.data.Dataset</code>: The training dataset.</li>
+                    <li><code>torch.utils.data.Dataset</code>: The validation dataset.</li>
+                    <li><code>torch.utils.data.Dataset</code>: The test dataset.</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>setup_optimizer()</code></h3>
+                <p>Setup and return the optimizer and learning rate scheduler.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.optim.Optimizer</code>: The optimizer for the model.</li>
+                    <li><code>torch.optim.lr_scheduler._LRScheduler</code>: The learning rate scheduler.</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>compute_loss(outputs, targets)</code></h3>
+                <p>Compute the loss for a batch.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>outputs (torch.Tensor)</code>: Model outputs.</li>
+                    <li><code>targets (torch.Tensor)</code>: Ground truth labels.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.Tensor</code>: Computed loss.</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>train_step(batch)</code></h3>
+                <p>Perform one training step.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>batch (tuple)</code>: A batch of data (inputs, targets).</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.Tensor</code>: The loss for this batch.</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>val_step(batch)</code></h3>
+                <p>Perform one validation step.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>batch</code>: A batch of data defined by the dataset implementation.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.Tensor</code>: The loss for this batch.</li>
+                    <li><code>dict</code>: Dictionary of metrics for this batch (e.g., accuracy, F1 score, etc.).</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>test_step(batch)</code></h3>
+                <p>Perform one test step.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>batch</code>: A batch of data defined by the dataset implementation.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.Tensor</code>: The loss for this batch.</li>
+                    <li><code>dict</code>: Dictionary of metrics for this batch (e.g., accuracy, F1 score, etc.).</li>
+                </ul>
+            </div>
+
+
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>visualize(batch)</code></h3>
+                <p>Visualizes the model's input and output of a single batch and returns them as PIL images.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>batch</code>: A batch of data defined by the dataset implementation.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>List[PIL.Image]</code>: List of visualizations for the batch data.</li>
+                </ul>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>inference_metadata()</code></h3>
+                <p>Returns metadata needed for inference (such as class names) as a dictionary.</p>
+                <p>This metadata will be saved along with model weights in training checkpoints.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: Dictionary containing metadata.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>setup_dataloaders(train_dataset, val_dataset, test_dataset)</code></h3>
+                <p>Sets up and returns dataloaders for training, validation, and testing.</p>
+                <p>The data path provided by the EM specialist can be accessed via <code>self.data_path</code>.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>train_dataset (torch.utils.data.Dataset)</code>: The training dataset.</li>
+                    <li><code>val_dataset (torch.utils.data.Dataset)</code>: The validation dataset.</li>
+                    <li><code>test_dataset (torch.utils.data.Dataset)</code>: The test dataset.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.utils.data.DataLoader</code>: Dataloader for the training dataset.</li>
+                    <li><code>torch.utils.data.DataLoader</code>: Dataloader for the validation dataset.</li>
+                    <li><code>torch.utils.data.DataLoader</code>: Dataloader for the test dataset.</li>
+                </ul>
+            </div>
+
+
+            <div class="method">
+                <h3><code>save_checkpoint(epoch, val_loss)</code></h3>
+                <p>Saves a checkpoint of the model, storing the model state, optimizer state, scheduler state, and
+                    metadata.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>epoch (int)</code>: The current training epoch.</li>
+                    <li><code>val_loss (float)</code>: The validation loss at this epoch.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>load_checkpoint(checkpoint_path)</code></h3>
+                <p>Loads the model, optimizer, and scheduler state from a saved checkpoint to resume training.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>checkpoint_path (str)</code>: Path to the checkpoint file.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>train_epoch(epoch)</code></h3>
+                <p>Trains the model for a single epoch and evaluates it on the validation dataset.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>epoch (int)</code>: The current training epoch.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>float</code>: The average training loss.</li>
+                    <li><code>float</code>: The average validation loss.</li>
+                    <li><code>bool</code>: Whether early stopping was triggered.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>test()</code></h3>
+                <p>Evaluates the trained model on the test dataset and logs results.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>float</code>: The average test loss.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>fit()</code></h3>
+                <p>Trains the model for a predefined number of epochs, with optional early stopping and checkpointing.
+                </p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>float</code>: The lowest validation loss achieved during training.</li>
+                </ul>
+            </div>
+
+
+            <div class="method">
+                <h3><code>qualify(dataloader, file_name)</code></h3>
+                <p>Saves visualizations of model predictions for a given dataloader.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>dataloader (torch.utils.data.DataLoader)</code>: DataLoader containing the data for
+                        visualization.</li>
+                    <li><code>file_name (str)</code>: Prefix for the saved image files.</li>
+                </ul>
+            </div>
+
+
+
+            <div class="method">
+                <h3><code>prepare(config=None, train_subset=None, reduce_epochs=None, set_parameters=True)</code></h3>
+                <p>Prepares the training pipeline by setting up the model, datasets, dataloaders, optimizer, scheduler,
+                    and other configurations.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>config (dict, optional)</code>: Dictionary of hyperparameters to override the defaults.
+                        Defaults to <code>None</code>.</li>
+                    <li><code>train_subset (float, optional)</code>: Fraction of the training dataset to use for quick
+                        hyperparameter tuning. Defaults to <code>None</code>.</li>
+                    <li><code>reduce_epochs (float, optional)</code>: Fraction of epochs to use for quick hyperparameter
+                        tuning. Defaults to <code>None</code>.</li>
+                    <li><code>set_parameters (bool, optional)</code>: Whether to set the hyperparameters from the
+                        provided config. Defaults to <code>True</code>.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>set_epochs()</code></h3>
+                <p>Sets the number of epochs and validation interval based on the configuration. The number of epochs
+                    and
+                    validation interval may be reduced if the <code>reduce_epochs</code> parameter is provided.</p>
+            </div>
+
+            <div class="method">
+                <h3><code>subsample_trainingdata(dataset)</code></h3>
+                <p>Subsamples the training dataset if a subset fraction is provided.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>dataset (torch.utils.data.Dataset)</code>: The training dataset.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.utils.data.Subset</code>: A subset of the dataset if <code>train_subset</code> is
+                        specified, else the full dataset.</li>
+                </ul>
+            </div>
+
+
+
+
+
+            <div class="method">
+                <h3><code>setup_visualization_dataloaders(val_dataset, test_dataset)</code></h3>
+                <p>Sets up and returns dataloaders for visualizing a subset of validation and test datasets.</p>
+                <p>This method subsamples the datasets to contain a fixed number of images specified by
+                    <code>self.parameter["images_to_visualize"]</code>. It should be overridden for imbalanced data.
+                </p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>val_dataset (torch.utils.data.Dataset)</code>: The validation dataset.</li>
+                    <li><code>test_dataset (torch.utils.data.Dataset)</code>: The test dataset.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.utils.data.DataLoader</code>: Dataloader for visualizing a subset of the validation
+                        dataset.</li>
+                    <li><code>torch.utils.data.DataLoader</code>: Dataloader for visualizing a subset of the test
+                        dataset.</li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+
+    <p></p>
+    <div class="section">
+        <a href="#" class="btn top-right">View Source Code</a>
+        <h2>AbstractInference Class</h2>
+        <p><strong>AbstractInference</strong> is an abstract base class for performing model inference. It provides
+            methods
+            for model loading, inference execution, and result storage. It is used within the
+            <code>2_Inference.ipynb</code>
+        </p>
+
+        <h3>Constructor</h3>
+        <div class="method">
+            <h3><code>__init__(model_path: str, data_path: str, batch_size: int)</code></h3>
+            <p>Initializes the inference pipeline with model and data paths.</p>
+            <p><strong>Args:</strong></p>
+            <ul>
+                <li><code>model_path (str)</code>: Path to the model checkpoint file or directory containing it.</li>
+                <li><code>data_path (str)</code>: Path to the input data (single file or directory).</li>
+                <li><code>batch_size (int)</code>: Number of samples to process in a single batch during inference.</li>
+            </ul>
+        </div>
+
+        <h3>Methods <button onclick="toggleContent('inference-methods')" class="btn"
+                style="background-color: #238d64;">Show
+                More</button></h3>
+        <div id="inference-methods" class="toggle-content" style="display: none;">
+            <h4>Abstract Methods</h4>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>setup_model() -> torch.nn.Module</code></h3>
+                <p>Defines and initializes the model architecture for inference.</p>
+                <p>Subclasses must implement this method to define the specific model for inference.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>torch.nn.Module</code>: The model ready for inference.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>model = inference_instance.setup_model()</code>
+                </div>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>predict_single() -> Any</code></h3>
+                <p>Performs inference on a single image.</p>
+                <p>Implementations should call `save_prediction(prediction, save_file)` to store the prediction result.
+                </p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>Any</code>: The model's prediction for the given input.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>prediction = inference_instance.predict_single()</code>
+                </div>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>predict_batch() -> List[Any]</code></h3>
+                <p>Performs inference on a batch of images.</p>
+                <p>Implementations should call `save_prediction(prediction, save_file)` for each predicted output.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>List[Any]</code>: List of predictions for the batch.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>batch_predictions = inference_instance.predict_batch()</code>
+                </div>
+            </div>
+
+            <div class="method abstract">
+                <p><code>@abstractmethod</code></p>
+                <h3><code>save_prediction(prediction: Any, save_file: str) -> None</code></h3>
+                <p>Saves a model prediction to a file.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>prediction (Any)</code>: The prediction result to be saved.</li>
+                    <li><code>save_file (str)</code>: Path to the file where the prediction should be stored.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>None</code></li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>inference_instance.save_prediction(prediction, "path/to/save/file")</code>
+                </div>
+            </div>
+
+
+
+            <div class="method">
+                <h3><code>find_model_file(input_path: str) -> str</code></h3>
+                <p>Finds the model checkpoint file (`best_model.pth`) in the given path.</p>
+                <p>If `input_path` is a file, checks if it's named "best_model.pth". If `input_path` is a directory,
+                    searches recursively for "best_model.pth".</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>input_path (str)</code>: Path to a model file or directory containing it.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>str</code>: Absolute path to the model checkpoint if found, else None.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>model_file = inference_instance.find_model_file("path/to/model")</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>load_metadata() -> dict</code></h3>
+                <p>Loads metadata from the model checkpoint.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: Metadata extracted from the checkpoint.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>metadata = inference_instance.load_metadata()</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>load_checkpoint() -> None</code></h3>
+                <p>Loads model weights and sets the model to evaluation mode.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>None</code></li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>inference_instance.load_checkpoint()</code>
+                </div>
+            </div>
+
+
+
+            <div class="method">
+                <h3><code>get_image_files(folder_path: str, ext: List[str] = (".png", ".jpg", ".jpeg", ".bmp", ".tiff", ".tif", ".gif")) -> List[str]</code>
+                </h3>
+                <p>Retrieves all image files from a directory.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>folder_path (str)</code>: Path to the directory containing images.</li>
+                    <li><code>ext (List[str])</code>: List of valid image file extensions (default includes common
+                        formats).</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>List[str]</code>: List of file paths to images in the directory.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>image_files = inference_instance.get_image_files("path/to/images")</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>inference() -> None</code></h3>
+                <p>Runs inference on the input data.</p>
+                <p>Depending on whether `data_path` is a file or directory, calls `predict_single()` for a single image
+                    or `predict_batch()` for multiple images.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>None</code></li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>inference_instance.inference()</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <hr>
+    <div class="section">
+        <p></p>
+        <a href="#" class="btn top-right">View Source Code</a>
+        <h2>Logger Class</h2>
+        <p><strong>Logger</strong> is a class that provides logging functionality, including checkpoint saving,
+            hyperparameter tracking, and resource monitoring. It will print to the console as well as save log files to
+            the
+            system.
+        </p>
+        <h3>Class Overview</h3>
+
+        <p>For each time running the <code>.ipynb</code>, it will create a log directory at
+            <code>logs/{datafolder}-{currentdatetime}</code>. Within this directory, it will create one subfolder for
+            each
+            run. Hyperparameter sweep runs are named <code>Sweep_{idx}</code>. The training run will be named
+            <code>TrainingRun</code>. Finally, evaluations will be saved at subfolder <code>Evaluate</code>.
+            Each training run subfolder will have following directories:
+        <ol>
+            <li><code>checkpoints</code> to store the
+                <code>latest_model.pth</code> as well as the <code>best_model.pth</code>.
+            </li>
+            <li><code>plots</code> to store the training and validation curves.</li>
+            <li><code>samples</code> to store qualitative visualizations during validation.</li>
+        </ol>
+        Additionally, each training run subfolder stores a <code>hyperparameters.json</code> to store the used
+        hyperparameters, as well as <code>log.txt</code> to save the loggers output to a file.
+        </p>
+
+        <h3>Constructor</h3>
+        <div class="method">
+            <h3><code>__init__(data_path: str) -&gt; None</code></h3>
+            <p>Initializes the Logger and creates a timestamped log directory.</p>
+            <ul>
+                <li><strong>data_path</strong> (str): The directory of the training data.</li>
+            </ul>
+        </div>
+
+        <h3>Methods <button onclick="toggleContent('logger-methods')" class="btn"
+                style="background-color: #238d64;">Show
+                More</button></h3>
+        <div id="logger-methods" class="toggle-content" style="display: none;">
+
+            <h4>Logging Methods</h4>
+
+            <div class="method">
+                <p><code>log_info(message: str) -&gt; None</code></p>
+                <p>Logs an informational message.</p>
+            </div>
+            <div class="method">
+                <p><code>log_warning(message: str) -&gt; None</code></p>
+                <p>Logs a warning message.</p>
+            </div>
+            <div class="method">
+                <p><code>log_error(message: str) -&gt; None</code></p>
+                <p>Logs an error message.</p>
+            </div>
+
+            <h4>Checkpoint and Hyperparameter Methods</h4>
+
+            <div class="method">
+                <p><code>log_best_sweepparameters(best_params: dict) -&gt; None</code></p>
+                <p>Saves the best hyperparameters found during a sweep based on the validation loss to a JSON file
+                    within
+                    the directory of the training
+                    data (<code>self.data_path</code>) at
+                    <code>{self.data_path}/Sweep_Parameters/best_sweep_parameters.json</code>. If there is already an
+                    existing file, will only override, if the current validation loss is lower than the saved.
+                </p>
+            </div>
+            <div class="method">
+                <p><code>load_best_sweep() -&gt; dict | None</code></p>
+                <p>Loads the best hyperparameters from
+                    <code>{self.data_path}/Sweep_Parameters/best_sweep_parameters.json</code> found during a sweep.
+                    Returns
+                    <code>None</code> if file was not found.
+                </p>
+            </div>
+            <div class="method">
+                <p><code>log_hyperparameters(hyperparams: dict) -&gt; None</code></p>
+                <p>Saves the current training hyperparameters to a JSON file at
+                    <code>{self.log_dir}/hyperparameters.json</code>.
+                </p>
+            </div>
+
+            <h4>Plotting and Test Logging Methods</h4>
+
+            <div class="method">
+                <p><code>plot_training_curves(train_loss: list, train_epoch: list, val_loss: list, val_epoch: list) -&gt; None</code>
+                </p>
+                <p>Plots and saves training and validation loss curves to <code>self.plots_dir</code>.</p>
+            </div>
+            <div class="method">
+                <p><code>log_test_results(test_loss: float, metrics: dict) -&gt; None</code></p>
+                <p>Saves test results including test loss and other metrics. This is usually saved in the logging
+                    directory
+                    at subfolder <code>Evaluate</code> within the file <code>test_results.txt</code>.</p>
+            </div>
+            <div class="method">
+                <p><code>get_most_recent_logs() -&gt; dict</code></p>
+                <p>Retrieves the most recent log directories for each dataname in the folder. This method is used when
+                    the
+                    EM expert does not define a model path for evaluation. Then the most recent logs will be used. It
+                    retruns a dictionary where keys are datanames and values are paths to the most recent log
+                    directories.
+                </p>
+            </div>
+
+            <h4>Resource Monitoring Methods</h4>
+
+            <div class="method">
+                <p><code>get_resource_usage() -&gt; tuple(dict,str)</code></p>
+                <p>Retrieves current system and GPU resource usage. Returns a tuple containing a dictonary with resource
+                    usage as well as a formated string.</p>
+            </div>
+            <div class="method">
+                <p><code>log_resource_usage() -&gt; None</code></p>
+                <p>Logs system resource usage to a file at <code>{self.log_dir}/resource_usage.log</code>.</p>
+            </div>
+
+
+        </div>
+
+    </div>
+    <p></p>
+
+    <div class="section">
+        <a href="#" class="btn top-right">View Source Code</a>
+
+        <h2>ModelTuner Class</h2>
+        <p>The <strong>ModelTuner</strong> class provides a framework for performing hyperparameter tuning on machine
+            learning models using grid search. The class can be extended to implement different search methods (like
+            random,
+            bayesian).</p>
+
+        <h3>Class Overview</h3>
+        <p>The <strong>ModelTuner</strong> class automates hyperparameter tuning on the <code>ModelTrainer</code> class.
+            It provides a simple API between DL specialists and the EM specialists (users).
+            While DL experts define their model parameters within the <code>configs/parameters.json</code>,
+            <code>ipywidgets</code> are used to allow code independent input by the EM specialists.
+        </p>
+        <p>The class supports loading and updating configuration files, creating interactive widgets for parameter
+            tuning,
+            performing grid search, and logging the best hyperparameters based on validation performance.</p>
+        <p>It helps streamline the hyperparameter tuning process, optimizing model performance efficiently.</p>
+
+        <h3>Constructor</h3>
+        <div class="method">
+            <h3><code>__init__(model_trainer, data_path, logger)</code></h3>
+            <p>Initializes the ModelTuner class with the given model trainer, data path, and logger. It also loads the
+                configuration and sets hyperparameter tuning options.</p>
+            <p><strong>Args:</strong></p>
+            <ul>
+                <li><code>model_trainer (ModelTrainer)</code>: The trainer used to train the model during the
+                    hyperparameter
+                    sweep.</li>
+                <li><code>data_path (str)</code>: The path to the dataset.</li>
+                <li><code>logger (Logger)</code>: The logger used for recording sweep progress and results.</li>
+            </ul>
+        </div>
+
+        <h3>Methods <button onclick="toggleContent('tuner-methods')" class="btn" style="background-color: #238d64;">Show
+                More</button></h3>
+        <div id="tuner-methods" class="toggle-content" style="display: none;">
+            <div class="method">
+                <h3><code>edit_hyperparameters()</code></h3>
+                <p>Displays the best hyperparameters from the previous sweep or default values, and allows the user to
+                    modify them via a widget interface.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>widgets.VBox</code>: A VBox widget containing the editable hyperparameter values.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>widget = model_tuner.edit_hyperparameters()</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>update_hyperparameters(widget_box)</code></h3>
+                <p>Updates the hyperparameter configuration based on the user input in the provided widget box.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>widget_box (widgets.VBox)</code>: The widget containing the user-modifiable
+                        hyperparameters.
+                    </li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: A dictionary of the updated hyperparameters.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>updated_params = model_tuner.update_hyperparameters(widget_box)</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>create_hyperparameter_widgets()</code></h3>
+                <p>Generates the interactive widgets for tuning hyperparameters, displaying both fixed and adjustable
+                    parameters.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>widgets.VBox</code>: A VBox widget containing the hyperparameter adjustment interface.
+                    </li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>widgets_box = model_tuner.create_hyperparameter_widgets()</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>update_config(widget_box)</code></h3>
+                <p>Updates the configuration based on the widget input and returns the modified config.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>widget_box (widgets.VBox)</code>: The widget box containing the modified hyperparameter
+                        values.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: The updated configuration dictionary.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>updated_config = model_tuner.update_config(widget_box)</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>load_config(config_file)</code></h3>
+                <p>Loads the configuration settings from a JSON file.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>config_file (str)</code>: The path to the configuration JSON file.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: The loaded configuration settings.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>config = model_tuner.load_config(config_file)</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>get_default_params()</code></h3>
+                <p>Extracts and returns the default hyperparameters from the configuration.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: A dictionary containing the default hyperparameter values.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>default_params = model_tuner.get_default_params()</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>prepare_grid_search_space()</code></h3>
+                <p>Prepares the search space for grid search based on the defined hyperparameters.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: A dictionary containing the possible values for each hyperparameter.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>search_space = model_tuner.prepare_grid_search_space()</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>tune_grid()</code></h3>
+                <p>Performs a grid search over the hyperparameter search space, evaluating model performance for each
+                    combination of parameters.</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict, float</code>: The best hyperparameters and the corresponding validation loss.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>best_params, best_loss = model_tuner.tune_grid()</code>
+                </div>
+            </div>
+
+            <div class="method">
+                <h3><code>tune()</code></h3>
+                <p>Performs the hyperparameter tuning based on the selected method (grid, random, or bayes).</p>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: The best hyperparameters determined by the tuning method.</li>
+                </ul>
+                <div class="example">
+                    <strong>Example usage:</strong><br>
+                    <code>best_params = model_tuner.tune()</code>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
