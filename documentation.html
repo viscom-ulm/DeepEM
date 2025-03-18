@@ -323,7 +323,8 @@
             training, validation,
             and testing of deep learning models. It provides a structured workflow for model training, including dataset
             handling,
-            logging, checkpointing, and early stopping mechanisms. It allows for automated hyperparameter tuning by leveraging <code>deepEM.ModelTuner.ModelTuner</code>
+            logging, checkpointing, and early stopping mechanisms. It allows for automated hyperparameter tuning by
+            leveraging <code>deepEM.ModelTuner.ModelTuner</code>
         </p>
         <h3>Class Overview</h3>
         <p>
@@ -342,7 +343,8 @@
             <li><code>fit()</code> - Manages the full training process, including early stopping and logging.</li>
         </ul>
         <p>
-            This class supports GPU acceleration, integrates with a the <code>deepEM.Logger.Logger</code> for tracking training progress,
+            This class supports GPU acceleration, integrates with a the <code>deepEM.Logger.Logger</code> for tracking
+            training progress,
             and provides dataset loaders for training, validation, and testing. Subclasses must define the specific
             architecture and training behavior of the model.
         </p>
@@ -361,10 +363,11 @@
             </ul>
         </div>
 
-        <h3>Methods <button onclick="toggleContent('trainer-methods')" class="btn" style="background-color: #238d64;">Show
+        <h3>Methods <button onclick="toggleContent('trainer-methods')" class="btn"
+                style="background-color: #238d64;">Show
                 More</button></h3>
         <div id="trainer-methods" class="toggle-content" style="display: none;">
-            
+
             <div class="method abstract">
                 <p><code>@abstractmethod</code></p>
                 <h3><code>setup_model()</code></h3>
@@ -372,7 +375,8 @@
                 <p>This method must be implemented by the DL expert.</p>
                 <p><strong>Returns:</strong></p>
                 <ul>
-                    <li><code>deepEM.Model.AbstractModel</code>: The initialized model ready for training, validation, and
+                    <li><code>deepEM.Model.AbstractModel</code>: The initialized model ready for training, validation,
+                        and
                         testing.</li>
                 </ul>
             </div>
@@ -735,7 +739,7 @@
 
 
 
-            <div class="method">
+            <!--<div class="method">
                 <h3><code>find_model_file(input_path: str) -> str</code></h3>
                 <p>Finds the model checkpoint file (`best_model.pth`) in the given path.</p>
                 <p>If `input_path` is a file, checks if it's named "best_model.pth". If `input_path` is a directory,
@@ -752,7 +756,7 @@
                     <strong>Example usage:</strong><br>
                     <code>model_file = inference_instance.find_model_file("path/to/model")</code>
                 </div>
-            </div>
+            </div>-->
 
             <div class="method">
                 <h3><code>load_metadata() -> dict</code></h3>
@@ -819,7 +823,7 @@
         </div>
     </div>
 
-    
+
     <hr>
     <div class="section">
         <p></p>
@@ -1121,6 +1125,102 @@
             </div>
         </div>
 
+    </div>
+    <p></p>
+
+
+    <div class="section">
+        <a href="#" class="btn top-right">View Source Code</a>
+        <h2>Utility Functions</h2>
+        <p><strong>Utility Functions</strong> provide helper methods for file handling, logging, and UI components.</p>
+        <p>Can be imported from <code>deepem.Utils</code></p>
+
+        <h3>Methods <button onclick="toggleContent('utils-methods')" class="btn" style="background-color: #238d64;">Show
+                More</button></h3>
+        <div id="utils-methods" class="toggle-content" style="display: none;">
+            <h3>Functions</h3>
+            <div class="method">
+                <h3><code>find_file(root_dir: str, filename: str) -> str</code></h3>
+                <p>Recursively searches for a file within a directory.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>root_dir (str)</code>: The root directory to search in.</li>
+                    <li><code>filename (str)</code>: The name of the file to find.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>str</code>: The absolute path to the file if found, else None.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>find_model_file(input_path: str) -> str</code></h3>
+                <p>Finds the model checkpoint file (<code>best_model.pth</code>) in the given path.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>input_path (str)</code>: Path to a model file or directory containing it.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>str</code>: Absolute path to the model checkpoint if found, else None.</li>
+                </ul>
+            </div>
+
+            <h3>Logging Functions</h3>
+            <div class="method">
+                <h3><code>print_info(text: str) -> None</code></h3>
+                <p>Prints an informational message.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>text (str)</code>: The message to print.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>print_error(text: str) -> None</code></h3>
+                <p>Prints an error message.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>text (str)</code>: The message to print.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>print_warning(text: str) -> None</code></h3>
+                <p>Prints a warning message.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>text (str)</code>: The message to print.</li>
+                </ul>
+            </div>
+
+            <h3>Configuration Handling</h3>
+            <div class="method">
+                <h3><code>load_json(file: str) -> dict</code></h3>
+                <p>Loads a JSON file.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>file (str)</code>: Path to the JSON file.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: Parsed JSON content as a dictionary.</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3><code>extract_defaults(config: dict) -> dict</code></h3>
+                <p>Extracts default values from a nested configuration dictionary.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>config (dict)</code>: The configuration dictionary containing hyperparameters.</li>
+                </ul>
+                <p><strong>Returns:</strong></p>
+                <ul>
+                    <li><code>dict</code>: A dictionary containing default values for hyperparameters.</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 </body>
