@@ -226,7 +226,8 @@
     <hr>
     <p></p>
     <div class="section">
-        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Model.py" target="_blank" class="btn top-right">View Source Code</a>
+        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Model.py" target="_blank"
+            class="btn top-right">View Source Code</a>
         <h2>AbstractModel Class</h2>
         <p>The <strong>AbstractModel</strong> class is a base class for deep learning models, extending
             <code>torch.nn.Module</code>. This class provides methods for resetting model parameters,
@@ -253,9 +254,15 @@
                 performing
                 the forward pass, and making predictions.</p>
         </div>
-
-        <h3>Methods <button onclick="toggleContent('model-methods')" class="btn" style="background-color: #238d64;">Show
-                More</button></h3>
+        <h3><button onclick="toggleContent('model-att')" class="btn"
+                style="background-color: #238d64;">Attributes</button></h3>
+        <div id="model-att" class="toggle-content" style="display: none;">
+            <p>See pytorch <code>torch.nn.Module</code> <a
+                    href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html"
+                    target="_blank">documentation</a> for details.</a></p>
+        </div>
+        <h3><button onclick="toggleContent('model-methods')" class="btn"
+                style="background-color: #238d64;">Methods</button></h3>
         <div id="model-methods" class="toggle-content" style="display: none;">
 
             <div class="method abstract">
@@ -316,7 +323,8 @@
 
     <p></p>
     <div class="section">
-        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/ModelTrainer.py" target="_blank" class="btn top-right">View Source Code</a>
+        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/ModelTrainer.py" target="_blank"
+            class="btn top-right">View Source Code</a>
         <h2>AbstractModelTrainer Class</h2>
         <p>
             The <strong>AbstractModelTrainer</strong> class is an abstract base class designed to facilitate the
@@ -362,10 +370,55 @@
                     Defaults to <code>None</code>.</li>
             </ul>
         </div>
-
-        <h3>Methods <button onclick="toggleContent('trainer-methods')" class="btn"
-                style="background-color: #238d64;">Show
-                More</button></h3>
+        <h3><button onclick="toggleContent('trainer-att')" class="btn"
+                style="background-color: #238d64;">Attributes</button></h3>
+        <div id="trainer-att" class="toggle-content" style="display: none;">
+            <ul>
+                <li><code>self.data_path</code> [<code>str</code>] - Path to the training data.</li>
+                <li><code>self.logger</code> [<code>deepEM.logger.Logger</code>] - Logger instance for training and
+                    evaluation.</li>
+                <li><code>self.resume_from_checkpoint</code> [<code>Optional[str]</code>] - Path to a checkpoint file
+                    for resuming training. Defaults to <code>None</code>.</li>
+                <li><code>self.parameter</code> [<code>dict</code>] - Training parameters defined in
+                    <code>configs/parameters.json</code>, containing both tunable and non-tunable parameters. Updated
+                    before each run during sweeps.</li>
+                <li><code>self.device</code> [<code>str</code>] - Specifies the computing device: <code>"cuda"</code> if
+                    a GPU is available, otherwise <code>"cpu"</code>.</li>
+                <li><code>self.model</code> [<code>deepEM.Model.AbstractModel</code>] - The model instance used for
+                    training.</li>
+                <li><code>self.train_subset</code> [<code>float</code>] - Fraction (between 0 and 1) of the training
+                    data used for training in hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.
+                </li>
+                <li><code>self.reduce_epochs</code> [<code>float</code>] - Fraction (between 0 and 1) of total epochs
+                    used for training in hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.</li>
+                <li><code>self.train_loader</code> [<code>torch.utils.data.DataLoader</code>] - DataLoader for training
+                    data.</li>
+                <li><code>self.val_loader</code> [<code>torch.utils.data.DataLoader</code>] - DataLoader for validation
+                    data.</li>
+                <li><code>self.test_loader</code> [<code>torch.utils.data.DataLoader</code>] - DataLoader for test data.
+                </li>
+                <li><code>self.val_vis_loader</code> [<code>torch.utils.data.DataLoader</code>] - DataLoader for
+                    visualizing a subset of predictions on the validation set.</li>
+                <li><code>self.test_vis_loader</code> [<code>torch.utils.data.DataLoader</code>] - DataLoader for
+                    visualizing a subset of predictions on the test set.</li>
+                <li><code>self.optimizer</code> [<code>torch.optim.Optimizer</code>] - Optimizer for training.</li>
+                <li><code>self.scheduler</code> [<code>torch.optim.lr_scheduler</code>] - Learning rate scheduler for
+                    training.</li>
+                <li><code>self.best_val_loss</code> [<code>float</code>] - Stores the best validation loss for early
+                    stopping.</li>
+                <li><code>self.patience_counter</code> [<code>int</code>] - Counter that increases when validation loss
+                    does not improve after an epoch. Used for early stopping.</li>
+                <li><code>self.best_model_wts</code> [<code>state_dict</code>] - Stores the model's best-performing
+                    state dictionary.</li>
+                <li><code>self.num_epochs</code> [<code>int</code>] - Number of training epochs, calculated as
+                    <code>self.parameter["epochs"] * self.reduce_epochs</code>.</li>
+                <li><code>self.validation_interval</code> [<code>int</code>] - Interval (in training iterations) at
+                    which validation is performed, computed as
+                    <code>max(1, self.parameter["validation_interval"] * self.reduce_epochs)</code>.</li>
+            </ul>
+        </div>
+        <h3><button onclick="toggleContent('trainer-methods')" class="btn"
+                style="background-color: #238d64;">Methods</button></h3>
         <div id="trainer-methods" class="toggle-content" style="display: none;">
 
             <div class="method abstract">
@@ -646,7 +699,8 @@
 
     <p></p>
     <div class="section">
-        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Inferencer.py" target="_blank" class="btn top-right">View Source Code</a>
+        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Inferencer.py" target="_blank"
+            class="btn top-right">View Source Code</a>
         <h2>AbstractInference Class</h2>
         <p><strong>AbstractInference</strong> is an abstract base class for performing model inference. It provides
             methods
@@ -666,9 +720,23 @@
             </ul>
         </div>
 
-        <h3>Methods <button onclick="toggleContent('inference-methods')" class="btn"
-                style="background-color: #238d64;">Show
-                More</button></h3>
+        <h3><button onclick="toggleContent('inference-att')" class="btn"
+                style="background-color: #238d64;">Attributes</button></h3>
+        <div id="inference-att" class="toggle-content" style="display: none;">
+            <ul>
+                <li><code>self.device</code> [<code>str</code>] - Specifies the computing device: "cuda" if a GPU is available, otherwise "cpu".</li>
+                <li><code>self.model_path</code> [<code>str</code>] - Absolute path to the model checkpoint file used for inference.</li>
+                <li><code>self.data_path</code> [<code>str</code>] - Path to the input data for inference. Can be a directory containing multiple files or a single file.</li>
+                <li><code>self.batch_size</code> [<code>int</code>] - Number of samples processed per batch during inference.</li>
+                <li><code>self.metadata</code> [<code>dict</code>] - Dictionary containing metadata about the model checkpoint, saved during training.</li>
+                <li><code>self.model</code> [<code>torch.nn.Module</code>] - The loaded model instance used for inference.</li>
+                <li><code>self.save_to</code> [<code>str</code>] - Directory path where inference results are stored. Typically points to a "results" folder within <code>self.data_path</code>.</li>
+            </ul>
+            
+        </div>
+
+        <h3><button onclick="toggleContent('inference-methods')" class="btn"
+                style="background-color: #238d64;">Methods</button></h3>
         <div id="inference-methods" class="toggle-content" style="display: none;">
             <h4>Abstract Methods</h4>
 
@@ -827,7 +895,8 @@
     <hr>
     <div class="section">
         <p></p>
-        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Logger.py" target="_blank" class="btn top-right">View Source Code</a>
+        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Logger.py" target="_blank"
+            class="btn top-right">View Source Code</a>
         <h2>Logger Class</h2>
         <p><strong>Logger</strong> is a class that provides logging functionality, including checkpoint saving,
             hyperparameter tracking, and resource monitoring. It will print to the console as well as save log files to
@@ -861,10 +930,23 @@
                 <li><strong>data_path</strong> (str): The directory of the training data.</li>
             </ul>
         </div>
+        <h3><button onclick="toggleContent('logger-att')" class="btn"
+                style="background-color: #238d64;">Attributes</button></h3>
+        <div id="logger-att" class="toggle-content" style="display: none;">
+            <ul>
+                <li><code>self.data_path</code> [<code>str</code>] - Path to the training data. Also used to store the best sweep parameters at <code>self.data_path/Sweep_Parameters</code>.</li>
+                <li><code>self.root_dir</code> [<code>str</code>] - Root directory for logging, typically set to <code>logs/timestamp</code>. This directory can contain logs from multiple training runs.</li>
+                <li><code>self.log_dir</code> [<code>str</code>] - Directory for storing logs of a specific training run. It is a subfolder of <code>self.root_dir</code> and also includes evaluation logs.</li>
+                <li><code>self.checkpoints_dir</code> [<code>str</code>] - Subdirectory ("checkpoints") within <code>self.log_dir</code> used for saving model checkpoints.</li>
+                <li><code>self.plots_dir</code> [<code>str</code>] - Subdirectory ("plots") within <code>self.log_dir</code> used for storing training and validation curve plots.</li>
+                <li><code>self.samples_dir</code> [<code>str</code>] - Subdirectory ("samples") within <code>self.log_dir</code> used for saving qualitative samples from validation or testing.</li>
+                <li><code>self.logger</code> [<code>logging.Logger</code>] - Instance of the Python <code>logging</code> module for handling logs.</li>
+            </ul>
+            
+        </div>
 
-        <h3>Methods <button onclick="toggleContent('logger-methods')" class="btn"
-                style="background-color: #238d64;">Show
-                More</button></h3>
+        <h3><button onclick="toggleContent('logger-methods')" class="btn"
+                style="background-color: #238d64;">Methods</button></h3>
         <div id="logger-methods" class="toggle-content" style="display: none;">
 
             <h4>Logging Methods</h4>
@@ -951,7 +1033,8 @@
     <p></p>
 
     <div class="section">
-        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/ModelTuner.py" target="_blank" class="btn top-right">View Source Code</a>
+        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/ModelTuner.py" target="_blank"
+            class="btn top-right">View Source Code</a>
 
         <h2>ModelTuner Class</h2>
         <p>The <strong>ModelTuner</strong> class provides a framework for performing hyperparameter tuning on machine
@@ -980,13 +1063,24 @@
                 <li><code>model_trainer (ModelTrainer)</code>: The trainer used to train the model during the
                     hyperparameter
                     sweep.</li>
-                <li><code>data_path (str)</code>: The path to the dataset.</li>
                 <li><code>logger (Logger)</code>: The logger used for recording sweep progress and results.</li>
             </ul>
         </div>
-
-        <h3>Methods <button onclick="toggleContent('tuner-methods')" class="btn" style="background-color: #238d64;">Show
-                More</button></h3>
+        <h3><button onclick="toggleContent('tuner-att')" class="btn"
+                style="background-color: #238d64;">Attributes</button></h3>
+        <div id="tuner-att" class="toggle-content" style="display: none;">
+            <ul>
+                <li><code>self.model_trainer</code> [<code>deepem.ModelTrainer.AbstractModelTrainer</code>] - Model trainer used for hyperparameter search.</li>
+                <li><code>self.logger</code> [<code>deepem.Logger.Logger</code>] - Logger instance for recording sweep progress and results.</li>
+                <li><code>self.config</code> [<code>dict</code>] - Dictionary containing hyperparameters for tuning, loaded from <code>configs/parameters.json</code>.</li>
+                <li><code>self.trainsubset</code> [<code>float</code>] - Fraction (between 0 and 1) of the training data used during hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.</li>                
+                <li><code>self.reduce_epochs</code> [<code>float</code>] - Fraction (between 0 and 1) of the total epochs used for training in hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.</li>
+                <li><code>self.method</code> [<code>str</code>] - Hyperparameter tuning method. Currently, only <code>"grid"</code> search is supported.</li>
+            </ul>
+            
+        </div>
+        <h3><button onclick="toggleContent('tuner-methods')" class="btn"
+                style="background-color: #238d64;">Methods</button></h3>
         <div id="tuner-methods" class="toggle-content" style="display: none;">
             <div class="method">
                 <h3><code>edit_hyperparameters()</code></h3>
@@ -1130,7 +1224,8 @@
 
 
     <div class="section">
-        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Utils.py" target="_blank" class="btn top-right">View Source Code</a>
+        <a href="https://github.com/HannahKniesel/DeepEM-Template/blob/main/deepEM/Utils.py" target="_blank"
+            class="btn top-right">View Source Code</a>
         <h2>Utility Functions</h2>
         <p><strong>Utility Functions</strong> provide helper methods for file handling, logging, and UI components.</p>
         <p>Can be imported from <code>deepem.Utils</code></p>
