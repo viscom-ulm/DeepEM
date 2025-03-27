@@ -557,12 +557,14 @@
                 or
                 data biases, and learning about the process of model training.</p>
 
-              <p>Logs are saved in a dedicated directory (<code>logs/data-current-datetime/</code>). One log directory
-                may
-                include logs for multiple training runs (due to hyperparameter searches). For each training run
-                following
-                logs are
-                written:</p>
+              <p>For each execution of the full notebook , logs are saved in a dedicated directory
+                (<code>logs/data-current-datetime/</code>).
+                For each training run a subfolder will be created. There can be multiple folders called
+                <code>Sweep_idx</code> containing the logs for each sweep run of the hyperparameter tuning.
+                Additionally, there will be one subfolder <code>TrainingRun</code> containing the logs for the full
+                model training. Finally, there is one subfolder <code>Evaluate</code> containing logging results of the
+                evaluation.
+                Each subfolder may contain following logs:</p>
               <table border="0" cellpadding="5" cellspacing="0" style="background-color:rgb(252, 209, 180);">
                 <thead>
                   <tr>
@@ -575,25 +577,25 @@
                   <tr>
                     <td><strong>Hyperparameters:</strong></td>
                     <td>A record of the training hyperparameters.</td>
-                    <td><code>logs/data-current-datetime/Run/hyperparameter.json</code></td>
+                    <td><code>logs/data-current-datetime/subfolder/hyperparameter.json</code></td>
                   </tr>
                   <tr>
                     <td><strong>Model Checkpoints:</strong></td>
                     <td>Snapshots of the model at various stages, enabling you to resume training or use the best model
                       for inference.</td>
-                    <td><code>logs/data-current-datetime/Run/checkpoints</code></td>
+                    <td><code>logs/data-current-datetime/subfolder/checkpoints</code></td>
                   </tr>
                   <tr>
                     <td><strong>Training/Validation Loss Curves:</strong></td>
                     <td>Graphs showing the model's training progress over time. For better understanding of training
                       curves see <a href="https://www.kaggle.com/code/ryanholbrook/overfitting-and-underfitting"
                         target="_blank">this guide</a>.</td>
-                    <td><code>logs/data-current-datetime/Run/plots</code></td>
+                    <td><code>logs/data-current-datetime/subfolder/plots</code></td>
                   </tr>
                   <tr>
                     <td><strong>Qualitative Visualizations:</strong></td>
                     <td>Sample images alongside model predictions to assess visual accuracy.</td>
-                    <td><code>logs/data-current-datetime/Run/samples</code> (validation) or
+                    <td><code>logs/data-current-datetime/subfolder/samples</code> (validation) or
                       <code>logs/data-current-datetime/Evaluate/samples</code> (test)
                     </td>
                   </tr>
@@ -673,10 +675,12 @@
 
             <div
               style="border: 2px solid #ff9800; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 10px;">
-              <p>To streamline the implementation process of our proposed workflow, we provide the <code>deepem</code> library, which enables DL
+              <p>To streamline the implementation process of our proposed workflow, we provide the <code>deepem</code>
+                library, which enables DL
                 experts to develop their use cases efficiently with minimal overhead. The library simplifies key aspects
                 of model training by offering built-in support for logging, model checkpointing, early stopping, and
-                other essential features. For more details, see <a href="your-contribution.html" target="_blank">here</a>.</p>
+                other essential features. For more details, see <a href="your-contribution.html"
+                  target="_blank">here</a>.</p>
             </div>
 
             <h3>1. Data</h3>
@@ -770,8 +774,10 @@
                 will help EM experts identify potential issues like overfitting, allow them to learn about the process
                 of model training and inform about improvements for the model.</p>
 
-              <p>The logs are stored in a dedicated directory (<code>logs/data-current-datetime/</code>) and are
-                structured to capture the following:</p>
+              <p>For each execution of the notebook, the logs are stored in a dedicated directory
+                (<code>logs/data-current-datetime/</code>). For each training run a subfolder will be created within
+                this log directory. A subfolder will contain multiple logs which are structured to capture the
+                following:</p>
               <table border="0" cellpadding="5" cellspacing="0" style="background-color:rgb(252, 209, 180);">
                 <thead>
                   <tr>
@@ -784,13 +790,13 @@
                   <tr>
                     <td><strong>Hyperparameters:</strong></td>
                     <td>A record of the training hyperparameters.</td>
-                    <td><code>logs/data-current-datetime/Run/hyperparameter.json</code></td>
+                    <td><code>logs/data-current-datetime/subfolder/hyperparameter.json</code></td>
                   </tr>
                   <tr>
                     <td><strong>Model Checkpoints:</strong></td>
                     <td>Snapshots of the model at various stages for resuming training or using the best model for
                       inference.</td>
-                    <td><code>logs/data-current-datetime/Run/checkpoints</code></td>
+                    <td><code>logs/data-current-datetime/subfolder/checkpoints</code></td>
                   </tr>
                   <tr>
                     <td><strong>Training/Validation Loss Curves:</strong></td>
@@ -799,12 +805,12 @@
                         target="_blank">this
                         guide</a>.
                     </td>
-                    <td><code>logs/data-current-datetime/Run/plots</code></td>
+                    <td><code>logs/data-current-datetime/subfolder/plots</code></td>
                   </tr>
                   <tr>
                     <td><strong>Qualitative Visualizations:</strong></td>
                     <td>Sample images with model predictions for assessing visual accuracy.</td>
-                    <td><code>logs/data-current-datetime/Run/samples</code> (validation) or
+                    <td><code>logs/data-current-datetime/subfolder/samples</code> (validation) or
                       <code>logs/data-current-datetime/Evaluate/samples</code> (test)
                     </td>
                   </tr>
