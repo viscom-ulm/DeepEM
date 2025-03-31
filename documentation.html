@@ -475,11 +475,12 @@
 
             <div class="method abstract">
                 <p><code>@abstractmethod</code></p>
-                <h3><code>train_step(batch)</code></h3>
+                <h3><code>train_step(batch_idx, batch)</code></h3>
                 <p>Perform one training step.</p>
                 <p><strong>Args:</strong></p>
                 <ul>
-                    <li><code>batch (tuple)</code>: A batch of data (inputs, targets).</li>
+                    <li><code>batch_idx</code>: Index of the current batch.</li>
+                    <li><code>batch (tuple)</code>: A batch of data i.e. (inputs, targets).</li>
                 </ul>
                 <p><strong>Returns:</strong></p>
                 <ul>
@@ -489,10 +490,11 @@
 
             <div class="method abstract">
                 <p><code>@abstractmethod</code></p>
-                <h3><code>val_step(batch)</code></h3>
+                <h3><code>val_step(batch_idx, batch)</code></h3>
                 <p>Perform one validation step.</p>
                 <p><strong>Args:</strong></p>
                 <ul>
+                    <li><code>batch_idx</code>: Index of the current batch.</li>
                     <li><code>batch</code>: A batch of data defined by the dataset implementation.</li>
                 </ul>
                 <p><strong>Returns:</strong></p>
@@ -504,10 +506,11 @@
 
             <div class="method abstract">
                 <p><code>@abstractmethod</code></p>
-                <h3><code>test_step(batch)</code></h3>
+                <h3><code>test_step(batch_idx, batch)</code></h3>
                 <p>Perform one test step.</p>
                 <p><strong>Args:</strong></p>
                 <ul>
+                    <li><code>batch_idx</code>: Index of the current batch.</li>
                     <li><code>batch</code>: A batch of data defined by the dataset implementation.</li>
                 </ul>
                 <p><strong>Returns:</strong></p>
@@ -575,11 +578,13 @@
             </div>
 
             <div class="method">
-                <h3><code>load_checkpoint(checkpoint_path)</code></h3>
+                <h3><code>load_checkpoint(checkpoint_path, finetuning=False)</code></h3>
                 <p>Loads the model, optimizer, and scheduler state from a saved checkpoint to resume training.</p>
                 <p><strong>Args:</strong></p>
                 <ul>
                     <li><code>checkpoint_path (str)</code>: Path to the checkpoint file.</li>
+                    <li><code>finetuning (bool)</code>: Weather to use the checkpoint file for finetuing (will only set model weights, but ignore optimizer states and similar).</li>
+
                 </ul>
             </div>
 
@@ -599,11 +604,16 @@
             </div>
 
             <div class="method">
-                <h3><code>test()</code></h3>
+                <h3><code>test(evaluate_on_full)</code></h3>
                 <p>Evaluates the trained model on the test dataset and logs results.</p>
+                <p><strong>Args:</strong></p>
+                <ul>
+                    <li><code>evaluate_on_full (bool)</code>: If <code>True</code>, use all data within <code>self.data_path</code> for evaluation.</li>
+                </ul>
                 <p><strong>Returns:</strong></p>
                 <ul>
                     <li><code>float</code>: The average test loss.</li>
+
                 </ul>
             </div>
 
@@ -652,12 +662,12 @@
                 <h3><code>set_epochs()</code></h3>
                 <p>Sets the number of epochs and validation interval based on the configuration. The number of epochs
                     and
-                    validation interval may be reduced if the <code>reduce_epochs</code> parameter is provided.</p>
+                    validation interval may be reduced if the <code>self.reduce_epochs</code> parameter is set.</p>
             </div>
 
             <div class="method">
                 <h3><code>subsample_trainingdata(dataset)</code></h3>
-                <p>Subsamples the training dataset if a subset fraction is provided.</p>
+                <p>Subsamples the training dataset if a subset fraction is provided (self.train_subset is set).</p>
                 <p><strong>Args:</strong></p>
                 <ul>
                     <li><code>dataset (torch.utils.data.Dataset)</code>: The training dataset.</li>
