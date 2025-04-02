@@ -417,27 +417,32 @@
       <div class="content has-text-justified">
 
         <h3>2D to 3D</h3>
+
         <div class="gray-background">
 
-          <h4>Deep Learning Based Tomographic Reconstruction of Scanning Transmission Electron Microscopy (STEM) Images
-          </h4>
-          <h5>Challenge: Evaluation with missing ground truth</h5>
-          <p>To introduce 2D to 3D tasks, we implement a learning based tomographic reconstruction of 2D projections
-            obtained from STEM tomograms, following [1,2].
-            These methods leverage deep learning alongside an image generation process that mimics the projection of a
-            3D scene onto a 2D image using a physics-based simulator (in our case, a STEM simulator). Reconstruction of
-            a 3D volume allows visualisation of the true morphology, spatial relationships and
-            connectivity of certain cellular structures and
-            organelles within a cell, which may not be visible in 2D projections alone. Due to missing ground truth
-            information in the case of tomographic reconstruction,
-            we make use of pre-existing synthetic data to assess the model performance.
-            For further details please see the project page.
-          </p>
+          <h4>Primary Focus: Tomographic Reconstruction</h4>
+          <h5>Application: Tomographic Reconstruction of STEM tilt series</h5>
+
+
+          <h6>Challenge: Evaluation with missing ground truth</h6>
+          <h6>Required Labels: None</h6>
+
+
+          <div>
+            <p>
+              <strong>TL;DR</strong> 🧬✨
+              We use deep learning for tomographic reconstruction of 2D STEM projections, following [1,2]. This approach
+              enables 3D volume reconstruction, revealing detailed cellular structures and relationships not visible in
+              2D 🚀.
+            </p>
+          </div>
+
           <a target="_blank"
-            href="https://lightning.ai/hannah-kniesel/studios/deep-em-toolbox-tomographic-reconstruction">
+            href="https://lightning.ai/hannah-kniesel/studios/deepem-explainable-object-counting-in-microscopy-images">
             <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg"
-              alt="Open Studio" />
+              alt="Open In Studio" />
           </a>
+
           <figure>
             <img src="static/images/tomographic-reconstruction-stem/Teaser.gif"
               alt="Depiction of the tomographic reconstruction. (Show tilt series, model, reconstruction of Nanoparticles)">
@@ -446,7 +451,6 @@
               learning.
             </figcaption>
           </figure>
-
 
           <p></p>
           <p><i>[1] Kniesel, Hannah, et al. "Clean implicit 3d structure from noisy 2d stem images." Proceedings of the
