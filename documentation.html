@@ -381,7 +381,8 @@
                     for resuming training. Defaults to <code>None</code>.</li>
                 <li><code>self.parameter</code> [<code>dict</code>] - Training parameters defined in
                     <code>configs/parameters.json</code>, containing both tunable and non-tunable parameters. Updated
-                    before each run during sweeps.</li>
+                    before each run during sweeps.
+                </li>
                 <li><code>self.device</code> [<code>str</code>] - Specifies the computing device: <code>"cuda"</code> if
                     a GPU is available, otherwise <code>"cpu"</code>.</li>
                 <li><code>self.model</code> [<code>deepEM.Model.AbstractModel</code>] - The model instance used for
@@ -411,10 +412,12 @@
                 <li><code>self.best_model_wts</code> [<code>state_dict</code>] - Stores the model's best-performing
                     state dictionary.</li>
                 <li><code>self.num_epochs</code> [<code>int</code>] - Number of training epochs, calculated as
-                    <code>self.parameter["epochs"] * self.reduce_epochs</code>.</li>
+                    <code>self.parameter["epochs"] * self.reduce_epochs</code>.
+                </li>
                 <li><code>self.validation_interval</code> [<code>int</code>] - Interval (in training iterations) at
                     which validation is performed, computed as
-                    <code>max(1, self.parameter["validation_interval"] * self.reduce_epochs)</code>.</li>
+                    <code>max(1, self.parameter["validation_interval"] * self.reduce_epochs)</code>.
+                </li>
             </ul>
         </div>
         <h3><button onclick="toggleContent('trainer-methods')" class="btn"
@@ -424,7 +427,7 @@
             <div class="method abstract">
                 <p><code>@abstractmethod</code></p>
                 <h3><code>setup_model()</code></h3>
-                <p>Setup and return the model for training, validation, and testing.</p>
+                <p>Setup and return the model for training, validation, and testing. Make sure to move the model to <code>self.device</code>.</p>
                 <p>This method must be implemented by the DL expert.</p>
                 <p><strong>Returns:</strong></p>
                 <ul>
@@ -583,7 +586,8 @@
                 <p><strong>Args:</strong></p>
                 <ul>
                     <li><code>checkpoint_path (str)</code>: Path to the checkpoint file.</li>
-                    <li><code>finetuning (bool)</code>: Weather to use the checkpoint file for finetuing (will only set model weights, but ignore optimizer states and similar).</li>
+                    <li><code>finetuning (bool)</code>: Weather to use the checkpoint file for finetuing (will only set
+                        model weights, but ignore optimizer states and similar).</li>
 
                 </ul>
             </div>
@@ -608,7 +612,9 @@
                 <p>Evaluates the trained model on the test dataset and logs results.</p>
                 <p><strong>Args:</strong></p>
                 <ul>
-                    <li><code>evaluate_on_full (bool)</code>: If <code>True</code>, use all data within <code>self.data_path</code> for evaluation.</li>
+                    <li><code>evaluate_on_full (bool)</code>: If <code>True</code>, use all data within
+                        <code>self.data_path</code> for evaluation.
+                    </li>
                 </ul>
                 <p><strong>Returns:</strong></p>
                 <ul>
@@ -642,7 +648,8 @@
 
 
             <div class="method">
-                <h3><code>prepare(config=None, train_subset=None, reduce_epochs=None, set_parameters=True)</code></h3>
+                <h3><code>prepare(config=None, train_subset=None, reduce_epochs=None, num_epochs=None, set_parameters=True)</code>
+                </h3>
                 <p>Prepares the training pipeline by setting up the model, datasets, dataloaders, optimizer, scheduler,
                     and other configurations.</p>
                 <p><strong>Args:</strong></p>
@@ -653,6 +660,8 @@
                         hyperparameter tuning. Defaults to <code>None</code>.</li>
                     <li><code>reduce_epochs (float, optional)</code>: Fraction of epochs to use for quick hyperparameter
                         tuning. Defaults to <code>None</code>.</li>
+                    <li><code>num_epochs (float, optional)</code>: Explicitly set number of epochs for training. If
+                        defined, will overwrite self.parameter["epoch"]. Defaults to <code>None</code>.</li>
                     <li><code>set_parameters (bool, optional)</code>: Whether to set the hyperparameters from the
                         provided config. Defaults to <code>True</code>.</li>
                 </ul>
@@ -734,15 +743,22 @@
                 style="background-color: #238d64;">Attributes</button></h3>
         <div id="inference-att" class="toggle-content" style="display: none;">
             <ul>
-                <li><code>self.device</code> [<code>str</code>] - Specifies the computing device: "cuda" if a GPU is available, otherwise "cpu".</li>
-                <li><code>self.model_path</code> [<code>str</code>] - Absolute path to the model checkpoint file used for inference.</li>
-                <li><code>self.data_path</code> [<code>str</code>] - Path to the input data for inference. Can be a directory containing multiple files or a single file.</li>
-                <li><code>self.batch_size</code> [<code>int</code>] - Number of samples processed per batch during inference.</li>
-                <li><code>self.metadata</code> [<code>dict</code>] - Dictionary containing metadata about the model checkpoint, saved during training.</li>
-                <li><code>self.model</code> [<code>torch.nn.Module</code>] - The loaded model instance used for inference.</li>
-                <li><code>self.save_to</code> [<code>str</code>] - Directory path where inference results are stored. Typically points to a "results" folder within <code>self.data_path</code>.</li>
+                <li><code>self.device</code> [<code>str</code>] - Specifies the computing device: "cuda" if a GPU is
+                    available, otherwise "cpu".</li>
+                <li><code>self.model_path</code> [<code>str</code>] - Absolute path to the model checkpoint file used
+                    for inference.</li>
+                <li><code>self.data_path</code> [<code>str</code>] - Path to the input data for inference. Can be a
+                    directory containing multiple files or a single file.</li>
+                <li><code>self.batch_size</code> [<code>int</code>] - Number of samples processed per batch during
+                    inference.</li>
+                <li><code>self.metadata</code> [<code>dict</code>] - Dictionary containing metadata about the model
+                    checkpoint, saved during training.</li>
+                <li><code>self.model</code> [<code>torch.nn.Module</code>] - The loaded model instance used for
+                    inference.</li>
+                <li><code>self.save_to</code> [<code>str</code>] - Directory path where inference results are stored.
+                    Typically points to a "results" folder within <code>self.data_path</code>.</li>
             </ul>
-            
+
         </div>
 
         <h3><button onclick="toggleContent('inference-methods')" class="btn"
@@ -754,7 +770,7 @@
                 <p><code>@abstractmethod</code></p>
                 <h3><code>setup_model() -> torch.nn.Module</code></h3>
                 <p>Defines and initializes the model architecture for inference.</p>
-                <p>Subclasses must implement this method to define the specific model for inference.</p>
+                <p>Subclasses must implement this method to define the specific model for inference. Make sure to move the model to <code>self.device</code>.</p>
                 <p><strong>Returns:</strong></p>
                 <ul>
                     <li><code>torch.nn.Module</code>: The model ready for inference.</li>
@@ -944,15 +960,26 @@
                 style="background-color: #238d64;">Attributes</button></h3>
         <div id="logger-att" class="toggle-content" style="display: none;">
             <ul>
-                <li><code>self.data_path</code> [<code>str</code>] - Path to the training data. Also used to store the best sweep parameters at <code>self.data_path/Sweep_Parameters</code>.</li>
-                <li><code>self.root_dir</code> [<code>str</code>] - Root directory for logging, typically set to <code>logs/timestamp</code>. This directory can contain logs from multiple training runs.</li>
-                <li><code>self.log_dir</code> [<code>str</code>] - Directory for storing logs of a specific training run. It is a subfolder of <code>self.root_dir</code> and also includes evaluation logs.</li>
-                <li><code>self.checkpoints_dir</code> [<code>str</code>] - Subdirectory ("checkpoints") within <code>self.log_dir</code> used for saving model checkpoints.</li>
-                <li><code>self.plots_dir</code> [<code>str</code>] - Subdirectory ("plots") within <code>self.log_dir</code> used for storing training and validation curve plots.</li>
-                <li><code>self.samples_dir</code> [<code>str</code>] - Subdirectory ("samples") within <code>self.log_dir</code> used for saving qualitative samples from validation or testing.</li>
-                <li><code>self.logger</code> [<code>logging.Logger</code>] - Instance of the Python <code>logging</code> module for handling logs.</li>
+                <li><code>self.data_path</code> [<code>str</code>] - Path to the training data. Also used to store the
+                    best sweep parameters at <code>self.data_path/Sweep_Parameters</code>.</li>
+                <li><code>self.root_dir</code> [<code>str</code>] - Root directory for logging, typically set to
+                    <code>logs/timestamp</code>. This directory can contain logs from multiple training runs.
+                </li>
+                <li><code>self.log_dir</code> [<code>str</code>] - Directory for storing logs of a specific training
+                    run. It is a subfolder of <code>self.root_dir</code> and also includes evaluation logs.</li>
+                <li><code>self.checkpoints_dir</code> [<code>str</code>] - Subdirectory ("checkpoints") within
+                    <code>self.log_dir</code> used for saving model checkpoints.
+                </li>
+                <li><code>self.plots_dir</code> [<code>str</code>] - Subdirectory ("plots") within
+                    <code>self.log_dir</code> used for storing training and validation curve plots.
+                </li>
+                <li><code>self.samples_dir</code> [<code>str</code>] - Subdirectory ("samples") within
+                    <code>self.log_dir</code> used for saving qualitative samples from validation or testing.
+                </li>
+                <li><code>self.logger</code> [<code>logging.Logger</code>] - Instance of the Python <code>logging</code>
+                    module for handling logs.</li>
             </ul>
-            
+
         </div>
 
         <h3><button onclick="toggleContent('logger-methods')" class="btn"
@@ -1086,14 +1113,22 @@
                 style="background-color: #238d64;">Attributes</button></h3>
         <div id="tuner-att" class="toggle-content" style="display: none;">
             <ul>
-                <li><code>self.model_trainer</code> [<code>deepem.ModelTrainer.AbstractModelTrainer</code>] - Model trainer used for hyperparameter search.</li>
-                <li><code>self.logger</code> [<code>deepem.Logger.Logger</code>] - Logger instance for recording sweep progress and results.</li>
-                <li><code>self.config</code> [<code>dict</code>] - Dictionary containing hyperparameters for tuning, loaded from <code>configs/parameters.json</code>.</li>
-                <li><code>self.trainsubset</code> [<code>float</code>] - Fraction (between 0 and 1) of the training data used during hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.</li>                
-                <li><code>self.reduce_epochs</code> [<code>float</code>] - Fraction (between 0 and 1) of the total epochs used for training in hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.</li>
-                <li><code>self.method</code> [<code>str</code>] - Hyperparameter tuning method. Currently, only <code>"grid"</code> search is supported.</li>
+                <li><code>self.model_trainer</code> [<code>deepem.ModelTrainer.AbstractModelTrainer</code>] - Model
+                    trainer used for hyperparameter search.</li>
+                <li><code>self.logger</code> [<code>deepem.Logger.Logger</code>] - Logger instance for recording sweep
+                    progress and results.</li>
+                <li><code>self.config</code> [<code>dict</code>] - Dictionary containing hyperparameters for tuning,
+                    loaded from <code>configs/parameters.json</code>.</li>
+                <li><code>self.trainsubset</code> [<code>float</code>] - Fraction (between 0 and 1) of the training data
+                    used during hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.</li>
+                <li><code>self.reduce_epochs</code> [<code>float</code>] - Fraction (between 0 and 1) of the total
+                    epochs used for training in hyperparameter sweeps. Defined in <code>configs/parameters.json</code>.
+                </li>
+                <li><code>self.method</code> [<code>str</code>] - Hyperparameter tuning method. Currently, only
+                    <code>"grid"</code> search is supported.
+                </li>
             </ul>
-            
+
         </div>
         <h3><button onclick="toggleContent('tuner-methods')" class="btn"
                 style="background-color: #238d64;">Methods</button></h3>

@@ -48,62 +48,22 @@
     }
 
     .box {
-      border: none;
       background: #e6e6e6;
       padding: 20px;
       text-align: center;
       flex: 1;
       border-radius: 10px;
       max-width: 30%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 450px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-
     .box img {
-      max-width: 100%;
-      max-height: 200px;
-      height: auto;
+      width: 100%;
       border-radius: 5px;
-      display: block;
     }
 
     .box h3 {
       margin: 10px 0;
     }
-
-    .getstarted {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 5px;
-      width: auto;
-      background: linear-gradient(135deg, #ff7e5f, #feb47b);
-      color: white;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-      cursor: pointer;
-    }
-
-    .getstarted:hover {
-      background: linear-gradient(135deg, #ff6a4d, #ffa366);
-      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .getstarted:active {
-      transform: translateY(1px);
-      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    }
-
 
     .hidden {
       display: none;
@@ -472,15 +432,76 @@
     </div>
   </nav>
 
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1>DeepEM Playground</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section>
+    <div class="overview">
+      <div class="box">
+        <h2>Image to Value(s)</h2>
+        <h3>Object Counting in Electron Microscopy</h3>
+        <img src="static/images/overview/Overview1.png" alt="Image to Value">
+        <a href="#" class="button">Get Started</a>
+      </div>
+      <div class="box">
+        <h2>Image to Image</h2>
+        <h3>Semantic Segmentation of Cellular Structures</h3>
+        <img src="static/images/overview/Overview2.png" alt="Image to Image">
+        <a href="#" class="button">Get Started</a>
+      </div>
+      <div class="box">
+        <h2>2D to 3D</h2>
+        <h3>Tomographic Reconstruction</h3>
+        <img src="static/images/overview/Overview3.png" alt="2D to 3D">
+        <a href="#" class="button">Get Started</a>
+      </div>
+    </div>
+  </section>
 
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
-        <div class="columns is-centered" style="width:100%">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
+            <p><strong>Deep-EM Playground</strong> is a user-friendly, interdisciplinary tool designed by deep learning
+              (DL)
+              experts to help electron microscopy (EM)
+              labs leverage DL without requiring expertise in coding or AI. It simplifies model
+              training,
+              testing, and deployment, making DL accessible to researchers at any experience level, guiding them towards
+              deeper understanding of AI.</p>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="pdfs/paper.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+
+
+            <!--<img src="static/images/icon.png"
+              alt="Schematic showing 3 differnt types of task applicable for deep learning. (image to values, image to image & 2D to 3D)" />
+
             <h1 class="title is-1 publication-title">Deep-EM Playground:</h1>
-            <h4 class="title is-3 publication-title">Bringing Deep Learning to Electron Microscopy Labs</h4>
-            <div class="is-size-8 publication-authors">
+            <h2 class="title is-1 publication-title">Bringing Deep Learning to<br>Electron Microscopy Labs</h2>
+            <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://viscom.uni-ulm.de/members/hannah-kniesel/" target="_blank">Hannah
                   Kniesel</a><sup>1</sup>,</span>
@@ -501,47 +522,16 @@
                 <a href="https://viscom.uni-ulm.de/members/timo-ropinski/" target="_blank">Timo
                   Ropinski</a><sup>1</sup>,
               </span>
-          </div>
-          <div class="is-size-8 publication-authors">
-            <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm University    <sup>2</sup>Central
-              Facility for Electron Microscopy, Ulm University    <sup>3</sup>Computer Vision Lab, TU Vienna</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="overview">
-    <div class="box">
-      <h2 class="title is-3 publication-title">Image to Value(s)</h2>
-      <h3 class="title is-4 publication-title">Object Counting in Electron Microscopy</h3>
-      <img src="static/images/overview/Overview1.png" alt="Image to Value">
-      <a href="https://lightning.ai/hannah-kniesel/studios/deepem-explainable-object-counting-in-microscopy-images" target="_blank" class="getstarted">Get Started 🚀</a>
-    </div>
-    <div class="box">
-      <h2 class="title is-3 publication-title">Image to Image</h2>
-      <h3 class="title is-4 publication-title">Semantic Segmentation of Cellular Structures</h3>
-      <img src="static/images/overview/Overview2.png" alt="Image to Image">
-      <a href="https://lightning.ai/hannah-kniesel/studios/deepem-segmentation" target="_blank" class="getstarted">Get Started 🚀</a>
-    </div>
-    <div class="box">
-      <h2 class="title is-3 publication-title">2D to 3D</h2>
-      <h3 class="title is-4 publication-title">Tomographic Reconstruction</h3>
-      <img src="static/images/overview/Overview3.png" alt="2D to 3D">
-      <a href="https://lightning.ai/hannah-kniesel/studios/deepem-tomography" target="_blank" class="getstarted">Get Started 🚀</a>
-    </div>
-  </div>
+            </div>
 
-  <!-- Paper abstract -->
-  <section class="section hero">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Visual Computing Group, Ulm University<br><sup>2</sup>Central
+                Facility for Electron Microscopy, Ulm University<br><sup>3</sup>Computer Vision Lab, TU Vienna</span>
+            </div>
 
-          <div class="content has-text-justified">
             <div class="column has-text-centered">
               <div class="publication-links">
-                <!-- Arxiv PDF link -->
                 <span class="link-block">
                   <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
@@ -553,21 +543,13 @@
                 </span>
               </div>
             </div>
-
-            </div>
-
-            <p><strong>Deep-EM Playground</strong> is a user-friendly, interdisciplinary tool designed by deep learning
-              (DL)
-              experts to help electron microscopy (EM)
-              labs leverage DL without requiring expertise in coding or AI. It simplifies model
-              training,
-              testing, and deployment, making DL accessible to researchers at any experience level, guiding them towards
-              deeper understanding of AI.</p>
+          </div> -->
           </div>
         </div>
       </div>
-    </div>
   </section>
+
+
 
 
   <!-- Paper abstract -->
@@ -577,6 +559,7 @@
         <div class="column is-four-fifths">
 
           <div class="content has-text-justified">
+
             <h2>Key Features</h2>
             <ul>
               <li>✅ <strong>Easy Setup</strong> – Thanks to the use of Lightning AI, users can train models
