@@ -96,17 +96,17 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: #007bff;
-      color: white;
+      background-color: rgb(255, 200, 99);
+      color: black;
       border: none;
       padding: 10px 15px;
       cursor: pointer;
       font-size: 16px;
-      border-radius: 5px;
+      border-radius: 50%;
     }
 
     .nav-button:hover {
-      background-color: #0056b3;
+      background-color: orange;
     }
 
     .nav-button:disabled {
@@ -281,6 +281,26 @@
     .navbar {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
+    .navbar.is-primary {
+      background-color: #ffe6d5ff;
+      color: black;
+    }
+
+    .navbar.is-primary .navbar-start>a.navbar-item {
+      color: #000000aa;
+    }
+
+    .navbar.is-primary .navbar-start>a.navbar-item:hover {
+      background-color: #fecca9ff;
+      color: #000000;
+    }
+
+    .navbar.is-primary .navbar-brand>a.navbar-item:hover {
+      background-color: #fecca9ff;
+      color: #000000;
+    }
+
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
